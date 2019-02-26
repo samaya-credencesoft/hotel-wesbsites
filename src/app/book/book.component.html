@@ -11,9 +11,20 @@
       </div>
     </div>
     <div class="row">
-      <app-property [property]="property"></app-property>
-      <app-room *ngFor="let room of rooms" [room]="room" [property]="property">
+      <app-property [property]="property" (checkPropertyAvailabilityEmit)="getCheckPropertyAvailability($event)"></app-property>
+      <app-room *ngFor="let room of rooms" [room]="room" [property]="property" (checkAvailabilityEmit)="getCheckAvailability($event)" (roomSelectionEmit)="getSelectedRoom($event)">
       </app-room>
     </div>
   </div>
 </section>
+<section class="recent-blog bg-fafa section">
+<div class="container">
+<div class="row" *ngIf="checkAvailability">
+    <app-booking [property]="property" [room]="selectedRoom"></app-booking>
+  </div>
+  </div>
+</section>
+
+
+
+

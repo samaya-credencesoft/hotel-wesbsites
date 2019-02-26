@@ -21,7 +21,16 @@ export class BookComponent implements OnInit {
   rooms: Room[] = [];
   property: Property;
   loadingError = false;
+  checkAvailability = false ;
+  selectedRoom: Room ;
+  ngOnInit() {
+  }
 
+  constructor(
+    private apiService: ApiService
+  ) {
+    this.loadPropetyDetails();
+  }
   loadPropetyDetails() {
     this.apiService.getPropertyDetailsByPropertyId(PROPERTY_ID).subscribe(response => {
       this.property = response.body;
@@ -30,7 +39,6 @@ export class BookComponent implements OnInit {
         console.log(this.property);
         if (this.property === null || this.property === undefined || this.property.id == null || 
           this.property.id <= 0 || this.property.address === undefined) {
-          console.log("Create a Modal to call the property directly");
           this.loadingError = true;
         } else {
           this.apiService.getRoomDetailsByPropertyId(this.property.id).subscribe(res => { 
@@ -45,12 +53,19 @@ export class BookComponent implements OnInit {
 
   }
 
-  ngOnInit() {
-    this.loadPropetyDetails();
+  getCheckAvailability(checkAvailability: boolean) {
+    this.checkAvailability = true;
   }
-
-  constructor(
-    private apiService: ApiService
-  ) {}
-
+  getSelectedRoom(room: Room) {
+    this.selectedRoom = room;
+  }
+  getSelectedProperty() {
+     this.selectedRoom = new Room();
+     this.selectedRoom.name = 'Whole House' ;
+  }
+  getCheckPropertyAvailability(checkAvailability: boolean) {
+    this.checkAvailability = true;
+    this.selectedRoom = new Room();
+    this.selectedRoom.name = 'Whole House' ;
+  }
 }

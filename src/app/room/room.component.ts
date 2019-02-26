@@ -1,8 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Room } from './room';
 import { Property } from './../property/property';
-import { MatDialog } from '@angular/material';
-import { BookingComponent } from '../booking/booking.component';
+
 @Component({
   selector: 'app-room',
   templateUrl: './room.component.html',
@@ -12,24 +11,14 @@ import { BookingComponent } from '../booking/booking.component';
 export class RoomComponent implements OnInit {
   @Input() room: Room;
   @Input() property: Property;
+  @Output() checkAvailabilityEmit = new EventEmitter<boolean>();
+  @Output() roomSelectionEmit = new EventEmitter<Room>();
   constructor(
-    private dialog: MatDialog
+
   ) { }
   ngOnInit() { }
-  createBookingDialog() {
-    const dialogRef = this.dialog.open(BookingComponent, {
-      width: '600px',
-      data: {
-        fromDate: '',
-        toDate: '',
-        roomId: this.room.id,
-        propertyId: this.property.id,
-        email: this.property.email,
-        businessName: this.property.name,
-        managerContactNo: this.property.managerContactNo
-      }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-    });
-  }
+  checkAvailability() {
+      this.checkAvailabilityEmit.emit(true);
+      this.roomSelectionEmit.emit(this.room);
+     }
 }

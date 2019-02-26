@@ -1,4 +1,4 @@
-import { Component, AfterViewChecked, OnInit, Inject, ViewChild } from '@angular/core';
+import { Component, AfterViewChecked, OnInit, Inject, ViewChild, Input, } from '@angular/core';
 import { ApiService, SMS_NUMBER } from '../api.service';
 import { Booking } from './booking';
 import { FormControl, FormGroup, NgForm } from '@angular/forms';
@@ -8,6 +8,8 @@ import { MatDatepicker, MatDatepickerInputEvent } from '@angular/material/datepi
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core';
 import { Observable, throwError } from 'rxjs';
+import { Room } from './../room/room';
+import { Property } from './../property/property';
 import {
   MatDialog,
   MatDialogConfig,
@@ -46,10 +48,12 @@ export interface PaymentMode {
 })
 export class BookingComponent implements OnInit {
   @ViewChild(MatDatepicker) datepicker: MatDatepicker<Date>;
+  @Input() room: Room;
+  @Input() property: Property;
   msgs: Message[] = [];
   title = 'app';
   booking: Booking;
-  availabilityCheck: Boolean = false;
+  availabilityCheck = false;
   name: FormControl = new FormControl();
   currency: FormControl = new FormControl();
   amount: FormControl = new FormControl();
@@ -64,9 +68,9 @@ export class BookingComponent implements OnInit {
   //bookingToDate: FormControl = new FormControl();
   bookingAmount: FormControl = new FormControl();
   airportShuttle: FormControl = new FormControl();
-  addScript: Boolean = false;
-  paypalLoad: Boolean = true;
-  isShuttleBooked: Boolean = false;
+  addScript = false;
+  paypalLoad = true;
+  isShuttleBooked = false;
 
   referenceNumber: FormControl = new FormControl();
   paymentMode: FormControl = new FormControl();
@@ -83,8 +87,8 @@ export class BookingComponent implements OnInit {
   toDateMaxMilliSeconds: number;
   form: NgForm;
   //Spinner Properties
-  spinner: Boolean = false;
-  submitDisabled: Boolean = false;
+  spinner = false;
+  submitDisabled  = false;
   bookingButtonLabel: String = 'Check Availability';
   payment: Payment;
   managerContact: string;
@@ -128,15 +132,9 @@ export class BookingComponent implements OnInit {
     { value: '12', viewValue: '12' }
   ];
   constructor(private http: HttpClient,
-    public dialogRef: MatDialogRef<BookingComponent>,
-    @Inject(MAT_DIALOG_DATA) public bookingRef: Booking,
-    private apiServices: ApiService,
-    private snackBar: MatSnackBar
+              private apiServices: ApiService,
+              private snackBar: MatSnackBar
   ) {
-    this.propertyEmail = bookingRef.email;
-    this.booking = bookingRef;
-    this.booking.businessEmail = bookingRef.email;
-    this.booking.businessName = bookingRef.businessName;
   }
   ngOnInit() {
     this.spinner = false;
@@ -147,12 +145,12 @@ export class BookingComponent implements OnInit {
     this.bookingFromDate = new FormControl(new Date());
     this.payment = new Payment();
     this.booking = new Booking();
-    this.booking.businessEmail = this.bookingRef.businessEmail;
-    this.booking.propertyId = this.bookingRef.propertyId;
-    this.booking.roomId = this.bookingRef.roomId;
-    this.booking.businessEmail = this.bookingRef.email;
-    this.booking.businessName = this.bookingRef.businessName;
-    this.managerContact = this.bookingRef.managerContactNo ;
+    this.booking.businessEmail = this.property.email;
+    this.booking.propertyId = this.property.id;
+    this.booking.roomId = +this.room.id;
+    this.booking.businessEmail = this.property.email;
+    this.booking.businessName = this.property.name;
+    this.managerContact = this.property.managerContactNo ;
   }
   onCloseBooking(): void {
     setTimeout(() => {
@@ -339,10 +337,10 @@ export class BookingComponent implements OnInit {
     this.booking = new Booking();
     this.bookingFromDate = new FormControl(new Date());
     this.bookingToDate = new FormControl(this.setCheckOutDateOnReset(this.bookingFromDate.value));
-    this.booking.propertyId = this.bookingRef.propertyId;
-    this.booking.roomId = this.bookingRef.roomId;
-    this.booking.businessEmail = this.bookingRef.businessEmail;
-    this.booking.businessName = this.bookingRef.businessName;
+    this.booking.propertyId = this.property.id;
+    this.booking.roomId = +this.room.id;
+    this.booking.businessEmail = this.property.email;
+    this.booking.businessName = this.property.name;
     this.availabilityCheck = false;
     this.spinner = false;
     this.msgs = [];
