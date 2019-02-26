@@ -1,0 +1,25 @@
+
+ <div class="col-sm-4">
+    <div class="card">
+      <div *ngIf="room.id == 2">
+        <img class="card-img-top" height=200px width=200px   src="assets/images/1.jpg" alt="Card image cap">
+      </div>
+      <div *ngIf="room.id == 1">
+          <img class="card-img-top" height=200px width=200px   src="assets/images/1.jpg" alt="Card image cap">
+        </div>
+        <div class="card-header">
+            <ul><li>{{ room.name }}</li></ul>
+          </div>
+        <div class="card-body">
+        <p class="card-text">{{ room.description }}</p>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Standard Price Per P/N: {{room.roomOnlyPrice}} NZD</li>
+            <li class="list-group-item">Extra Charge  Per P/N: {{room.extraChargePerPerson}} NZD</li>
+            <li class="list-group-item">Maximum Occupancy: {{room.maximumOccupancy}}</li>
+            <li class="list-group-item">No Of Rooms: {{room.noOfRooms}}</li>
+            <li class="list-group-item">Sharing Amennities : Yes</li>
+          </ul>
+        <a  class="btn btn-primary" (click)="createBookingDialog()" >Check Availability</a>
+      </div>
+    </div>
+  </div>

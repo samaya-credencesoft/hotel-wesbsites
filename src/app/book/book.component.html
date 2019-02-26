@@ -1,0 +1,19 @@
+<section class="recent-blog bg-fafa section">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-xs-12 col-sm-offset-2 col-xs-offset-0">
+        <div class="section-heading">
+          <h2 class="title"><span>Book</span> With Us</h2>
+          <p>
+            .......................................
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <app-property [property]="property"></app-property>
+      <app-room *ngFor="let room of rooms" [room]="room" [property]="property">
+      </app-room>
+    </div>
+  </div>
+</section>

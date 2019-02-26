@@ -1,0 +1,20 @@
+
+ <div class="col-sm-4">
+    <div class="card">
+        <img class="card-img-top" height=200px width=200px src="assets/images/1.jpg" alt="Card image cap">
+        <div class="card-header">
+            <ul><li>{{property.name}}</li></ul>
+          </div>
+        <div class="card-body">
+            <p class="card-text">Full House (Allocated Parking)</p>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Standard Price Per P/N: {{property.pricePerNight}} NZD</li>
+            <li class="list-group-item">Extra Charge  Per P/N: N/A</li>
+            <li class="list-group-item">Maximum Occupancy: {{property.maximumOccupancy}}</li>
+            <li class="list-group-item">Two Bedrooms,<br>Lounge,Kitchen,Bath</li>
+            <li class="list-group-item">Sharing Amennities : No</li>
+          </ul>
+          <a  class="btn btn-primary" (click)="createBookingDialog()" >Check Availability</a>
+      </div>
+    </div>
+  </div>
