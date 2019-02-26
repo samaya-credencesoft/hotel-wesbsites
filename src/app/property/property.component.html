@@ -1,21 +1,43 @@
-
- <div class="col-sm-4">
-    <div class="card">
-        <img class="card-img-top" height=200px width=200px src="assets/images/1.jpg" alt="Card image cap">
-        <div class="card-header">
-            <ul><li>{{property.name}}</li></ul>
-          </div>
-        <div class="card-body">
-            <p class="card-text">Full House (Allocated Parking)</p>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">Standard Price Per P/N: {{property.pricePerNight}} NZD</li>
-            <li class="list-group-item">Extra Charge  Per P/N: N/A</li>
-            <li class="list-group-item">Maximum Occupancy: {{property.maximumOccupancy}}</li>
-            <li class="list-group-item">Two Bedrooms,Lounge,Kitchen,Bath</li>
-            <li class="list-group-item">Sharing Amennities : No</li>
-          </ul>
-          <a  class="btn btn-primary" (click)="checkAvailability()" >Check Availability</a>
-      </div>
+<div class="col-sm-4">
+  <div class="card">
+    <img
+      class="card-img-top"
+      height="400px"
+      width="400px"
+      src="assets/images/gallery/10.jpg"
+      alt="Card image cap"
+    />
+    <div class="card-header">
+      <h2>
+        <a style="color:rgb(0, 0, 0);">{{ property.name }}</a>
+      </h2>
+    </div>
+    <div class="card-body">
+      <a class="card-text" style="color:rgb(0, 0, 0);"
+        >Full House (Allocated Parking)</a
+      >
+      <br />
+      <br />
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" style="color:rgb(0, 0, 0);">
+          Standard Price Per P/N: {{ property.pricePerNight }} NZD
+        </li>
+        <li class="list-group-item" style="color:rgb(0, 0, 0);">
+          Extra Charge Per P/N: N/A
+        </li>
+        <li class="list-group-item" style="color:rgb(0, 0, 0);">
+          Maximum Occupancy: {{ property.maximumOccupancy }}
+        </li>
+        <li class="list-group-item" style="color:rgb(0, 0, 0);">
+          Two Bedrooms,Lounge,<br>Kitchen,Bath
+        </li>
+        <li class="list-group-item" style="color:rgb(0, 0, 0);">
+          Sharing Amennities : No
+        </li>
+      </ul>
+      <a class="btn btn-primary" (click)="checkAvailability()"
+        >Check Availability</a
+      >
     </div>
   </div>
-
+</div>
