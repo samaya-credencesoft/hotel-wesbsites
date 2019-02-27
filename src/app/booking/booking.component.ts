@@ -321,7 +321,7 @@ export class BookingComponent implements OnInit {
         });
       }
     });
-    setTimeout(() => {
+    /*setTimeout(() => {
       this.msgs = [];
       createBookingObsr.unsubscribe();
       this.spinner = false;
@@ -329,7 +329,7 @@ export class BookingComponent implements OnInit {
         severity: 'error',
         summary: 'The server is taking more than usual time,please try again after sometime.'
       });
-    }, 25000);
+    }, 25000); */
   }
   reset() {
     this.bookingFromDate.enable();

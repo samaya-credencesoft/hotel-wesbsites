@@ -25,6 +25,7 @@
       <br />
       <br />
       <div class="form-group">
+        <!-- check-in date-->
         <mat-form-field class="col-md-6" color="accent" appearance="outline">
           <input
             matInput
@@ -45,6 +46,7 @@
           </mat-datepicker-toggle>
           <mat-datepicker #fromdate color="accent"></mat-datepicker>
         </mat-form-field>
+         <!-- check-out date-->
         <mat-form-field class="col-md-6" color="accent" appearance="outline">
           <input
             matInput
@@ -66,6 +68,7 @@
         </mat-form-field>
       </div>
       <div *ngIf="availabilityCheck">
+          <!-- First Name-->
         <div class="form-group">
           <mat-form-field class="col-md-6" color="accent" appearance="outline">
             <input
@@ -81,6 +84,7 @@
             >
           </mat-form-field>
         </div>
+         <!-- Last Name-->
         <div class="form-group">
           <mat-form-field class="col-md-6" color="accent" appearance="outline">
             <input
@@ -98,6 +102,7 @@
         </div>
       </div>
       <div>
+         <!-- Email Name-->
         <div *ngIf="availabilityCheck">
           <div class="form-group">
             <mat-form-field
@@ -118,6 +123,7 @@
               >
             </mat-form-field>
           </div>
+          <!-- Contact Number-->
           <div class="form-group">
             <mat-form-field
               class="col-md-6"
@@ -148,6 +154,7 @@
           </div>
         </div>
       </div>
+       <!-- Payment Mode-->
       <div *ngIf="booking.available">
         <div class="form-group">
           <mat-form-field class="col-md-6" appearance="outline">
@@ -169,6 +176,7 @@
             >
           </mat-form-field>
         </div>
+        <!-- Amount-->
         <div class="form-group" appearance="outline">
           <mat-form-field class="col-md-6" color="accent">
             <span matPrefix>$ &nbsp;</span>
@@ -182,6 +190,7 @@
           </mat-form-field>
         </div>
       </div>
+        <!-- Mode of Payment-->
       <div *ngIf="booking.modeOfPayment == 'Card'">
         <div class="form-group">
           <mat-form-field class="col-md-6" color="accent" appearance="outline">
@@ -207,6 +216,7 @@
             >
           </mat-form-field>
         </div>
+         <!-- CardHolderName of Payment-->
         <div class="form-group">
           <mat-form-field class="col-md-6" color="accent" appearance="outline">
             <input
@@ -223,6 +233,7 @@
           </mat-form-field>
         </div>
       </div>
+      <!-- CardHolderName of Payment-->
       <div *ngIf="booking.modeOfPayment == 'Card'">
         <div class="form-group">
           <mat-form-field class="col-md-4" color="accent" appearance="outline">
@@ -240,6 +251,7 @@
             >
           </mat-form-field>
         </div>
+        <!-- Card Expiration-->
         <div class="form-group">
           <mat-form-field class="col-md-4" color="accent" appearance="outline">
             <mat-select
@@ -257,6 +269,7 @@
             >
           </mat-form-field>
         </div>
+         <!-- CVV-->
         <div class="form-group">
           <mat-form-field class="col-md-4" color="accent" appearance="outline">
             <input
