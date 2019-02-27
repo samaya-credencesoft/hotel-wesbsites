@@ -12,12 +12,12 @@
         <span
           *ngIf="msg.detail"
           [innerHTML]="msg.detail"
-          style="color:rgb(0, 255, 38);font-weight:bold"
+          style="color:rgb(0, 0, 255);font-weight:bold"
         ></span>
       </div>
-      <br>
-      <br>
-      <br>
+      <br />
+      <br />
+      <br />
 
       <a style="color:rgb(0, 0, 0);">Booking for</a
       ><a style="color:rgb(6, 32, 198);"> {{ property.name }}</a
@@ -26,6 +26,7 @@
       <br />
       <div class="form-group">
         <!-- check-in date-->
+
         <mat-form-field class="col-md-6" color="accent" appearance="outline">
           <input
             matInput
@@ -46,7 +47,9 @@
           </mat-datepicker-toggle>
           <mat-datepicker #fromdate color="accent"></mat-datepicker>
         </mat-form-field>
-         <!-- check-out date-->
+
+        <!-- check-out date-->
+
         <mat-form-field class="col-md-6" color="accent" appearance="outline">
           <input
             matInput
@@ -67,8 +70,10 @@
           <mat-datepicker #todate color="accent"></mat-datepicker>
         </mat-form-field>
       </div>
+
       <div *ngIf="availabilityCheck">
-          <!-- First Name-->
+        <!-- First Name-->
+
         <div class="form-group">
           <mat-form-field class="col-md-6" color="accent" appearance="outline">
             <input
@@ -84,7 +89,9 @@
             >
           </mat-form-field>
         </div>
-         <!-- Last Name-->
+
+        <!-- Last Name-->
+
         <div class="form-group">
           <mat-form-field class="col-md-6" color="accent" appearance="outline">
             <input
@@ -101,8 +108,10 @@
           </mat-form-field>
         </div>
       </div>
+
       <div>
-         <!-- Email Name-->
+        <!-- Email Name-->
+
         <div *ngIf="availabilityCheck">
           <div class="form-group">
             <mat-form-field
@@ -123,7 +132,9 @@
               >
             </mat-form-field>
           </div>
+
           <!-- Contact Number-->
+
           <div class="form-group">
             <mat-form-field
               class="col-md-6"
@@ -154,86 +165,110 @@
           </div>
         </div>
       </div>
-       <!-- Payment Mode-->
-      <div *ngIf="booking.available">
-        <div class="form-group">
-          <mat-form-field class="col-md-6" appearance="outline">
-            <mat-select
-              placeholder="Mode of Payment"
-              [(ngModel)]="booking.modeOfPayment"
-              [formControl]="paymentMode"
-              required
-            >
-              <mat-option
-                *ngFor="let paymentMode of paymentModes"
-                [value]="paymentMode.value"
+
+      <!-- Payment Mode-->
+      <div>
+        <div *ngIf="booking.available">
+          <div class="form-group">
+            <mat-form-field class="col-md-6" appearance="outline">
+              <mat-select
+                placeholder="Mode of Payment"
+                [(ngModel)]="booking.modeOfPayment"
+                [formControl]="paymentMode"
+                required
               >
-                {{ paymentMode.viewValue }}
-              </mat-option>
-            </mat-select>
-            <mat-error *ngIf="!paymentMode.valid && paymentMode.touched"
-              >Payment mode is required!</mat-error
+                <mat-option
+                  *ngFor="let paymentMode of paymentModes"
+                  [value]="paymentMode.value"
+                >
+                  {{ paymentMode.viewValue }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="!paymentMode.valid && paymentMode.touched"
+                >Payment mode is required!</mat-error
+              >
+            </mat-form-field>
+          </div>
+
+          <!-- Amount-->
+
+          <div class="form-group">
+            <mat-form-field
+              class="col-md-6"
+              color="accent"
+              appearance="outline"
             >
-          </mat-form-field>
-        </div>
-        <!-- Amount-->
-        <div class="form-group" appearance="outline">
-          <mat-form-field class="col-md-6" color="accent">
-            <span matPrefix>$ &nbsp;</span>
-            <input
-              type="text"
-              matInput
-              placeholder="Booking Amount"
-              [formControl]="bookingAmount"
-              [(ngModel)]="booking.payableAmount"
-            />
-          </mat-form-field>
-        </div>
-      </div>
-        <!-- Mode of Payment-->
-      <div *ngIf="booking.modeOfPayment == 'Card'">
-        <div class="form-group">
-          <mat-form-field class="col-md-6" color="accent" appearance="outline">
-            <input
-              type="text"
-              matInput
-              placeholder="Card Number"
-              minlength="16"
-              maxlength="16"
-              pattern="[0-9]{16}"
-              [formControl]="cardNumber"
-              [(ngModel)]="payment.cardNumber"
-              required
-            />
-            <mat-error *ngIf="!cardNumber.valid && cardNumber.touched"
-              >Invalid Card Number!</mat-error
-            >
-            <mat-error *ngIf="cardNumber.minlength"
-              >Card Number must be 16 digits !</mat-error
-            >
-            <mat-error *ngIf="cardNumber.maxlength"
-              >Card Number must be 16 digits !</mat-error
-            >
-          </mat-form-field>
-        </div>
-         <!-- CardHolderName of Payment-->
-        <div class="form-group">
-          <mat-form-field class="col-md-6" color="accent" appearance="outline">
-            <input
-              type="text"
-              matInput
-              placeholder="Name On Card"
-              [formControl]="cardHolderName"
-              [(ngModel)]="payment.cardHolderName"
-              required
-            />
-            <mat-error *ngIf="!cardHolderName.valid && cardHolderName.touched"
-              >Cardholder Name is required!</mat-error
-            >
-          </mat-form-field>
+              <span matPrefix>$&nbsp;</span>
+              <input
+                type="text"
+                matInput
+                placeholder="Booking Amount"
+                [formControl]="bookingAmount"
+                [(ngModel)]="booking.payableAmount"
+              />
+            </mat-form-field>
+          </div>
         </div>
       </div>
-      <!-- CardHolderName of Payment-->
+
+      <!-- Mode of Payment-->
+      <div>
+        <div *ngIf="booking.modeOfPayment == 'Card'">
+          <div class="form-group">
+            <mat-form-field
+              class="col-md-6"
+              color="accent"
+              appearance="outline"
+            >
+              <input
+                type="text"
+                matInput
+                placeholder="Card Number"
+                minlength="16"
+                maxlength="16"
+                pattern="[0-9]{16}"
+                [formControl]="cardNumber"
+                [(ngModel)]="payment.cardNumber"
+                required
+              />
+              <mat-error *ngIf="!cardNumber.valid && cardNumber.touched"
+                >Invalid Card Number!</mat-error
+              >
+              <mat-error *ngIf="cardNumber.minlength"
+                >Card Number must be 16 digits !</mat-error
+              >
+              <mat-error *ngIf="cardNumber.maxlength"
+                >Card Number must be 16 digits !</mat-error
+              >
+            </mat-form-field>
+          </div>
+
+          <!-- CardHolderName of Payment-->
+
+          <div class="form-group">
+            <mat-form-field
+              class="col-md-6"
+              color="accent"
+              appearance="outline"
+            >
+              <input
+                type="text"
+                matInput
+                placeholder="Name On Card"
+                [formControl]="cardHolderName"
+                [(ngModel)]="payment.cardHolderName"
+                required
+              />
+              <mat-error *ngIf="!cardHolderName.valid && cardHolderName.touched"
+                >Cardholder Name is required!</mat-error
+              >
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <!-- Expiry month -->
+
       <div *ngIf="booking.modeOfPayment == 'Card'">
         <div class="form-group">
           <mat-form-field class="col-md-4" color="accent" appearance="outline">
@@ -251,7 +286,9 @@
             >
           </mat-form-field>
         </div>
+
         <!-- Card Expiration-->
+
         <div class="form-group">
           <mat-form-field class="col-md-4" color="accent" appearance="outline">
             <mat-select
@@ -269,7 +306,9 @@
             >
           </mat-form-field>
         </div>
-         <!-- CVV-->
+
+        <!-- CVV-->
+
         <div class="form-group">
           <mat-form-field class="col-md-4" color="accent" appearance="outline">
             <input
