@@ -1,4 +1,4 @@
-<div class="col-sm-4">
+<!-- <div class="col-sm-4">
   <div class="card">
     <img
       class="card-img-top"
@@ -38,6 +38,53 @@
       <a class="btn btn-primary" (click)="checkAvailability()"
         >Check Availability</a
       >
+    </div>
+  </div>
+</div> -->
+
+<div class="col-xs-4">
+  <div class="widget">
+    <div class="wi-side">
+      <div class="wi-content wi-about">
+        <div class="wi-about-item">
+          <div class="abt-img">
+            <div>
+              <img src="assets/images/gallery/10.jpg" />
+            </div>
+          </div>
+          <h4 class="wi-border-title">
+            <b>{{ property.name }}</b>
+          </h4>
+          <a class="card-text" style="color:rgb(172, 11, 129);"
+            ><b>Full House (Allocated Parking)</b></a
+          >
+          <br />
+          <br />
+          <p>
+            <a style="color:rgb(255, 0, 0);">* </a
+            ><b>Standard Price Per P/N: {{ property.pricePerNight }} NZD</b>
+          </p>
+          <p>
+            <a style="color:rgb(255, 0, 0);">* </a
+            ><b>Extra Charge Per P/N: N/A</b>
+          </p>
+          <p>
+            <a style="color:rgb(255, 0, 0);">* </a
+            ><b>Maximum Occupancy: {{ property.maximumOccupancy }}</b>
+          </p>
+          <p>
+            <a style="color:rgb(255, 0, 0);">* </a
+            ><b>Two Bedrooms,Lounge,Kitchen,Bath</b>
+          </p>
+          <p>
+            <a style="color:rgb(255, 0, 0);">* </a
+            ><b>Sharing Amennities : No</b>
+          </p>
+          <a class="btn btn-primary" (click)="checkAvailability()"
+            >Check Availability</a
+          >
+        </div>
+      </div>
     </div>
   </div>
 </div>

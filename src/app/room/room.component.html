@@ -1,4 +1,4 @@
-<div class="col-sm-4">
+<!-- <div class="col-sm-4">
   <div class="card">
     <div *ngIf="room.id == 2">
       <img
@@ -19,7 +19,6 @@
       />
     </div>
     <div class="card-header">
-      <!-- <ul><li>{{ room.name }}</li></ul> -->
       <h2>
         <a style="color:rgb(0, 0, 0);">{{ room.name }}</a>
       </h2>
@@ -50,6 +49,56 @@
       <a class="btn btn-primary" (click)="checkAvailability()"
         >Check Availability</a
       >
+    </div>
+  </div>
+</div> -->
+
+<div class="col-xs-4">
+  <div class="widget">
+    <div class="wi-side">
+      <div class="wi-content wi-about">
+        <div class="wi-about-item">
+          <div class="abt-img">
+            <div *ngIf="room.id == 2">
+              <img src="assets/images/doublebed.jpg" />
+            </div>
+            <div *ngIf="room.id == 1">
+              <img src="assets/images/TwinSingleRoom.jpg" />
+            </div>
+          </div>
+          <h4 class="wi-border-title">
+            <b>{{ room.name }}</b>
+          </h4>
+          <a class="card-text" style="color:rgb(172, 11, 129);"
+            ><b>{{ room.description }}</b></a
+          >
+          <br />
+          <br />
+          <p>
+            <a style="color:rgb(255, 0, 0);">* </a
+            ><b>Standard Price Per P/N: {{ room.roomOnlyPrice }} NZD</b>
+          </p>
+          <p>
+            <a style="color:rgb(255, 0, 0);">* </a
+            ><b>Extra Charge Per P/N: {{ room.extraChargePerPerson }} NZD</b>
+          </p>
+          <p>
+            <a style="color:rgb(255, 0, 0);">* </a
+            ><b>Maximum Occupancy: {{ room.maximumOccupancy }}</b>
+          </p>
+          <p>
+            <a style="color:rgb(255, 0, 0);">* </a
+            ><b>No Of Rooms: {{ room.noOfRooms }}</b>
+          </p>
+          <p>
+            <a style="color:rgb(255, 0, 0);">* </a
+            ><b>Sharing Amennities : Yes</b>
+          </p>
+          <a class="btn btn-primary" (click)="checkAvailability()"
+            >Check Availability</a
+          >
+        </div>
+      </div>
     </div>
   </div>
 </div>
