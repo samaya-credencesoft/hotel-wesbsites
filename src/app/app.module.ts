@@ -27,6 +27,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { BookComponent } from './book/book.component';
 import { PropertyComponent } from './property/property.component';
 import { RoomComponent } from './room/room.component';
+import { GuestComponent } from './guest/guest.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { RoomComponent } from './room/room.component';
     BookingComponent,
     BookComponent,
     PropertyComponent,
-    RoomComponent
+    RoomComponent,
+    GuestComponent
   ],
   entryComponents: [
     BookingComponent

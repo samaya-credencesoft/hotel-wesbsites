@@ -1,87 +1,211 @@
-<div id="all-area" class="all-section">
-  <div class="service section">
-    <div class="container">
+<div
+  class="page-head page-bg"
+  style="background-image: url('assets/images/bg/vid.jpg');"
+>
+  <div class="container">
+    <div class="row">
       <div class="col-sm-8 col-xs-12 col-sm-offset-2 col-xs-offset-0">
         <div class="section-heading">
-          <h2 class="title"><span>Pay For</span> Your Booking </h2>
+          <h2 class="title">
+            <a style="color:rgb(255, 255, 255);">Pay</a
+            ><a style="color:rgb(255, 0, 0);"> For</a>
+            <a style="color:rgb(255, 0, 0);"> Your</a>
+            <a style="color:rgb(255, 255, 255);"> Booking</a>
+          </h2>
         </div>
       </div>
-      <div class="row">
-        <div class="blog">
-          <div class="col-sm-8 col-xs-12 col-sm-offset-2 col-xs-offset-0">
-            <div class="blog-content pr-40 text-justify">
-              <section class="comments-section mb-0">
-                <div class="comments-all-in pr-0 pl-0">
-                  <div class="contact-form comment-form">
-                    <form method="post" action="#">
-                      <div class="row">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                          <div class="row">
-                            <div class="col-xs-10 col-sm-10 col-md-6">
-                              <div class="form-group">
-                                <input
-                                  type="text"
-                                  name="Name"
-                                  class="form-control"
-                                  required
-                                  placeholder="Name"
-                                />
-                              </div>
-                            </div>
-                            <div class="col-xs-10 col-sm-10 col-md-6">
-                              <div class="form-group">
-                                <input
-                                  type="text"
-                                  name="Currency"
-                                  class="form-control"
-                                  required
-                                  placeholder="Currency"
-                                />
-                              </div>
-                            </div>
-                            <div class="col-xs-10 col-sm-10 col-md-6">
-                              <div class="form-group">
-                                <input
-                                  type="number"
-                                  name="Amount"
-                                  class="form-control"
-                                  required
-                                  placeholder="Amount"
-                                />
-                              </div>
-                            </div>
-                            <div class="col-xs-10 col-sm-10 col-md-6">
-                              <div class="form-group">
-                                <input
-                                  type="text"
-                                  name="ReferenceNumber"
-                                  class="form-control"
-                                  required
-                                  placeholder="Booking Reference Number"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-xs-10 col-sm-10 col-md-12">
-                          <div class="form-btn">
-                            <input
-                              type="submit"
-                              name="submit"
-                              value="pay"
-                              class="form-control contact-form-btn"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </form>
+    </div>
+    <br />
+    <br />
+    <br />
+    <div class="row">
+      <form class="bill-payment" method="post">
+        <div class="billing">
+          <div class="col-xs-12 col-md-6">
+            <div class="border-in">
+              <div class="comm-title"><h3>Billing Details</h3></div>
+              <div class="contact-form billing-form">
+                <div class="row">
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                      <label for="fname">First Name</label
+                      ><input
+                        type="text"
+                        id="fname"
+                        name="fname"
+                        class="form-control"
+                        placeholder="Enter your first name"
+                        required="required"
+                        data-error="Write your first name"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                      <label for="lname">Last Name</label
+                      ><input
+                        type="text"
+                        id="lname"
+                        name="lname"
+                        class="form-control"
+                        placeholder="Enter your Last name"
+                        required="required"
+                        data-error="Write your last name"
+                      />
+                    </div>
+                  </div>
+                  <!-- <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                      <select class="form-control">
+                        <option value="">Select Currency</option>
+                        <option value="AUD">Australian Dollar</option>
+                        <option value="BRL">Brazilian Real </option>
+                        <option value="CAD">Canadian Dollar</option>
+                        <option value="CZK">Czech Koruna</option>
+                        <option value="DKK">Danish Krone</option>
+                        <option value="EUR">Euro</option>
+                        <option value="HKD">Hong Kong Dollar</option>
+                        <option value="HUF">Hungarian Forint </option>
+                        <option value="ILS">Israeli New Sheqel</option>
+                        <option value="JPY">Japanese Yen</option>
+                        <option value="MYR">Malaysian Ringgit</option>
+                        <option value="MXN">Mexican Peso</option>
+                        <option value="NOK">Norwegian Krone</option>
+                        <option value="NZD" selected>New Zealand Dollar</option>
+                        <option value="PHP">Philippine Peso</option>
+                        <option value="PLN">Polish Zloty</option>
+                        <option value="GBP">Pound Sterling</option>
+                        <option value="SGD">Singapore Dollar</option>
+                        <option value="SEK">Swedish Krona</option>
+                        <option value="CHF">Swiss Franc</option>
+                        <option value="TWD">Taiwan New Dollar</option>
+                        <option value="THB">Thai Baht</option>
+                        <option value="TRY">Turkish Lira</option>
+                        <option value="USD">U.S. Dollar</option>
+                      </select>
+                    </div>
+                  </div> -->
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                      <label for="state">Currency</label
+                      ><input
+                        type="text"
+                        class="form-control"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                      <label for="state">Booking Amount</label
+                      ><input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter your booking amount"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-12">
+                    <div class="form-group">
+                      <label for="zipcode">Booking Reference Number</label
+                      ><input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter your booking reference number"
+                      />
+                    </div>
                   </div>
                 </div>
-              </section>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+        <div class="payment">
+          <div class="col-xs-12 col-md-6">
+            <div class="border-in">
+              <div class="comm-title"><h3>Payment Method</h3></div>
+              <div class="contact-form payment-form">
+                <div class="row">
+                  <div class="col-xs-12 col-sm-12">
+                    <div class="form-group">
+                      <label for="card-holder">Account / Card Holder Name</label
+                      ><input
+                        type="text"
+                        id="card-holder"
+                        name="card-holder"
+                        class="form-control"
+                        placeholder="Enter your name"
+                        data-error="Write your name"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-12">
+                    <div class="form-group">
+                      <label for="card-number">Card Number</label>
+                      <div class="card-js card-number-only">
+                        <input
+                          class="card-number form-control"
+                          id="card-number"
+                          name="my-custom-form-field__card-number"
+                          placeholder="Enter your card number"
+                          autocomplete="off"
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                      <label for="card-cvc">Expiration Month</label>
+                      <div class="card-js card-cvc-only">
+                        <input
+                          class="form-control"
+                          id="card-cvc"
+                          name="my-custom-form-field__card-cvc"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                      <label for="card-cvc">Expiration Year</label>
+                      <div class="card-js card-cvc-only">
+                        <input
+                          class="cvc form-control"
+                          id="card-cvc"
+                          name="my-custom-form-field__card-cvc"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-12">
+                    <div class="form-group">
+                      <label for="card-cvc">CVV Code</label>
+                      <div class="card-js card-cvc-only">
+                        <input
+                          class="cvc form-control"
+                          id="card-cvc"
+                          name="my-custom-form-field__card-cvc"
+                          placeholder="Enter your CVV"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group col-xs-12">
+                    <div class="form-btn">
+                      <input
+                        type="submit"
+                        name="submit"
+                        value="PAY AND BOOK NOW"
+                        class="contact-form-btn"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </div>
