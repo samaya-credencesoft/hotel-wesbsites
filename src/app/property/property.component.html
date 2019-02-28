@@ -9,7 +9,7 @@
     />
     <div class="card-header">
       <h2>
-        <a style="color:rgb(0, 0, 0);">{{ property.name }}</a>
+        <a style="color:rgb(0, 0, 0);">{{property.name}}</a>
       </h2>
     </div>
     <div class="card-body">
@@ -20,13 +20,13 @@
       <br />
       <ul class="list-group list-group-flush">
         <li class="list-group-item" style="color:rgb(0, 0, 0);">
-          Standard Price Per P/N: {{ property.pricePerNight }} NZD
+          Standard Price Per P/N: {{property.pricePerNight}} NZD
         </li>
         <li class="list-group-item" style="color:rgb(0, 0, 0);">
           Extra Charge Per P/N: N/A
         </li>
         <li class="list-group-item" style="color:rgb(0, 0, 0);">
-          Maximum Occupancy: {{ property.maximumOccupancy }}
+          Maximum Occupancy: {{property.maximumOccupancy}}
         </li>
         <li class="list-group-item" style="color:rgb(0, 0, 0);">
           Two Bedrooms,Lounge,<br>Kitchen,Bath
@@ -42,7 +42,7 @@
   </div>
 </div> -->
 
-<div class="col-xs-4">
+<div class="col-md-4 col-sm-6">
   <div class="widget">
     <div class="wi-side">
       <div class="wi-content wi-about">
@@ -53,7 +53,7 @@
             </div>
           </div>
           <h4 class="wi-border-title">
-            <b>{{ property.name }}</b>
+            <b>{{property.name}}</b>
           </h4>
           <a class="card-text" style="color:rgb(172, 11, 129);"
             ><b>Full House (Allocated Parking)</b></a
@@ -62,15 +62,15 @@
           <br />
           <p>
             <a style="color:rgb(255, 0, 0);">* </a
-            ><b>Standard Price Per P/N: {{ property.pricePerNight }} NZD</b>
+            ><b>Standard Price: {{property.pricePerNight}} NZD</b>
           </p>
           <p>
             <a style="color:rgb(255, 0, 0);">* </a
-            ><b>Extra Charge Per P/N: N/A</b>
+            ><b>Extra Charge (1ps. Per Night): N/A</b>
           </p>
           <p>
             <a style="color:rgb(255, 0, 0);">* </a
-            ><b>Maximum Occupancy: {{ property.maximumOccupancy }}</b>
+            ><b>Maximum Occupancy: {{property.maximumOccupancy}}</b>
           </p>
           <p>
             <a style="color:rgb(255, 0, 0);">* </a
