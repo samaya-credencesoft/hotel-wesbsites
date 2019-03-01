@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Payment } from '../payment/payment';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +8,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  payment: Payment;
 
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute) {
+    this.payment = new Payment();
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.payment.referenceNumber = params['ReferenceNumber'];
+      this.payment.firstName = params['FirstName'];
+      this.payment.lastName = params['LastName'];
+      this.payment.amount = params['Amount'];
+      this.payment.currency = params['Currency'];
+      console.log(this.payment); // Print the parameter to the console. 
+  });
+   }
 
   ngOnInit() {
   }
 
 }
+
+

@@ -18,6 +18,7 @@
     <br />
     <br />
     <br />
+    <mat-progress-bar *ngIf="loader" mode="indeterminate"></mat-progress-bar>
     <div class="row">
       <form class="bill-payment" method="post">
         <div class="billing">
@@ -37,6 +38,7 @@
                         placeholder="Enter your first name"
                         required="required"
                         data-error="Write your first name"
+                        [(ngModel)]="payment.firstName"
                       />
                     </div>
                   </div>
@@ -51,6 +53,7 @@
                         placeholder="Enter your Last name"
                         required="required"
                         data-error="Write your last name"
+                        [(ngModel)]="payment.lastName"
                       />
                     </div>
                   </div>
@@ -87,30 +90,40 @@
                   </div> -->
                   <div class="col-xs-12 col-sm-6">
                     <div class="form-group">
-                      <label for="state">Currency</label
+                      <label for="currency">Currency</label
                       ><input
                         type="text"
+                        id="currency"
+                        name="currency"
                         class="form-control"
+                        placeholder="Currency"
+                        [(ngModel)]="payment.currency"
                       />
                     </div>
                   </div>
                   <div class="col-xs-12 col-sm-6">
                     <div class="form-group">
-                      <label for="state">Booking Amount</label
+                      <label for="amount">Booking Amount</label
                       ><input
                         type="text"
                         class="form-control"
+                        id="amount"
+                        name="amount"
                         placeholder="Enter your booking amount"
+                        [(ngModel)]="payment.amount"
                       />
                     </div>
                   </div>
                   <div class="col-xs-12 col-sm-12">
                     <div class="form-group">
-                      <label for="zipcode">Booking Reference Number</label
+                      <label for="reference-number">Booking Reference Number</label
                       ><input
                         type="text"
                         class="form-control"
+                        id="referenceNumber"
+                        name="referenceNumber"
                         placeholder="Enter your booking reference number"
+                        [(ngModel)]="payment.referenceNumber"
                       />
                     </div>
                   </div>
@@ -135,6 +148,7 @@
                         class="form-control"
                         placeholder="Enter your name"
                         data-error="Write your name"
+                        [(ngModel)]="payment.name"
                       />
                     </div>
                   </div>
@@ -148,6 +162,7 @@
                           name="my-custom-form-field__card-number"
                           placeholder="Enter your card number"
                           autocomplete="off"
+                          [(ngModel)]="payment.cardNumber"
                           required
                         />
                       </div>
@@ -161,6 +176,7 @@
                           class="form-control"
                           id="card-cvc"
                           name="my-custom-form-field__card-cvc"
+                          [(ngModel)]="payment.expMonth"
                         />
                       </div>
                     </div>
@@ -173,6 +189,7 @@
                           class="cvc form-control"
                           id="card-cvc"
                           name="my-custom-form-field__card-cvc"
+                          [(ngModel)]="payment.expYear"
                         />
                       </div>
                     </div>
@@ -186,6 +203,7 @@
                           id="card-cvc"
                           name="my-custom-form-field__card-cvc"
                           placeholder="Enter your CVV"
+                          [(ngModel)]="payment.cvv"
                         />
                       </div>
                     </div>

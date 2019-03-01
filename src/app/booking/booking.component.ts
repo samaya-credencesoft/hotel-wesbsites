@@ -17,7 +17,7 @@ import {
   MAT_DIALOG_DATA
 } from '@angular/material';
 import { MatSnackBar } from '@angular/material';
-import { Payment } from './../payment';
+import { Payment } from './../payment/payment';
 import { DISABLED } from '@angular/forms/src/model';
 import { Msg } from './msg';
 declare let paypal: any;

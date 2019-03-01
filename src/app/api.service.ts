@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Payment } from './payment';
+import { Payment } from './payment/payment';
 import { Host } from './host';
 import { Booking } from './booking/booking';
 import { Property } from './property/property';

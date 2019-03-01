@@ -3,6 +3,8 @@ export class Payment {
     id: string;
     referenceNumber: string;
     name: string;
+    firstName: string;
+    lastName: string;
     email: string;
     businessEmail: string;
     amount: number;

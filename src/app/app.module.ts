@@ -28,6 +28,9 @@ import { BookComponent } from './book/book.component';
 import { PropertyComponent } from './property/property.component';
 import { RoomComponent } from './room/room.component';
 import { GuestComponent } from './guest/guest.component';
+import { HTTPStatus } from './../app/app.interceptor';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {Interceptor} from './app.interceptor';
 
 
 @NgModule({
@@ -67,7 +70,13 @@ import { GuestComponent } from './guest/guest.component';
     ReactiveFormsModule
   ],
   providers: [
-    ApiService
+    ApiService ,
+    HTTPStatus,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: Interceptor,
+      multi : true
+    }
   ],
   bootstrap: [AppComponent]
 })
