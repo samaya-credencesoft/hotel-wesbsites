@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <base href="/">
+    <base href="/" />
 
     <title>SamsHotel</title>
     <meta name="description" content="Jaiga template" />
@@ -31,12 +31,31 @@
     <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
     <link rel="stylesheet" href="assets/css/responsive.css" type="text/css" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
     <script type="text/javascript">
-     // Stripe.setPublishableKey('pk_test_Dn01jsbbJaQy7SvbyNCO5A8R'); 
-    Stripe.setPublishableKey('pk_live_rK4QGt6FW0gcZRNKbHadq0vS');
+      // Stripe.setPublishableKey('pk_test_Dn01jsbbJaQy7SvbyNCO5A8R');
+      Stripe.setPublishableKey("pk_live_rK4QGt6FW0gcZRNKbHadq0vS");
     </script>
+
+    <style>
+      div.first {
+        background: rgba(76, 175, 80, 0.1);
+      }
+
+      div.second {
+        background: rgba(76, 175, 80, 0.3);
+      }
+
+      div.third {
+        background: rgba(76, 175, 80, 0.6);
+      }
+    </style>
+
+
   </head>
   <body>
     <app-root></app-root>
@@ -47,7 +66,10 @@
   <script src="assets/js/apps.min.js"></script>
   <script src="assets/contact-script/validator.js"></script>
   <script src="assets/contact-script/contact.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYT8pe61MUbk27eiYi9LnnPhwo031Ye7w" async defer></script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYT8pe61MUbk27eiYi9LnnPhwo031Ye7w"
+    async
+    defer
+  ></script>
   <script src="assets/js/custom.js"></script>
-  
 </html>

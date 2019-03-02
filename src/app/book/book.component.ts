@@ -34,16 +34,16 @@ export class BookComponent implements OnInit {
   loadPropetyDetails() {
     this.apiService.getPropertyDetailsByPropertyId(PROPERTY_ID).subscribe(response => {
       this.property = response.body;
-      console.log(response);
+      // console.log(response);
       if (response.status === 200) {
-        console.log(this.property);
+        // console.log(this.property);
         if (this.property === null || this.property === undefined || this.property.id == null || 
           this.property.id <= 0 || this.property.address === undefined) {
           this.loadingError = true;
         } else {
           this.apiService.getRoomDetailsByPropertyId(this.property.id).subscribe(res => { 
             this.rooms = res.body;
-            console.log(this.rooms);
+            // console.log(this.rooms);
           });
         }
       } else {

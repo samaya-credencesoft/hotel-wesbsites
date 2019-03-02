@@ -14,12 +14,34 @@
         <div class="col-xs-12 col-sm-12">
           <div class="border-in">
             <div class="gen-title">
-              <h1 style="color:rgb(0, 0, 0);">Any <strong style="color:rgb(255, 0, 0);">Queries?</strong></h1>
+              <h1 style="color:rgb(0, 0, 0);">
+                Any <strong style="color:rgb(255, 0, 0);">Queries?</strong>
+              </h1>
             </div>
             <div class="form-content">
-              <p>
-                contact us
-              </p>
+              <a style="color:rgb(0, 0, 0);">
+                {{ property.address.streetNumber }},
+                {{ property.address.streetName }},
+                {{ property.address.suburb }}, {{ property.address.city }},
+                {{ property.address.postcode }}
+              </a>
+              <a style="color:rgb(137, 9, 9);" href="https://goo.gl/maps/bX74esuh4q72">( Google Map )</a>
+              <br>
+              <a style="color:rgb(0, 0, 0);"><b>Mobile :</b> {{ property.mobile }}</a>
+              <br>
+              <a style="color:rgb(0, 0, 0);"><b>Landline :</b> {{ property.landphone }}</a>
+              <br>
+              <a style="color:rgb(0, 0, 0);"><b>WhatsApp :</b> {{ property.mobile }}</a>
+              <br>
+              <a style="color:rgb(0, 0, 0);" href="mailto:bookings@samsfamilyhome.co.nz"><b>Email : </b> <u>{{ property.email }}</u></a>
+              <br>
+              <h4 style="color:rgb(137, 9, 9);">Property Manager Contact Details</h4>
+              <br>
+              <a style="color:rgb(0, 0, 0);">{{property.managerFirstName}} &nbsp; {{property.managerLastName}}</a>
+              <br>
+              <a style="color:rgb(0, 0, 0);">{{property.managerContactNo}}</a>
+              <br>
+              <a style="color:rgb(0, 0, 0);" href="mailto:bookings@samsfamilyhome.co.nz"><u>{{property.managerEmailAddress}}</u></a>
             </div>
           </div>
         </div>
