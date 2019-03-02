@@ -31,6 +31,7 @@ import { GuestComponent } from './guest/guest.component';
 import { HTTPStatus } from './../app/app.interceptor';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {Interceptor} from './app.interceptor';
+import { PolicyComponent } from './policy/policy.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import {Interceptor} from './app.interceptor';
     BookComponent,
     PropertyComponent,
     RoomComponent,
-    GuestComponent
+    GuestComponent,
+    PolicyComponent
   ],
   entryComponents: [
     BookingComponent

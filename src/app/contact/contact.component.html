@@ -19,29 +19,54 @@
               </h1>
             </div>
             <div class="form-content">
+              <h4 style="color:rgb(137, 9, 9);">
+                Address
+              </h4>
               <a style="color:rgb(0, 0, 0);">
                 {{ property.address.streetNumber }},
                 {{ property.address.streetName }},
                 {{ property.address.suburb }}, {{ property.address.city }},
                 {{ property.address.postcode }}
               </a>
-              <a style="color:rgb(137, 9, 9);" href="https://goo.gl/maps/bX74esuh4q72">( Google Map )</a>
-              <br>
-              <a style="color:rgb(0, 0, 0);"><b>Mobile :</b> {{ property.mobile }}</a>
-              <br>
-              <a style="color:rgb(0, 0, 0);"><b>Landline :</b> {{ property.landphone }}</a>
-              <br>
-              <a style="color:rgb(0, 0, 0);"><b>WhatsApp :</b> {{ property.mobile }}</a>
-              <br>
-              <a style="color:rgb(0, 0, 0);" href="mailto:bookings@samsfamilyhome.co.nz"><b>Email : </b> <u>{{ property.email }}</u></a>
-              <br>
-              <h4 style="color:rgb(137, 9, 9);">Property Manager Contact Details</h4>
-              <br>
-              <a style="color:rgb(0, 0, 0);">{{property.managerFirstName}} &nbsp; {{property.managerLastName}}</a>
-              <br>
-              <a style="color:rgb(0, 0, 0);">{{property.managerContactNo}}</a>
-              <br>
-              <a style="color:rgb(0, 0, 0);" href="mailto:bookings@samsfamilyhome.co.nz"><u>{{property.managerEmailAddress}}</u></a>
+              <a
+                style="color:rgb(137, 9, 9);"
+                href="https://goo.gl/maps/bX74esuh4q72"
+                >( Google Map )</a
+              >
+              <br />
+              <a style="color:rgb(0, 0, 0);"
+                ><b>Mobile :</b> {{ property.mobile }}</a
+              >
+              <br />
+              <a style="color:rgb(0, 0, 0);"
+                ><b>Landline :</b> {{ property.landphone }}</a
+              >
+              <br />
+              <a style="color:rgb(0, 0, 0);"
+                ><b>WhatsApp :</b> {{ property.mobile }}</a
+              >
+              <br />
+              <a
+                style="color:rgb(0, 0, 0);"
+                href="mailto:bookings@samsfamilyhome.co.nz"
+                ><b>Email : </b> <u>{{ property.email }}</u></a
+              >
+              <br />
+              <h4 style="color:rgb(137, 9, 9);">
+                Property Manager Contact Details
+              </h4>
+              <a style="color:rgb(0, 0, 0);"
+                ><b>{{ property.managerFirstName }} &nbsp;
+                {{ property.managerLastName }}</b></a
+              >
+              <br />
+              <a style="color:rgb(0, 0, 0);"><b>{{ property.managerContactNo }}</b></a>
+              <br />
+              <a
+                style="color:rgb(0, 0, 0);"
+                href="mailto:bookings@samsfamilyhome.co.nz"
+                ><u><b>{{ property.managerEmailAddress }}</b></u></a
+              >
             </div>
           </div>
         </div>
