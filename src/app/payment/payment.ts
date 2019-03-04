@@ -23,6 +23,7 @@ export class Payment {
     paymentMode: string;
     externalReference: string;
     propertyId: number;
+    businessName: string;
     constructor() {
     }
 }

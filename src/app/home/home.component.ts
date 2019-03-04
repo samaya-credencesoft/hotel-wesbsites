@@ -18,6 +18,9 @@ export class HomeComponent implements OnInit {
       this.payment.lastName = params['LastName'];
       this.payment.amount = params['Amount'];
       this.payment.currency = params['Currency'];
+      this.payment.email = params['Email'];
+      this.payment.businessName = params['BusinessName'];
+      this.payment.description = `Accomodation for ${this.payment.firstName}   at ${this.payment.businessName}`;
       console.log(this.payment); // Print the parameter to the console. 
   });
    }
