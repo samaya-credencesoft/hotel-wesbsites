@@ -23,7 +23,7 @@
             <div class="wi-side">
               <div class="wi-border">
                 <div class="wi-content wi-trips">
-                  <form>
+                  <form (ngSubmit)="submit()">
                     <div class="row">
                       <div>
                         <div class="form-group">
@@ -274,7 +274,6 @@
                             name="submit"
                             value="PAY AND BOOK NOW"
                             class="cbiz-btn hvr-sweep-to-right"
-                            (click)="submit()"
                           />
                         </div>
                       </div>
