@@ -1,14 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Property } from './../property/property';
 import { Room } from './../room/room';
 import { ApiService } from './../api.service';
-
-
-
-const PROPERTY_ID = 1;
-
-
 
 @Component({
   selector: 'app-book',
@@ -16,11 +10,8 @@ const PROPERTY_ID = 1;
   styleUrls: ['./book.component.css']
 })
 export class BookComponent implements OnInit {
-
-
-  rooms: Room[] = [];
-  property: Property;
-  loadingError = false;
+  @Input() rooms: Room[] ;
+  @Input() property: Property;
   checkAvailability = false ;
   selectedRoom: Room ;
   ngOnInit() {
@@ -29,30 +20,7 @@ export class BookComponent implements OnInit {
   constructor(
     private apiService: ApiService
   ) {
-    this.loadPropetyDetails();
   }
-  loadPropetyDetails() {
-    this.apiService.getPropertyDetailsByPropertyId(PROPERTY_ID).subscribe(response => {
-      this.property = response.body;
-      // console.log(response);
-      if (response.status === 200) {
-        // console.log(this.property);
-        if (this.property === null || this.property === undefined || this.property.id == null || 
-          this.property.id <= 0 || this.property.address === undefined) {
-          this.loadingError = true;
-        } else {
-          this.apiService.getRoomDetailsByPropertyId(this.property.id).subscribe(res => { 
-            this.rooms = res.body;
-            // console.log(this.rooms);
-          });
-        }
-      } else {
-        this.loadingError = true;
-      }
-    });
-
-  }
-
   getCheckAvailability(checkAvailability: boolean) {
     this.checkAvailability = true;
   }
