@@ -36,6 +36,22 @@ export interface PaymentStatus {
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
+
+  name: FormControl = new FormControl();
+  currency: FormControl = new FormControl();
+  amount: FormControl = new FormControl();
+  firstName: FormControl = new FormControl();
+  lastName: FormControl = new FormControl();
+  bookingEmail: FormControl = new FormControl();
+  bookingContact: FormControl = new FormControl();
+  referenceNumber: FormControl = new FormControl();
+  paymentMode: FormControl = new FormControl();
+  expMonth: FormControl = new FormControl();
+  expYear: FormControl = new FormControl();
+  cvv: FormControl = new FormControl();
+  cardHolderName: FormControl = new FormControl();
+  cardNumber: FormControl = new FormControl();
+
   years: Year[] = [
     { value: '2018', viewValue: '2018' },
     { value: '2019', viewValue: '2019' },
@@ -83,11 +99,7 @@ export class PaymentComponent implements OnInit {
   ];
   @Input() payment: Payment;
   loader = false;
-  currency: FormControl = new FormControl();
-  expMonth: FormControl = new FormControl();
-  expYear: FormControl = new FormControl();
-  cvv: FormControl = new FormControl();
-
+ 
   constructor(
     private apiService: ApiService,
     private httpStatus: HTTPStatus,

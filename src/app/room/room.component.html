@@ -1,69 +1,13 @@
-<!-- <div class="col-sm-4">
-  <div class="card">
-    <div *ngIf="room.id == 2">
-      <img
-        class="card-img-top"
-        height="400px"
-        width="400px"
-        src="assets/images/doublebed.jpg"
-        alt="Card image cap"
-      />
-    </div>
-    <div *ngIf="room.id == 1">
-      <img
-        class="card-img-top"
-        height="400px"
-        width="400px"
-        src="assets/images/TwinSingleRoom.jpg"
-        alt="Card image cap"
-      />
-    </div>
-    <div class="card-header">
-      <h2>
-        <a style="color:rgb(0, 0, 0);">{{ room.name }}</a>
-      </h2>
-    </div>
-    <div class="card-body">
-      <a class="card-text" style="color:rgb(0, 0, 0);">{{
-        room.description
-      }}</a>
-      <br />
-      <br />
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item" style="color:rgb(0, 0, 0);">
-          Standard Price Per P/N: {{ room.roomOnlyPrice }} NZD
-        </li>
-        <li class="list-group-item" style="color:rgb(0, 0, 0);">
-          Extra Charge Per P/N: {{ room.extraChargePerPerson }} NZD
-        </li>
-        <li class="list-group-item" style="color:rgb(0, 0, 0);">
-          Maximum Occupancy: {{ room.maximumOccupancy }}
-        </li>
-        <li class="list-group-item" style="color:rgb(0, 0, 0);">
-          No Of Rooms: {{ room.noOfRooms }}
-        </li>
-        <li class="list-group-item" style="color:rgb(0, 0, 0);">
-          Sharing Amennities : Yes
-        </li>
-      </ul>
-      <a class="btn btn-primary" (click)="checkAvailability()"
-        >Check Availability</a
-      >
-    </div>
-  </div>
-</div> -->
-
-
 <div class="col-md-4 col-sm-6">
   <div class="widget">
     <div class="wi-side">
       <div class="wi-content wi-about">
         <div class="wi-about-item">
           <div class="abt-img">
-            <div *ngIf="room.id == 2">
+            <div *ngIf="room.id == 4">
               <img src="assets/images/doublebed.jpg" />
             </div>
-            <div *ngIf="room.id == 1">
+            <div *ngIf="room.id == 3">
               <img src="assets/images/TwinSingleRoom.jpg" />
             </div>
           </div>
