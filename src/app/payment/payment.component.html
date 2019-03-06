@@ -23,7 +23,11 @@
             <div class="wi-side">
               <div class="wi-border">
                 <div class="wi-content wi-trips">
-                  <form (ngSubmit)="submit()">
+                  <form
+                    class="form"
+                    name="paymentForm"
+                    [formGroup]="paymentForm"
+                  >
                     <div class="row">
                       <div>
                         <div class="form-group">
@@ -36,12 +40,15 @@
                             <input
                               type="text"
                               matInput
-                              [formControl]="firstName"
+                              [formControl]="firstNameFormControl"
                               [(ngModel)]="payment.firstName"
                               required
                             />
                             <mat-error
-                              *ngIf="!firstName.valid && firstName.touched"
+                              *ngIf="
+                                firstNameFormControl.invalid &&
+                                firstNameFormControl.touched
+                              "
                               >First Name is required</mat-error
                             >
                           </mat-form-field>
@@ -59,12 +66,15 @@
                             <input
                               type="text"
                               matInput
-                              [formControl]="lastName"
+                              [formControl]="lastNameFormControl"
                               [(ngModel)]="payment.lastName"
                               required
                             />
                             <mat-error
-                              *ngIf="!lastName.valid && lastName.touched"
+                              *ngIf="
+                                lastNameFormControl.invalid &&
+                                lastNameFormControl.touched
+                              "
                               >Last Name is required</mat-error
                             >
                           </mat-form-field>
@@ -82,12 +92,15 @@
                             <input
                               type="text"
                               matInput
-                              [formControl]="amount"
+                              [formControl]="amountFormControl"
                               [(ngModel)]="payment.amount"
                               required
                             />
                             <mat-error
-                              *ngIf="!amount.valid && amount.touched"
+                              *ngIf="
+                                amountFormControl.invalid &&
+                                amountFormControl.touched
+                              "
                               >Amount is required</mat-error
                             >
                           </mat-form-field>
@@ -96,12 +109,16 @@
 
                       <div>
                         <div class="form-group">
-                          <mat-form-field class="col-md-6" color="accent" appearance="outline">
+                          <mat-form-field
+                            class="col-md-6"
+                            color="accent"
+                            appearance="outline"
+                          >
                             <mat-label>Currency</mat-label>
                             <mat-select
                               placeholder="Currency"
                               [(ngModel)]="payment.currency"
-                              [formControl]="currency"
+                              [formControl]="currencyFormControl"
                               required
                             >
                               <mat-option
@@ -112,7 +129,10 @@
                               </mat-option>
                             </mat-select>
                             <mat-error
-                              *ngIf="!currency.valid && currency.touched"
+                              *ngIf="
+                                currencyFormControl.invalid &&
+                                currencyFormControl.touched
+                              "
                               >Currency is required</mat-error
                             >
                           </mat-form-field>
@@ -130,14 +150,17 @@
                             ><input
                               type="text"
                               matInput
-                              [formControl]="referenceNumber"
+                              [formControl]="referenceNumberFormControl"
                               [(ngModel)]="payment.referenceNumber"
                               required
                             />
                             <mat-error
-                            *ngIf="!referenceNumber.valid && referenceNumber.touched"
-                            >Reference Number is required</mat-error
-                          >
+                              *ngIf="
+                                referenceNumberFormControl.invalid &&
+                                referenceNumberFormControl.touched
+                              "
+                              >Reference Number is required</mat-error
+                            >
                           </mat-form-field>
                         </div>
                       </div>
@@ -153,11 +176,15 @@
                             ><input
                               matInput
                               placeholder="Name On Card"
-                              [formControl]="name"
-                              [(ngModel)]="payment.name"
+                              [formControl]="cardHolderNameFormControl"
+                              [(ngModel)]="payment.cardHolderName"
                               required
                             />
-                            <mat-error *ngIf="!name.valid && name.touched"
+                            <mat-error
+                              *ngIf="
+                                cardHolderNameFormControl.invalid &&
+                                cardHolderNameFormControl.touched
+                              "
                               >Card holder name is required!</mat-error
                             >
                           </mat-form-field>
@@ -179,18 +206,21 @@
                               minlength="16"
                               maxlength="16"
                               pattern="[0-9]{16}"
-                              [formControl]="cardNumber"
+                              [formControl]="cardNumberFormControl"
                               [(ngModel)]="payment.cardNumber"
                               required
                             />
                             <mat-error
-                              *ngIf="!cardNumber.valid && cardNumber.touched"
+                              *ngIf="
+                                cardNumberFormControl.invalid &&
+                                cardNumberFormControl.touched
+                              "
                               >Invalid Card Number!</mat-error
                             >
-                            <mat-error *ngIf="cardNumber.minlength"
+                            <mat-error *ngIf="cardNumberFormControl.minlength"
                               >Card Number must be 16 digits !</mat-error
                             >
-                            <mat-error *ngIf="cardNumber.maxlength"
+                            <mat-error *ngIf="cardNumberFormControl.maxlength"
                               >Card Number must be 16 digits !</mat-error
                             >
                           </mat-form-field>
@@ -208,7 +238,7 @@
                             <mat-select
                               placeholder="Expiration Month"
                               [(ngModel)]="payment.expMonth"
-                              [formControl]="expMonth"
+                              [formControl]="expMonthFormControl"
                               required
                             >
                               <mat-option
@@ -219,7 +249,10 @@
                               </mat-option>
                             </mat-select>
                             <mat-error
-                              *ngIf="!expMonth.valid && expMonth.touched"
+                              *ngIf="
+                                expMonthFormControl.invalid &&
+                                expMonthFormControl.touched
+                              "
                               >Card Expiration Month is required!</mat-error
                             >
                           </mat-form-field>
@@ -237,7 +270,7 @@
                             <mat-select
                               placeholder="Expiration Year"
                               [(ngModel)]="payment.expYear"
-                              [formControl]="expYear"
+                              [formControl]="expYearFormControl"
                               required
                             >
                               <mat-option
@@ -247,7 +280,11 @@
                                 {{ year.viewValue }}
                               </mat-option>
                             </mat-select>
-                            <mat-error *ngIf="!expYear.valid && expYear.touched"
+                            <mat-error
+                              *ngIf="
+                                expYearFormControl.invalid &&
+                                expYearFormControl.touched
+                              "
                               >Card Expiration Year is required!</mat-error
                             >
                           </mat-form-field>
@@ -268,29 +305,38 @@
                               maxlength="3"
                               matInput
                               placeholder="CVV"
-                              [formControl]="cvv"
+                              [formControl]="cvvFormControl"
                               pattern="[0-9]{3}"
                               [(ngModel)]="payment.cvv"
                               required
                             />
-                            <mat-error *ngIf="!cvv.valid && cvv.touched"
+                            <mat-error
+                              *ngIf="
+                                cvvFormControl.invalid && cvvFormControl.touched
+                              "
                               >Invalid CVV!</mat-error
                             >
-                            <mat-error *ngIf="cvv.minlength || cvv.maxlength"
+                            <mat-error
+                              *ngIf="
+                                cvvFormControl.minlength ||
+                                cvvFormControl.maxlength
+                              "
                               >CVV must be of 3 digits !</mat-error
                             >
                           </mat-form-field>
                         </div>
                       </div>
                       <div class="col-xs-12">
-                        <div class="form-btn">
-                          <input
-                            type="submit"
-                            name="submit"
-                            value="PAY AND BOOK NOW"
-                            class="cbiz-btn hvr-sweep-to-right"
-                          />
-                        </div>
+                        <button
+                          mat-raised-button
+                          color="accent"
+                          class="submit-button"
+                          type="submit"
+                          [disabled]="paymentForm.invalid"
+                          (click)="submit()"
+                        >
+                          Pay and Book Now
+                        </button>
                       </div>
                     </div>
                   </form>
@@ -298,7 +344,6 @@
                   <!-- booking details -->
 
                   <app-bookingdetail></app-bookingdetail>
-                  
                 </div>
               </div>
             </div>

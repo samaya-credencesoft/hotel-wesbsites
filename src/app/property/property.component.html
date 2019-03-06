@@ -9,7 +9,7 @@
             </div>
           </div>
           <h4 class="wi-border-title">
-            <b>{{property.name}}</b>
+            <b>{{ property.name }}</b>
           </h4>
           <a class="card-text" style="color:rgb(172, 11, 129);"
             ><b>Full House (Allocated Parking)</b></a
@@ -18,7 +18,7 @@
           <br />
           <p>
             <a style="color:rgb(255, 0, 0);">* </a
-            ><b>Standard Price: {{property.pricePerNight}} NZD</b>
+            ><b>Standard Price: {{ property.pricePerNight }} NZD</b>
           </p>
           <p>
             <a style="color:rgb(255, 0, 0);">* </a
@@ -26,7 +26,7 @@
           </p>
           <p>
             <a style="color:rgb(255, 0, 0);">* </a
-            ><b>Maximum Occupancy: {{property.maximumOccupancy}}</b>
+            ><b>Maximum Occupancy: {{ property.maximumOccupancy }}</b>
           </p>
           <p>
             <a style="color:rgb(255, 0, 0);">* </a
@@ -36,9 +36,15 @@
             <a style="color:rgb(255, 0, 0);">* </a
             ><b>Sharing Amennities : No</b>
           </p>
-          <a class="btn btn-primary" href="#bookingform" (click)="checkAvailability()"
-            >Check Availability</a
+
+          <button
+            mat-raised-button
+            color="accent"
+            href="#bookingform"
+            (click)="checkAvailability()"
           >
+            Check Availability
+          </button>
         </div>
       </div>
     </div>

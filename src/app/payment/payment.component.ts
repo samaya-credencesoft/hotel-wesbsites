@@ -3,7 +3,7 @@ import { Payment } from './payment';
 import { ApiService } from './../api.service';
 import { HTTPStatus } from './../app.interceptor';
 import { MatSnackBar } from '@angular/material';
-import { FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Property } from '../property/property';
 
 export interface Year {
@@ -37,20 +37,40 @@ export interface PaymentStatus {
 })
 export class PaymentComponent implements OnInit {
 
-  name: FormControl = new FormControl();
-  currency: FormControl = new FormControl();
-  amount: FormControl = new FormControl();
-  firstName: FormControl = new FormControl();
-  lastName: FormControl = new FormControl();
-  bookingEmail: FormControl = new FormControl();
-  bookingContact: FormControl = new FormControl();
-  referenceNumber: FormControl = new FormControl();
-  paymentMode: FormControl = new FormControl();
-  expMonth: FormControl = new FormControl();
-  expYear: FormControl = new FormControl();
-  cvv: FormControl = new FormControl();
-  cardHolderName: FormControl = new FormControl();
-  cardNumber: FormControl = new FormControl();
+  nameFormControl = new FormControl();
+  currencyFormControl = new FormControl('', [Validators.required]);
+  amountFormControl = new FormControl('', [Validators.required]);
+  firstNameFormControl = new FormControl('', [Validators.required]);
+  lastNameFormControl = new FormControl('', [Validators.required]);
+  bookingEmailFormControl = new FormControl();
+  bookingContactFormControl = new FormControl();
+  referenceNumberFormControl = new FormControl('', [Validators.required]);
+  paymentModeFormControl = new FormControl();
+  expMonthFormControl = new FormControl('', [Validators.required]);
+  expYearFormControl = new FormControl('', [Validators.required]);
+  cvvFormControl = new FormControl('', [Validators.required]);
+  cardHolderNameFormControl = new FormControl('', [Validators.required]);
+  cardNumberFormControl = new FormControl('', [Validators.required]);
+
+  currency : FormControl = new FormControl();
+
+  paymentForm: FormGroup = new FormGroup({
+    currency: this.currencyFormControl,
+    amount: this.amountFormControl,
+    firstName: this.firstNameFormControl,
+    lastName: this.lastNameFormControl,
+    referenceNumber: this.referenceNumberFormControl,
+    expMonth: this.expMonthFormControl,
+    expYear: this.expYearFormControl,
+    cvv: this.cvvFormControl,
+    cardHolderName: this.cardHolderNameFormControl,
+    cardNumber: this.cardNumberFormControl
+  });
+
+  getRequiredErrorMessage(field) {
+    return this.paymentForm.get(field).hasError('required') ? 'You must enter a value' : '';
+  }
+
 
   years: Year[] = [
     { value: '2018', viewValue: '2018' },
