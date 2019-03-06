@@ -84,7 +84,12 @@
                               matInput
                               [formControl]="amount"
                               [(ngModel)]="payment.amount"
+                              required
                             />
+                            <mat-error
+                              *ngIf="!amount.valid && amount.touched"
+                              >Amount is required</mat-error
+                            >
                           </mat-form-field>
                         </div>
                       </div>
@@ -97,6 +102,7 @@
                               placeholder="Currency"
                               [(ngModel)]="payment.currency"
                               [formControl]="currency"
+                              required
                             >
                               <mat-option
                                 *ngFor="let currency of currencies"
@@ -105,6 +111,10 @@
                                 {{ currency.viewValue }}
                               </mat-option>
                             </mat-select>
+                            <mat-error
+                              *ngIf="!currency.valid && currency.touched"
+                              >Currency is required</mat-error
+                            >
                           </mat-form-field>
                         </div>
                       </div>
@@ -122,7 +132,12 @@
                               matInput
                               [formControl]="referenceNumber"
                               [(ngModel)]="payment.referenceNumber"
+                              required
                             />
+                            <mat-error
+                            *ngIf="!referenceNumber.valid && referenceNumber.touched"
+                            >Reference Number is required</mat-error
+                          >
                           </mat-form-field>
                         </div>
                       </div>
