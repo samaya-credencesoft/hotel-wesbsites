@@ -237,6 +237,9 @@
             $('.close-menu').on('click', function() {
                 $('body').removeClass('going');
             });
+            $('.close-menu-onclick').on('click', function() {
+                $('body').removeClass('going');
+            });
         });
 
         var Concertina = function(el, multiple) {
