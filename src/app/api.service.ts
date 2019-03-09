@@ -9,10 +9,10 @@ import { Msg } from './booking/msg';
 import { Observable } from 'rxjs';
 import { BookingDetails } from './bookingdetail/bookingdetails';
 
-const API_URL = 'http://localhost:8080/api/website';
+// const API_URL = 'http://localhost:8080/api/website';
  export const SMS_NUMBER = '+1 956 903 2629';
-//const API_URL = 'https://booking-api-csoft.appspot.com/api/website';
-//const API_URL = 'https://booking-api-csoft-in.appspot.com/api/website';
+// const API_URL = 'https://booking-api-csoft.appspot.com/api/website';
+const API_URL = 'https://booking-api-csoft-in.appspot.com/api/website';
 const PROPERTY_ID = 1;
 @Injectable()
 export class ApiService {

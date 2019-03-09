@@ -277,6 +277,14 @@
   <app-guest id="guest"></app-guest>
   <!-- guest end -->
 
+  <!-- booking details start -->
+  <app-bookingdetail
+    *ngIf="booking"
+    id="booking-details"
+    [booking]="booking"
+  ></app-bookingdetail>
+  <!-- booking details end -->
+
   <!-- policy start -->
   <app-policy id="policy"></app-policy>
   <!-- policy end -->
@@ -284,7 +292,6 @@
   <!-- contact stary -->
   <app-contact id="contact" [property]="property"></app-contact>
   <!-- contact end -->
-  <app-bookingdetail *ngIf="booking" id="booking-details" [booking]="booking"></app-bookingdetail>
   <!-- footer start -->
   <footer class="footer">
     <div class="copyright">
