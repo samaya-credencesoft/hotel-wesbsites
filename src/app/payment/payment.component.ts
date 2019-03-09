@@ -51,8 +51,7 @@ export class PaymentComponent implements OnInit {
   cvvFormControl = new FormControl('', [Validators.required]);
   cardHolderNameFormControl = new FormControl('', [Validators.required]);
   cardNumberFormControl = new FormControl('', [Validators.required]);
-
-  currency : FormControl = new FormControl();
+  currency: FormControl = new FormControl();
 
   paymentForm: FormGroup = new FormGroup({
     currency: this.currencyFormControl,
@@ -66,12 +65,6 @@ export class PaymentComponent implements OnInit {
     cardHolderName: this.cardHolderNameFormControl,
     cardNumber: this.cardNumberFormControl
   });
-
-  getRequiredErrorMessage(field) {
-    return this.paymentForm.get(field).hasError('required') ? 'You must enter a value' : '';
-  }
-
-
   years: Year[] = [
     { value: '2018', viewValue: '2018' },
     { value: '2019', viewValue: '2019' },
@@ -119,7 +112,6 @@ export class PaymentComponent implements OnInit {
   ];
   @Input() payment: Payment;
   loader = false;
- 
   constructor(
     private apiService: ApiService,
     private httpStatus: HTTPStatus,
@@ -131,11 +123,13 @@ export class PaymentComponent implements OnInit {
       this.payment = new Payment();
     }
     console.log(this.payment);
-    this.currency.setValue(this.payment.amount);
-    this.payment.paymentMode = 'Card';
+    this.currency.setValue(this.payment.currency);
+    
   }
   submit() {
     console.log(this.payment.paymentMode);
+    console.log(this.payment);
+    this.payment.paymentMode = 'Card';
     if (
       this.payment.paymentMode != null &&
       this.payment.paymentMode === 'Card'
@@ -201,8 +195,7 @@ export class PaymentComponent implements OnInit {
           }
         );
 
-      }
-      else if (this.payment.paymentMode != null) {
+      } else if (this.payment.paymentMode != null) {
         this.apiService.savePayment(this.payment).subscribe(res1 => {
           if (res1.status === 200) {
             this.openSuccessSnackBar(`Payment Details Saved`);

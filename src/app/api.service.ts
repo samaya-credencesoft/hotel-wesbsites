@@ -7,10 +7,12 @@ import { Property } from './property/property';
 import { Room } from './room/room';
 import { Msg } from './booking/msg';
 import { Observable } from 'rxjs';
-//const API_URL = 'http://localhost:8080/api/website';
+import { BookingDetails } from './bookingdetail/bookingdetails';
+
+const API_URL = 'http://localhost:8080/api/website';
  export const SMS_NUMBER = '+1 956 903 2629';
 //const API_URL = 'https://booking-api-csoft.appspot.com/api/website';
-const API_URL = 'https://booking-api-csoft-in.appspot.com/api/website';
+//const API_URL = 'https://booking-api-csoft-in.appspot.com/api/website';
 const PROPERTY_ID = 1;
 @Injectable()
 export class ApiService {
@@ -20,6 +22,11 @@ export class ApiService {
   }
   getAllBookingsByHost(host: Host) {
     return this.http.post<Booking[]>(API_URL + '/api/booking/findAll', host, { observe: 'response' });
+  }
+  getBookingDetailsByIdAndEmail(booking: Booking) {
+    return this.http.get<BookingDetails>(API_URL + '/findBookingByIdAndEmail?BookingReferenceNumber='
+    + booking.id + '&BookingEmail=' + booking.email,  { observe: 'response' });
+
   }
   getPropertyDetailsByPropertyId(propertyId: number) {
     return this.http.get<Property>(API_URL + '/findByPropertyId/' + propertyId,  { observe: 'response' });
