@@ -15,7 +15,6 @@
     <br />
     <br />
     <br />
-    <mat-progress-bar *ngIf="loader" mode="indeterminate"></mat-progress-bar>
     <div class="row">
       <div class="blog">
         <div class="col-sm-8 col-xs-12 col-sm-offset-2 col-xs-offset-0">
@@ -28,6 +27,25 @@
                     name="paymentForm"
                     [formGroup]="paymentForm"
                   >
+                    <mat-progress-bar
+                      *ngIf="loader"
+                      mode="indeterminate"
+                    ></mat-progress-bar>
+                    <br />
+                    <div *ngFor="let msg of msgs" class="text-center">
+                      <span
+                        *ngIf="msg.summary"
+                        [innerHTML]="msg.summary"
+                        style="color:red;font-weight:bold"
+                      ></span>
+
+                      <span
+                        *ngIf="msg.detail"
+                        [innerHTML]="msg.detail"
+                        style="color:rgb(55, 255, 0);font-weight:bold"
+                      ></span>
+                    </div>
+                    <br />
                     <div class="row">
                       <div>
                         <div class="form-group">

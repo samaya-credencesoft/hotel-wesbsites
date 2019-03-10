@@ -1,15 +1,11 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Payment } from "./payment";
 import { ApiService } from "./../api.service";
+import { Message } from 'primeng/components/common/api';
 import { HTTPStatus } from "./../app.interceptor";
 import { MatSnackBar } from "@angular/material";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Property } from "../property/property";
-import {
-  MatSnackBarConfig,
-  MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition
-} from "@angular/material";
 
 export interface Year {
   value: string;
@@ -41,6 +37,8 @@ export interface PaymentStatus {
   styleUrls: ["./payment.component.css"]
 })
 export class PaymentComponent implements OnInit {
+  msgs: Message[] = [];
+
   nameFormControl = new FormControl();
   currencyFormControl = new FormControl("", [Validators.required]);
   amountFormControl = new FormControl("", [Validators.required]);
@@ -56,11 +54,6 @@ export class PaymentComponent implements OnInit {
   cardHolderNameFormControl = new FormControl("", [Validators.required]);
   cardNumberFormControl = new FormControl("", [Validators.required]);
   currency: FormControl = new FormControl();
-
-  // setAutoHide: boolean = true;
-  // autoHide: number = 4000;
-  // horizontalPosition: MatSnackBarHorizontalPosition = "center";
-  // verticalPosition: MatSnackBarVerticalPosition = "bottom";
 
   paymentForm: FormGroup = new FormGroup({
     currency: this.currencyFormControl,
@@ -170,6 +163,7 @@ export class PaymentComponent implements OnInit {
     );
   }
   processPayment(payment: Payment) {
+    this.msgs = [];
     this.showLoader();
     this.apiService.processPayment(payment).subscribe(res => {
       this.payment = res.body;
@@ -177,14 +171,29 @@ export class PaymentComponent implements OnInit {
         this.payment.paymentMode === "Card" &&
         this.payment.status === "Paid"
       ) {
-        this.openSuccessSnackBar(
-          "Payment processed successfully.Saving Payment ..."
-        );
+        // this.openSuccessSnackBar(
+        //   "Payment processed successfully.Saving Payment ..."
+        // );
+        this.msgs.push({
+          severity: 'success',
+          detail:
+            `Payment processed successfully.Saving Payment ...`
+        });
+
         this.apiService.savePayment(this.payment).subscribe(res1 => {
           if (res1.status === 200) {
-            this.openSuccessSnackBar(`Payment Details Saved`);
+            // this.openSuccessSnackBar(`Payment Details Saved`);
+            this.msgs.push({
+              severity: 'success',
+              detail:
+                `Payment Details Saved`
+            });
           } else {
-            this.openErrorSnackBar(`Error in updating payment details`);
+            // this.openErrorSnackBar(`Error in updating payment details`);
+            this.msgs.push({
+              severity: 'error',
+              summary: 'Error in updating payment details'
+            });
           }
         });
         //  this.reset();
@@ -205,9 +214,18 @@ export class PaymentComponent implements OnInit {
       } else if (this.payment.paymentMode != null) {
         this.apiService.savePayment(this.payment).subscribe(res1 => {
           if (res1.status === 200) {
-            this.openSuccessSnackBar(`Payment Details Saved`);
+            // this.openSuccessSnackBar(`Payment Details Saved`);
+            this.msgs.push({
+              severity: 'success',
+              detail:
+                `Payment Details Saved`
+            });
           } else {
-            this.openErrorSnackBar(`Error in updating payment details`);
+            // this.openErrorSnackBar(`Error in updating payment details`);
+            this.msgs.push({
+              severity: 'error',
+              summary: 'Error in updating payment details'
+            });
           }
         });
         //  this.reset();
@@ -230,15 +248,14 @@ export class PaymentComponent implements OnInit {
       this.loader = status;
     });
   }
-  openSuccessSnackBar(message: string) {
-    this.snackBar.open(message, "Success!", {
-      panelClass: ["mat--success"],
-      verticalPosition: "bottom",
-      horizontalPosition: "center",
-      duration: 4000
-    });
-
-  }
+  // openSuccessSnackBar(message: string) {
+  //   this.snackBar.open(message, "Success!", {
+  //     panelClass: ["mat--success"],
+  //     verticalPosition: "bottom",
+  //     horizontalPosition: "center",
+  //     duration: 4000
+  //   });
+  // }
   openErrorSnackBar(message: string) {
     this.snackBar.open(message, "Error!", {
       panelClass: ["mat--errors"],
@@ -246,7 +263,5 @@ export class PaymentComponent implements OnInit {
       horizontalPosition: "center",
       duration: 4000
     });
-
-
   }
 }
