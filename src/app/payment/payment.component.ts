@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Payment } from "./payment";
 import { ApiService } from "./../api.service";
-import { Message } from 'primeng/components/common/api';
+import { Message } from "primeng/components/common/api";
 import { HTTPStatus } from "./../app.interceptor";
 import { MatSnackBar } from "@angular/material";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
@@ -171,28 +171,22 @@ export class PaymentComponent implements OnInit {
         this.payment.paymentMode === "Card" &&
         this.payment.status === "Paid"
       ) {
-        // this.openSuccessSnackBar(
-        //   "Payment processed successfully.Saving Payment ..."
-        // );
+       
         this.msgs.push({
-          severity: 'success',
-          detail:
-            `Payment processed successfully.Saving Payment ...`
+          severity: "success",
+          detail: `Payment processed successfully.Saving Payment ...`
         });
 
         this.apiService.savePayment(this.payment).subscribe(res1 => {
           if (res1.status === 200) {
-            // this.openSuccessSnackBar(`Payment Details Saved`);
             this.msgs.push({
-              severity: 'success',
-              detail:
-                `Payment Details Saved`
+              severity: "success",
+              detail: `Payment Details Saved`
             });
           } else {
-            // this.openErrorSnackBar(`Error in updating payment details`);
             this.msgs.push({
-              severity: 'error',
-              summary: 'Error in updating payment details'
+              severity: "error",
+              summary: "Error in updating payment details"
             });
           }
         });
@@ -208,23 +202,22 @@ export class PaymentComponent implements OnInit {
             res.body.failureMessage,
           "",
           {
-            duration: 10000
+            duration: 10000,
+            verticalPosition: "bottom",
+            horizontalPosition: "center"
           }
         );
       } else if (this.payment.paymentMode != null) {
         this.apiService.savePayment(this.payment).subscribe(res1 => {
           if (res1.status === 200) {
-            // this.openSuccessSnackBar(`Payment Details Saved`);
             this.msgs.push({
-              severity: 'success',
-              detail:
-                `Payment Details Saved`
+              severity: "success",
+              detail: `Payment Details Saved`
             });
           } else {
-            // this.openErrorSnackBar(`Error in updating payment details`);
             this.msgs.push({
-              severity: 'error',
-              summary: 'Error in updating payment details'
+              severity: "error",
+              summary: "Error in updating payment details"
             });
           }
         });
@@ -237,7 +230,9 @@ export class PaymentComponent implements OnInit {
             res.body.failureMessage,
           "",
           {
-            duration: 10000
+            duration: 10000,
+            verticalPosition: "bottom",
+            horizontalPosition: "center"
           }
         );
       }
@@ -246,22 +241,6 @@ export class PaymentComponent implements OnInit {
   showLoader(): void {
     this.httpStatus.getHttpStatus().subscribe((status: boolean) => {
       this.loader = status;
-    });
-  }
-  // openSuccessSnackBar(message: string) {
-  //   this.snackBar.open(message, "Success!", {
-  //     panelClass: ["mat--success"],
-  //     verticalPosition: "bottom",
-  //     horizontalPosition: "center",
-  //     duration: 4000
-  //   });
-  // }
-  openErrorSnackBar(message: string) {
-    this.snackBar.open(message, "Error!", {
-      panelClass: ["mat--errors"],
-      verticalPosition: "bottom",
-      horizontalPosition: "center",
-      duration: 4000
     });
   }
 }
