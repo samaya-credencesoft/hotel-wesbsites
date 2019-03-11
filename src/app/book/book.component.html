@@ -27,11 +27,11 @@
       >
       </app-room>
     </div>
-    <br />
+    <!-- <br />
     <br />
 
-    <div id="bookingform">
-      <div class="col-sm-8 col-xs-12 col-sm-offset-2 col-xs-offset-0">
+  
+      <div class="col-sm-8 col-xs-12 col-sm-offset-2 col-xs-offset-0" id="bookingform">
         <div class="portfolio-item hotel-article">
           <div class="we-give" *ngIf="checkAvailability">
             <app-booking
@@ -40,9 +40,46 @@
             ></app-booking>
           </div>
         </div>
-      </div>
-    </div>
-
-    
+      </div> -->
   </div>
 </section>
+
+<div
+  class="page-in section-top80-bottom50"
+  id="bookingform"
+  *ngIf="checkAvailability"
+>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-xs-12 col-sm-offset-2 col-xs-offset-0">
+        <div class="section-heading">
+          <h2 class="title">
+            <a style="color:rgb(0, 0, 0);">Book</a
+            ><a style="color:rgb(255, 0, 0);"> Here</a>
+          </h2>
+        </div>
+      </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <div class="row">
+      <div class="blog">
+        <div class="col-sm-8 col-xs-12 col-sm-offset-2 col-xs-offset-0">
+          <div class="widget">
+            <div class="wi-side">
+              <div class="wi-border">
+                <div class="wi-content wi-trips">
+                  <app-booking
+                    [property]="property"
+                    [room]="selectedRoom"
+                  ></app-booking>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

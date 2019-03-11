@@ -140,6 +140,7 @@ export class PaymentComponent implements OnInit {
   }
 
   chargeCreditCard() {
+    this.msgs = [];
     console.log(this.payment);
     (window as any).Stripe.card.createToken(
       {
@@ -154,10 +155,10 @@ export class PaymentComponent implements OnInit {
           this.payment.token = token;
           this.processPayment(this.payment);
         } else {
-          const snackBarRef = this.snackBar.open(
-            "Error message :" + response.error.message
-          );
-          snackBarRef.dismiss();
+          this.msgs.push({
+            severity: "error",
+            summary: "Error message :" + response.error.message
+          });
         }
       }
     );
@@ -171,7 +172,6 @@ export class PaymentComponent implements OnInit {
         this.payment.paymentMode === "Card" &&
         this.payment.status === "Paid"
       ) {
-       
         this.msgs.push({
           severity: "success",
           detail: `Payment processed successfully.Saving Payment ...`
@@ -195,18 +195,14 @@ export class PaymentComponent implements OnInit {
         this.payment.paymentMode === "Card" &&
         this.payment.status === "NotPaid"
       ) {
-        this.snackBar.open(
-          "ErroCode:" +
+        this.msgs.push({
+          severity: "error",
+          summary:
+            "ErroCode:" +
             res.body.failureCode +
             "and Error message :" +
-            res.body.failureMessage,
-          "",
-          {
-            duration: 10000,
-            verticalPosition: "bottom",
-            horizontalPosition: "center"
-          }
-        );
+            res.body.failureMessage
+        });
       } else if (this.payment.paymentMode != null) {
         this.apiService.savePayment(this.payment).subscribe(res1 => {
           if (res1.status === 200) {
@@ -223,18 +219,15 @@ export class PaymentComponent implements OnInit {
         });
         //  this.reset();
       } else {
-        this.snackBar.open(
-          "ErroCode:" +
+        this.msgs.push({
+          severity: "error",
+          summary:
+            "ErroCode:" +
             res.body.failureCode +
             "and Error message :" +
-            res.body.failureMessage,
-          "",
-          {
-            duration: 10000,
-            verticalPosition: "bottom",
-            horizontalPosition: "center"
-          }
-        );
+            res.body.failureMessage
+        });
+
       }
     });
   }
