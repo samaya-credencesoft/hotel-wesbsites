@@ -1,83 +1,95 @@
-<div class="map-area">
-  <div class="gmap-container">
-    <div
-      class="gmap init-gmap"
-      data-lat="-36.79648"
-      data-lng="174.646926"
-      data-center="-36.79648, 174.646926"
-      data-zoom="12"
-    ></div>
+<section class="section pb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-xs-12 col-sm-offset-2 col-xs-offset-0">
+        <div class="section-heading pb-30">
+          <h1 style="color:rgb(0, 0, 0);">
+            Any <strong style="color:rgb(255, 0, 0);">Queries?</strong>
+          </h1>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="container container-spe">
-    <div class="map-form">
+  <div class="full-width-sec">
+    <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-sm-12">
-          <div class="border-in">
-            <div class="gen-title">
-              <h1 style="color:rgb(0, 0, 0);">
-                Any <strong style="color:rgb(255, 0, 0);">Queries?</strong>
-              </h1>
-            </div>
-            <div class="form-content" *ngIf="property">
-              <h4 style="color:rgb(137, 9, 9);">
-                Address
-              </h4>
-              <a style="color:rgb(0, 0, 0);">
-                {{ property.address.streetNumber }},
-                {{ property.address.streetName }},
-                {{ property.address.suburb }}, {{ property.address.city }},
-                {{ property.address.postcode }}
-              </a>
-              <a
-                style="color:rgb(137, 9, 9);"
-                target="_blank"
-                href="https://goo.gl/maps/bX74esuh4q72"
-                >( Google Map )</a
-              >
-              <br />
-              <a style="color:rgb(0, 0, 0);"
-                ><b>Mobile :</b> {{ property.mobile }}</a
-              >
-              <br />
-              <a style="color:rgb(0, 0, 0);"
-                ><b>Landline :</b> {{ property.landphone }}</a
-              >
-              <br />
-              <a style="color:rgb(0, 0, 0);"
-                ><b>WhatsApp :</b> {{ property.mobile }}</a
-              >
-              <br />
-              <a
-                style="color:rgb(0, 0, 0);"
-                href="mailto:bookings@samsfamilyhome.co.nz"
-                ><b>Email : </b> <u>{{ property.email }}</u></a
-              >
-              <br />
-              <h4 style="color:rgb(137, 9, 9);">
-                Property Manager Contact Details
-              </h4>
-              <a style="color:rgb(0, 0, 0);"
-                ><b
-                  >{{ property.managerFirstName }} &nbsp;
-                  {{ property.managerLastName }}</b
-                ></a
-              >
-              <br />
-              <a style="color:rgb(0, 0, 0);"
-                ><b>{{ property.managerContactNo }}</b></a
-              >
-              <br />
-              <a
-                style="color:rgb(0, 0, 0);"
-                href="mailto:bookings@samsfamilyhome.co.nz"
-                ><u
-                  ><b>{{ property.managerEmailAddress }}</b></u
-                ></a
-              >
-            </div>
+        <div class="col-sm-12 col-md-6 padding-0 pos-static">
+          <iframe
+          class="cel-feature full-w-h"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2001.9407485615377!2d174.64561315459127!3d-36.796334863405235!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d0d3fa9f87ae287%3A0xa1f9d6e18fbf4906!2s43+Carder+Court%2C+Hobsonville%2C+Auckland+0618%2C+New+Zealand!5e1!3m2!1sen!2sin!4v1553242796715"
+          width="600"
+          height="450"
+          frameborder="0"
+          style="border:0"
+          allowfullscreen
+        ></iframe>
+        </div>
+        <div class="col-sm-12 col-md-6 padding-0">
+          <div class="support">
+            <ul class="cele-list">
+              <li>
+                <div class="cel-content" *ngIf="property">
+                  <h4 style="color:rgb(255, 0, 0);">
+                    Address
+                  </h4>
+                  <a style="color:rgb(255, 255, 255);">
+                    {{ property.address.streetNumber }},
+                    {{ property.address.streetName }},
+                    {{ property.address.suburb }}, {{ property.address.city }},
+                    {{ property.address.postcode }}
+                  </a>
+                  <a
+                    style="color:rgb(255, 0, 0);"
+                    target="_blank"
+                    href="https://goo.gl/maps/bX74esuh4q72"
+                    >( Google Map )</a
+                  >
+                  <br />
+                  <a style="color:rgb(255, 255, 255);"
+                    ><b>Mobile :</b> {{ property.mobile }}</a
+                  >
+                  <br />
+                  <a style="color:rgb(255, 255, 255);"
+                    ><b>Landline :</b> {{ property.landphone }}</a
+                  >
+                  <br />
+                  <a style="color:rgb(255, 255, 255);"
+                    ><b>WhatsApp :</b> {{ property.mobile }}</a
+                  >
+                  <br />
+                  <a
+                    style="color:rgb(255, 255, 255);"
+                    href="mailto:bookings@samsfamilyhome.co.nz"
+                    ><b>Email : </b> <u>{{ property.email }}</u></a
+                  >
+                  <br />
+                  <h4 style="color:rgb(255, 0, 0);">
+                    Property Manager Contact Details
+                  </h4>
+                  <a style="color:rgb(255, 255, 255);"
+                    ><b
+                      >{{ property.managerFirstName }} &nbsp;
+                      {{ property.managerLastName }}</b
+                    ></a
+                  >
+                  <br />
+                  <a style="color:rgb(255, 255, 255);"
+                    ><b>{{ property.managerContactNo }}</b></a
+                  >
+                  <br />
+                  <a
+                    style="color:rgb(255, 255, 255);"
+                    href="mailto:bookings@samsfamilyhome.co.nz"
+                    ><u
+                      ><b>{{ property.managerEmailAddress }}</b></u
+                    ></a
+                  >
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
