@@ -12,6 +12,9 @@ export class ContactComponent implements OnInit {
   @Input() property: Property;
   loadingError = false;
 
+  lat = -36.79648;
+  lng = 174.646926;
+
   ngOnInit() {}
 
   constructor() {

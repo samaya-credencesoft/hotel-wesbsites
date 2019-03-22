@@ -33,6 +33,8 @@ import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { Interceptor } from "./app.interceptor";
 import { PolicyComponent } from "./policy/policy.component";
 import { BookingdetailComponent } from "./bookingdetail/bookingdetail.component";
+import { AgmCoreModule } from '@agm/core';
+
 
 @NgModule({
   declarations: [
@@ -68,7 +70,10 @@ import { BookingdetailComponent } from "./bookingdetail/bookingdetail.component"
     // Material Modules
     AppMaterialModules,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAYT8pe61MUbk27eiYi9LnnPhwo031Ye7w'
+    })
   ],
   providers: [
     ApiService,
