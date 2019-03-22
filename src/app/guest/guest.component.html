@@ -7,41 +7,41 @@
       <div class="col-sm-8 col-xs-12 col-sm-offset-2 col-xs-offset-0">
         <div class="section-heading">
           <h2 class="title">
-            <a style="color:rgb(255, 255, 255);">Our</a
-            ><a style="color:rgb(255, 0, 0);"> Guests</a>
+            <a style="color:rgb(255, 255, 255);">Guests</a
+            ><a style="color:rgb(255, 0, 0);"> Reviews</a>
           </h2>
         </div>
       </div>
     </div>
     <br />
-    <div class="owl-carousel owl-theme guide-slider">
-      <div class="team-each">
+    <div class="owl-carousel owl-theme guide-slider" >
+      <div class="team-each" *ngFor="let guestReview of guestreviews" >
         <!-- <div class="team-member">
           <img src="assets/images/team/7.jpg" />
         </div> -->
         <div class="service-content">
           <h4 style="color:rgb(175, 66, 3);">
-            {{ guestreviews[0].reviewerName }}
+            {{guestReview.reviewerName}}
           </h4>
           <a>****************************</a>
           <br />
-          <a style="color:rgb(0, 0, 0);"><b>{{ guestreviews[0].reviewText }}</b></a>
+          <a style="color:rgb(0, 0, 0);"><b>{{guestReview.reviewText}}</b></a>
           <br />
           <a>****************************</a>
           <br />
           <a style="color:rgb(73, 4, 35);">
-            <b>{{ guestreviews[0].relativeTimeDescription }}</b>
+            <b>{{guestReview.relativeTimeDescription}}</b>
           </a>
           <br />
           <a style="color:rgb(73, 4, 35);">
-            <b>Rating : {{ guestreviews[0].rating }}</b>
+            <b>Rating : {{guestReview.rating}}</b>
           </a>
         </div>
       </div>
-      <div class="team-each">
-        <!-- <div class="team-member">
+      <!--div class="team-each">
+        < <div class="team-member">
           <img src="assets/images/team/2.jpg" />
-        </div> -->
+        </div> 
         <div class="service-content">
           <h4 style="color:rgb(175, 66, 3);">
             {{ guestreviews[1].reviewerName }}
@@ -62,9 +62,9 @@
         </div>
       </div>
       <div class="team-each">
-        <!-- <div class="team-member">
+        <div class="team-member">
           <img src="assets/images/team/3.jpg" />
-        </div> -->
+        </div> 
         <div class="service-content">
           <h4 style="color:rgb(175, 66, 3);">
             {{ guestreviews[2].reviewerName }}
@@ -85,9 +85,9 @@
         </div>
       </div>
       <div class="team-each">
-        <!-- <div class="team-member">
+        <div class="team-member">
           <img src="assets/images/team/4.jpg" />
-        </div> -->
+        </div> 
         <div class="service-content">
           <h4 style="color:rgb(175, 66, 3);">
             {{ guestreviews[3].reviewerName }}
@@ -108,9 +108,9 @@
         </div>
       </div>
       <div class="team-each">
-        <!-- <div class="team-member">
+        <div class="team-member">
           <img src="assets/images/team/6.jpg" />
-        </div> -->
+        </div>
         <div class="service-content">
           <h4 style="color:rgb(175, 66, 3);">
             {{ guestreviews[4].reviewerName }}
@@ -129,7 +129,7 @@
             <b>Rating : {{ guestreviews[4].rating }}</b>
           </a>
         </div>
-      </div>
+      </div-->
     </div>
   </div>
 </section>
