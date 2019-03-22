@@ -8,11 +8,12 @@ import { Room } from './room/room';
 import { Msg } from './booking/msg';
 import { Observable } from 'rxjs';
 import { BookingDetails } from './bookingdetail/bookingdetails';
+import { GuestReview } from './guest/guest.component';
 
-// const API_URL = 'http://localhost:8080/api/website';
- export const SMS_NUMBER = '+1 956 903 2629';
-const API_URL = 'https://booking-api-csoft.appspot.com/api/website';
-// const API_URL = 'https://booking-api-csoft-in.appspot.com/api/website';
+//const API_URL = 'http://localhost:8080/api/website';
+export const SMS_NUMBER = '+1 956 903 2629';
+//const API_URL = 'https://booking-api-csoft.appspot.com/api/website';
+const API_URL = 'https://booking-api-csoft-in.appspot.com/api/website';
 const PROPERTY_ID = 1;
 @Injectable()
 export class ApiService {
@@ -48,5 +49,8 @@ export class ApiService {
   }
   savePayment(paymentDetails: Payment) {
     return this.http.post<Payment>(API_URL + '/savePayment', paymentDetails, { observe: 'response' });
+}
+  getGoogleReviews() {
+  return this.http.get<GuestReview[]>(API_URL + '/getGoogleReviews?PropertyId=' + PROPERTY_ID ,  { observe: 'response' });
 }
 }
