@@ -17,10 +17,12 @@ export class GuestComponent implements OnInit {
   constructor(private apiServices: ApiService) { }
   guestreviews: GuestReview[] ;
 
+
+
   ngOnInit() {
     this.apiServices.getGoogleReviews().subscribe( response => {
      this.guestreviews = response.body ;
-     console.log( this.guestreviews );
+     console.log( this.guestreviews);
      });
   }
 
