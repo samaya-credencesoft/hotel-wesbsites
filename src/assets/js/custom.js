@@ -48,12 +48,12 @@
         guideSlider.owlCarousel({
             items: 4,
             nav: false,
-            dots: false,
+            dots: true,
             autoplay: true,
             margin: 30,
             autoplaySpeed: 1000,
             smartSpeed: 100,
-            loop: true,
+            loop: false,
             autoplayHoverPause: true,
             responsive: {
                 0: {
@@ -65,6 +65,7 @@
                 },
                 1000: {
                     items: 4,
+                    loop: true
                 }
 
 

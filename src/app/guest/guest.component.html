@@ -1,37 +1,154 @@
-<section class="page-head page-bg" style="background-image: url('assets/images/bg/vid.jpg');">
+<section class="footer-main section">
   <div class="container">
     <div class="row">
       <div class="col-sm-8 col-xs-12 col-sm-offset-2 col-xs-offset-0">
         <div class="section-heading">
           <h2 class="title">
-            <a style="color:rgb(255, 255, 255);">Guests</a><a style="color:rgb(255, 0, 0);"> Reviews</a>
+            <a style="color:rgb(255, 255, 255);">Guests</a
+            ><a style="color:rgb(255, 0, 0);"> Reviews</a>
           </h2>
         </div>
       </div>
     </div>
-    <br />
     <div class="owl-carousel owl-theme guide-slider">
-      <div class="team-each" *ngFor="let guestReview of guestreviews">
-        <div class="profile__pic">
-          <img src="{{guestReview.profilePhotoUrl}}" />
+      <div class="team-each">
+        <div class="team-member">
+          <img src="{{ guestreviews[0].profilePhotoUrl }}" />
         </div>
         <div class="service-content">
           <h4 style="color:rgb(175, 66, 3);">
-            {{guestReview.reviewerName}}
+            {{ guestreviews[0].reviewerName }}
           </h4>
           <a>****************************</a>
           <br />
-          <a style="color:rgb(0, 0, 0);"><b><p>{{guestReview.reviewText}}</p></b></a>
+          <a style="color:rgb(0, 0, 0);"
+            ><b>{{ guestreviews[0].reviewText }}</b></a
+          >
           <br />
           <a>****************************</a>
           <br />
           <a style="color:rgb(73, 4, 35);">
-            <b>{{guestReview.relativeTimeDescription}}</b>
+            <b>{{ guestreviews[0].relativeTimeDescription }}</b>
           </a>
           <br />
-          <a style="color:rgb(73, 4, 35);"> 
-            <b>Rating : {{guestReview.rating}}</b>
-            <a href="http://www.sclance.com/pngs/5-star-rating-png/view-page-1.htm"><img src="http://www.sclance.com/pngs/5-star-rating-png/./5_star_rating_png_8460.png" width="25" height="25" alt="5 Star Rating Png" /></a>
+          <a style="color:rgb(255, 208, 0);">
+            <b>Rating : {{ guestreviews[0].rating }} / 5</b> &nbsp; &nbsp;
+            <i class="fas fa-star"></i><i class="fas fa-star"></i
+            ><i class="fas fa-star"></i><i class="fas fa-star"></i
+            ><i class="fas fa-star"></i>
+          </a>
+        </div>
+      </div>
+      <div class="team-each">
+        <div class="team-member">
+          <img src="{{ guestreviews[1].profilePhotoUrl }}" />
+        </div>
+        <div class="service-content">
+          <h4 style="color:rgb(175, 66, 3);">
+            {{ guestreviews[1].reviewerName }}
+          </h4>
+          <a>****************************</a>
+          <br />
+          <a style="color:rgb(0, 0, 0);"
+            ><b>{{ guestreviews[1].reviewText }}</b></a
+          >
+          <br />
+          <a>****************************</a>
+          <br />
+          <a style="color:rgb(73, 4, 35);">
+            <b>{{ guestreviews[1].relativeTimeDescription }}</b>
+          </a>
+          <br />
+          <a style="color:rgb(255, 208, 0);">
+            <b>Rating : {{ guestreviews[1].rating }} / 5</b>
+            &nbsp; &nbsp;
+            <i class="fas fa-star"></i><i class="fas fa-star"></i
+            ><i class="fas fa-star"></i><i class="fas fa-star"></i
+            ><i class="fas fa-star"></i>
+          </a>
+        </div>
+      </div>
+      <div class="team-each">
+        <div class="team-member">
+          <img src="{{ guestreviews[2].profilePhotoUrl }}" />
+        </div>
+        <div class="service-content">
+          <h4 style="color:rgb(175, 66, 3);">
+            {{ guestreviews[2].reviewerName }}
+          </h4>
+          <a>****************************</a>
+          <br />
+          <a style="color:rgb(0, 0, 0);"
+            ><b>{{ guestreviews[2].reviewText }}</b></a
+          >
+          <br />
+          <a>****************************</a>
+          <br />
+          <a style="color:rgb(73, 4, 35);">
+            <b>{{ guestreviews[2].relativeTimeDescription }}</b>
+          </a>
+          <br />
+          <a style="color:rgb(255, 208, 0);">
+            <b>Rating : {{ guestreviews[2].rating }} / 5</b> &nbsp; &nbsp;
+            <i class="fas fa-star"></i><i class="fas fa-star"></i
+            ><i class="fas fa-star"></i><i class="fas fa-star"></i
+            ><i class="fas fa-star"></i>
+          </a>
+        </div>
+      </div>
+      <div class="team-each">
+        <div class="team-member">
+          <img src="{{ guestreviews[3].profilePhotoUrl }}" />
+        </div>
+        <div class="service-content">
+          <h4 style="color:rgb(175, 66, 3);">
+            {{ guestreviews[3].reviewerName }}
+          </h4>
+          <a>****************************</a>
+          <br />
+          <a style="color:rgb(0, 0, 0);"
+            ><b>{{ guestreviews[3].reviewText }}</b></a
+          >
+          <br />
+          <a>****************************</a>
+          <br />
+          <a style="color:rgb(73, 4, 35);">
+            <b>{{ guestreviews[3].relativeTimeDescription }}</b>
+          </a>
+          <br />
+          <a style="color:rgb(255, 208, 0);">
+            <b>Rating : {{ guestreviews[3].rating }} / 5</b> &nbsp; &nbsp;
+            <i class="fas fa-star"></i><i class="fas fa-star"></i
+            ><i class="fas fa-star"></i><i class="fas fa-star"></i
+            ><i class="fas fa-star"></i>
+          </a>
+        </div>
+      </div>
+      <div class="team-each">
+        <div class="team-member">
+          <img src="{{ guestreviews[4].profilePhotoUrl }}" />
+        </div>
+        <div class="service-content">
+          <h4 style="color:rgb(175, 66, 3);">
+            {{ guestreviews[4].reviewerName }}
+          </h4>
+          <a>****************************</a>
+          <br />
+          <a style="color:rgb(0, 0, 0);"
+            ><b>{{ guestreviews[4].reviewText }}</b></a
+          >
+          <br />
+          <a>****************************</a>
+          <br />
+          <a style="color:rgb(73, 4, 35);">
+            <b>{{ guestreviews[4].relativeTimeDescription }}</b>
+          </a>
+          <br />
+          <a style="color:rgb(255, 208, 0);">
+            <b>Rating : {{ guestreviews[4].rating }} / 5</b> &nbsp; &nbsp;
+            <i class="fas fa-star"></i><i class="fas fa-star"></i
+            ><i class="fas fa-star"></i><i class="fas fa-star"></i
+            ><i class="fas fa-star"></i>
           </a>
         </div>
       </div>
