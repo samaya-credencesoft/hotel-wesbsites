@@ -4,10 +4,10 @@
       <div class="wi-content wi-about">
         <div class="wi-about-item">
           <div class="abt-img">
-            <div *ngIf="room.id == 4">
+            <div *ngIf="room.id == 2">
               <img src="assets/images/doublebed.jpg" />
             </div>
-            <div *ngIf="room.id == 3">
+            <div *ngIf="room.id == 1">
               <img src="assets/images/TwinSingleRoom.jpg" />
             </div>
           </div>
@@ -22,13 +22,13 @@
           <p>
             <a style="color:rgb(255, 0, 0);">* </a
             ><b
-              >Standard Price (1ps. Per Night): {{ room.roomOnlyPrice }} NZD</b
+              >Standard Price (Person/Night): {{ room.roomOnlyPrice }} NZD</b
             >
           </p>
           <p>
             <a style="color:rgb(255, 0, 0);">* </a
             ><b
-              >Extra Charge (1ps. Per Night):
+              >Extra Charge (Person/Night):
               {{ room.extraChargePerPerson }} NZD</b
             >
           </p>

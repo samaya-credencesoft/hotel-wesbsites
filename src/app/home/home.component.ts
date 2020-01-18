@@ -5,7 +5,7 @@ import { ApiService } from './../api.service';
 import { Property } from './../property/property';
 import { Room } from './../room/room';
 import { Booking } from './../booking/booking';
-const PROPERTY_ID = 1;
+const PROPERTY_ID = 81;
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -58,7 +58,7 @@ export class HomeComponent implements OnInit {
   loadPropetyDetails() {
     this.apiService.getPropertyDetailsByPropertyId(PROPERTY_ID).subscribe(response => {
       this.property = response.body;
-      // console.log(response);
+      console.log(this.property);
       if (response.status === 200) {
         // console.log(this.property);
         if (this.property === null || this.property === undefined || this.property.id == null ||
@@ -67,7 +67,7 @@ export class HomeComponent implements OnInit {
         } else {
           this.apiService.getRoomDetailsByPropertyId(this.property.id).subscribe(res => {
             this.rooms = res.body;
-            // console.log(this.rooms);
+            console.log(this.rooms);
           });
         }
       } else {
