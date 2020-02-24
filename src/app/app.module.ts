@@ -43,6 +43,7 @@ import { DetailsComponent } from './site/rooms/details/details.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { TokenStorage } from '../../src/app/token.storage';
 import { AboutComponent } from './site/about/about.component';
+
 const routes: Routes = [
   { path: '', component: SiteModule},
 
@@ -89,7 +90,6 @@ const routes: Routes = [
     AppMaterialModules,
     FormsModule,
     ReactiveFormsModule,
-
     RouterModule.forRoot(routes),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAYT8pe61MUbk27eiYi9LnnPhwo031Ye7w'
