@@ -10,13 +10,13 @@ import { Observable } from 'rxjs';
 import { BookingDetails } from './bookingdetail/bookingdetails';
 import { GuestReview } from './guest/guest.component';
 
- //const API_URL = 'http://app.bookonepms.com:9080/api-bookone/api/website';
+// const API_URL = 'http://app.bookonepms.com:9080/api-bookone/api/website';
 // const API_URL2 = 'http://app.bookonepms.com:9080/api-bookone';
- export const SMS_NUMBER = '+1 956 903 2629';
-// const API_URL2 = 'https://booking-api-csoft.appspot.com';
- const API_URL = 'https://booking-api-csoft.appspot.com/api/website';
+export const SMS_NUMBER = '+1 956 903 2629';
+const API_URL2 = 'https://booking-api-csoft.appspot.com';
+const API_URL = 'https://booking-api-csoft.appspot.com/api/website';
 // production
-//export const PROPERTY_ID = 92;
+// export const PROPERTY_ID = 92;
 // development
 export const PROPERTY_ID = 8;
 
@@ -24,10 +24,10 @@ export const PROPERTY_ID = 8;
 export class ApiService {
   constructor(private http: HttpClient) { }
   processPayPalPayment(payment: Payment) {
-    return this.http.post(API_URL + '/api/payment/create', payment, { observe: 'response' });
+    return this.http.post(API_URL2 + '/api/payment/create', payment, { observe: 'response' });
   }
   getAllBookingsByHost(host: Host) {
-    return this.http.post<Booking[]>(API_URL + '/api/booking/findAll', host, { observe: 'response' });
+    return this.http.post<Booking[]>(API_URL2 + '/api/booking/findAll', host, { observe: 'response' });
   }
   getBookingDetailsByIdAndEmail(booking: Booking) {
     return this.http.get<BookingDetails>(API_URL + '/findBookingByIdAndEmail?BookingReferenceNumber='
