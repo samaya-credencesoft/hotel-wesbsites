@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Property } from '../property/property';
-import { ApiService } from '../api.service';
+import { ApiService, PROPERTY_ID } from '../api.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -14,10 +15,24 @@ export class ContactComponent implements OnInit {
 
   lat = -36.79648;
   lng = 174.646926;
+  constructor(private apiService: ApiService) {
+    }
+  ngOnInit() {
 
-  ngOnInit() {}
-
-  constructor() {
-    console.log(this.property);
+    this.getProperty();
   }
+
+  getProperty() {
+    this.apiService.getPropertyDetailsByPropertyId(PROPERTY_ID).subscribe(response => {
+
+      this.property = response.body;
+    },
+      error => {
+        if (error instanceof HttpErrorResponse) {
+
+        }
+      }
+  );
+  }
+
 }

@@ -5,6 +5,7 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { throwError } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 import { catchError, finalize, map } from 'rxjs/operators';
 
@@ -35,7 +36,7 @@ export class Interceptor implements HttpInterceptor {
     Observable<HttpSentEvent | HttpHeaderResponse | HttpProgressEvent | HttpResponse<any> | HttpUserEvent<any>> {
     const authReq = req;
     this.status.setHttpStatus(true);
-    console.log('URL:' + req.url);
+
     return next.handle(authReq).pipe(
       map(event => {
         return event;
@@ -46,7 +47,7 @@ export class Interceptor implements HttpInterceptor {
             this.router.navigate(['user']);
           }
         }
-        return Observable.throw(error);
+        return  throwError(error);//Observable.throw(error);
       }),
       finalize(() => {
         this.status.setHttpStatus(false);

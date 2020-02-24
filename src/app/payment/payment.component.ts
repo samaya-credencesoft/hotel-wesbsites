@@ -122,12 +122,11 @@ export class PaymentComponent implements OnInit {
     if (this.payment === undefined) {
       this.payment = new Payment();
     }
-    console.log(this.payment);
+
     this.currency.setValue(this.payment.currency);
   }
   submit() {
-    console.log(this.payment.paymentMode);
-    console.log(this.payment);
+
     this.payment.paymentMode = 'Card';
     if (
       this.payment.paymentMode != null &&
@@ -141,7 +140,7 @@ export class PaymentComponent implements OnInit {
 
   chargeCreditCard() {
     this.msgs = [];
-    console.log(this.payment);
+
     (window as any).Stripe.card.createToken(
       {
         number: this.payment.cardNumber,

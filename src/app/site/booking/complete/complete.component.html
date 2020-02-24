@@ -1,0 +1,149 @@
+<section class="main-content bkng">
+  <div class="container">
+    <div class="page-content">
+      <div class="booking-tabs-list">
+        <ul class="nav nav-tabs" id="myTab3" role="tablist">
+          <li class="nav-item">
+              <a class="nav-link" > <span class="nom"></span>CHOSE ROOM</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" > <span class="nom"></span> BOOKING</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" > <span class="nom"></span> CHECKOUT</a>
+            </li> -->
+            <li class="nav-item">
+              <a class="nav-link active" ><span class="nom"></span> THANK YOU</a>
+            </li>
+        </ul>
+      </div><!--booking-tabs-list end-->
+
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="sidebar">
+                  <div class="avail-sec">
+                    <form>
+                      <div class="checking-form">
+                        <ul class="checkform">
+                          <li>
+                            <div class="check-form">
+                              <h4>CHECK-IN</h4>
+                              <div class="det">
+                                <b class="val-date">{{ this.daySelected }}</b>
+                                <span>
+                                  <i class="month">{{monthArray[monthSelected] }}</i> <i class="year">{{  this.yearSelected  }}</i>
+                                  <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
+                                </span>
+                              </div>
+                              <input type="text" disabled name="dateIn" class="date-pick">
+                              <div class="clearfix"></div>
+                            </div><!--check-form end-->
+                          </li>
+                          <li>
+                            <div class="check-form">
+                              <h4>CHECK-OUt</h4>
+                              <div class="det">
+                                <b class="val-date">{{ this.daySelected2 }}</b>
+                                <span>
+                                  <i class="month">{{monthArray[monthSelected2] }}</i> <i class="year">{{  this.yearSelected2  }}</i>
+                                  <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
+                                </span>
+                              </div>
+                              <input type="text" disabled name="dateOut" class="date-pick">
+                              <div class="clearfix"></div>
+                            </div><!--check-form end-->
+                          </li>
+                          <li class="item-cont">
+                            <div class="check-form">
+                              <h4 class="text-center">Guest</h4>
+                              <div class="det">
+                                <div class="handle-counter" id="handleCounter">
+                                                  <ul>
+                                                      <li class="input-fieldd"><input type="text" value="1" data-num="1"></li>
+                                                      <li class="counter-control">
+                                                        <button class="counter-minus btn" disabled=""><i class="fa fa-angle-up"></i></button>
+                                                        <button class="counter-plus btn"><i class="fa fa-angle-down"></i></button>
+                                                      </li>
+                                                  </ul>
+                                                  <div class="clearfix"></div>
+                                              </div>
+                              </div>
+                              <div class="clearfix"></div>
+                            </div><!--check-form end-->
+                            <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
+                          </li>
+                          <!-- <li class="check-avail">
+                            <a (click)="getRoomByDate()" title="" class="check-status">CHECK AVAILABILITY</a>
+                          </li> -->
+                        </ul>
+                        <div class="clearfix"></div>
+                      </div>
+                    </form>
+                  </div><!--avail-sec end-->
+                </div><!--sidebar end-->
+                </div>
+                <div class="col-lg-8">
+                  <div class="more_information_sec">
+                    <h3>Your Order Detaıls</h3>
+                    <h4>Order Transaction <span>{{ payment.referenceNumber  }}</span></h4>
+                    <table>
+                      <tr>
+                        <td>
+                          <h4>First Name :</h4>
+                          <span>{{ booking.firstName}}</span>
+                        </td>
+                        <td>
+                          <h4>Last Name :</h4>
+                          <span>{{ booking.lastName }}</span>
+                        </td>
+                        <td>
+                          <h4>Email :</h4>
+                          <span>{{ booking.email }}</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <h4>Phone :</h4>
+                          <span>{{ booking.mobile }}</span>
+                        </td>
+
+                      </tr>
+                    </table>
+
+                    <!-- <div class="rq-info cv-lst">
+                      <h4>Extra Services :</h4>
+                      <ul>
+                        <li>
+                          Car Rental
+                        </li>
+                        <li>
+                          Wifi
+                        </li>
+                      </ul>
+                    </div> -->
+                    <!-- <div class="rq-info">
+                      <h4>Coupon :</h4>
+                      <p>Not set</p>
+                    </div> -->
+                    <!-- <div class="rq-info cv_lst">
+                      <h4>Tax :</h4>
+                      <ul>
+                        <li>
+                          Included 21 $ City Tax
+                        </li>
+                        <li>
+                          Included 22 % VAT
+                        </li>
+                      </ul>
+                    </div> -->
+                    <div class="rq-info no-bb">
+                      <h4>Payment Options :</h4>
+                      <p>{{ booking.modeOfPayment }}</p>
+                    </div>
+                  </div><!--more_information_sec end-->
+                </div>
+              </div>
+
+    </div><!--page-content end-->
+  </div>
+</section><!--main-content end-->

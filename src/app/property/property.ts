@@ -15,7 +15,7 @@ export class Property {
     mobile: number;
     gstNumber: string;
     userId: string;
+    slogan: string;
 
-    constructor()
-        { } 
+    constructor() { }
 }

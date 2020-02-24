@@ -1,0 +1,461 @@
+<section class="main-content bkng">
+  <div class="container">
+    <div class="page-content">
+      <div class="booking-tabs-list">
+        <ul class="nav nav-tabs" id="myTab3" role="tablist">
+          <li class="nav-item">
+              <a class="nav-link"> <span class="nom"></span>CHOSE ROOM</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" > <span class="nom"></span> BOOKING</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" > <span class="nom"></span> CHECKOUT</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" ><span class="nom"></span> THANK YOU</a>
+            </li>
+        </ul>
+      </div><!--booking-tabs-list end-->
+
+
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="sidebar">
+                  <div class="avail-sec">
+                    <form>
+                      <div class="checking-form">
+                        <ul class="checkform">
+                          <li>
+                            <div class="check-form">
+                              <h4>CHECK-IN</h4>
+                              <div class="det">
+                                <b class="val-date">{{ this.daySelected }}</b>
+                                <span>
+                                  <i class="month">{{monthArray[monthSelected] }}</i> <i class="year">{{  this.yearSelected2  }}</i>
+                                  <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
+                                </span>
+                              </div>
+                              <input type="text" [formControl]="checkedin" name="dateIn" class="date-pick" (ngModelChange)="checkedInEvent()">
+                              <div class="clearfix"></div>
+                            </div><!--check-form end-->
+                          </li>
+                          <li>
+                            <div class="check-form">
+                              <h4>CHECK-OUt</h4>
+                              <div class="det">
+                                <b class="val-date">{{ this.daySelected2 }}</b>
+                                <span>
+                                  <i class="month">{{monthArray[monthSelected2] }}</i> <i class="year">{{  this.yearSelected2  }}</i>
+                                  <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
+                                </span>
+                              </div>
+                              <input type="text"  [formControl]="checkedout" name="dateOut" class="date-pick" (ngModelChange)="checkedOutEvent()">
+                              <div class="clearfix"></div>
+                            </div><!--check-form end-->
+                          </li>
+                          <li class="item-cont">
+                            <div class="check-form">
+                              <h4 class="text-center">Guest</h4>
+                              <div class="det">
+                                <div class="handle-counter" id="handleCounter">
+                                                  <ul>
+                                                      <li class="input-fieldd"><input type="text" value="1" data-num="1"></li>
+                                                      <li class="counter-control">
+                                                        <button class="counter-minus btn" disabled=""><i class="fa fa-angle-up"></i></button>
+                                                        <button class="counter-plus btn"><i class="fa fa-angle-down"></i></button>
+                                                      </li>
+                                                  </ul>
+                                                  <div class="clearfix"></div>
+                                              </div>
+                              </div>
+                              <div class="clearfix"></div>
+                            </div><!--check-form end-->
+                            <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
+                          </li>
+                          <li class="check-avail">
+                            <a (click)="getRoomByDate()" *ngIf="!isAvailableChecked" title="" class="check-status">CHECK AVAILABILITY</a>
+                          </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                      </div>
+                    </form>
+                  </div><!--avail-sec end-->
+                </div><!--sidebar end-->
+                </div>
+                <div class="col-lg-8">
+                  <mat-progress-bar *ngIf="loader" color="warn" mode="indeterminate"></mat-progress-bar>
+                  <div class="more_information_sec">
+                    <h3>Your InformatIons</h3>
+                    <table>
+                      <tr>
+                        <td>
+                          <h4>First Name :</h4>
+                          <span>{{  this.booking.firstName}}</span>
+                        </td>
+                        <td>
+                          <h4>Last First :</h4>
+                          <span>{{   this.booking.lastName  }}</span>
+                        </td>
+
+                      </tr>
+                      <tr>
+                        <td>
+                          <h4>Phone :</h4>
+                          <span>{{  this.booking.mobile }}</span>
+                        </td>
+                        <td>
+                          <h4>Email :</h4>
+                          <span>{{  this.booking.email }}</span>
+                        </td>
+
+                      </tr>
+
+                    </table>
+
+                    <div class="rq-info cv_lst">
+                      <h4>Room Information :</h4>
+                      <ul>
+                        <li>
+                           <b>Room Name : </b> {{room.name}}
+                        </li>
+                        <li>
+                          <b>No of rooms : </b> {{booking.noOfRooms}}
+                        </li>
+                        <li>
+                          <b>No of guest : </b> {{booking.noOfPersons}}
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="payment_options">
+                      <h3>Payment Optıons</h3>
+
+                      <!-- <div *ngFor="let msg of msgs">
+                        <span
+                          *ngIf="msg.summary"
+                          class="error"
+                          [innerHTML]="msg.summary"
+                        ></span>
+                        <span
+                          *ngIf="msg.detail"
+                          class="success"
+                          [innerHTML]="msg.detail"
+                        ></span>
+                      </div> -->
+
+
+                      <div class="row">
+                        <div class="col-lg-6">
+
+                          <mat-form-field
+                            class="col-md-12 col-lg-12 col-sm-12 col-xs-12"
+                            appearance="outline"
+                          >
+                          <mat-label>Mode of Payment</mat-label>
+                            <mat-select
+                              placeholder="Mode of Payment"
+                              [(ngModel)]="booking.modeOfPayment"
+                              [formControl]="paymentMode"
+
+                            >
+                              <mat-option
+                                *ngFor="let paymentMode of paymentModes"
+                                [value]="paymentMode.value"
+                              >
+                                {{ paymentMode.viewValue }}
+                              </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="!paymentMode.valid && paymentMode.touched"
+                              >Payment mode is required!</mat-error
+                            >
+                          </mat-form-field>
+                          </div>
+                          <div class="col-lg-6">
+
+                            <mat-form-field
+                            class="col-md-12 col-lg-12 col-sm-12 col-xs-12"
+
+                            appearance="outline"
+                          >
+                          <mat-label>Amount</mat-label>
+                            <input
+                              type="text"
+                              matInput
+                              placeholder="Booking Amount"
+                              [formControl]="bookingAmount"
+                              [(ngModel)]="booking.payableAmount"
+                            />
+                          </mat-form-field>
+
+                          </div>
+                        </div>
+
+
+
+                    <div class="tab-content" id="myTabContent3">
+                      <div class="tab-pane fade show active" id="credit-card" role="tabpanel" aria-labelledby="credit-tab">
+                        <div class="payment-tab">
+                          <form [formGroup]="onPaymentForm">
+
+                              <!-- <div class="row"> -->
+
+                                <div  *ngIf="booking.modeOfPayment == 'Card'">
+
+                                  <div class="row">
+
+                                    <div class="col-lg-6">
+
+                                      <mat-form-field
+                                      class="col-md-12 col-lg-12 col-sm-12 col-xs-12"
+                                      appearance="outline" >
+
+                                      <mat-label>Name On Card</mat-label>
+                                      <input
+                                        type="text"
+                                        matInput
+                                        placeholder="Name On Card"
+                                        [formControl]="cardHolderName"
+                                        [(ngModel)]="payment.cardHolderName"
+
+                                      />
+                                      <!-- <mat-hint>16 Digit Master/Visa Card Number.</mat-hint> -->
+                                      <mat-error
+                                        *ngIf="!cardHolderName.valid && cardHolderName.touched"
+                                        >Cardholder Name is required!</mat-error
+                                      >
+
+                                    </mat-form-field>
+
+                                    </div>
+
+                                  <div class="col-lg-6">
+
+                                    <mat-form-field
+                                    class="col-md-12 col-lg-12 col-sm-12 col-xs-12"
+                                    appearance="outline" >
+
+                                    <mat-label>Card Number</mat-label>
+                                    <input
+                                      type="text"
+                                      matInput
+                                      placeholder="Card Number"
+                                      minlength="16"
+                                      maxlength="16"
+                                      pattern="[0-9]{16}"
+                                      [formControl]="cardNumber"
+                                      [(ngModel)]="payment.cardNumber"
+
+                                    />
+                                    <mat-error *ngIf="!cardNumber.valid && cardNumber.touched"
+                                      >Invalid Card Number!</mat-error
+                                    >
+                                    <mat-error *ngIf="cardNumber.minlength"
+                                      >Card Number must be 16 digits !</mat-error
+                                    >
+                                    <mat-error *ngIf="cardNumber.maxlength"
+                                      >Card Number must be 16 digits !</mat-error
+                                    >
+
+                                  </mat-form-field>
+                                  </div>
+
+
+                            <div class="col-lg-4">
+
+                              <mat-form-field
+                              class="col-md-12 col-lg-12 col-sm-12 col-xs-12"
+                              appearance="outline"
+                            >
+                            <mat-label>Expiration Month</mat-label>
+                              <mat-select
+                                placeholder="Expiration Month"
+                                [(ngModel)]="payment.expMonth"
+                                [formControl]="expMonth"
+                              >
+                                <mat-option
+                                  *ngFor="let month of months"
+                                  [value]="month.value"
+                                >
+                                  {{ month.viewValue }}
+                                </mat-option>
+                              </mat-select>
+                              <mat-error *ngIf="!expMonth.valid && expMonth.touched"
+                                >Card Expiration Month is required!</mat-error
+                              >
+                            </mat-form-field>
+
+                            </div>
+
+                            <div class="col-lg-4">
+
+                              <mat-form-field
+                              class="col-md-12 col-lg-12 col-sm-12 col-xs-12"
+                              appearance="outline"
+                            >
+                            <mat-label>Expiration Year</mat-label>
+                              <mat-select
+                                placeholder="Expiration Year"
+                                [(ngModel)]="payment.expYear"
+                                [formControl]="expYear"
+
+                              >
+                                <mat-option *ngFor="let year of years" [value]="year.value">
+                                  {{ year.viewValue }}
+                                </mat-option>
+                              </mat-select>
+                              <mat-error *ngIf="!expYear.valid && expYear.touched"
+                                >Card Expiration Year is required!</mat-error
+                              >
+                            </mat-form-field>
+
+                            </div>
+
+                            <div class="col-lg-4">
+
+                              <mat-form-field
+                              class="col-md-12 col-lg-12 col-sm-12 col-xs-12"
+                              appearance="outline"
+                            >
+                            <mat-label>CVV</mat-label>
+                              <input
+                                type="text"
+                                minlength="3"
+                                maxlength="3"
+                                matInput
+                                placeholder="CVV"
+                                [formControl]="cvv"
+                                pattern="[0-9]{3}"
+                                [(ngModel)]="payment.cvv"
+
+                              />
+
+                              <mat-error *ngIf="!cvv.valid && cvv.touched"
+                                >Invalid CVV!</mat-error
+                              >
+                              <mat-error *ngIf="cvv.minlength || cvv.maxlength"
+                                >CVV must be of 3 digits !</mat-error
+                              >
+                            </mat-form-field>
+
+                            </div>
+
+
+                                <div class="note col-lg-12">
+                                  <p><span>Please note</span> you will be able to review your ride on the next page before confirming your reservation. Your card will not be charged until after your ride.</p>
+                                </div>
+
+                              </div>
+
+                            </div>
+
+<!--  [disabled]="booking.modeOfPayment == 'Card' && !onPaymentForm.valid || booking.modeOfPayment == null || booking.modeOfPayment == 'undefined'"  -->
+                              <div class="col-lg-12">
+                                <button type="submit"
+                                (click)="submitPayment()"
+                                *ngIf="booking.modeOfPayment == 'Card' && onPaymentForm.valid || booking.modeOfPayment != 'Card' && booking.modeOfPayment != undefined"
+
+                                class="lnk-default">Submit Payment <i class="la la-arrow-right"></i></button>
+                              </div>
+                              <!-- </div> -->
+                            </form>
+                          </div><!--payment-tab end-->
+                      </div>
+                        <div class="tab-pane fade" id="transfer-tab" role="tabpanel" aria-labelledby="transfer_tab">
+                          <div class="payment-tab">
+                            <form>
+                              <div class="row">
+                                <div class="col-lg-6">
+                                  <div class="form-field">
+                                    <label>Account Name</label>
+                                    <input type="text" name="c-name" placeholder="Full Name">
+                                  </div><!--form-field end-->
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-field">
+                                    <label>Bank Name</label>
+                                    <input type="text" name="c-name" placeholder="Bank Name">
+                                  </div><!--form-field end-->
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-field">
+                                    <label>Account Number</label>
+                                    <input type="text" name="exp-date" placeholder="XXXX">
+
+                                  </div><!--form-field end-->
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-field">
+                                    <label>Check Number </label>
+                                    <input type="text" name="c-name" placeholder="XXXX">
+                                  </div><!--form-field end-->
+                                </div>
+                                <div class="col-lg-12">
+                                  <p><span>Please Pay the amount to this bank account to confirm your Reservation. </span> Account Details</p>
+                                  <p><span>Please note</span> you will be able to review your ride on the next page before confirming your reservation. Your card will not be charged until after your ride.</p>
+                                </div>
+                                <div class="col-lg-12">
+                                  <button type="submit" class="lnk-default">Submit Payment <i class="la la-arrow-right"></i></button>
+                                </div>
+                              </div>
+                            </form>
+                          </div><!--payment-tab end-->
+                        </div>
+                        <div class="tab-pane fade" id="paypal-tab" role="tabpanel" aria-labelledby="paypal_tab">
+                          <div class="payment-tab">
+                            <form>
+                              <div class="row">
+                                <div class="col-lg-6">
+                                  <div class="form-field">
+                                    <label>Cardholder name</label>
+                                    <input type="text" name="c-name" placeholder="Ali TUF...">
+                                  </div><!--form-field end-->
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-field">
+                                    <label>Card number</label>
+                                    <input type="text" name="c-name" placeholder="0436">
+                                  </div><!--form-field end-->
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-field">
+                                    <label>Expiration date</label>
+                                    <div class="row">
+                                      <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-field">
+                                          <input type="text" name="exp-date" placeholder="MM">
+                                        </div><!--form-field end-->
+                                      </div>
+                                      <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-field">
+                                          <input type="text" name="exp-date" placeholder="YY">
+                                        </div><!--form-field end-->
+                                      </div>
+                                    </div>
+                                  </div><!--form-field end-->
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-field">
+                                    <label>CVV </label>
+                                    <input type="text" name="c-name" placeholder="0436">
+                                  </div><!--form-field end-->
+                                </div>
+                                <div class="col-lg-12">
+                                  <p><span>Please note</span> you will be able to review your ride on the next page before confirming your reservation. Your card will not be charged until after your ride.</p>
+                                </div>
+                                <div class="col-lg-12">
+                                  <button type="submit"  [disabled]="!onPaymentForm.valid" class="lnk-default">Submit Payment <i class="la la-arrow-right"></i></button>
+                                </div>
+                              </div>
+                            </form>
+                          </div><!--payment-tab end-->
+                        </div>
+                    </div>
+                    </div><!--payment_options end-->
+                  </div><!--more_information_sec end-->
+                </div>
+              </div>
+
+
+    </div><!--page-content end-->
+  </div>
+</section><!--main-content end-->

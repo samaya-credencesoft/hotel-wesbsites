@@ -1,0 +1,54 @@
+<section class="c-block room_sec dark-bg">
+  <div class="container">
+    <div class="sec-title">
+      <h3>OUR ROOMS</h3>
+    </div><!--sec-title  end-->
+
+
+    <!-- <table>
+      <tr *ngFor ="let room of rooms;">
+         <td>
+
+         </td>
+      </tr>
+    </table> -->
+
+     <div class="rooms_section"  >
+            <div class="row blog_carousel" >
+
+
+                <div class="col-lg-4 col-md-6"  >
+                  <div class="room_details">
+                    <div class="room_show">
+                      <div class="room_imgs_carousel">
+                        <div class="room_img">
+                          <img src="assets/images/rooms/21.jpg" alt="">
+                        </div>
+                      </div>
+                      <span class="price-tag">{{ room.roomOnlyPrice}} / <b>night</b></span>
+                    </div>
+                    <div class="room_info">
+                      <h3><a routerLink="/rooms/details/{{room.id}}" title="">{{ room.name}}</a></h3>
+                      <ul class="ppt-list">
+                        <li>
+                          <img src="assets/images/icy1.png" alt="">
+                          {{room.maximumOccupancy}} GUESTS
+                        </li>
+                        <li>
+                          <img src="assets/images/icy2.png" alt="">
+                          No of Rooms : {{ room.noOfRooms }}
+                        </li>
+                      </ul>
+                      <p>{{ room.description}} </p>
+                      <a  (click)="onRoomBook(room)" title="" class="lnk-default">Book Now <i class="la la-arrow-right"></i></a>
+                    </div>
+                  </div>
+
+                </div>
+
+            </div>
+          </div>
+
+
+  </div>
+</section><!--room_sec end-->

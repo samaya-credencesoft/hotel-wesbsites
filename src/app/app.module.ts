@@ -3,10 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './api.service';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
 import { AmenitiesComponent } from './amenities/amenities.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { PaymentComponent } from './payment/payment.component';
@@ -34,12 +32,24 @@ import { Interceptor } from './app.interceptor';
 import { PolicyComponent } from './policy/policy.component';
 import { BookingdetailComponent } from './bookingdetail/bookingdetail.component';
 import { AgmCoreModule } from '@agm/core';
+import { SharedModule } from './shared/shared.module';
+import { RouterModule, Routes } from '@angular/router';
+import { SiteModule } from './site/site.module';
+import { LayoutModule } from './shared/layout/layout.module';
+import { FooterComponent } from './shared/layout/footer/footer.component';
+import { HeaderComponent } from './shared/layout/header/header.component';
+import { SidebarComponent } from './shared/layout/sidebar/sidebar.component';
+import { DetailsComponent } from './site/rooms/details/details.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { TokenStorage } from '../../src/app/token.storage';
+import { AboutComponent } from './site/about/about.component';
+const routes: Routes = [
+  { path: '', component: SiteModule},
 
-
+];
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     AmenitiesComponent,
     GalleryComponent,
     PaymentComponent,
@@ -50,10 +60,19 @@ import { AgmCoreModule } from '@agm/core';
     RoomComponent,
     GuestComponent,
     PolicyComponent,
-    BookingdetailComponent
+    BookingdetailComponent,
+    HeaderComponent,
+    FooterComponent,
+    SidebarComponent,
+    DetailsComponent,
+    BookingComponent,
+    AboutComponent
   ],
   entryComponents: [BookingComponent],
   imports: [
+    SharedModule,
+    LayoutModule,
+    SiteModule,
     BrowserModule,
     AppRoutingModule,
     MatStepperModule,
@@ -67,17 +86,24 @@ import { AgmCoreModule } from '@agm/core';
     BrowserAnimationsModule,
     CommonModule,
     MatCheckboxModule,
-    // Material Modules
     AppMaterialModules,
     FormsModule,
     ReactiveFormsModule,
+
+    RouterModule.forRoot(routes),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAYT8pe61MUbk27eiYi9LnnPhwo031Ye7w'
     })
   ],
+  exports:[
+
+  ],
   providers: [
     ApiService,
+    TokenStorage,
     HTTPStatus,
+    TokenStorage,
+    // {provide: LocationStrategy, useClass: HashLocationStrategy},
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,

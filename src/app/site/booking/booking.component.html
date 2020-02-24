@@ -1,0 +1,990 @@
+<section class="main-content bkng">
+  <div class="container">
+    <div class="page-content">
+      <div class="booking-tabs-list">
+        <ul class="nav nav-tabs" id="myTab3" role="tablist">
+          <li class="nav-item">
+              <a class="nav-link active" id="choose-tab" data-toggle="tab"  href="#choose-room" role="tab" aria-controls="choose-room" aria-selected="true"> <span class="nom"></span>CHOSE ROOM</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="booking_tab" data-toggle="tab" href="#booking-tab" role="tab" aria-controls="booking-tab" aria-selected="false"> <span class="nom"></span> BOOKING</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="checkout_tab" data-toggle="tab" href="#checkout-tab" role="tab" aria-controls="checkout-tab" aria-selected="false"> <span class="nom"></span> CHECKOUT</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="thankyou_tab" data-toggle="tab" href="#thankyou-tab" role="tab" aria-controls="thankyou-tab" aria-selected="false"><span class="nom"></span> THANK YOU</a>
+            </li>
+        </ul>
+      </div><!--booking-tabs-list end-->
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="choose-room" role="tabpanel" aria-labelledby="choose-tab">
+          <div class="tab-contentt">
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="sidebar">
+                  <div class="avail-sec">
+                    <form>
+                      <div class="checking-form">
+                        <ul class="checkform">
+                          <li>
+                            <div class="check-form">
+                              <h4>CHECK-IN</h4>
+                              <div class="det">
+                                <b class="val-date">{{ this.day }}</b>
+                                <span>
+                                  <i class="month">{{monthArray[month] }}</i> <i class="year">{{  this.year  }}</i>
+                                  <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
+                                </span>
+                              </div>
+                              <input type="text" name="dateIn" class="date-pick">
+                              <div class="clearfix"></div>
+                            </div><!--check-form end-->
+                          </li>
+                          <li>
+                            <div class="check-form">
+                              <h4>CHECK-OUt</h4>
+                              <div class="det">
+                                <b class="val-date">{{ this.day2 }}</b>
+                                <span>
+                                  <i class="month">{{ monthArray[month2] }}</i> <i class="year">{{  this.year2  }}</i>
+                                  <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
+                                </span>
+                              </div>
+                              <input type="text" name="dateOut" class="date-pick">
+                              <div class="clearfix"></div>
+                            </div><!--check-form end-->
+                          </li>
+                          <li class="item-cont">
+                            <div class="check-form">
+                              <h4 class="text-center">Guest</h4>
+                              <div class="det">
+                                <div class="handle-counter" id="handleCounter">
+                                                  <ul>
+                                                      <li class="input-fieldd"><input type="text" value="1" data-num="1"></li>
+                                                      <li class="counter-control">
+                                                        <button class="counter-minus btn" disabled=""><i class="fa fa-angle-up"></i></button>
+                                                        <button class="counter-plus btn"><i class="fa fa-angle-down"></i></button>
+                                                      </li>
+                                                  </ul>
+                                                  <div class="clearfix"></div>
+                                              </div>
+                              </div>
+                              <div class="clearfix"></div>
+                            </div><!--check-form end-->
+                            <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
+                          </li>
+                          <li class="check-avail">
+                            <a (click)="getRoomByDate()" title="" class="check-status">CHECK AVAILABILITY</a>
+                          </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                      </div>
+                    </form>
+                  </div><!--avail-sec end-->
+                  <div class="filter-field">
+                                      <label for="amount">Max Night Price</label>
+                                      <div id="slider-range"></div>
+                                      <input type="text" id="amount" readonly>
+                                  </div><!--widget-filter end-->
+                  <div class="services_select">
+                    <div class="seachby">
+                      <h3>Services</h3>
+                      <ul>
+                        <li>
+                          <div class="inp-field">
+                            <input type="checkbox" name="cc" id="c1" >
+                            <label for="c1">
+                              <span></span>
+                              <b>King Beds</b>
+                            </label>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="inp-field">
+                            <input type="checkbox" name="cc" id="c2">
+                            <label for="c2">
+                              <span></span>
+                              <b>Television</b>
+                            </label>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="inp-field">
+                            <input type="checkbox" name="cc" id="c3">
+                            <label for="c3"><span></span><b>Bike Rental</b></label>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="inp-field">
+                            <input type="checkbox" name="cc" id="c4">
+                            <label for="c4"><span></span><b>Welcome Drink</b></label>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="inp-field">
+                            <input type="checkbox" name="cc" id="c5">
+                            <label for="c5"><span></span><b>Swimming Pool</b></label>
+                          </div>
+                        </li>
+                      </ul>
+                      <h3>Extra Services</h3>
+                      <ul>
+                        <li>
+                          <div class="inp-field">
+                            <input type="checkbox" name="cc2" id="c11" >
+                            <label for="c11"><span></span><b>Breakfast</b></label>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="inp-field">
+                            <input type="checkbox" name="cc2" id="c22">
+                            <label for="c22"><span></span><b>Wifi</b></label>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="inp-field">
+                            <input type="checkbox" name="cc2" id="c33">
+                            <label for="c33"><span></span><b>Laundry</b></label>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="inp-field">
+                            <input type="checkbox" name="cc2" id="c44">
+                            <label for="c44"><span></span><b>Sea View</b></label>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="inp-field">
+                            <input type="checkbox" name="cc2" id="c55">
+                            <label for="c55"><span></span><b>Beach Loungers</b></label>
+                          </div>
+                        </li>
+                      </ul>
+                      <div class="clearfix"></div>
+                    </div>
+                  </div><!--services_select end-->
+                </div><!--sidebar end-->
+              </div>
+              <div class="col-lg-8">
+                <div class="main-dv">
+                  <div class="main-dv-head">
+                    <ul class="pc-list">
+                      <li>
+                        <div class="lang-slct">
+                          <div class="custom-select">
+                            <select>
+                                <option value="0">Price: Low to High</option>
+                                <option value="1">5000</option>
+                                <option value="2">10000</option>
+                                <option value="3">15000</option>
+                                <option value="4">25000</option>
+                            </select>
+                          </div>
+                        </div><!--lang-select end-->
+                      </li>
+                      <li>
+                        <div class="lang-slct">
+                          <div class="custom-select">
+                            <select>
+                                <option value="0">Size: Large to Small</option>
+                                <option value="1">15000</option>
+                                <option value="2">35000</option>
+                                <option value="3">45000</option>
+                                <option value="4">55000</option>
+                            </select>
+                          </div>
+                        </div><!--lang-select end-->
+                      </li>
+                    </ul><!--pc-list end-->
+                    <ul class="nav nav-tabs" id="myTab1" role="tablist">
+                      <li class="nav-item">
+                          <a class="nav-link active" id="th-tabb" data-toggle="tab" href="#th-tab" role="tab" aria-controls="th-tab" aria-selected="false"><i class="fa fa-th"></i></a>
+                        </li>
+                      <li class="nav-item">
+                          <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><img src="assets/images/bar-icon1.png" alt=""></a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><img src="assets/images/bar-icon2.png" alt=""></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div><!--main-dv-head end-->
+                  <div class="tab-content" id="myTabContent2">
+                    <div class="tab-pane fade show active" id="th-tab" role="tabpanel" aria-labelledby="th-tab">
+                      <div class="tb-detaiils st_4">
+                        <div class="row">
+                          <div class="col-lg-6 col-md-6 col-sm-6"  *ngFor ="let room of rooms;">
+                            <div class="room-details">
+                              <img src="https://via.placeholder.com/640x700" alt="">
+                              <div class="room-hd">
+                                <h4>FROM ${{room.roomOnlyPrice}}</h4>
+                                <h3>{{room.name}}</h3>
+                              </div>
+                              <a href="#booking-tab" title="" class="booking-btn">BOOK NOW <i class="la la-arrow-right"></i></a>
+                            </div><!--room-details end-->
+                          </div>
+
+
+                        </div>
+                      </div><!--tb-detaiils end-->
+                    </div>
+                    <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+                      <div class="tb-detaiils">
+                        <div class="row">
+                          <div class="col-lg-6 col-md-6"  *ngFor ="let room of rooms;">
+                            <div class="room_details">
+                              <div class="room-caroz">
+                                <div class="room_img">
+                                  <img src="https://via.placeholder.com/361x250" alt="">
+                                  <span class="price-tag">${{room.roomOnlyPrice}}<b>/night</b></span>
+                                </div><!--room_img end-->
+
+                              </div><!--room-caroz end-->
+                              <div class="room_info">
+                                <h3><a href="#" title="">{{room.name}}</a></h3>
+                                <ul class="ppt-list">
+                                  <li>
+                                    <img src="assets/images/icy1.png" alt="">
+                                    {{room.maximumOccupancy}} GUESTS
+                                  </li>
+                                  <li>
+                                    <img src="assets/images/icy2.png" alt="">
+                                    15 Ft²
+                                  </li>
+                                </ul><!--ppt-list end-->
+                                <p>Phasellus enim libero, blandit vel sapien ultricies magna et. </p>
+                                <ul class="fct-list">
+                                  <li>
+                                    <span data-toggle="tooltip" data-placement="top" title="Wifi"><img src="assets/images/ci1.png" alt=""></span>
+                                  </li>
+                                  <li>
+                                    <span data-toggle="tooltip" data-placement="top" title="Plane"><img src="assets/images/ci2.png" alt=""></span>
+                                  </li>
+                                  <li>
+                                    <span data-toggle="tooltip" data-placement="top" title="Car"><img src="assets/images/ci3.png" alt=""></span>
+                                  </li>
+                                  <li>
+                                    <span data-toggle="tooltip" data-placement="top" title="Breakfast"><img src="assets/images/ci4.png" alt=""></span>
+                                  </li>
+                                </ul><!--fct-list end-->
+                                <a href="#" title="" class="lnk-default">Book Now <i class="la la-arrow-right"></i></a>
+                              </div><!--room_info end-->
+                            </div><!--room-details end-->
+                          </div>
+
+                        </div>
+                      </div><!--tb-detaiils end-->
+                    </div>
+                      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="tb-detaiils"  *ngFor ="let room of rooms;">
+                        <div class="tb-row">
+                          <div class="room_details">
+                            <div class="room-caroz">
+                              <div class="room_img">
+                                <img src="https://via.placeholder.com/361x250" alt="">
+                                <span class="price-tag">${{room.roomOnlyPrice}}<b>/night</b></span>
+                              </div><!--room_img end-->
+
+                            </div><!--room-caroz end-->
+                            <div class="room_info">
+                              <h3><a href="#" title="">{{room.name}}</a></h3>
+                              <ul class="ppt-list">
+                                <li>
+                                  <img src="assets/images/icy1.png" alt="">
+                                  {{room.maximumOccupancy}} GUESTS
+                                </li>
+                                <li>
+                                  <img src="assets/images/icy2.png" alt="">
+                                  15 Ft²
+                                </li>
+                              </ul><!--ppt-list end-->
+                              <p>{{room.description}} </p>
+                              <div class="fct-dv">
+                                <ul class="fct-list">
+                                  <li>
+                                    <span data-toggle="tooltip" data-placement="top" title="Wifi"><img src="assets/images/ci1.png" alt=""></span>
+                                  </li>
+                                  <li>
+                                    <span data-toggle="tooltip" data-placement="top" title="Plane"><img src="assets/images/ci2.png" alt=""></span>
+                                  </li>
+                                  <li>
+                                    <span data-toggle="tooltip" data-placement="top" title="Car"><img src="assets/images/ci3.png" alt=""></span>
+                                  </li>
+                                  <li>
+                                    <span data-toggle="tooltip" data-placement="top" title="Breakfast"><img src="assets/images/ci4.png" alt=""></span>
+                                  </li>
+                                </ul><!--fct-list end-->
+                                <a href="#" title="" class="lnk-default">Book Now <i class="la la-arrow-right"></i></a>
+                                <div class="clearfix"></div>
+                              </div>
+                            </div><!--room_info end-->
+                            <div class="clearfix"></div>
+                          </div><!--room-details end-->
+                        </div><!--tb-row end-->
+
+                      </div><!--tb-detaiils end-->
+                      </div>
+                  </div>
+
+                </div><!--main-dv end-->
+              </div>
+            </div>
+          </div><!--tab-contentt end-->
+        </div>
+          <div class="tab-pane fade" id="booking-tab" role="tabpanel" aria-labelledby="booking_tab">
+            <div class="tab-contentt">
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="sidebar">
+                  <div class="avail-sec">
+                    <form>
+                      <div class="checking-form">
+                        <ul class="checkform">
+                          <li>
+                            <div class="check-form">
+                              <h4>CHECK-IN</h4>
+                              <div class="det">
+                                <b class="val-date">{{ this.daySelected }}</b>
+                                <span>
+                                  <i class="month">{{monthArray[monthSelected] }}</i> <i class="year">{{  this.yearSelected  }}</i>
+                                  <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
+                                </span>
+                              </div>
+                              <input type="text" name="dateIn" class="date-pick">
+                              <div class="clearfix"></div>
+                            </div><!--check-form end-->
+                          </li>
+                          <li>
+                            <div class="check-form">
+                              <h4>CHECK-OUt</h4>
+                              <div class="det">
+                                <b class="val-date">{{ this.day2 }}</b>
+                                <span>
+                                  <i class="month">{{monthArray[month2] }}</i> <i class="year">{{  this.year2  }}</i>
+                                  <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
+                                </span>
+                              </div>
+                              <input type="text" name="dateOut" class="date-pick">
+                              <div class="clearfix"></div>
+                            </div><!--check-form end-->
+                          </li>
+                          <li class="item-cont">
+                            <div class="check-form">
+                              <h4 class="text-center">Guest</h4>
+                              <div class="det">
+                                <div class="handle-counter" id="handleCounter">
+                                                  <ul>
+                                                      <li class="input-fieldd"><input type="text" value="1" data-num="1"></li>
+                                                      <li class="counter-control">
+                                                        <button class="counter-minus btn" disabled=""><i class="fa fa-angle-up"></i></button>
+                                                        <button class="counter-plus btn"><i class="fa fa-angle-down"></i></button>
+                                                      </li>
+                                                  </ul>
+                                                  <div class="clearfix"></div>
+                                              </div>
+                              </div>
+                              <div class="clearfix"></div>
+                            </div><!--check-form end-->
+                            <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
+                          </li>
+                          <li class="check-avail">
+                            <a (click)="getRoomByDate()" title="" class="check-status">CHECK AVAILABILITY</a>
+                          </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                      </div>
+                    </form>
+                  </div><!--avail-sec end-->
+                  <div class="extra_info">
+                    <ul>
+                      <li>
+                        <span>NOT INCL :</span> 3 $ CITY TAX ( person * night )
+                      </li>
+                      <li>
+                        <span>INCLUDED : </span> 22 % VAT ALREADY APPLIED
+                      </li>
+                    </ul>
+                  </div><!--extra_info end-->
+                </div><!--sidebar end-->
+                </div>
+                <div class="col-lg-8">
+                  <div class="booking_form">
+                    <span class="guest-notif">You are booking as guest, <a href="#" title="">LOGIN</a> or <a href="#" title="">REGISTER</a> if you want to save your reservation on your account.</span>
+
+                  <div class="information_form">
+                    <h3>Add Your Informatıons</h3>
+                    <form>
+                      <div class="row">
+                        <div class="col-lg-6">
+                          <div class="form-field">
+                            <label>Name *</label>
+                            <input type="text" name="name" placeholder="">
+                          </div><!--form-field end-->
+                        </div>
+                        <div class="col-lg-6">
+                          <div class="form-field">
+                            <label>Surname *</label>
+                            <input type="text" name="sur-name" placeholder="">
+                          </div><!--form-field end-->
+                        </div>
+                        <div class="col-lg-6">
+                          <div class="form-field">
+                            <label>Email *</label>
+                            <input type="email" name="email" placeholder="">
+                          </div><!--form-field end-->
+                        </div>
+                        <div class="col-lg-6">
+                          <div class="form-field">
+                            <label>Telephone *</label>
+                            <input type="text" name="phone" placeholder="">
+                          </div><!--form-field end-->
+                        </div>
+                        <div class="col-lg-6">
+                          <div class="form-field">
+                            <label>Address</label>
+                            <input type="text" name="address" placeholder="">
+                          </div><!--form-field end-->
+                        </div>
+                        <div class="col-lg-6">
+                          <div class="form-field">
+                            <label>Country</label>
+                            <div class="custom-select">
+                              <select>
+                                  <option value="0">England</option>
+                                  <option value="1">USA</option>
+                                  <option value="2">China</option>
+                                  <option value="3">Russia</option>
+                                  <option value="4">Australia</option>
+                              </select>
+                            </div>
+                          </div><!--form-field end-->
+                        </div>
+                        <div class="col-lg-6">
+                          <div class="form-field">
+                            <label>City</label>
+                            <div class="custom-select">
+                              <select>
+                                  <option value="0">London</option>
+                                  <option value="1">Cardiff</option>
+                                  <option value="2">Surrey</option>
+                              </select>
+                            </div>
+                          </div><!--form-field end-->
+                        </div>
+                        <div class="col-lg-6">
+                          <div class="form-field">
+                            <label>Zip</label>
+                            <input type="text" name="zip" placeholder="">
+                          </div><!--form-field end-->
+                        </div>
+                        <div class="col-lg-12">
+                          <div class="form-field">
+                            <label>Requests</label>
+                            <textarea name="request" placeholder=""></textarea>
+                          </div><!--form-field end-->
+                        </div>
+                        <div class="col-lg-6">
+                          <div class="form-field arival">
+                            <label>Arrival</label>
+                            <div class="custom-select">
+                              <select>
+                                  <option value="0">I don’t know</option>
+                                  <option value="1">I don’t know</option>
+                                  <option value="2">I don’t know</option>
+                              </select>
+                            </div>
+                          </div><!--form-field end-->
+                        </div>
+                        <div class="col-lg-6">
+                          <div class="form-field">
+                            <label>Coupon</label>
+                            <input type="text" name="coupan" placeholder="">
+                          </div><!--form-field end-->
+                        </div>
+                        <div class="col-lg-12">
+                          <div class="seachby">
+                            <ul>
+                              <li>
+                                <div class="inp-field">
+                                  <input type="checkbox" name="cc8" id="c87">
+                                  <label for="c87"><span></span><b>Terms and conditions *</b></label>
+                                </div>
+                              </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                          </div>
+                        </div>
+                        <div class="col-lg-12">
+                          <div class="form-submit">
+                            <button type="submit" class="lnk-default">Checkout <i class="la la-arrow-right"></i></button>
+                          </div><!--form-submit end-->
+                        </div>
+                      </div>
+                    </form>
+                  </div><!--information_form end-->
+                  </div><!--booking_form END-->
+                </div>
+              </div>
+            </div><!--tab-contentt end-->
+          </div>
+          <div class="tab-pane fade" id="checkout-tab" role="tabpanel" aria-labelledby="checkout_tab">
+            <div class="tab-contentt">
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="sidebar">
+                  <div class="avail-sec">
+                    <form>
+                      <div class="checking-form">
+                        <ul class="checkform">
+                          <li>
+                            <div class="check-form">
+                              <h4>CHECK-IN</h4>
+                              <div class="det">
+                                <b class="val-date">{{ this.day }}</b>
+                                <span>
+                                  <i class="month">{{monthArray[month] }}</i> <i class="year">{{  this.year  }}</i>
+                                  <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
+                                </span>
+                              </div>
+                              <input type="text" name="dateIn" class="date-pick">
+                              <div class="clearfix"></div>
+                            </div><!--check-form end-->
+                          </li>
+                          <li>
+                            <div class="check-form">
+                              <h4>CHECK-OUt</h4>
+                              <div class="det">
+                                <b class="val-date">{{ this.day2 }}</b>
+                                <span>
+                                  <i class="month">{{monthArray[month2] }}</i> <i class="year">{{  this.year2  }}</i>
+                                  <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
+                                </span>
+                              </div>
+                              <input type="text" name="dateOut" class="date-pick">
+                              <div class="clearfix"></div>
+                            </div><!--check-form end-->
+                          </li>
+                          <li class="item-cont">
+                            <div class="check-form">
+                              <h4 class="text-center">Guest</h4>
+                              <div class="det">
+                                <div class="handle-counter" id="handleCounter">
+                                                  <ul>
+                                                      <li class="input-fieldd"><input type="text" value="1" data-num="1"></li>
+                                                      <li class="counter-control">
+                                                        <button class="counter-minus btn" disabled=""><i class="fa fa-angle-up"></i></button>
+                                                        <button class="counter-plus btn"><i class="fa fa-angle-down"></i></button>
+                                                      </li>
+                                                  </ul>
+                                                  <div class="clearfix"></div>
+                                              </div>
+                              </div>
+                              <div class="clearfix"></div>
+                            </div><!--check-form end-->
+                            <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
+                          </li>
+                          <li class="check-avail">
+                            <a (click)="getRoomByDate()" title="" class="check-status">CHECK AVAILABILITY</a>
+                          </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                      </div>
+                    </form>
+                  </div><!--avail-sec end-->
+                </div><!--sidebar end-->
+                </div>
+                <div class="col-lg-8">
+                  <div class="more_information_sec">
+                    <h3>Your InformatIons</h3>
+                    <table>
+                      <tr>
+                        <td>
+                          <h4>Name :</h4>
+                          <span>Ali</span>
+                        </td>
+                        <td>
+                          <h4>Surname :</h4>
+                          <span>TUFAN</span>
+                        </td>
+                        <td>
+                          <h4>Email :</h4>
+                          <span>info@gmail.com</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <h4>Phone :</h4>
+                          <span>+90 589 658 96 32</span>
+                        </td>
+                        <td>
+                          <h4>Address :</h4>
+                          <span>Lorem Ipsum Dolar </span>
+                        </td>
+                        <td>
+                          <h4>City :</h4>
+                          <span>London</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <h4>Country :</h4>
+                          <span>England</span>
+                        </td>
+                        <td>
+                          <h4>ZIP :</h4>
+                          <span>85996</span>
+                        </td>
+                        <td>
+                          <h4>Arrival :</h4>
+                          <span>2:00 - 3:00 pm</span>
+                        </td>
+                      </tr>
+                    </table>
+                    <div class="rq-info">
+                      <h4>Requests :</h4>
+                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took </p>
+                    </div>
+                    <div class="rq-info cv-lst">
+                      <h4>Extra Services :</h4>
+                      <ul>
+                        <li>
+                          Car Rental
+                        </li>
+                        <li>
+                          Wifi
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="rq-info">
+                      <h4>Coupon :</h4>
+                      <p>Not set</p>
+                    </div>
+                    <div class="rq-info cv_lst">
+                      <h4>Tax :</h4>
+                      <ul>
+                        <li>
+                          Included 21 $ City Tax
+                        </li>
+                        <li>
+                          Included 22 % VAT
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="payment_options">
+                      <h3>Payment Optıons</h3>
+                      <ul class="nav nav-tabs" id="myTab2" role="tablist">
+                      <li class="nav-item">
+                          <a class="nav-link active" id="credit-tab" data-toggle="tab" href="#credit-card" role="tab" aria-controls="credit-tab" aria-selected="true">CREDIT CARD</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" id="transfer_tab" data-toggle="tab" href="#transfer-tab" role="tab" aria-controls="transfer-tab" aria-selected="false">BANK TRANSFER</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" id="paypal_tab" data-toggle="tab" href="#paypal-tab" role="tab" aria-controls="paypal-tab" aria-selected="false">PAYPAL</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent3">
+                      <div class="tab-pane fade show active" id="credit-card" role="tabpanel" aria-labelledby="credit-tab">
+                        <div class="payment-tab">
+                            <form>
+                              <div class="row">
+                                <div class="col-lg-6">
+                                  <div class="form-field">
+                                    <label>Cardholder name</label>
+                                    <input type="text" name="c-name" placeholder="Ali TUF...">
+                                  </div><!--form-field end-->
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-field">
+                                    <label>Card number</label>
+                                    <input type="text" name="c-name" placeholder="0436">
+                                  </div><!--form-field end-->
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-field">
+                                    <label>Expiration date</label>
+                                    <div class="row">
+                                      <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-field">
+                                          <input type="text" name="exp-date" placeholder="MM">
+                                        </div><!--form-field end-->
+                                      </div>
+                                      <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-field">
+                                          <input type="text" name="exp-date" placeholder="YY">
+                                        </div><!--form-field end-->
+                                      </div>
+                                    </div>
+                                  </div><!--form-field end-->
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-field">
+                                    <label>CVV </label>
+                                    <input type="text" name="c-name" placeholder="0436">
+                                  </div><!--form-field end-->
+                                </div>
+                                <div class="col-lg-12">
+                                  <p><span>Please note</span> you will be able to review your ride on the next page before confirming your reservation. Your card will not be charged until after your ride.</p>
+                                </div>
+                                <div class="col-lg-12">
+                                  <button type="submit" class="lnk-default">Submit Payment <i class="la la-arrow-right"></i></button>
+                                </div>
+                              </div>
+                            </form>
+                          </div><!--payment-tab end-->
+                      </div>
+                        <div class="tab-pane fade" id="transfer-tab" role="tabpanel" aria-labelledby="transfer_tab">
+                          <div class="payment-tab">
+                            <form>
+                              <div class="row">
+                                <div class="col-lg-6">
+                                  <div class="form-field">
+                                    <label>Account Name</label>
+                                    <input type="text" name="c-name" placeholder="Full Name">
+                                  </div><!--form-field end-->
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-field">
+                                    <label>Bank Name</label>
+                                    <input type="text" name="c-name" placeholder="Bank Name">
+                                  </div><!--form-field end-->
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-field">
+                                    <label>Account Number</label>
+                                    <input type="text" name="exp-date" placeholder="XXXX">
+
+                                  </div><!--form-field end-->
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-field">
+                                    <label>Check Number </label>
+                                    <input type="text" name="c-name" placeholder="XXXX">
+                                  </div><!--form-field end-->
+                                </div>
+                                <div class="col-lg-12">
+                                  <p><span>Please Pay the amount to this bank account to confirm your Reservation. </span> Account Details</p>
+                                  <p><span>Please note</span> you will be able to review your ride on the next page before confirming your reservation. Your card will not be charged until after your ride.</p>
+                                </div>
+                                <div class="col-lg-12">
+                                  <button type="submit" class="lnk-default">Submit Payment <i class="la la-arrow-right"></i></button>
+                                </div>
+                              </div>
+                            </form>
+                          </div><!--payment-tab end-->
+                        </div>
+                        <div class="tab-pane fade" id="paypal-tab" role="tabpanel" aria-labelledby="paypal_tab">
+                          <div class="payment-tab">
+                            <form>
+                              <div class="row">
+                                <div class="col-lg-6">
+                                  <div class="form-field">
+                                    <label>Cardholder name</label>
+                                    <input type="text" name="c-name" placeholder="Ali TUF...">
+                                  </div><!--form-field end-->
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-field">
+                                    <label>Card number</label>
+                                    <input type="text" name="c-name" placeholder="0436">
+                                  </div><!--form-field end-->
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-field">
+                                    <label>Expiration date</label>
+                                    <div class="row">
+                                      <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-field">
+                                          <input type="text" name="exp-date" placeholder="MM">
+                                        </div><!--form-field end-->
+                                      </div>
+                                      <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-field">
+                                          <input type="text" name="exp-date" placeholder="YY">
+                                        </div><!--form-field end-->
+                                      </div>
+                                    </div>
+                                  </div><!--form-field end-->
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-field">
+                                    <label>CVV </label>
+                                    <input type="text" name="c-name" placeholder="0436">
+                                  </div><!--form-field end-->
+                                </div>
+                                <div class="col-lg-12">
+                                  <p><span>Please note</span> you will be able to review your ride on the next page before confirming your reservation. Your card will not be charged until after your ride.</p>
+                                </div>
+                                <div class="col-lg-12">
+                                  <button type="submit" class="lnk-default">Submit Payment <i class="la la-arrow-right"></i></button>
+                                </div>
+                              </div>
+                            </form>
+                          </div><!--payment-tab end-->
+                        </div>
+                    </div>
+                    </div><!--payment_options end-->
+                  </div><!--more_information_sec end-->
+                </div>
+              </div>
+            </div><!--tab-contentt end-->
+          </div>
+          <div class="tab-pane fade" id="thankyou-tab" role="tabpanel" aria-labelledby="thankyou_tab">
+            <div class="tab-contentt">
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="sidebar">
+                  <div class="avail-sec">
+                    <form>
+                      <div class="checking-form">
+                        <ul class="checkform">
+                          <li>
+                            <div class="check-form">
+                              <h4>CHECK-IN</h4>
+                              <div class="det">
+                                <b class="val-date">{{ this.day }}</b>
+                                <span>
+                                  <i class="month">{{monthArray[month] }}</i> <i class="year">{{  this.year  }}</i>
+                                  <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
+                                </span>
+                              </div>
+                              <input type="text" name="dateIn" class="date-pick">
+                              <div class="clearfix"></div>
+                            </div><!--check-form end-->
+                          </li>
+                          <li>
+                            <div class="check-form">
+                              <h4>CHECK-OUt</h4>
+                              <div class="det">
+                                <b class="val-date">{{ this.day2 }}</b>
+                                <span>
+                                  <i class="month">{{monthArray[month2] }}</i> <i class="year">{{  this.year2  }}</i>
+                                  <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
+                                </span>
+                              </div>
+                              <input type="text" name="dateOut" class="date-pick">
+                              <div class="clearfix"></div>
+                            </div><!--check-form end-->
+                          </li>
+                          <li class="item-cont">
+                            <div class="check-form">
+                              <h4 class="text-center">Guest</h4>
+                              <div class="det">
+                                <div class="handle-counter" id="handleCounter">
+                                                  <ul>
+                                                      <li class="input-fieldd"><input type="text" value="1" data-num="1"></li>
+                                                      <li class="counter-control">
+                                                        <button class="counter-minus btn" disabled=""><i class="fa fa-angle-up"></i></button>
+                                                        <button class="counter-plus btn"><i class="fa fa-angle-down"></i></button>
+                                                      </li>
+                                                  </ul>
+                                                  <div class="clearfix"></div>
+                                              </div>
+                              </div>
+                              <div class="clearfix"></div>
+                            </div><!--check-form end-->
+                            <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
+                          </li>
+                          <li class="check-avail">
+                            <a (click)="getRoomByDate()" title="" class="check-status">CHECK AVAILABILITY</a>
+                          </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                      </div>
+                    </form>
+                  </div><!--avail-sec end-->
+                </div><!--sidebar end-->
+                </div>
+                <div class="col-lg-8">
+                  <div class="more_information_sec">
+                    <h3>Your Order Detaıls</h3>
+                    <h4>Order Transaction <span>896536598</span></h4>
+                    <table>
+                      <tr>
+                        <td>
+                          <h4>Name :</h4>
+                          <span>Ali</span>
+                        </td>
+                        <td>
+                          <h4>Surname :</h4>
+                          <span>TUFAN</span>
+                        </td>
+                        <td>
+                          <h4>Email :</h4>
+                          <span>info@gmail.com</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <h4>Phone :</h4>
+                          <span>+90 589 658 96 32</span>
+                        </td>
+                        <td>
+                          <h4>Address :</h4>
+                          <span>Lorem Ipsum Dolar </span>
+                        </td>
+                        <td>
+                          <h4>City :</h4>
+                          <span>London</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <h4>Country :</h4>
+                          <span>England</span>
+                        </td>
+                        <td>
+                          <h4>ZIP :</h4>
+                          <span>85996</span>
+                        </td>
+                        <td>
+                          <h4>Arrival :</h4>
+                          <span>2:00 - 3:00 pm</span>
+                        </td>
+                      </tr>
+                    </table>
+                    <div class="rq-info">
+                      <h4>Requests :</h4>
+                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took </p>
+                    </div>
+                    <div class="rq-info cv-lst">
+                      <h4>Extra Services :</h4>
+                      <ul>
+                        <li>
+                          Car Rental
+                        </li>
+                        <li>
+                          Wifi
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="rq-info">
+                      <h4>Coupon :</h4>
+                      <p>Not set</p>
+                    </div>
+                    <div class="rq-info cv_lst">
+                      <h4>Tax :</h4>
+                      <ul>
+                        <li>
+                          Included 21 $ City Tax
+                        </li>
+                        <li>
+                          Included 22 % VAT
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="rq-info no-bb">
+                      <h4>Payment Options :</h4>
+                      <p>Bank Transfer</p>
+                    </div>
+                  </div><!--more_information_sec end-->
+                </div>
+              </div>
+            </div><!--tab-contentt end-->
+          </div>
+      </div><!--tab-content end-->
+
+    </div><!--page-content end-->
+  </div>
+</section><!--main-content end-->

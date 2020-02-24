@@ -162,10 +162,10 @@ export class BookingComponent implements OnInit {
     this.submitDisabled = true;
     this.spinner = !this.spinner;
     this.msgs = [];
-    // console.log(` From Date : ${this.booking.fromDate} To Date : ${this.booking.toDate} `);
+
     this.booking.fromDate = this.convertDate(this.bookingFromDate.value);
     this.booking.toDate = this.convertDate(this.bookingToDate.value);
-    //console.log(` From Date : ${this.booking.fromDate} To Date : ${this.booking.toDate} `);
+
     const checkAvailabilityObsrv = this.apiServices.checkAvailability(this.booking).subscribe(response => {
       this.spinner = !this.spinner;
       this.availabilityCheck = !this.availabilityCheck;
@@ -175,7 +175,7 @@ export class BookingComponent implements OnInit {
         this.submitDisabled = false;
         this.bookingAmount.disable();
         this.booking.available = response.body.available;
-        //  console.log(` Response From Availability Check ${response.body.bookingAmount}`);
+
         this.booking.totalAmount = response.body.bookingAmount;
         this.booking.payableAmount = response.body.bookingAmount;
         if (this.booking.available === false) {
@@ -248,7 +248,7 @@ export class BookingComponent implements OnInit {
     });
   }
   processPayment(payment: Payment) {
-    console.log(this.booking.mobile);
+
     this.spinner = !this.spinner;
     this.apiServices.processPayment(payment)
       .subscribe(response => {
@@ -276,7 +276,7 @@ export class BookingComponent implements OnInit {
 
   }
   createBooking(booking: Booking) {
-    console.log(this.booking.mobile);
+
     this.msgs = [];
     this.spinner = !this.spinner;
     //this.spinner = !this.spinner;
@@ -409,7 +409,7 @@ export class BookingComponent implements OnInit {
     msg.fromNumber = SMS_NUMBER;
     msg.toNumber = this.booking.mobile ;
     msg.message = `Dear ${this.booking.firstName},Rsvn#:${this.booking.id},${this.booking.roomName},Chk-In:${this.booking.fromDate},Chk-Out:${this.booking.toDate},Amt:${this.booking.payableAmount}NZD.Thx.${this.booking.businessName},${this.managerContact}` ;
-    console.log(msg.message);
+
     this.apiServices.sendTextMessage(msg).subscribe(response1 => {
       msg = response1.body;
       if ( msg.sid !== undefined ||  msg.sid !== null ) {

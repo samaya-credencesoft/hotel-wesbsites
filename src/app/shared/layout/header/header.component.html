@@ -1,0 +1,149 @@
+<header class="pb hp_5 static">
+  <div class="container-fluid">
+    <div class="ttop_header">
+      <ul class="social-links">
+        <li><a routerLink="#" title=""><i class="fa fa-facebook"></i></a></li>
+        <!-- <li><a routerLink="#" title=""><i class="fa fa-twitter"></i></a></li>
+        <li><a routerLink="#" title=""><i class="fa fa-instagram"></i></a></li>
+        <li><a routerLink="#" title=""><i class="fa fa-pinterest-square"></i></a></li>
+        <li><a routerLink="#" title=""><i class="fa fa-dribbble"></i></a></li>
+        <li><a routerLink="#" title=""><i class="fa fa-google"></i></a></li> -->
+      </ul><!--social-links end-->
+      <div class="cont-lit">
+        <h4>{{ property.mobile }}</h4>
+      </div>
+      <ul class="cont-list">
+        <!-- <li><img src="assets/images/icon9.png" alt="">A few clouds, 22 °C / 71 °F</li> -->
+      </ul>
+      <div class="clearfix"></div>
+    </div><!--top_header end-->
+    <div class="bbtm-header">
+      <nav>
+        <ul>
+          <li><a routerLink="/" title="">Home</a>
+
+          </li>
+          <li><a routerLink="/rooms" title="">Rooms</a>
+            <ul  >
+              <li *ngFor ="let room of rooms;"><a routerLink="/rooms/details/{{ room.id}}" title="">{{ room.name}}</a></li>
+            </ul>
+          </li>
+          <li><a routerLink="/about" title="">About Us</a></li>
+          <!-- <li><a routerLink="#" title="">More</a>
+                <ul> -->
+                  <li><a routerLink="/policy" title="">Terms & Conditions</a></li>
+              <!-- <li><a routerLink="/service" title="">Services</a></li>
+              <li><a routerLink="38_testimonials.html" title="">Testimonials</a></li>
+                  <li><a routerLink="31_restaurant.html" title="">Restaurant</a></li>
+                </ul>
+              </li> -->
+          <li><a routerLink="#" title="">News</a>
+
+          </li>
+          <li><a routerLink="/contact" title="">Contact</a>
+          </li>
+        </ul>
+      </nav><!--Navigations end-->
+      <div class="menu-bar">
+        <a routerLink="#" title="">
+          <span class="bar1"></span>
+          <span class="bar2"></span>
+          <span class="bar3"></span>
+        </a>
+      </div>
+      <div class="ft-logo">
+        <a routerLink="#" title="">
+          <img src="assets/images/ft-logo5.png" alt="">
+          <div class="ft-text">
+            <h2>{{ property.name }}</h2>
+          <h3>{{ property.slogan }}</h3>
+          </div>
+        </a>
+      </div><!--ft-logo end-->
+      <ul class="src-book">
+        <li class="searc_h">
+          <a routerLink="#" title="" class="search-btn"><img src="assets/images/icon11.png" alt=""></a>
+        </li>
+        <li class="lang_slct">
+          <div class="lang-slct">
+            <div class="custom-select hvrr">
+              <select>
+                  <option value="0">En</option>
+                  <option value="1">TR</option>
+                  <option value="2">EN</option>
+              </select>
+            </div>
+          </div><!--lang-select end-->
+        </li>
+      </ul><!--src-book end-->
+      <div class="clearfix"></div>
+    </div><!--bbtm-header end-->
+  </div>
+</header><!--HEADER END-->
+
+<div class="responsive_mobile_menu">
+  <div class="resp_head">
+    <div class="ft-logo">
+      <a routerLink="#" title="">
+        <img src="assets/images/ft-logo.png" alt="">
+        <div class="ft-text">
+          <h2>{{ property.name }}</h2>
+          <h3>{{ property.slogan }}</h3>
+        </div>
+      </a>
+    </div><!--ft-logo end-->
+    <div class="menu-bar">
+      <a routerLink="#" title="">
+        <span class="bar1"></span>
+        <span class="bar2"></span>
+        <span class="bar3"></span>
+      </a>
+    </div><!--menu-bar end-->
+    <div class="clearfix"></div>
+  </div>
+  <div class="ct_head">
+    <h3>{{ property.mobile }}</h3>
+    <div class="lang-slct">
+      <div class="custom-select">
+        <select>
+            <option value="0">En</option>
+            <option value="1">TR</option>
+            <option value="2">EN</option>
+        </select>
+      </div>
+    </div><!--lang-select end-->
+  </div><!--ct_head end-->
+  <div class="navigations">
+    <ul>
+      <li><a class="active" routerLink="/" title="">Home</a>
+      </li>
+      <li><a routerLink="/rooms" title="">Rooms</a>
+        <ul  >
+          <li *ngFor ="let room of rooms;"><a routerLink="/rooms/details/{{ room.id}}" title="">{{ room.name}}</a></li>
+        </ul>
+      </li>
+      <li><a routerLink="/about" title="">About Us</a></li>
+      <li><a routerLink="#" title="">More</a>
+        <ul>
+          <li><a routerLink="34_terms_and_conditions.html" title="">Terms & Conditions</a></li>
+          <li><a routerLink="35_services.html" title="">Services</a></li>
+          <li><a routerLink="36_coming_soon.html" title="">Coming Soon</a></li>
+          <li><a routerLink="38_testimonials.html" title="">Testimonials</a></li>
+        </ul>
+      </li>
+      <li><a routerLink="#" title="">News</a>
+      </li>
+      <li><a routerLink="/contact" title="">Contact</a>
+
+      </li>
+    </ul>
+  </div><!--navigations end-->
+  <ul class="mbl_contact_info">
+    <li>{{ property.address.streetNumber }},
+      {{ property.address.streetName }},
+      {{ property.address.suburb }}, {{ property.address.city }},
+      {{ property.address.postcode }}</li>
+    <li><a routerLink="contact" title="Contact">Map</a></li>
+    <li>{{ property.email }}</li>
+  </ul><!--mbl_contact_info end-->
+</div><!--responsive_mobile_menu end-->

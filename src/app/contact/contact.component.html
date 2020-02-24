@@ -1,4 +1,4 @@
-<section class="section pb-0">
+<!-- <section class="section pb-0">
   <div class="container">
     <div class="row">
       <div class="col-sm-8 col-xs-12 col-sm-offset-2 col-xs-offset-0">
@@ -87,5 +87,99 @@
         </div>
       </div>
     </div>
+  </div>
+</section> -->
+<section class="c-block white-bg">
+  <div class="container">
+    <div class="contact_sec">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="contact_info">
+            <h3>CONTACT INFO</h3>
+            <ul>
+              <li>
+                <img src="assets/images/cs1.png" alt="">
+                <div class="cs_info">
+                  <span> {{ property.address.streetNumber }},
+                    {{ property.address.streetName }},
+                    {{ property.address.suburb }}, {{ property.address.city }},
+                    {{ property.address.postcode }}</span>
+                </div>
+              </li>
+              <li>
+                <img src="assets/images/cs2.png" alt="">
+                <div class="cs_info">
+                  <span>Call Us : {{ property.mobile }}</span>
+                </div>
+              </li>
+              <li>
+                <img src="assets/images/cs3.png" alt="">
+                <div class="cs_info">
+                  <span>Landphone : {{ property.landphone }}</span>
+                </div>
+              </li>
+              <li>
+                <img src="assets/images/cs4.png" alt="">
+                <div class="cs_info">
+                  <a href="mailto:{{ property.email }}" title="">Email : {{ property.email }}</a>
+                </div>
+              </li>
+            </ul>
+          </div><!--contact_info end-->
+        </div>
+        <div class="col-lg-6"><div class="cel-feature full-w-h">
+            <agm-map [latitude]="lat" [longitude]="lng">
+              <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+            </agm-map>
+          </div>
+          <!-- <div id="map"></div> -->
+
+        </div>
+      </div>
+    </div><!--contact_sec end-->
+  </div>
+</section><!--CONTACT-SEC END-->
+
+<section class="c-block msg-sec">
+  <div class="container">
+    <div class="sec-title">
+      <h3>Send a message</h3>
+      <p>Do you have anything in your mind to tell us? Please don't hesitate to get in touch to us via our contact form. </p>
+    </div><!--sec-title end-->
+    <div class="post-comment">
+      <form>
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="form-field">
+              <label>Full Name*</label>
+              <input type="text" name="name" placeholder="Ali TUF..">
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="form-field">
+              <label>Your Email*</label>
+              <input type="email" name="email" placeholder="">
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="form-field">
+              <label>Subject*</label>
+              <input type="email" name="email" placeholder="">
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="form-field">
+              <label>Your Message</label>
+              <textarea name="comment"></textarea>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="form-submit">
+              <button type="submit" class="lnk-default">Send Message <i class="la la-arrow-right"></i></button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div><!--post-comment end-->
   </div>
 </section>

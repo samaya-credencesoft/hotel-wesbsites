@@ -1,0 +1,78 @@
+<div class="page-in section-top80-bottom50">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-xs-12 col-sm-offset-2 col-xs-offset-0">
+        <div class="section-heading">
+          <h2 class="title">
+            <a style="color:rgb(0, 0, 0);">Booking</a
+            ><a style="color:rgb(255, 0, 0);"> Details</a>
+          </h2>
+        </div>
+      </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <mat-progress-bar *ngIf="loader" mode="indeterminate"></mat-progress-bar>
+    <div class="row">
+      <div class="blog">
+        <div class="col-sm-8 col-xs-12 col-sm-offset-2 col-xs-offset-0">
+          <div class="widget">
+            <div class="wi-side">
+              <div class="wi-border">
+                <div class="wi-content wi-trips">
+                  <h4>
+                    Booking Details for
+                    <a style="color:rgb(0, 13, 255);"
+                      >{{ booking.firstName }} {{ booking.lastName }}</a
+                    >, &nbsp; Reservation ID #
+                    <a style="color:rgb(0, 13, 255);">{{ booking.id }}</a>
+                  </h4>
+
+                  <div class="row">
+                    <ul class="col-sm-6">
+                      <li><b>Check-In Date</b> : {{ booking.fromDate }}</li>
+                      <li><b>Check-Out Date</b> : {{ booking.toDate }}</li>
+                      <li><b>First Name</b> : {{ booking.firstName }}</li>
+                      <li><b>Last Name</b> :{{ booking.lastName }}</li>
+                      <li><b>Contact Number</b> : {{ booking.mobile }}</li>
+                      <li><b>Booking Notes</b> : {{ booking.notes }}</li>
+                    </ul>
+
+                    <ul class="col-sm-6">
+                      <li>
+                        <b>Number Of Person(s)</b> : {{ booking.noOfPersons }}
+                      </li>
+                      <li>
+                        <b>Number Of Room(s)</b> : {{ booking.noOfRooms }}
+                      </li>
+                      <li><b>Email</b> : {{ booking.email }}</li>
+                      <li>
+                        <b>Booking Amount</b> : {{ booking.payableAmount }}
+                      </li>
+                      <li>
+                        <b>Booking Status</b> : {{ booking.bookingStatus }}
+                      </li>
+                    </ul>
+                  </div>
+                  <br>
+                  <div class="row" *ngFor="let payment of payments">
+                    <ul class="col-sm-4">
+                      <li><b>Payment Ref#</b> : {{ payment.id }}</li>
+                    </ul>
+                    <ul class="col-sm-4">
+                      <li><b>Payment Mode</b> : {{ payment.paymentMode }}</li>
+                    </ul>
+                    <ul class="col-sm-4">
+                      <li><b>Payment Status</b> : {{ payment.status }}</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

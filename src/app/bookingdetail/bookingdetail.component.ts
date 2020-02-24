@@ -29,12 +29,11 @@ payments: Payment [] ;
    }
 
   ngOnInit() {
-    console.log(`Inside Booking Details Booking Email: ${this.booking.email} & Booking Reference Number : ${this.booking.id}`);
+
     this.apiServices.getBookingDetailsByIdAndEmail(this.booking).subscribe( response => {
      this.booking = response.body.bookingDetails ;
      this.payments = response.body.paymentDetails;
-     console.log(this.booking);
-     console.log(this.payments);
+
     });
   }
 

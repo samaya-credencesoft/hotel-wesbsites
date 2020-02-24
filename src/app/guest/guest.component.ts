@@ -22,7 +22,7 @@ export class GuestComponent implements OnInit {
   ngOnInit() {
     this.apiServices.getGoogleReviews().subscribe( response => {
      this.guestreviews = response.body ;
-     console.log( this.guestreviews);
+
      });
   }
 

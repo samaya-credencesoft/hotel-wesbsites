@@ -48,8 +48,10 @@ export class Booking {
     invoiceUrl: string ;
     noOfRooms: number;
     noOfPersons: number;
+    noOfExtraPerson : number;
     managerContactNo: string;
+    extraPersonCharge : number;
 
     constructor()
-        { } 
+        { }
 }
