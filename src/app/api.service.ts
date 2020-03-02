@@ -10,15 +10,15 @@ import { Observable } from 'rxjs';
 import { BookingDetails } from './bookingdetail/bookingdetails';
 import { GuestReview } from './guest/guest.component';
 
-// const API_URL = 'http://app.bookonepms.com:9080/api-bookone/api/website';
-// const API_URL2 = 'http://app.bookonepms.com:9080/api-bookone';
+ const API_URL = 'http://34.93.29.79:9080/api-bookone/api/website';
+ const API_URL2 = 'http://34.93.29.79:9080/api-bookone';
 export const SMS_NUMBER = '+1 956 903 2629';
-const API_URL2 = 'https://booking-api-csoft.appspot.com';
-const API_URL = 'https://booking-api-csoft.appspot.com/api/website';
+//const API_URL2 = 'https://localhost:8080';
+//const API_URL = 'http://localhost:8080/api/website';
 // production
-// export const PROPERTY_ID = 92;
+ export const PROPERTY_ID = 92;
 // development
-export const PROPERTY_ID = 8;
+//export const PROPERTY_ID = 8;
 
 @Injectable()
 export class ApiService {
@@ -38,10 +38,10 @@ export class ApiService {
     return this.http.get<Property>(API_URL + '/findByPropertyId/' + propertyId,  { observe: 'response' });
   }
   getRoomDetailsByPropertyId(propertyId: number) {
-    return this.http.get < Room []>(API_URL + '/findAllRoomsByPropertyId/' + propertyId,  { observe: 'response' });
+    return this.http.get <Room[]>(API_URL + '/findAllRoomsByPropertyId/' + propertyId,  { observe: 'response' });
   }
   getRoomDetailsByPropertyIdAndDate(propertyId: number, fromDate: string, toDate: string) {
-    return this.http.get < Room []>(API_URL + '/getAllRoomsByDate?PropertyId=' + propertyId + '&FromDate=' + fromDate + '&ToDate=' + toDate,  { observe: 'response' });
+    return this.http.get <Room[]>(API_URL + '/getAllRoomsByDate?PropertyId=' + propertyId + '&FromDate=' + fromDate + '&ToDate=' + toDate,  { observe: 'response' });
   }
 
   checkAvailability(booking: Booking) {
