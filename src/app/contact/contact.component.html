@@ -100,7 +100,7 @@
               <li>
                 <img src="assets/images/cs1.png" alt="">
                 <div class="cs_info">
-                  <span> {{ property.address.streetNumber }},
+                  <span>Address: {{ property.address.streetNumber }}
                     {{ property.address.streetName }},
                     {{ property.address.suburb }}, {{ property.address.city }},
                     {{ property.address.postcode }}</span>
@@ -144,38 +144,46 @@
   <div class="container">
     <div class="sec-title">
       <h3>Send a message</h3>
-      <p>Do you have anything in your mind to tell us? Please don't hesitate to get in touch to us via our contact form. </p>
+      <p>If You Have Any Query , Don't Hesitate to Contact With Us</p>
     </div><!--sec-title end-->
+    <div *ngIf="success" class="alert alert-success alert-dismissible fade show" role="alert"
+    [@animate]="{value:'*',params:{y:'-120px',opacity:'0',delay:'100ms', duration: '400ms'}}">
+    <button type="button" class="close" (click)="success=false">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>Your Message Sent succefully</strong>
+</div>
+
     <div class="post-comment">
-      <form>
+      <form  #contactForm=ngForm (ngSubmit)="submitForm(contactForm)" role="form">
         <div class="row">
           <div class="col-lg-6 col-md-6 col-sm-6">
             <div class="form-field">
               <label>Full Name*</label>
-              <input type="text" name="name" placeholder="Ali TUF..">
+              <input type="text" name="name" [(ngModel)]="name" placeholder="Full Name">
             </div>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6">
             <div class="form-field">
               <label>Your Email*</label>
-              <input type="email" name="email" placeholder="">
+              <input type="email" required name='email' email ngModel class="form-control" placeholder="Email">
             </div>
           </div>
           <div class="col-lg-12">
             <div class="form-field">
               <label>Subject*</label>
-              <input type="email" name="email" placeholder="">
+              <input type="text" name="subject"  [formControl]="subject"   [(ngModel)]="subjects" required placeholder="Subject">
             </div>
           </div>
           <div class="col-lg-12">
             <div class="form-field">
               <label>Your Message</label>
-              <textarea name="comment"></textarea>
+              <textarea required name="message" ngModel  rows="5"></textarea>
             </div>
           </div>
           <div class="col-lg-12">
             <div class="form-submit">
-              <button type="submit" class="lnk-default">Send Message <i class="la la-arrow-right"></i></button>
+              <button type="submit" [disabled]='!contactForm.valid' class="lnk-default">Send Message <i class="la la-arrow-right"></i></button>
             </div>
           </div>
         </div>

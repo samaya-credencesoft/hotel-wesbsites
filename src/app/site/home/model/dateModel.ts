@@ -8,9 +8,9 @@ export class DateModel {
   checkedin: string;
   checkout: string;
 
-  room : Room;
-  booking : Booking;
-  payment : Payment;
+  room: Room;
+  booking: Booking;
+  payment: Payment;
 
   constructor()
       { }

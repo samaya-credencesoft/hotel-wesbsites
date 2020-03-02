@@ -103,7 +103,7 @@ const routes: Routes = [
     TokenStorage,
     HTTPStatus,
     TokenStorage,
-    // {provide: LocationStrategy, useClass: HashLocationStrategy},
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,

@@ -14,22 +14,20 @@ import { Router } from '@angular/router';
 export class RoomComponent implements OnInit {
 
   rooms: Room[];
-  dateModel : DateModel;
+  dateModel: DateModel;
 
   constructor(private apiService: ApiService,
-    private router: Router)
-    {
+              private router: Router) {
       this.dateModel = new DateModel();
     }
   ngOnInit() {
     this.getRoom();
   }
 
-  getRoom()
-  {
+  getRoom() {
     this.apiService.getRoomDetailsByPropertyId(PROPERTY_ID).subscribe(response => {
 
-      //console.log('response room ' + JSON.stringify(response.body));
+      // console.log('response room ' + JSON.stringify(response.body));
       this.rooms = response.body;
     },
       error => {
@@ -40,16 +38,15 @@ export class RoomComponent implements OnInit {
   );
   }
 
-  onRoomBook(room)
-  {
+  onRoomBook(room) {
     this.dateModel.room = room;
 
-    let navigationExtras: NavigationExtras = {
+    const navigationExtras: NavigationExtras = {
       queryParams: {
           dateob: JSON.stringify(this.dateModel),
       }
     };
-    this.router.navigate(['/booking/booking'],navigationExtras );
+    this.router.navigate(['/booking/booking'], navigationExtras );
   }
 
 
