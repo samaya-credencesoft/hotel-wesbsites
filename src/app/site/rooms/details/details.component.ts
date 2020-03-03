@@ -16,6 +16,10 @@ export class DetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiService) {
+
+
+    this.room = new Room();
+
     this.id = this.route.snapshot.params.id;
     this.route.params.subscribe(params => {
       this.id = +params.id; // (+) converts string 'id' to a number
@@ -27,13 +31,13 @@ export class DetailsComponent implements OnInit {
 
   ngOnInit() {
     this.getRoom();
-    this.setRoom('this.id');
   }
 
   getRoom() {
     this.apiService.getRoomDetailsByPropertyId(PROPERTY_ID).subscribe(response => {
       this.rooms = response.body;
-      // console.log('list detail page: ' + JSON.stringify( this.rooms));
+
+      this.setRoom((this.id));
     },
       error => {
         if (error instanceof HttpErrorResponse) {
@@ -43,9 +47,11 @@ export class DetailsComponent implements OnInit {
   );
   }
 
-  setRoom(id: string) {
+  setRoom(id: number) {
     this.room = this.rooms.find(room =>
       room.id === id
     );
-}
+
+    console.log('this.room : '+JSON.stringify(this.room));
+  }
 }

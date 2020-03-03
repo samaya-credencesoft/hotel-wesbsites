@@ -7,15 +7,15 @@
       <img src="https://via.placeholder.com/1920x960" alt="">
     </div> -->
     <div class="rom_img_slide">
-      <img src="assets/images/rooms/1920x960-1.jpg" alt="">
-
+      <img *ngIf ="this.room.id ===137" src="assets/images/rooms/1920x960-1.jpg" alt="">
+      <img *ngIf ="this.room.id ===138" src="assets/images/rooms/1920x960-2.jpg" alt="">
     </div>
   </div><!--room_slide_imgs end-->
   <div class="room_rrate">
     <div class="container">
       <div class="room-single-head">
         <h3 >{{room.name}}</h3>
-        <span>${{room.roomPrice}}.00<b>/night</b></span>
+        <span>${{room.roomOnlyPrice}}.00<b>/night</b></span>
         <div class="clearfix"></div>
       </div><!--room-single-head end-->
     </div>

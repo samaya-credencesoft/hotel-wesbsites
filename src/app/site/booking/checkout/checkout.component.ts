@@ -152,7 +152,7 @@ export class CheckoutComponent implements OnInit {
         this.booking.businessEmail = this.booking.email;
         this.booking.fromDate = this.dateModel.checkedin;
         this.booking.toDate = this.dateModel.checkout;
-        this.booking.roomId = parseInt(this.room.id);
+        this.booking.roomId = (this.room.id);
         this.booking.propertyId = PROPERTY_ID;
         this.checkAvailabilty();
     }
@@ -220,7 +220,7 @@ export class CheckoutComponent implements OnInit {
      this.booking.businessEmail = this.booking.email;
      this.booking.fromDate = this.dateModel.checkedin;
      this.booking.toDate = this.dateModel.checkout;
-     this.booking.roomId = parseInt(this.room.id);
+     this.booking.roomId = (this.room.id);
      this.booking.propertyId = PROPERTY_ID;
      this.checkAvailabilty();
 

@@ -1,6 +1,6 @@
 export class Room {
 
-    id: string;
+    id: number;
     referenceNumber: string;
     name: string;
     email: string;
@@ -13,5 +13,5 @@ export class Room {
     businessEmail: string;
     businessName: string;
     constructor()
-        { } 
+        { }
 }
