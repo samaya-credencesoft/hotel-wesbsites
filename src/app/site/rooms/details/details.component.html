@@ -9,13 +9,14 @@
     <div class="rom_img_slide">
       <img *ngIf ="this.room.id ===137" src="assets/images/rooms/1920x960-1.jpg" alt="">
       <img *ngIf ="this.room.id ===138" src="assets/images/rooms/1920x960-2.jpg" alt="">
+      <img *ngIf ="this.room.id ===139" src="assets/images/rooms/1920x960-3.jpg" alt="">
     </div>
   </div><!--room_slide_imgs end-->
   <div class="room_rrate">
     <div class="container">
       <div class="room-single-head">
         <h3 >{{room.name}}</h3>
-        <span>${{room.roomOnlyPrice}}.00<b>/night</b></span>
+        <span>{{room.roomOnlyPrice}}.00<b>/night</b></span>
         <div class="clearfix"></div>
       </div><!--room-single-head end-->
     </div>
@@ -31,7 +32,7 @@
             <div class="room-single-details">
               <div class="room_descp_sec">
                 <ul class="dep-head">
-                  <li>
+                  <!-- <li>
                     <img src="assets/images/c1.png" alt="">
                     <span>Twins Bed</span>
                   </li>
@@ -46,13 +47,12 @@
                   <li>
                     <img src="assets/images/c4.png" alt="">
                     <span>City view</span>
-                  </li>
+                  </li>-->
                 </ul><!--dep-head end-->
                 <div class="clearfix"></div>
                 <div class="descp_info">
                   <h3>Description</h3>
-                  <p>Well furnished and modern amennities are here.</p>
-                  <p>Wifi Connectivity, 24-hour front desk & room service, in room safety locker, meeting room</p>
+                  <p>{{ room.description}}</p>
                 </div><!--descp_info end-->
                 <div class="descp_info">
                   <h3>Services</h3>
