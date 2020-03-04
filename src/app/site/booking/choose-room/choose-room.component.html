@@ -216,13 +216,15 @@
                         <div class="row">
                           <div class="col-lg-6 col-md-6 col-sm-6"  *ngFor ="let room of rooms;">
                             <div class="room-details">
-                              <img src="https://via.placeholder.com/640x700" alt="">
+                              <img *ngIf="room.id=== 137" src="assets/images/rooms/11.jpg" alt="">
+                              <img *ngIf="room.id=== 138" src="assets/images/rooms/27.jpg" alt="">
+                              <img *ngIf="room.id=== 139" src="assets/images/rooms/10.jpg" alt="">
                               <div class="room-hd">
-                                <h4>FROM ${{room.roomOnlyPrice}}</h4>
+                                <h4>FROM {{room.roomOnlyPrice}}</h4>
                                 <h3>{{room.name}}</h3>
                               </div>
                               <!-- routerLink="/booking/booking" -->
-                              <a  title="" (click)="onRoomBooking(room)" class="booking-btn">BOOK NOW <i class="la la-arrow-right"></i></a>
+                              <a  title="" (click)="onRoomBooking(room)" class="booking-btn text-white">BOOK NOW <i class="la la-arrow-right"></i></a>
                             </div><!--room-details end-->
                           </div>
 
@@ -237,8 +239,10 @@
                             <div class="room_details">
                               <div class="room-caroz">
                                 <div class="room_img">
-                                  <img src="https://via.placeholder.com/361x250" alt="">
-                                  <span class="price-tag">${{room.roomOnlyPrice}}<b>/night</b></span>
+                                  <img *ngIf="room.id==137" src="assets/images/rooms/1920x960-1.jpg" alt="">
+                                  <img *ngIf="room.id==138" src="assets/images/rooms/1920x960-2.jpg" alt="">
+                                  <img *ngIf="room.id==139" src="assets/images/rooms/1920x960-3.jpg" alt="">
+                                  <span class="price-tag">{{room.roomOnlyPrice}}<b>/night</b></span>
                                 </div><!--room_img end-->
 
                               </div><!--room-caroz end-->
@@ -283,8 +287,10 @@
                           <div class="room_details">
                             <div class="room-caroz">
                               <div class="room_img">
-                                <img src="https://via.placeholder.com/361x250" alt="">
-                                <span class="price-tag">${{room.roomOnlyPrice}}<b>/night</b></span>
+                                <img *ngIf="room.id==137" src="assets/images/rooms/1920x960-1.jpg" alt="">
+                                <img *ngIf="room.id==138" src="assets/images/rooms/1920x960-2.jpg" alt="">
+                                <img *ngIf="room.id==139" src="assets/images/rooms/1920x960-3.jpg" alt="">
+                                <span class="price-tag">{{room.roomOnlyPrice}}<b>/night</b></span>
                               </div><!--room_img end-->
 
                             </div><!--room-caroz end-->

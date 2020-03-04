@@ -113,7 +113,6 @@
                             placeholder="First Name"
                             [formControl]="firstName"
                             [(ngModel)]="booking.firstName"
-
                           />
                           <mat-error *ngIf="!firstName.valid && firstName.touched"
                             >First Name is required</mat-error
@@ -178,23 +177,21 @@
                             type="text"
                             matInput
                             placeholder="Contact Number"
-                            minlength="9"
-                            maxlength="14"
-                            pattern="[0-9]"
+                            minlength="7"
+                            maxlength="15"
                             [formControl]="bookingContact"
                             [(ngModel)]="booking.mobile"
 
                           />
                           <mat-error
-                            *ngIf="!bookingContact.valid && bookingContact.touched"
-                            >Invalid Contact Number !</mat-error
-                          >
-                          <mat-error *ngIf="bookingContact.minlength"
+                            *ngIf="!bookingContact.valid"
+                            >Invalid Contact Number !</mat-error>
+                          <!-- <mat-error *ngIf="bookingContact.minlength"
                             >Invalid Contact Number !</mat-error
                           >
                           <mat-error *ngIf="bookingContact.maxlength"
                             >Invalid Contact Number !</mat-error
-                          >
+                          > -->
 
                         </mat-form-field>
 
@@ -265,7 +262,13 @@
                         </div>
                         <div class="col-lg-12">
                           <div class="form-submit">
-                            <!--  [disabled]="!onBookingForm.valid" -->
+                             <!-- -->
+                             <button mat-raised-button
+                             *ngIf="!onBookingForm.valid"
+                             class="lnk-default disabled"
+                             color="secondary">
+                             Checkout <i class="la la-arrow-right"></i>
+                             </button>
                             <button mat-raised-button
                                 *ngIf="onBookingForm.valid"
                                 (click)="onCheckOut()"

@@ -10,7 +10,9 @@
                 <div class="room_show">
                   <div class="room_imgs_carousel">
                     <div class="room_img">
-                      <img src="assets/images/rooms/21.jpg" alt="">
+                      <img *ngIf="room.id==137" src="assets/images/rooms/1920x960-1.jpg" alt="">
+                      <img *ngIf="room.id==138" src="assets/images/rooms/1920x960-2.jpg" alt="">
+                      <img *ngIf="room.id==139" src="assets/images/rooms/1920x960-3.jpg" alt="">
                     </div>
                   </div>
                   <span class="price-tag">{{ room.roomOnlyPrice}} / <b>night</b></span>

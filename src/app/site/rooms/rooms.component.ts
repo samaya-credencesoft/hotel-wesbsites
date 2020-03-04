@@ -3,6 +3,8 @@ import {  ApiService  } from '../../api.service';
 import {  PROPERTY_ID } from '../../api.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Room } from './../../room/room';
+import { DateModel } from '../home/model/dateModel';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-rooms',
@@ -12,9 +14,12 @@ import { Room } from './../../room/room';
 export class RoomsComponent implements OnInit {
 
   rooms: Room[];
+  dateModel: DateModel;
 
-  constructor(private apiService: ApiService) { }
-
+  constructor(private apiService: ApiService,
+              private router: Router) {
+      this.dateModel = new DateModel();
+    }
   ngOnInit() {
     this.getRoom();
   }
@@ -30,10 +35,16 @@ export class RoomsComponent implements OnInit {
       }
   );
   }
+  onRoomBook(room) {
+    this.dateModel.room = room;
 
-  onRoomBook()
-  {
-
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+          dateob: JSON.stringify(this.dateModel),
+      }
+    };
+    this.router.navigate(['/booking/booking'], navigationExtras );
   }
+
 
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Room } from 'src/app/room/room';
-import { PROPERTY_ID, ApiService ,SMS_NUMBER} from 'src/app/api.service';
+import { PROPERTY_ID, ApiService , SMS_NUMBER} from 'src/app/api.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute } from '@angular/router';
 import { DateModel } from './../../home/model/dateModel';
 import { NavigationExtras } from '@angular/router';
 import { Message } from 'primeng/components/common/api';
@@ -10,7 +10,7 @@ import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { Booking } from '../../../booking/booking';
 import { Payment } from './../../../payment/payment';
-import { FormControl, FormGroup, NgForm, FormGroupDirective, Validators,FormBuilder } from '@angular/forms';
+import { FormControl, FormGroup, NgForm, FormGroupDirective, Validators, FormBuilder } from '@angular/forms';
 import { Msg } from './../../../booking/msg';
 
 export interface Year {
@@ -40,8 +40,8 @@ export class CheckoutComponent implements OnInit {
 
   msgs: Message[] = [];
   loader: boolean = false;
-  propertyName : string;
-  isAvailableChecked : boolean = true;
+  propertyName: string;
+  isAvailableChecked: boolean = true;
 
   years: Year[] = [
     { value: '2018', viewValue: '2018' },
@@ -81,13 +81,13 @@ export class CheckoutComponent implements OnInit {
     { value: '12', viewValue: '12' }
   ];
 
-  expMonth: FormControl = new FormControl("" ,Validators.required);
-  expYear: FormControl = new FormControl("" ,Validators.required);
-  cvv: FormControl = new FormControl("" ,Validators.required);
-  cardHolderName: FormControl = new FormControl("" ,Validators.required);
-  cardNumber: FormControl = new FormControl("" ,Validators.required);
-  paymentMode: FormControl = new FormControl("" ,Validators.required);
-  bookingAmount: FormControl = new FormControl("" ,Validators.required);
+  expMonth: FormControl = new FormControl('' , Validators.required);
+  expYear: FormControl = new FormControl('' , Validators.required);
+  cvv: FormControl = new FormControl('' , Validators.required);
+  cardHolderName: FormControl = new FormControl('' , Validators.required);
+  cardNumber: FormControl = new FormControl('' , Validators.required);
+  paymentMode: FormControl = new FormControl('' , Validators.required);
+  bookingAmount: FormControl = new FormControl('' , Validators.required);
 
   checkedin: FormControl = new FormControl();
   checkedout: FormControl = new FormControl();
@@ -106,42 +106,40 @@ export class CheckoutComponent implements OnInit {
 
   rooms: Room[];
   room: Room;
-  dateModel : DateModel;
-  booking : Booking;
-  payment : Payment;
+  dateModel: DateModel;
+  booking: Booking;
+  payment: Payment;
 
-  daySelected : string;
-  yearSelected : string;
-  monthSelected : number;
+  daySelected: string;
+  yearSelected: string;
+  monthSelected: number;
 
-  daySelected2 : string;
-  yearSelected2 : string;
-  monthSelected2 : number;
-  currentDay : string;
+  daySelected2: string;
+  yearSelected2: string;
+  monthSelected2: number;
+  currentDay: string;
 
-  monthArray =['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  monthArray = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 
 
-  constructor(private apiService: ApiService,
-    private router : Router,
+  constructor(
+    private apiService: ApiService,
+    private router: Router,
     private snackBar: MatSnackBar,
     private formBuilder: FormBuilder,
-    private acRoute : ActivatedRoute,)
-  {
+    private acRoute: ActivatedRoute, ) {
     this.dateModel = new DateModel();
     this.booking = new Booking();
     this.room = new Room();
     this.payment = new Payment();
   }
 
- ngOnInit()
- {
+ ngOnInit() {
   this.acRoute.queryParams.subscribe(params => {
 
-    if(params["dateob"] != undefined)
-    {
-        this.dateModel = JSON.parse(params["dateob"]);
+    if (params['dateob'] != undefined) {
+        this.dateModel = JSON.parse(params['dateob']);
 
         this.room = this.dateModel.room;
         this.booking = this.dateModel.booking;
@@ -160,18 +158,16 @@ export class CheckoutComponent implements OnInit {
   });
  }
 
- checkedOutEvent()
- {
+ checkedOutEvent() {
   this.isAvailableChecked = false;
  }
 
- checkedInEvent()
- {
+ checkedInEvent() {
   this.isAvailableChecked = false;
    let currentDate: Date = new Date(this.checkedin.value);
 
    let afterDate: Date = new Date();
-   afterDate.setDate(currentDate.getDate()+1);
+   afterDate.setDate(currentDate.getDate() + 1);
    afterDate.setFullYear(currentDate.getFullYear());
    afterDate.setMonth(currentDate.getMonth());
 
@@ -179,42 +175,30 @@ export class CheckoutComponent implements OnInit {
    this.yearSelected2 = String(afterDate.getFullYear());
    this.monthSelected2 = afterDate.getMonth();
  }
- getDay(date:Date)
- {
-   if(date.getDate().toString().length==1)
-   {
-       this.currentDay = '0'+date.getDate();
-   }
-   else
-   {
-       this.currentDay = ''+date.getDate();
+ getDay(date: Date) {
+   if (date.getDate().toString().length == 1) {
+       this.currentDay = '0' + date.getDate();
+   } else {
+       this.currentDay = '' + date.getDate();
    }
 
    return this.currentDay;
  }
- getRoomByDate()
- {
+ getRoomByDate() {
 
-  if(this.checkedin.value === null)
-  {
-    this.dateModel.checkedin = this.yearSelected+'-'+this.monthSelected+1+'-'+this.daySelected;
-  }
-  else
-  {
+  if (this.checkedin.value === null) {
+    this.dateModel.checkedin = this.yearSelected + '-' + this.monthSelected + 1 + '-' + this.daySelected;
+  } else {
     this.dateModel.checkedin = this.getDateFormat(this.checkedin.value);
   }
 
-  if(this.checkedout.value === null)
-  {
-    this.dateModel.checkout =  this.yearSelected2+'-'+this.monthSelected2+1+'-'+this.daySelected2;
-  }
-  else
-  {
+  if (this.checkedout.value === null) {
+    this.dateModel.checkout =  this.yearSelected2 + '-' + this.monthSelected2 + 1 + '-' + this.daySelected2;
+  } else {
     this.dateModel.checkout = this.getDateFormat(this.checkedout.value);
   }
 
-  if(this.dateModel.checkout !=undefined && this.dateModel.checkedin !=undefined)
-  {
+  if (this.dateModel.checkout != undefined && this.dateModel.checkedin != undefined) {
      this.isAvailableChecked = true;
 
      this.booking.businessEmail = this.booking.email;
@@ -228,10 +212,9 @@ export class CheckoutComponent implements OnInit {
 
  }
 
- getDateFormat(dateString:string)
- {
-   var yearAndMonth = dateString.split("-", 3);
-   return yearAndMonth[0]+'-'+yearAndMonth[1]+'-'+ yearAndMonth[2].split(" ", 1);
+ getDateFormat(dateString: string) {
+   var yearAndMonth = dateString.split('-', 3);
+   return yearAndMonth[0] + '-' + yearAndMonth[1] + '-' + yearAndMonth[2].split(' ', 1);
  }
 
  checkAvailabilty() {
@@ -239,7 +222,7 @@ export class CheckoutComponent implements OnInit {
   this.loader = true;
   this.msgs = [];
 
-  const checkAvailabilityObsrv = this.apiService.checkAvailability(this.booking).subscribe(response => {
+  let checkAvailabilityObsrv = this.apiService.checkAvailability(this.booking).subscribe(response => {
     this.loader = false;
     if (response.status === 200) {
 
@@ -249,7 +232,7 @@ export class CheckoutComponent implements OnInit {
       this.booking.noOfExtraPerson = response.body.noOfExtraPerson;
       this.booking.extraPersonCharge = response.body.extraPersonCharge;
 
-      console.log('avaiability'+JSON.stringify(response.body))
+      console.log('avaiability' + JSON.stringify(response.body))
 
       if (this.booking.available === false) {
         this.msgs.push({
@@ -297,8 +280,7 @@ private handleError(error: HttpErrorResponse) {
   );*/
 }
 
- submitPayment()
- {
+ submitPayment() {
   if (this.booking.modeOfPayment != null && this.booking.modeOfPayment === 'Card') {
     this.chargeCreditCard();
     // this.processPayment(this.payment);
@@ -316,7 +298,7 @@ private handleError(error: HttpErrorResponse) {
 
  chargeCreditCard() {
   this.loader = true;
-  (<any>window).Stripe.card.createToken({
+  (<any> window).Stripe.card.createToken({
     number: this.payment.cardNumber,
     exp_month: this.payment.expMonth,
     exp_year: this.payment.expYear,
@@ -422,8 +404,7 @@ createBooking(booking: Booking) {
   }, 25000); */
 }
 
-completedPage()
-{
+completedPage() {
   this.dateModel.payment = this.payment;
 
   let navigationExtras: NavigationExtras = {
@@ -431,7 +412,7 @@ completedPage()
         dateob: JSON.stringify(this.dateModel),
     }
   };
-  this.router.navigate(['/booking/complete'],navigationExtras );
+  this.router.navigate(['/booking/complete'], navigationExtras );
 }
 
 sendConfirmationMessage() {
@@ -469,20 +450,18 @@ openSuccessSnackBar(message: string) {
   });
 }
 
- getCheckInDateFormat(dateString:string)
- {
-   var yearAndMonth = dateString.split("-", 3);
-   this.daySelected = String(yearAndMonth[2].split(" ", 1));
+ getCheckInDateFormat(dateString: string) {
+   var yearAndMonth = dateString.split('-', 3);
+   this.daySelected = String(yearAndMonth[2].split(' ', 1));
    this.yearSelected = yearAndMonth[0];
-   this.monthSelected = parseInt(yearAndMonth[1])-1;
+   this.monthSelected = parseInt(yearAndMonth[1]) - 1;
  }
 
- getCheckOutDateFormat(dateString:string)
- {
-   var yearAndMonth = dateString.split("-", 3);
-   this.daySelected2 = String(yearAndMonth[2].split(" ", 1));
+ getCheckOutDateFormat(dateString: string) {
+   var yearAndMonth = dateString.split('-', 3);
+   this.daySelected2 = String(yearAndMonth[2].split(' ', 1));
    this.yearSelected2 = yearAndMonth[0];
-   this.monthSelected2 = parseInt(yearAndMonth[1])-1;
+   this.monthSelected2 = parseInt(yearAndMonth[1]) - 1;
  }
 
 
