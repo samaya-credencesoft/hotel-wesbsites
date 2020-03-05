@@ -1749,13 +1749,18 @@ website:    http://www.themepunch.com
 /* ARROWS */
 .hesperiden.tparrows {
 	cursor:pointer;
+	background:#000;
+	background:rgba(0,0,0,0.5);
 	width:40px;
 	height:40px;
 	position:absolute;
 	display:block;
 	z-index:1000;
+    border-radius: 50%;
 }
-
+.hesperiden.tparrows:hover {
+	background:#000;
+}
 .hesperiden.tparrows:before {
 	font-family: "revicons";
 	font-size:20px;
@@ -1765,35 +1770,12 @@ website:    http://www.themepunch.com
 	text-align: center;
 }
 .hesperiden.tparrows.tp-leftarrow:before {
-    content: "\f104";
-    margin-left: -3px;
-    font-family: fontawesome;
-    color: #fff;
-    z-index: 99;
-    font-size: 20px;
-}
-.hesperiden.tparrows:after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: -1;
-  height: 100%;
-  border: 1px solid #92877f;
-  background: rgba(255,255,255,0.2);
-  -webkit-transform: rotate(50deg);
-  -ms-transform: rotate(50deg);
-  -moz-transform: rotate(50deg);
-  -o-transform: rotate(50deg);
-  transform: rotate(50deg);
+	content: "\e82c";
+    margin-left:-3px;
 }
 .hesperiden.tparrows.tp-rightarrow:before {
-    content: "\f105";
-    margin-right: -3px;
-    color: #fff;
-    font-size: 20px;
-    font-family: fontawesome;
+	content: "\e82d";
+    margin-right:-3px;
 }
 
 /* BULLETS */
@@ -2066,7 +2048,7 @@ website:    http://www.themepunch.com
         font-size: 40px;
         line-height: 30px;
         font-weight: 400;
-        font-family: "Arial";
+        font-family: "Playfair Display";
         width: 50px;
         margin-right: 17px;
         display: inline-block;
@@ -2113,13 +2095,12 @@ website:    http://www.themepunch.com
         transform: translateX(0);
     }
     .metis .tp-tab {
-        opacity: 0.50;
+        opacity: 0.15;
         transition: 0.4s all;
     }
     .metis .tp-tab:hover,
     .metis .tp-tab.selected {
         opacity: 1;
-        color: #fff;
     }
     .metis .tp-tab.selected .tp-tab-divider {
         border-right: 1px solid #cdb083;
