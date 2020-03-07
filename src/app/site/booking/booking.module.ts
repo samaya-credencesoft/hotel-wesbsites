@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'booking/booking', component: NewBookingComponent},
   { path: 'booking/payment', component: CheckoutComponent},
   { path: 'booking/complete', component: CompleteComponent},
-  { path: 'booking/detals', component: BookingDetailsComponent}
+  { path: 'booking/detals/:id/:email', component: BookingDetailsComponent}
 ];
 @NgModule({
   imports: [

@@ -31,40 +31,40 @@
 
                   <div class="row">
                     <ul class="col-sm-6">
-                      <li><b>Check-In Date</b> : {{ booking.fromDate }}</li>
-                      <li><b>Check-Out Date</b> : {{ booking.toDate }}</li>
-                      <li><b>First Name</b> : {{ booking.firstName }}</li>
-                      <li><b>Last Name</b> :{{ booking.lastName }}</li>
-                      <li><b>Contact Number</b> : {{ booking.mobile }}</li>
-                      <li><b>Booking Notes</b> : {{ booking.notes }}</li>
+                      <li><b>Check-In Date</b><br> {{ dateService.convertMillisecondsToDateFormat(booking.fromDate) }}</li>
+                      <li><b>Check-Out Date</b> <br> {{ dateService.convertMillisecondsToDateFormat(booking.toDate) }}</li>
+                      <li><b>First Name</b> <br> {{ booking.firstName }}</li>
+                      <li><b>Last Name</b>  <br> {{ booking.lastName }}</li>
+                      <li><b>Contact Number</b> <br> {{ booking.mobile }}</li>
+                      <li><b>Booking Notes</b> <br> {{ booking.notes }}</li>
                     </ul>
 
                     <ul class="col-sm-6">
                       <li>
-                        <b>Number Of Person(s)</b> : {{ booking.noOfPersons }}
+                        <b>Number Of Person(s)</b> <br> {{ booking.noOfPersons }}
                       </li>
                       <li>
-                        <b>Number Of Room(s)</b> : {{ booking.noOfRooms }}
+                        <b>Number Of Room(s)</b> <br> {{ booking.noOfRooms }}
                       </li>
-                      <li><b>Email</b> : {{ booking.email }}</li>
+                      <li><b>Email</b> <br> {{ booking.email }}</li>
                       <li>
-                        <b>Booking Amount</b> : {{ booking.payableAmount }}
+                        <b>Booking Amount</b> <br> {{ booking.payableAmount }}
                       </li>
                       <li>
-                        <b>Booking Status</b> : {{ booking.bookingStatus }}
+                        <b>Booking Status</b> <br> {{ booking.bookingStatus }}
                       </li>
                     </ul>
                   </div>
                   <br>
                   <div class="row" *ngFor="let payment of payments">
                     <ul class="col-sm-4">
-                      <li><b>Payment Ref#</b> : {{ payment.id }}</li>
+                      <li><b>Payment Ref#</b> <br> {{ payment.id }}</li>
                     </ul>
                     <ul class="col-sm-4">
-                      <li><b>Payment Mode</b> : {{ payment.paymentMode }}</li>
+                      <li><b>Payment Mode</b> <br> {{ payment.paymentMode }}</li>
                     </ul>
                     <ul class="col-sm-4">
-                      <li><b>Payment Status</b> : {{ payment.status }}</li>
+                      <li><b>Payment Status</b> <br> {{ payment.status }}</li>
                     </ul>
                   </div>
                 </div>
