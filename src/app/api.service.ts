@@ -16,7 +16,7 @@ export const SMS_NUMBER = '+1 956 903 2629';
 //const API_URL2 = 'https://localhost:8080';
 //const API_URL = 'http://localhost:8080/api/website';
 // production
- export const PROPERTY_ID = 92;
+ export const PROPERTY_ID = 96;
 // development
 //export const PROPERTY_ID = 8;
 
