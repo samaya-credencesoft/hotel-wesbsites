@@ -265,7 +265,12 @@
                   <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
                 </span>
               </div>
-              <input type="text" [formControl]="checkedin" name="dateIn"  class="date-pick" (ngModelChange)="checkedInEvent()" >
+              <input type="text"
+              [formControl]="checkedin"
+              name="dateIn"
+              [min]="minFromDate"
+              [max]="maxFromDate"
+              class="date-pick" (ngModelChange)="checkedInEvent()" >
 
               <div class="clearfix"></div>
             </div><!--check-form end-->
@@ -281,7 +286,10 @@
                 </span>
               </div>
               <!-- <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a> -->
-              <input type="text" name="dateOut" [formControl]="checkedout" class="date-pick">
+              <input type="text"
+              name="dateOut"
+              [formControl]="checkedout"
+              class="date-pick">
               <div class="clearfix"></div>
             </div><!--check-form end-->
           </li>

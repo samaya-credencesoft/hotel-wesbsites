@@ -22,6 +22,16 @@ export class SliderComponent implements OnInit {
   fromDate: string;
   dateModel: DateModel;
 
+  minToDate: Date;
+  maxToDate: Date;
+
+  minFromDate: Date;
+  maxFromDate: Date;
+  toDateMinMilliSeconds: number;
+  toDateMaxMilliSeconds: number;
+  fromDateMinMilliSeconds: number;
+  fromDateMaxMilliSeconds: number;
+
   checkedin: FormControl = new FormControl();
   checkedout: FormControl = new FormControl();
 
@@ -32,6 +42,7 @@ export class SliderComponent implements OnInit {
 
   ngOnInit() {
     this.checkincheckoutDate();
+   // this.checkinDateInterval();
   }
 
   checkincheckoutDate() {
@@ -49,6 +60,17 @@ export class SliderComponent implements OnInit {
     this.month2 = afterDate.getMonth();
   }
 
+  // checkinDateInterval()
+  // {
+  //   let currentDate: Date = new Date();
+
+  //   const fromDateMilliSeconds = currentDate.getTime();
+  //   this.fromDateMinMilliSeconds = fromDateMilliSeconds;
+  //   this.fromDateMaxMilliSeconds = fromDateMilliSeconds + (86400000 * 30*6);
+  //   this.minFromDate = new Date(this.fromDateMinMilliSeconds);
+  //   this.maxFromDate = new Date(this.fromDateMaxMilliSeconds);
+  // }
+
 
   getDay(date: Date) {
     if (date.getDate().toString().length == 1) {
@@ -64,17 +86,18 @@ export class SliderComponent implements OnInit {
     this.dateModel = new DateModel();
 
     if (this.checkedin.value === null) {
-      this.dateModel.checkedin = this.year + '-' + this.month + 1 + '-' + this.day;
+      this.dateModel.checkedin = this.year + '-' + (this.month + 1) + '-' + this.day;
     } else {
       this.dateModel.checkedin = this.getDateFormat(this.checkedin.value);
     }
 
     if (this.checkedout.value === null) {
-      this.dateModel.checkout =  this.year2 + '-' + this.month2 + 1 + '-' + this.day2;
+      this.dateModel.checkout =  this.year2 + '-' + (this.month2 + 1) + '-' + this.day2;
     } else {
       this.dateModel.checkout = this.getDateFormat(this.checkedout.value);
     }
 
+    // console.log(' this.dateModel '+JSON.stringify( this.dateModel));
 
     const navigationExtras: NavigationExtras = {
       queryParams: {
