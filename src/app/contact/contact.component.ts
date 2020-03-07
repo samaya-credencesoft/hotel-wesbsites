@@ -85,7 +85,7 @@ export class ContactComponent implements OnInit {
     // const TO_EMAIL = 'abir.sayeed@gmail.com';
     const TO_EMAIL = this.property.email;
 
-    const API_URL = 'https://booking-api-csoft.appspot.com/';
+    const API_URL = 'https://api.bookonepms.com:8443/api-bookone/';
     // const API_URL = 'http://localhost:8080';
 
     this.email.fromEmail = form.value.email;
