@@ -22,6 +22,16 @@ export class SliderComponent implements OnInit {
   fromDate: string;
   dateModel: DateModel;
 
+  minToDate: Date;
+  maxToDate: Date;
+
+  minFromDate: Date;
+  maxFromDate: Date;
+  toDateMinMilliSeconds: number;
+  toDateMaxMilliSeconds: number;
+  fromDateMinMilliSeconds: number;
+  fromDateMaxMilliSeconds: number;
+
   checkedin: FormControl = new FormControl();
   checkedout: FormControl = new FormControl();
 
@@ -32,6 +42,7 @@ export class SliderComponent implements OnInit {
 
   ngOnInit() {
     this.checkincheckoutDate();
+   // this.checkinDateInterval();
   }
 
   checkincheckoutDate() {
@@ -48,6 +59,17 @@ export class SliderComponent implements OnInit {
     this.year2 = String(afterDate.getFullYear());
     this.month2 = afterDate.getMonth();
   }
+
+  // checkinDateInterval()
+  // {
+  //   let currentDate: Date = new Date();
+
+  //   const fromDateMilliSeconds = currentDate.getTime();
+  //   this.fromDateMinMilliSeconds = fromDateMilliSeconds;
+  //   this.fromDateMaxMilliSeconds = fromDateMilliSeconds + (86400000 * 30*6);
+  //   this.minFromDate = new Date(this.fromDateMinMilliSeconds);
+  //   this.maxFromDate = new Date(this.fromDateMaxMilliSeconds);
+  // }
 
 
   getDay(date: Date) {
@@ -75,6 +97,7 @@ export class SliderComponent implements OnInit {
       this.dateModel.checkout = this.getDateFormat(this.checkedout.value);
     }
 
+    // console.log(' this.dateModel '+JSON.stringify( this.dateModel));
 
     const navigationExtras: NavigationExtras = {
       queryParams: {

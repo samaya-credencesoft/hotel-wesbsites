@@ -75,6 +75,8 @@ export class NewBookingComponent implements OnInit {
 
         this.room = this.dateModel.room;
 
+        console.log('this.dateModel : '+JSON.stringify(this.dateModel));
+
         if (this.dateModel.checkedin != undefined && this.dateModel.checkout != undefined) {
           this.isAvailableChecked = true;
           this.getCheckInDateFormat(this.dateModel.checkedin);

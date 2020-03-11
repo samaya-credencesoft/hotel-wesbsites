@@ -316,6 +316,7 @@ private handleError(error: HttpErrorResponse) {
       this.payment.businessEmail = this.booking.businessEmail;
       this.payment.paymentMode = this.booking.modeOfPayment;
       this.payment.description = `Accomodation for   ${this.booking.firstName} at ${this.booking.businessName}` ;
+      console.log('payment ' + JSON.stringify(this.payment));
       this.processPayment(this.payment);
     } else {
       this.loader = false;
