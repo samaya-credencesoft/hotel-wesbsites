@@ -64,13 +64,13 @@ export class SliderComponent implements OnInit {
     this.dateModel = new DateModel();
 
     if (this.checkedin.value === null) {
-      this.dateModel.checkedin = this.year + '-' + this.month + 1 + '-' + this.day;
+      this.dateModel.checkedin = this.year + '-' + (this.month + 1) + '-' + this.day;
     } else {
       this.dateModel.checkedin = this.getDateFormat(this.checkedin.value);
     }
 
     if (this.checkedout.value === null) {
-      this.dateModel.checkout =  this.year2 + '-' + this.month2 + 1 + '-' + this.day2;
+      this.dateModel.checkout =  this.year2 + '-' + (this.month2 + 1) + '-' + this.day2;
     } else {
       this.dateModel.checkout = this.getDateFormat(this.checkedout.value);
     }
