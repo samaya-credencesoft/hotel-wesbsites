@@ -321,6 +321,7 @@ private handleError(error: HttpErrorResponse) {
     } else {
       this.loader = false;
       const snackBarRef = this.snackBar.open('Error message :' + response.error.message);
+      console.log(' response.error.message ' + JSON.stringify( response.error.message));
       snackBarRef.dismiss();
     }
   });
@@ -331,11 +332,14 @@ processPayment(payment: Payment) {
   this.apiService.processPayment(payment)
     .subscribe(response => {
 
+      console.log('payment res : '+JSON.stringify(payment));
+
       if (response.status === 200) {
         this.payment = response.body;
         if (this.payment.status === 'Paid') {
           const snackBarRef = this.snackBar.open('Payment processed successfully.Creating booking ...', 'close');
           snackBarRef._dismissAfter(5000);
+
           this.createBooking(this.booking);
         } else {
           this.loader = false;
@@ -345,6 +349,7 @@ processPayment(payment: Payment) {
         }
       } else {
         this.loader = false;
+
       }
 
     });
@@ -353,6 +358,7 @@ processPayment(payment: Payment) {
 
 createBooking(booking: Booking) {
 
+  console.log('booking cr : '+JSON.stringify(booking));
   const createBookingObsr = this.apiService.createBooking(booking).subscribe(response => {
     if (response.status === 200) {
       this.booking = response.body;
