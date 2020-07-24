@@ -10,8 +10,8 @@ import { Observable } from 'rxjs';
 import { BookingDetails } from './bookingdetail/bookingdetails';
 import { GuestReview } from './guest/guest.component';
 
- const API_URL = 'https://api.bookonepms.com:8443/api-bookone/api/website';
- const API_URL2 = 'https://api.bookonepms.com:8443/api-bookone';
+ const API_URL = 'https://api.bookonelocal.co.nz/api-bookone/api/website';
+ const API_URL2 = 'https://api.bookonelocal.co.nz/api-bookone';
 export const SMS_NUMBER = '+1 956 903 2629';
 //const API_URL2 = 'https://localhost:8080';
 //const API_URL = 'http://localhost:8080/api/website';
