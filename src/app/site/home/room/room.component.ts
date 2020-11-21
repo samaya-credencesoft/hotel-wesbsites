@@ -27,7 +27,7 @@ export class RoomComponent implements OnInit {
   getRoom() {
     this.apiService.getRoomDetailsByPropertyId(PROPERTY_ID).subscribe(response => {
 
-      // console.log('response room ' + JSON.stringify(response.body));
+      console.log('response room ' + JSON.stringify(response.body));
       this.rooms = response.body;
     },
       error => {

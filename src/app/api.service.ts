@@ -9,14 +9,16 @@ import { Msg } from './booking/msg';
 import { Observable } from 'rxjs';
 import { BookingDetails } from './bookingdetail/bookingdetails';
 import { GuestReview } from './guest/guest.component';
+import { environment } from 'src/environments/environment';
 
- const API_URL = 'https://api.bookonelocal.co.nz/api-bookone/api/website';
- const API_URL2 = 'https://api.bookonelocal.co.nz/api-bookone';
+const API_URL = environment.apiUrl + '/api/website';
+const API_URL2 = environment.apiUrl;
 export const SMS_NUMBER = '+1 956 903 2629';
 //const API_URL2 = 'https://localhost:8080';
 //const API_URL = 'http://localhost:8080/api/website';
 // production
- export const PROPERTY_ID = 92;
+export const PROPERTY_ID = environment.propertyId
+;
 // development
 //export const PROPERTY_ID = 8;
 

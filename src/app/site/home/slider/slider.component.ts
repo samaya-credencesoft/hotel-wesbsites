@@ -1,7 +1,11 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, FormGroupDirective, Validators } from '@angular/forms';
 import { NavigationExtras } from '@angular/router';
 import { Router } from '@angular/router';
+import { ApiService, PROPERTY_ID } from 'src/app/api.service';
+import { Property } from 'src/app/property/property';
+import { TokenStorage } from 'src/app/token.storage';
 import { DateModel } from '../model/dateModel';
 @Component({
   selector: 'app-slider',
@@ -9,7 +13,7 @@ import { DateModel } from '../model/dateModel';
   styleUrls: ['./slider.component.css']
 })
 export class SliderComponent implements OnInit {
-
+  property: Property;
   currentDay: string;
   day: string;
   year: string;
@@ -36,12 +40,16 @@ export class SliderComponent implements OnInit {
   checkedout: FormControl = new FormControl();
 
   monthArray = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
+    private token :TokenStorage,
+    private apiService: ApiService
     ) { }
 
 
   ngOnInit() {
     this.checkincheckoutDate();
+    this.getProperty();
    // this.checkinDateInterval();
   }
 
@@ -125,5 +133,17 @@ export class SliderComponent implements OnInit {
     this.year2 = String(afterDate.getFullYear());
     this.month2 = afterDate.getMonth();
   }
+  getProperty() {
+    this.apiService.getPropertyDetailsByPropertyId(PROPERTY_ID).subscribe(response => {
 
+      this.property = response.body;
+      this.token.savePropertyName(this.property.name);
+    },
+      error => {
+        if (error instanceof HttpErrorResponse) {
+
+        }
+      }
+  );
+  }
 }
