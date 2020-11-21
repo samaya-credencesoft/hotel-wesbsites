@@ -100,7 +100,7 @@
               <li>
                 <img src="assets/images/cs1.png" alt="">
                 <div class="cs_info">
-                  <span>Address: {{ property.address.streetNumber }}
+                  <span *ngIf="property.address" >Address: {{ property.address.streetNumber }}
                     {{ property.address.streetName }},
                     {{ property.address.suburb }}, {{ property.address.city }},
                     {{ property.address.postcode }}</span>

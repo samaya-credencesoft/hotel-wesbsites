@@ -6,10 +6,8 @@
     <div class="rom_img_slide">
       <img src="https://via.placeholder.com/1920x960" alt="">
     </div> -->
-    <div class="rom_img_slide">
-      <img *ngIf ="this.room.id ===137" src="assets/images/rooms/1920x960-1.jpg" alt="">
-      <img *ngIf ="this.room.id ===138" src="assets/images/rooms/1920x960-2.jpg" alt="">
-      <img *ngIf ="this.room.id ===139" src="assets/images/rooms/1920x960-3.jpg" alt="">
+    <div class="rom_img_slide" *ngIf="room.imageList?.length">
+      <img ngf src="{{ room.imageList[0].url}}" alt="">
     </div>
   </div><!--room_slide_imgs end-->
   <div class="room_rrate">
@@ -108,7 +106,7 @@
                           <div class="det">
                             <b class="val-date">28</b>
                             <span>
-                              <i class="month">Jun</i> <i class="year">2019</i>
+                              <i class="month">Jun</i> <i class="year">2020</i>
                             </span>
                             <div class="clearfix"></div>
                           </div>
@@ -123,7 +121,7 @@
                           <div class="det">
                             <b class="val-date">28</b>
                             <span>
-                              <i class="month">Jun</i> <i class="year">2019</i>
+                              <i class="month">Jun</i> <i class="year">2020</i>
                             </span>
                             <input type="text" name="date-out" class="date-pick">
                             <div class="clearfix"></div>
