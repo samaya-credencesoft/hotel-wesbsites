@@ -18,8 +18,14 @@ export class HeaderComponent implements OnInit {
     private apiService: ApiService,
     private token :TokenStorage
     ) {
+      if(this.token.getProperty() === null ){
+
     this.getProperty();
-    this.getRoom();
+
+      } else {
+        this.property = this.token.getProperty();
+      }
+      this.getRoom();
     }
 
   ngOnInit() {
@@ -43,7 +49,9 @@ export class HeaderComponent implements OnInit {
     this.apiService.getPropertyDetailsByPropertyId(PROPERTY_ID).subscribe(response => {
 
       this.property = response.body;
+      this.token.saveProperty(this.property);
       this.token.savePropertyName(this.property.name);
+
     },
       error => {
         if (error instanceof HttpErrorResponse) {

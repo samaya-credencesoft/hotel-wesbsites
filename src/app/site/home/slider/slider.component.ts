@@ -63,7 +63,7 @@ export class SliderComponent implements OnInit {
      slidesToShow: 1,
      autoplay: true,
      autoplaySpeed: 2000,
-     arrows: true,
+     arrows: false,
      responsive: [
         {
           breakpoint: 1367,

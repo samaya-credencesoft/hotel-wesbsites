@@ -76,7 +76,9 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
-
+    AgmCoreModule.forRoot({
+      apiKey: environment.googleKey // 'AIzaSyAYT8pe61MUbk27eiYi9LnnPhwo031Ye7w'
+    })
   ],
   exports: [
 
