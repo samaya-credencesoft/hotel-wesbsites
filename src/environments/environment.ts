@@ -11,6 +11,7 @@ export const environment = {
   propertyId: 122,
   country: 'in',
   googleKey: 'AIzaSyAYT8pe61MUbk27eiYi9LnnPhwo031Ye7w'
+  // googleKey: 'AIzaSyCYc537bQom7ajFpWE5sQaVyz1SQa9_tuY'
 };
 
 /*

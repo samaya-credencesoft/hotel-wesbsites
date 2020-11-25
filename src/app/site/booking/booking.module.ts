@@ -10,9 +10,10 @@ import { CompleteComponent } from './complete/complete.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatCardModule} from '@angular/material/card';
-
-import { MatFormFieldModule, MatInputModule } from '@angular/material';
+import {MatInputModule} from '@angular/material/input';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { BookingDetailsComponent } from './booking-details/booking-details.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
 const routes: Routes = [
   { path: '', component: BookingComponent},
   { path: 'booking/choose', component: ChooseRoomComponent},
@@ -31,6 +32,7 @@ const routes: Routes = [
     MatCardModule,
     MatInputModule,
     ReactiveFormsModule,
+    MatSnackBarModule,
     RouterModule.forRoot(routes)
   ],
   declarations: [BookingComponent, CheckoutComponent, NewBookingComponent, ChooseRoomComponent, CompleteComponent, BookingDetailsComponent]

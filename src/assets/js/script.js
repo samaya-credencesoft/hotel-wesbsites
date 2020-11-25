@@ -17,14 +17,14 @@ $(window).on("load", function() {
 
 
     $("nav ul ul").parent().addClass("has_menu");
-    
 
-    $('[data-toggle="tooltip"]').tooltip(); 
 
-    
+    $('[data-toggle="tooltip"]').tooltip();
+
+
     //  ==================== TABS FUNCTIONALITY ====================
 
-    
+
     $('.srvs-list li').on("click", function(){
       var tab_id = $(this).attr('data-tab');
       $('.srvs-list').removeClass('active animated fadeOut');
@@ -32,7 +32,7 @@ $(window).on("load", function() {
       $(this).addClass('active animated fadeIn');
       $("#"+tab_id).addClass('active animated fadeIn');
     });
-    
+
 
     //  ==================== MOBILE MENU FUNCATIONALITY ====================
 
@@ -116,7 +116,7 @@ $(window).on("load", function() {
         $(".mm_menu").toggleClass("active");
         $(".responsive_mobile_menu").removeClass("active");
       });
-    }; 
+    };
 
     $(".menu_m ul ul").parent().addClass("active");
 
@@ -130,17 +130,13 @@ $(window).on("load", function() {
 
     //  ==================== SETTING DIV POSITION DYNAMIC ====================
 
-    var gap = $(".max-cont").offset().left;
-    $(".rooms-carousel .slick-prev").css({
-      "left": gap
-    });
-    $(".rooms-carousel .slick-next").css({
-      "right": gap
-    });
-
-
-    
-
+    // var gap = $(".max-cont").offset().left;
+    // $(".rooms-carousel .slick-prev").css({
+    //   "left": gap
+    // });
+    // $(".rooms-carousel .slick-next").css({
+    //   "right": gap
+    // });
 
 });
 

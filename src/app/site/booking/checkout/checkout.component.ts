@@ -1,18 +1,18 @@
+
 import { Component, OnInit } from '@angular/core';
 import { Room } from 'src/app/room/room';
 import { PROPERTY_ID, ApiService , SMS_NUMBER} from 'src/app/api.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { DateModel } from './../../home/model/dateModel';
-import { NavigationExtras } from '@angular/router';
-import { Message } from 'primeng/components/common/api';
-import { MatSnackBar } from '@angular/material';
+import { NavigationExtras } from '@angular/router'
 import { Router } from '@angular/router';
 import { Booking } from '../../../booking/booking';
 import { Payment } from './../../../payment/payment';
 import { FormControl, FormGroup, NgForm, FormGroupDirective, Validators, FormBuilder } from '@angular/forms';
 import { Msg } from './../../../booking/msg';
-
+import { Message } from 'primeng/api/message';
+import { MatSnackBar } from '@angular/material/snack-bar';
 export interface Year {
   value: string;
   viewValue: string;
@@ -339,7 +339,7 @@ processPayment(payment: Payment) {
           this.createBooking(this.booking);
         } else {
           this.loader = false;
-          this.snackBar.open('ErroCode:' + payment.failureCode + 'and Error message :' + payment.failureMessage, '', {
+          this.snackBar.open('Error Code:' + payment.failureCode + 'and Error message :' + payment.failureMessage, '', {
             duration: 5000,
           });
         }

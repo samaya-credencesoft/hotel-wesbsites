@@ -40,6 +40,52 @@ export class SliderComponent implements OnInit {
   checkedout: FormControl = new FormControl();
 
   monthArray = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  galleryImage = [
+    {
+      title: '1',
+      image: 'assets/images/slides/slide1.jpg',
+    },
+    {
+      title: '2',
+      image: 'assets/images/slides/slide2.jpg',
+    },
+    {
+      title: '3',
+      image: 'assets/images/slides/slide3.jpg',
+    },
+
+  ];
+  slideConfig =
+  {
+     centerMode: true,
+     centerPadding: '0',
+     slidesToShow: 1,
+     autoplay: true,
+     autoplaySpeed: 2000,
+     arrows: true,
+     responsive: [
+        {
+          breakpoint: 1367,
+          settings: {
+            centerPadding: '0'
+          }
+        },
+        {
+          breakpoint: 1025,
+          settings: {
+            centerPadding: '0',
+            slidesToShow: 1
+          }
+        },
+        {
+          breakpoint: 767,
+          settings: {
+            centerPadding: '0',
+            slidesToShow: 1
+          }
+        }
+     ]
+  };
   constructor(
     private router: Router,
     private token :TokenStorage,

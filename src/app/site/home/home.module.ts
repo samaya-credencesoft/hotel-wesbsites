@@ -9,6 +9,9 @@ import { AboutusComponent } from './aboutus/aboutus.component';
 import { RoomComponent } from './room/room.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import { AgmCoreModule } from '@agm/core';
+import { environment } from 'src/environments/environment';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 const routes: Routes = [
   { path: '', component: HomeComponent},
 
@@ -27,7 +30,11 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    RouterModule.forRoot(routes)
+    SlickCarouselModule,
+    RouterModule.forRoot(routes),
+    AgmCoreModule.forRoot({
+      apiKey: environment.googleKey // 'AIzaSyAYT8pe61MUbk27eiYi9LnnPhwo031Ye7w'
+    })
   ],
   exports: [
     RoomComponent

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MatDialog } from '@angular/material';
+
 import { Property } from './../property/property';
 import { Room } from './../room/room';
 import { ApiService } from './../api.service';

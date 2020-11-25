@@ -15,7 +15,37 @@ export class RoomComponent implements OnInit {
 
   rooms: Room[];
   dateModel: DateModel;
-
+  slideConfig =
+  {
+     centerMode: true,
+     centerPadding: '20%',
+     slidesToShow: 2,
+     autoplay: true,
+     autoplaySpeed: 2000,
+     arrows: true,
+     responsive: [
+        {
+          breakpoint: 1367,
+          settings: {
+            centerPadding: '15%'
+          }
+        },
+        {
+          breakpoint: 1025,
+          settings: {
+            centerPadding: '0',
+            slidesToShow: 2
+          }
+        },
+        {
+          breakpoint: 767,
+          settings: {
+            centerPadding: '0',
+            slidesToShow: 1
+          }
+        }
+     ]
+  };
   constructor(private apiService: ApiService,
               private router: Router) {
       this.dateModel = new DateModel();

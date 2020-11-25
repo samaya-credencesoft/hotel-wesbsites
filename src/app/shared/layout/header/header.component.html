@@ -22,7 +22,7 @@
     <div class="bbtm-header">
       <nav>
         <ul>
-          <li><a href="/index.html" title="">Home</a>
+          <li><a routerLink="/" title="">Home</a>
 
           </li>
           <li><a routerLink="/rooms" title="">Rooms</a>
@@ -44,11 +44,11 @@
         </a>
       </div>
       <div class="ft-logo">
-        <a href="index.html" title="">
+        <a routerLink="/" title="">
           <img src="assets/images/ft-logo5.png" alt="">
-          <div class="ft-text">
-            <h2>{{ property.name }}</h2>
-          <h3>{{ property.slogan }}</h3>
+          <div class="ft-text" >
+            <h2  *ngIf="property.name">{{ property.name }}</h2>
+          <h3  *ngIf="property.slogan">{{ property.slogan }}</h3>
           </div>
         </a>
       </div><!--ft-logo end-->

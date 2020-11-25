@@ -14,8 +14,11 @@ export class HeaderComponent implements OnInit {
 
   property: Property;
   rooms: Room[];
-  constructor(private apiService: ApiService,
-    private token :TokenStorage) { }
+  constructor(
+    private apiService: ApiService,
+    private token :TokenStorage
+    ) {
+    }
 
   ngOnInit() {
     this.getProperty();

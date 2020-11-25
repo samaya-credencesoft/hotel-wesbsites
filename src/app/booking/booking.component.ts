@@ -3,23 +3,18 @@ import { ApiService, SMS_NUMBER } from '../api.service';
 import { Booking } from './booking';
 import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Message } from 'primeng/components/common/api';
 import { MatDatepicker, MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core';
 import { Observable, throwError } from 'rxjs';
 import { Room } from './../room/room';
 import { Property } from './../property/property';
-import {
-  MatDialog,
-  MatDialogConfig,
-  MatDialogRef,
-  MAT_DIALOG_DATA
-} from '@angular/material';
-import { MatSnackBar } from '@angular/material';
+
 import { Payment } from './../payment/payment';
-import { DISABLED } from '@angular/forms/src/model';
 import { Msg } from './msg';
+import { Message } from 'primeng/api/message';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 declare let paypal: any;
 export interface Year {
   value: string;
