@@ -6,7 +6,52 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./service.component.css']
 })
 export class ServiceComponent implements OnInit {
+  galleryImage = [
+    {
+      title: '1',
+      image: 'assets/images/slides/slide1.jpg',
+    },
+    {
+      title: '2',
+      image: 'assets/images/slides/slide2.jpg',
+    },
+    {
+      title: '3',
+      image: 'assets/images/slides/slide3.jpg',
+    },
 
+  ];
+  slideConfig =
+  {
+     centerMode: true,
+     centerPadding: '20%',
+     slidesToShow: 1,
+     autoplay: true,
+     autoplaySpeed: 2000,
+     arrows: true,
+     responsive: [
+        {
+          breakpoint: 1367,
+          settings: {
+            centerPadding: '15%'
+          }
+        },
+        {
+          breakpoint: 1025,
+          settings: {
+            centerPadding: '5%',
+            slidesToShow: 1
+          }
+        },
+        {
+          breakpoint: 767,
+          settings: {
+            centerPadding: '0',
+            slidesToShow: 1
+          }
+        }
+     ]
+  };
   constructor() { }
 
   ngOnInit() {

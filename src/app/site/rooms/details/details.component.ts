@@ -27,10 +27,41 @@ export class DetailsComponent implements OnInit {
   fromDate: string;
   dateModel: DateModel;
 
-  checkedin: FormControl = new FormControl();
+  checkIn: FormControl = new FormControl();
   checkedout: FormControl = new FormControl();
 
   monthArray = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  slideConfig =
+  {
+     centerMode: true,
+     centerPadding: '0',
+     slidesToShow: 1,
+     autoplay: true,
+     autoplaySpeed: 2000,
+     arrows: true,
+     responsive: [
+        {
+          breakpoint: 1367,
+          settings: {
+            centerPadding: '0'
+          }
+        },
+        {
+          breakpoint: 1025,
+          settings: {
+            centerPadding: '0',
+            slidesToShow: 1
+          }
+        },
+        {
+          breakpoint: 767,
+          settings: {
+            centerPadding: '0',
+            slidesToShow: 1
+          }
+        }
+     ]
+  };
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -43,14 +74,14 @@ export class DetailsComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.id = +params.id; // (+) converts string 'id' to a number
       console.log('list detail page: ' + this.id);
-
+      this.getRoom();
+      this.checkincheckOutDate();
       // console.log('list detail page: ' + JSON.stringify(this.room));
     });
   }
 
   ngOnInit() {
-    this.getRoom();
-    this.checkincheckoutDate();
+
   }
 
   getRoom() {
@@ -76,7 +107,7 @@ export class DetailsComponent implements OnInit {
   }
 
 
-checkincheckoutDate() {
+checkincheckOutDate() {
   const currentDate: Date = new Date();
   this.day = this.getDay(currentDate);
   this.year = String(currentDate.getFullYear());
@@ -104,16 +135,16 @@ getDay(date: Date) {
   onBook() {
     this.dateModel = new DateModel();
 
-    if (this.checkedin.value === null) {
-      this.dateModel.checkedin = this.year + '-' + this.month + 1 + '-' + this.day;
+    if (this.checkIn.value === null) {
+      this.dateModel.checkIn = this.year + '-' + this.month + 1 + '-' + this.day;
     } else {
-      this.dateModel.checkedin = this.getDateFormat(this.checkedin.value);
+      this.dateModel.checkIn = this.getDateFormat(this.checkIn.value);
     }
 
     if (this.checkedout.value === null) {
-      this.dateModel.checkout =  this.year2 + '-' + this.month2 + 1 + '-' + this.day2;
+      this.dateModel.checkOut =  this.year2 + '-' + this.month2 + 1 + '-' + this.day2;
     } else {
-      this.dateModel.checkout = this.getDateFormat(this.checkedout.value);
+      this.dateModel.checkOut = this.getDateFormat(this.checkedout.value);
     }
 
 

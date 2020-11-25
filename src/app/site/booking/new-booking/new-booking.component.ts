@@ -42,7 +42,7 @@ export class NewBookingComponent implements OnInit {
   noOfPersons: FormControl = new FormControl('', Validators.required);
   noOfRooms: FormControl = new FormControl('', Validators.required);
   //termAndConditions : FormControl = new FormControl("",Validators.required);
-  checkedin: FormControl = new FormControl();
+  checkIn: FormControl = new FormControl();
   checkedout: FormControl = new FormControl();
 
   onBookingForm: FormGroup = new FormGroup({
@@ -77,20 +77,20 @@ export class NewBookingComponent implements OnInit {
 
         console.log('this.dateModel : '+JSON.stringify(this.dateModel));
 
-        if (this.dateModel.checkedin != undefined && this.dateModel.checkout != undefined) {
+        if (this.dateModel.checkIn != undefined && this.dateModel.checkOut != undefined) {
           this.isAvailableChecked = true;
-          this.getCheckInDateFormat(this.dateModel.checkedin);
-          this.getCheckOutDateFormat(this.dateModel.checkout);
+          this.getCheckInDateFormat(this.dateModel.checkIn);
+          this.getcheckOutDateFormat(this.dateModel.checkOut);
         } else {
           this.isAvailableChecked = false;
-          this.checkincheckoutDate();
+          this.checkincheckOutDate();
         }
     }
 
   });
  }
 
- checkincheckoutDate() {
+ checkincheckOutDate() {
    let currentDate: Date = new Date();
    this.daySelected = this.getDay(currentDate);
    this.yearSelected = String(currentDate.getFullYear());
@@ -120,9 +120,9 @@ export class NewBookingComponent implements OnInit {
   this.isAvailableChecked = false;
  }
 
- checkedInEvent() {
+ checkInEvent() {
   this.isAvailableChecked = false;
-  let currentDate: Date = new Date(this.checkedin.value);
+  let currentDate: Date = new Date(this.checkIn.value);
 
   let afterDate: Date = new Date();
   afterDate.setDate(currentDate.getDate() + 1);
@@ -136,19 +136,19 @@ export class NewBookingComponent implements OnInit {
 
  getRoomByDate() {
 
-  if (this.checkedin.value === null) {
-    this.dateModel.checkedin = this.yearSelected + '-' + this.monthSelected + 1 + '-' + this.daySelected;
+  if (this.checkIn.value === null) {
+    this.dateModel.checkIn = this.yearSelected + '-' + this.monthSelected + 1 + '-' + this.daySelected;
   } else {
-    this.dateModel.checkedin = this.getDateFormat(this.checkedin.value);
+    this.dateModel.checkIn = this.getDateFormat(this.checkIn.value);
   }
 
   if (this.checkedout.value === null) {
-    this.dateModel.checkout =  this.yearSelected2 + '-' + this.monthSelected2 + 1 + '-' + this.daySelected2;
+    this.dateModel.checkOut =  this.yearSelected2 + '-' + this.monthSelected2 + 1 + '-' + this.daySelected2;
   } else {
-    this.dateModel.checkout = this.getDateFormat(this.checkedout.value);
+    this.dateModel.checkOut = this.getDateFormat(this.checkedout.value);
   }
 
-  if (this.dateModel.checkout != undefined && this.dateModel.checkedin != undefined) {
+  if (this.dateModel.checkOut != undefined && this.dateModel.checkIn != undefined) {
      this.isAvailableChecked = true;
   }
 
@@ -183,7 +183,7 @@ export class NewBookingComponent implements OnInit {
    }
  }
 
- onCheckOut() {
+ oncheckOut() {
     this.dateModel.booking = this.booking;
 
     let navigationExtras: NavigationExtras = {
@@ -202,7 +202,7 @@ export class NewBookingComponent implements OnInit {
    this.monthSelected = parseInt(yearAndMonth[1]) - 1;
  }
 
- getCheckOutDateFormat(dateString: string) {
+ getcheckOutDateFormat(dateString: string) {
    var yearAndMonth = dateString.split('-', 3);
    this.daySelected2 = String(yearAndMonth[2].split(' ', 1));
    this.yearSelected2 = yearAndMonth[0];

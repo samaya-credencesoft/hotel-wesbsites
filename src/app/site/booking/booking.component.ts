@@ -40,7 +40,7 @@ export class BookingComponent implements OnInit {
   }
 
  ngOnInit() {
-    this.checkincheckoutDate();
+    this.checkincheckOutDate();
     this.getRoom();
 
     this.acRoute.queryParams.subscribe(params => {
@@ -48,15 +48,15 @@ export class BookingComponent implements OnInit {
       if(params["dateob"] != undefined)
       {
           this.dateModel = JSON.parse(params["dateob"]);
-          this.getRoomByDate( this.dateModel.checkedin  ,this.dateModel.checkout  );
-          this.getCheckInDateFormat(this.dateModel.checkedin);
+          this.getRoomByDate( this.dateModel.checkIn  ,this.dateModel.checkOut  );
+          this.getCheckInDateFormat(this.dateModel.checkIn);
 
       }
 
     });
 
   }
-  checkincheckoutDate()
+  checkincheckOutDate()
   {
     let currentDate: Date = new Date();
     this.day = this.getDay(currentDate);

@@ -59,8 +59,8 @@ export class CompleteComponent implements OnInit {
         this.booking = this.dateModel.booking;
         this.payment = this.dateModel.payment;
 
-        this.getCheckInDateFormat(this.dateModel.checkedin);
-        this.getCheckOutDateFormat(this.dateModel.checkout);
+        this.getCheckInDateFormat(this.dateModel.checkIn);
+        this.getCheckOutDateFormat(this.dateModel.checkOut);
     }
 
   });

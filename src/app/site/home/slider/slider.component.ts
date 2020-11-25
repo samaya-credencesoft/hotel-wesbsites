@@ -36,8 +36,9 @@ export class SliderComponent implements OnInit {
   fromDateMinMilliSeconds: number;
   fromDateMaxMilliSeconds: number;
 
-  checkedin: FormControl = new FormControl();
-  checkedout: FormControl = new FormControl();
+  checkIn: FormControl = new FormControl();
+  checkOut: FormControl = new FormControl();
+  guest: FormControl = new FormControl();
 
   monthArray = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   galleryImage = [
@@ -139,16 +140,21 @@ export class SliderComponent implements OnInit {
   onBook() {
     this.dateModel = new DateModel();
 
-    if (this.checkedin.value === null) {
-      this.dateModel.checkedin = this.year + '-' + (this.month + 1) + '-' + this.day;
+    if (this.checkIn.value === null) {
+      this.dateModel.checkIn = this.year + '-' + (this.month + 1) + '-' + this.day;
     } else {
-      this.dateModel.checkedin = this.getDateFormat(this.checkedin.value);
+      this.dateModel.checkIn = this.getDateFormat(this.checkIn.value);
     }
 
-    if (this.checkedout.value === null) {
-      this.dateModel.checkout =  this.year2 + '-' + (this.month2 + 1) + '-' + this.day2;
+    if (this.checkOut.value === null) {
+      this.dateModel.checkOut =  this.year2 + '-' + (this.month2 + 1) + '-' + this.day2;
     } else {
-      this.dateModel.checkout = this.getDateFormat(this.checkedout.value);
+      this.dateModel.checkOut = this.getDateFormat(this.checkOut.value);
+    }
+    if (this.guest.value === null) {
+      this.dateModel.guest = 1;
+    } else {
+      this.dateModel.checkOut = this.getDateFormat(this.guest.value);
     }
 
     // console.log(' this.dateModel '+JSON.stringify( this.dateModel));
@@ -167,8 +173,8 @@ export class SliderComponent implements OnInit {
     return yearAndMonth[0] + '-' + yearAndMonth[1] + '-' + yearAndMonth[2].split(' ', 1);
   }
 
-  checkedInEvent() {
-    const currentDate: Date = new Date(this.checkedin.value);
+  checkInEvent() {
+    const currentDate: Date = new Date(this.checkIn.value);
 
     const afterDate: Date = new Date();
     afterDate.setDate(currentDate.getDate() + 1);

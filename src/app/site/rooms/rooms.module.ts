@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RoomsComponent } from './rooms.component';
 import { RoomsRoutes } from './rooms.routing';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 
 @NgModule({
@@ -9,9 +10,11 @@ import { RoomsRoutes } from './rooms.routing';
 
   imports: [
     CommonModule,
+    SlickCarouselModule,
     RoomsRoutes
   ],
-  declarations: [RoomsComponent,
+  declarations: [
+    RoomsComponent,
   ]
 })
 export class RoomsModule { }

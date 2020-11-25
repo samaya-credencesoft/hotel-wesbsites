@@ -18,11 +18,11 @@ export class HeaderComponent implements OnInit {
     private apiService: ApiService,
     private token :TokenStorage
     ) {
+    this.getProperty();
+    this.getRoom();
     }
 
   ngOnInit() {
-    this.getProperty();
-    this.getRoom();
   }
 
   getRoom()

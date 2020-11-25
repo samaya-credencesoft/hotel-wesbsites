@@ -49,10 +49,10 @@ export class ChooseRoomComponent implements OnInit {
       {
           this.dateModel = JSON.parse(params["dateob"]);
 
-        //  this.getRoomByDate( this.dateModel.checkedin  ,this.dateModel.checkout  );
+        //  this.getRoomByDate( this.dateModel.checkIn  ,this.dateModel.checkout  );
 
-          this.getCheckInDateFormat(this.dateModel.checkedin);
-          this.getCheckOutDateFormat(this.dateModel.checkout);
+          this.getCheckInDateFormat(this.dateModel.checkIn);
+          this.getCheckOutDateFormat(this.dateModel.checkOut);
       }
 
     });

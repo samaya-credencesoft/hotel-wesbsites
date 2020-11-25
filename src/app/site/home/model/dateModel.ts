@@ -5,9 +5,9 @@ import { Payment } from './../../../payment/payment';
 
 export class DateModel {
 
-  checkedin: string;
-  checkout: string;
-
+  checkIn: string;
+  checkOut: string;
+  guest: number;
   room: Room;
   booking: Booking;
   payment: Payment;

@@ -36,7 +36,6 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-
     HomeModule,
     RoomsModule,
     BookingModule,
