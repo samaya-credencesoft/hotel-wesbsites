@@ -35,7 +35,7 @@
                                   <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
                                 </span>
                               </div>
-                              <input type="text" [formControl]="checkedin" [disabled]="isAvailableChecked" name="dateIn" class="date-pick" (ngModelChange)="checkedInEvent()" >
+                              <input type="text" [formControl]="checkIn" [disabled]="isAvailableChecked" name="dateIn" class="date-pick" (ngModelChange)="checkInEvent()" >
                               <div class="clearfix"></div>
                             </div><!--check-form end-->
                           </li>
@@ -49,7 +49,7 @@
                                   <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
                                 </span>
                               </div>
-                              <input type="text"  [formControl]="checkedout" [disabled]="isAvailableChecked" name="dateOut" class="date-pick" (ngModelChange)="checkedOutEvent()">
+                              <input type="text"  [formControl]="checkOut" [disabled]="isAvailableChecked" name="dateOut" class="date-pick" (ngModelChange)="checkedOutEvent()">
                               <div class="clearfix"></div>
                             </div><!--check-form end-->
                           </li>
@@ -61,8 +61,8 @@
                                                   <ul>
                                                       <li class="input-fieldd"><input type="text" value="1" data-num="1"></li>
                                                       <li class="counter-control">
-                                                        <button class="counter-minus btn" disabled=""><i class="fa fa-angle-up"></i></button>
-                                                        <button class="counter-plus btn"><i class="fa fa-angle-down"></i></button>
+                                                        <button class="counter-plus btn"><i class="fa fa-angle-up"></i></button>
+                                                        <button class="counter-minus btn" disabled=""><i class="fa fa-angle-down"></i></button>
                                                       </li>
                                                   </ul>
                                                   <div class="clearfix"></div>
@@ -70,7 +70,7 @@
                               </div>
                               <div class="clearfix"></div>
                             </div><!--check-form end-->
-                            <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
+                            <!-- <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a> -->
                           </li>
                           <li class="check-avail">
                             <a (click)="getRoomByDate()" *ngIf="!isAvailableChecked" title="" class="check-status">CHECK AVAILABILITY</a>

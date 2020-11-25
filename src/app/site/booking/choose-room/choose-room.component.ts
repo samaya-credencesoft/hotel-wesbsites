@@ -10,11 +10,9 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-choose-room',
   templateUrl: './choose-room.component.html',
-  styleUrls: ['./choose-room.component.css']
+  styleUrls: ['./choose-room.component.css'],
 })
 export class ChooseRoomComponent implements OnInit {
-
-
   rooms: Room[];
   dateModel: DateModel;
 
@@ -26,95 +24,97 @@ export class ChooseRoomComponent implements OnInit {
   yearSelected2: string;
   monthSelected2: number;
 
-
   currentDay: string;
 
-  monthArray =['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  monthArray = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
 
   constructor(
     private apiService: ApiService,
     private router: Router,
-    private acRoute: ActivatedRoute,)
-  {
+    private acRoute: ActivatedRoute
+  ) {
     this.dateModel = new DateModel();
-  }
-
- ngOnInit() {
-    //this.checkincheckoutDate();
     this.getRoom();
 
-    this.acRoute.queryParams.subscribe(params => {
-
-      if(params["dateob"] != undefined)
-      {
-          this.dateModel = JSON.parse(params["dateob"]);
+    this.acRoute.queryParams.subscribe((params) => {
+      if (params['dateob'] != undefined) {
+        this.dateModel = JSON.parse(params['dateob']);
 
         //  this.getRoomByDate( this.dateModel.checkIn  ,this.dateModel.checkout  );
 
-          this.getCheckInDateFormat(this.dateModel.checkIn);
-          this.getCheckOutDateFormat(this.dateModel.checkOut);
+        this.getCheckInDateFormat(this.dateModel.checkIn);
+        this.getCheckOutDateFormat(this.dateModel.checkOut);
       }
-
     });
+  }
+
+  ngOnInit() {
+    //this.checkincheckoutDate();
 
   }
 
-  onRoomBooking(room)
-  {
-
+  onRoomBooking(room) {
     this.dateModel.room = room;
 
     let navigationExtras: NavigationExtras = {
       queryParams: {
-          dateob: JSON.stringify(this.dateModel),
-      }
+        dateob: JSON.stringify(this.dateModel),
+      },
     };
-    this.router.navigate(['/booking/booking'],navigationExtras );
+    this.router.navigate(['/booking/booking'], navigationExtras);
   }
 
-
-  getRoom()
-  {
-    this.apiService.getRoomDetailsByPropertyId(PROPERTY_ID).subscribe(response => {
-
-     // console.log('response room choose room ' + JSON.stringify(response.body));
-      this.rooms = response.body;
-    },
-      error => {
+  getRoom() {
+    this.apiService.getRoomDetailsByPropertyId(PROPERTY_ID).subscribe(
+      (response) => {
+        console.log('response room choose room ' + JSON.stringify(response.body));
+        this.rooms = response.body;
+      },
+      (error) => {
         if (error instanceof HttpErrorResponse) {
-
         }
       }
-  );
+    );
   }
 
-  getRoomByDate( fromDate: string ,toDate: string ) {
-    this.apiService.getRoomDetailsByPropertyIdAndDate(PROPERTY_ID, fromDate, toDate) .subscribe(response => {
-
-      this.rooms = response.body;
-    },
-      error => {
-        if (error instanceof HttpErrorResponse) {
-
+  getRoomByDate(fromDate: string, toDate: string) {
+    this.apiService
+      .getRoomDetailsByPropertyIdAndDate(PROPERTY_ID, fromDate, toDate)
+      .subscribe(
+        (response) => {
+          this.rooms = response.body;
+        },
+        (error) => {
+          if (error instanceof HttpErrorResponse) {
+          }
         }
-      }
-  );
+      );
   }
 
-  getCheckInDateFormat(dateString: string)
-  {
-    var yearAndMonth = dateString.split("-", 3);
-    this.daySelected = String(yearAndMonth[2].split(" ", 1));
+  getCheckInDateFormat(dateString: string) {
+    var yearAndMonth = dateString.split('-', 3);
+    this.daySelected = String(yearAndMonth[2].split(' ', 1));
     this.yearSelected = yearAndMonth[0];
-    this.monthSelected = parseInt(yearAndMonth[1])-1;
+    this.monthSelected = parseInt(yearAndMonth[1]) - 1;
   }
 
-  getCheckOutDateFormat(dateString: string)
-  {
-    var yearAndMonth = dateString.split("-", 3);
-    this.daySelected2 = String(yearAndMonth[2].split(" ", 1));
+  getCheckOutDateFormat(dateString: string) {
+    var yearAndMonth = dateString.split('-', 3);
+    this.daySelected2 = String(yearAndMonth[2].split(' ', 1));
     this.yearSelected2 = yearAndMonth[0];
-    this.monthSelected2 = parseInt(yearAndMonth[1])-1;
+    this.monthSelected2 = parseInt(yearAndMonth[1]) - 1;
   }
-
 }

@@ -95,7 +95,7 @@ export class CheckoutComponent implements OnInit {
   bookingAmount: FormControl = new FormControl('', Validators.required);
 
   checkIn: FormControl = new FormControl();
-  checkedout: FormControl = new FormControl();
+  checkOut: FormControl = new FormControl();
 
   onPaymentForm: FormGroup = new FormGroup({
     expMonth: this.expMonth,
@@ -210,7 +210,7 @@ export class CheckoutComponent implements OnInit {
       this.dateModel.checkIn = this.getDateFormat(this.checkIn.value);
     }
 
-    if (this.checkedout.value === null) {
+    if (this.checkOut.value === null) {
       this.dateModel.checkOut =
         this.yearSelected2 +
         '-' +
@@ -219,7 +219,7 @@ export class CheckoutComponent implements OnInit {
         '-' +
         this.daySelected2;
     } else {
-      this.dateModel.checkOut = this.getDateFormat(this.checkedout.value);
+      this.dateModel.checkOut = this.getDateFormat(this.checkOut.value);
     }
 
     if (

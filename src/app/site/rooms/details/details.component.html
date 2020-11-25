@@ -1,7 +1,7 @@
 <section class="banner_sec">
   <div class="room_slide_main">
-    <div class="rom_img_slide" *ngFor="let image of room.imageList; let i= index" >
-      <img *ngIf="i == 0"  src="{{ image.url}}" alt="" height="650px">
+    <div class="rom_img_slide" *ngFor="let image of room.imageList; let i= index">
+      <img *ngIf="i == 0" src="{{ image.url}}" alt="" height="650px">
     </div>
 
     <!-- <ngx-slick-carousel class="carousel listing-slider mfp-gallery-container margin-bottom-0"
@@ -11,17 +11,17 @@
       </div>
     </ngx-slick-carousel> -->
   </div>
-    <!--room_slide_imgs end-->
-    <div class="room_rrate">
-      <div class="container">
-        <div class="room-single-head">
-          <h3>{{room.name}}</h3>
-          <span>{{room.roomOnlyPrice}}.00<b>/night</b></span>
-          <div class="clearfix"></div>
-        </div>
-        <!--room-single-head end-->
+  <!--room_slide_imgs end-->
+  <div class="room_rrate">
+    <div class="container">
+      <div class="room-single-head">
+        <h3>{{room.name}}</h3>
+        <span>{{room.roomOnlyPrice}}.00<b>/night</b></span>
+        <div class="clearfix"></div>
       </div>
+      <!--room-single-head end-->
     </div>
+  </div>
 </section>
 <!--pager-sec end-->
 
@@ -114,14 +114,14 @@
                         <div class="check-form">
                           <h4>CHECK-IN</h4>
                           <div class="det">
-                            <b class="val-date">28</b>
+                            <b class="val-date">{{ this.day }}</b>
                             <span>
-                              <i class="month">Jun</i> <i class="year">2020</i>
+                              <i class="month">{{monthArray[month] }}</i> <i class="year"> {{  this.year  }}</i>
+                              <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
                             </span>
-                            <div class="clearfix"></div>
                           </div>
-                          <input type="text" name="date-in" class="date-pick">
-                          <a href="#" title="" class="arw_down"><i class="fa fa-angle-down"></i></a>
+                          <input type="text" [formControl]="checkIn" name="dateIn" class="date-pick"
+                            (ngModelChange)="checkInEvent()">
                           <div class="clearfix"></div>
                         </div>
                         <!--check-form end-->
@@ -130,29 +130,29 @@
                         <div class="check-form">
                           <h4>CHECK-OUt</h4>
                           <div class="det">
-                            <b class="val-date">28</b>
+                            <b class="val-date">{{ this.day2 }}</b>
                             <span>
-                              <i class="month">Jun</i> <i class="year">2020</i>
+                              <i class="month">{{monthArray[month2] }}</i> <i class="year"> {{  this.year2  }}</i>
+                              <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
                             </span>
-                            <input type="text" name="date-out" class="date-pick">
-                            <div class="clearfix"></div>
                           </div>
-                          <a href="#" title="" class="arw_down"><i class="fa fa-angle-down"></i></a>
+                          <input type="text" [formControl]="checkOut" name="dateOut" class="date-pick"
+                            (ngModelChange)="checkOutEvent()">
                           <div class="clearfix"></div>
                         </div>
                         <!--check-form end-->
                       </li>
                       <li class="item-cont">
                         <div class="check-form">
-                          <h4>Guest</h4>
+                          <h4 class="text-center">Guest</h4>
                           <div class="det">
                             <div class="handle-counter" id="handleCounter">
                               <ul>
-                                <li class="input-fieldd"><input type="text" value="01" data-num="1"></li>
+                                <li class="input-fieldd"><input type="text" [formControl]="guest" name="guest" value="1"
+                                    data-num="1" (ngModelChange)="guestEvent()"></li>
                                 <li class="counter-control">
-                                  <button type="button" class="counter-minus btn" disabled=""><i
-                                      class="fa fa-angle-up"></i></button>
-                                  <button type="button" class="counter-plus btn"><i
+                                  <button class="counter-plus btn"><i class="fa fa-angle-up"></i></button>
+                                  <button class="counter-minus btn" disabled=""><i
                                       class="fa fa-angle-down"></i></button>
                                 </li>
                               </ul>
@@ -162,9 +162,10 @@
                           <div class="clearfix"></div>
                         </div>
                         <!--check-form end-->
+                        <!-- <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a> -->
                       </li>
-                      <li class="check-avail" (click)="onBook()">
-                        <a title="" class="check-status">CHECK AVAILABILITY</a>
+                      <li class="check-avail">
+                        <a (click)="onBook()" title="" class="check-status">CHECK AVAILABILITY</a>
                       </li>
                     </ul>
                     <div class="clearfix"></div>

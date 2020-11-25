@@ -28,7 +28,8 @@ export class DetailsComponent implements OnInit {
   dateModel: DateModel;
 
   checkIn: FormControl = new FormControl();
-  checkedout: FormControl = new FormControl();
+  checkOut: FormControl = new FormControl();
+  guest: FormControl = new FormControl();
 
   monthArray = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   slideConfig =
@@ -75,7 +76,7 @@ export class DetailsComponent implements OnInit {
       this.id = +params.id; // (+) converts string 'id' to a number
       console.log('list detail page: ' + this.id);
       this.getRoom();
-      this.checkincheckOutDate();
+      this.checkIncheckOutDate();
       // console.log('list detail page: ' + JSON.stringify(this.room));
     });
   }
@@ -107,7 +108,7 @@ export class DetailsComponent implements OnInit {
   }
 
 
-checkincheckOutDate() {
+checkIncheckOutDate() {
   const currentDate: Date = new Date();
   this.day = this.getDay(currentDate);
   this.year = String(currentDate.getFullYear());
@@ -122,6 +123,24 @@ checkincheckOutDate() {
   this.month2 = afterDate.getMonth();
 }
 
+checkInEvent() {
+  const currentDate: Date = new Date(this.checkIn.value);
+
+  const afterDate: Date = new Date();
+  afterDate.setDate(currentDate.getDate() + 1);
+  afterDate.setFullYear(currentDate.getFullYear());
+  afterDate.setMonth(currentDate.getMonth());
+
+  this.day2 = this.getDay(afterDate);
+  this.year2 = String(afterDate.getFullYear());
+  this.month2 = afterDate.getMonth();
+}
+checkOutEvent(){
+
+}
+guestEvent(){
+  this.dateModel.guest = this.guest.value;
+}
 
 getDay(date: Date) {
   if (date.getDate().toString().length == 1) {
@@ -141,12 +160,16 @@ getDay(date: Date) {
       this.dateModel.checkIn = this.getDateFormat(this.checkIn.value);
     }
 
-    if (this.checkedout.value === null) {
+    if (this.checkOut.value === null) {
       this.dateModel.checkOut =  this.year2 + '-' + this.month2 + 1 + '-' + this.day2;
     } else {
-      this.dateModel.checkOut = this.getDateFormat(this.checkedout.value);
+      this.dateModel.checkOut = this.getDateFormat(this.checkOut.value);
     }
-
+    if (this.guest.value === null) {
+      this.dateModel.guest =  1;
+    } else {
+      this.dateModel.guest = parseInt(this.getDateFormat(this.guest.value));
+    }
 
     const navigationExtras: NavigationExtras = {
       queryParams: {
@@ -156,8 +179,10 @@ getDay(date: Date) {
 
     this.router.navigate(['/booking/choose'], navigationExtras );
   }
+
   getDateFormat(dateString: string) {
     const yearAndMonth = dateString.split('-', 3);
     return yearAndMonth[0] + '-' + yearAndMonth[1] + '-' + yearAndMonth[2].split(' ', 1);
   }
+
 }
