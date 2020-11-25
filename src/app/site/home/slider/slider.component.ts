@@ -185,8 +185,8 @@ export class SliderComponent implements OnInit {
     this.year2 = String(afterDate.getFullYear());
     this.month2 = afterDate.getMonth();
   }
-  guestEvent(val){
-    this.dateModel.guest = parseInt(val);
+  guestEvent(){
+    this.dateModel.guest = this.guest.value;
   }
   getProperty() {
     this.apiService.getPropertyDetailsByPropertyId(PROPERTY_ID).subscribe(response => {

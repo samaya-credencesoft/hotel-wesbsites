@@ -55,7 +55,8 @@
             <div class="det">
               <div class="handle-counter" id="handleCounter">
                 <ul>
-                  <li class="input-fieldd"><input type="text" [formControl]="guest" name="guest" value="1" data-num="1" (ngModelChange)="guestEvent(guest.value)"></li>
+                  <li class="input-fieldd">
+                    <input type="number"   name="guest" #guest value="1" min="1"  ></li>
                   <li class="counter-control">
                     <button class="counter-plus btn"><i class="fa fa-angle-up"></i></button>
                     <button class="counter-minus btn" disabled=""><i class="fa fa-angle-down"></i></button>
