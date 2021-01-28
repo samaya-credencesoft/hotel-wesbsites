@@ -82,7 +82,7 @@ export class PaymentComponent implements OnInit {
     { value: '2029', viewValue: '2029' },
     { value: '2030', viewValue: '2030' }
   ];
-  currencies: Currency[] = [{ value: 'nzd', viewValue: 'NZD' }];
+  currencies: Currency[] = [{ value: 'INR', viewValue: 'INR' }];
   months: Month[] = [
     { value: '01', viewValue: '01' },
     { value: '02', viewValue: '02' },

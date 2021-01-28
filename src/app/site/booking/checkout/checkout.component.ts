@@ -65,7 +65,7 @@ export class CheckoutComponent implements OnInit {
     { value: 'DemandDraft', viewValue: 'DemandDraft' },
   ];
   currencies: Currency[] = [
-    { value: 'NZD', viewValue: 'NZD' },
+    { value: 'INR', viewValue: 'INR' },
     { value: 'AUD', viewValue: 'AUD' },
     { value: 'GBP', viewValue: 'GBP' },
     { value: 'USD', viewValue: 'USD' },
@@ -324,7 +324,7 @@ export class CheckoutComponent implements OnInit {
       this.loader = true;
       this.payment.amount = this.booking.payableAmount;
       this.payment.paymentMode = this.booking.modeOfPayment;
-      this.payment.currency = 'NZD';
+      this.payment.currency = 'INR';
       this.payment.email = this.booking.email;
       this.payment.businessEmail = this.booking.businessEmail;
       this.payment.description = `Accomodation for  ${this.booking.firstName}  at  ${this.propertyName}`;
@@ -346,7 +346,7 @@ export class CheckoutComponent implements OnInit {
           const token = response.id;
           this.payment.token = token;
           this.payment.amount = this.booking.payableAmount;
-          this.payment.currency = 'NZD';
+          this.payment.currency = 'INR';
           this.payment.email = this.booking.email;
           this.payment.businessEmail = this.booking.businessEmail;
           this.payment.paymentMode = this.booking.modeOfPayment;
@@ -467,7 +467,7 @@ export class CheckoutComponent implements OnInit {
     let msg = new Msg();
     msg.fromNumber = SMS_NUMBER;
     msg.toNumber = this.booking.mobile;
-    msg.message = `Dear ${this.booking.firstName},Rsvn#:${this.booking.id},${this.booking.roomName},Chk-In:${this.booking.fromDate},Chk-Out:${this.booking.toDate},Amt:${this.booking.payableAmount}NZD.Thx.${this.booking.businessName},${this.booking.mobile}`;
+    msg.message = `Dear ${this.booking.firstName},Rsvn#:${this.booking.id},${this.booking.roomName},Chk-In:${this.booking.fromDate},Chk-Out:${this.booking.toDate},Amt:${this.booking.payableAmount}INR.Thx.${this.booking.businessName},${this.booking.mobile}`;
 
     this.apiService.sendTextMessage(msg).subscribe(
       (response1) => {
