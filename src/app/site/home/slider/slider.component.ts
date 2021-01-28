@@ -44,15 +44,15 @@ export class SliderComponent implements OnInit {
   galleryImage = [
     {
       title: '1',
-      image: 'assets/images/slides/slide1.jpg',
+      image: 'assets/images/slides/hero-1.jpg',
     },
     {
       title: '2',
-      image: 'assets/images/slides/slide2.jpg',
+      image: 'assets/images/slides/hero-2.jpg',
     },
     {
       title: '3',
-      image: 'assets/images/slides/slide3.jpg',
+      image: 'assets/images/slides/hero-3.jpg',
     },
 
   ];
