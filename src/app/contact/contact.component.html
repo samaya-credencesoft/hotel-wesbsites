@@ -7,30 +7,34 @@
             <h3>CONTACT INFO</h3>
             <ul>
               <li>
-                <img src="assets/images/cs1.png" alt="">
+                <img src="assets/images/cs1.png" alt="" />
                 <div class="cs_info">
-                  <span *ngIf="property.address">Address: {{ property.address.streetNumber }}
+                  <span *ngIf="property.address"
+                    >Address: {{ property.address.streetNumber }}
                     {{ property.address.streetName }},
                     {{ property.address.suburb }}, {{ property.address.city }},
-                    {{ property.address.postcode }}</span>
+                    {{ property.address.postcode }}</span
+                  >
                 </div>
               </li>
               <li>
-                <img src="assets/images/cs2.png" alt="">
+                <img src="assets/images/cs2.png" alt="" />
                 <div class="cs_info">
                   <span>Call Us : {{ property.mobile }}</span>
                 </div>
               </li>
               <li>
-                <img src="assets/images/cs3.png" alt="">
+                <img src="assets/images/cs3.png" alt="" />
                 <div class="cs_info">
                   <span>Landphone : {{ property.landphone }}</span>
                 </div>
               </li>
               <li>
-                <img src="assets/images/cs4.png" alt="">
+                <img src="assets/images/cs4.png" alt="" />
                 <div class="cs_info">
-                  <a href="mailto:{{ property.email }}" title="">Email : {{ property.email }}</a>
+                  <a href="mailto:{{ property.email }}" title=""
+                    >Email : {{ property.email }}</a
+                  >
                 </div>
               </li>
             </ul>
@@ -38,13 +42,23 @@
           <!--contact_info end-->
         </div>
         <div class="col-lg-6">
-          <div class="cel-feature full-w-h">
+          <!-- <div class="cel-feature full-w-h">
             <agm-map [latitude]="lat" [longitude]="lng">
               <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
             </agm-map>
-          </div>
-          <!-- <div id="map"></div> -->
 
+          </div>  -->
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3740.680719127181!2d85.81408101451049!3d20.354804486367314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a190922e5b4838f%3A0xed6b418e6b502bb6!2sOYO%2066350%20Hotel%20Space%20Setter!5e0!3m2!1sen!2sbd!4v1611838004365!5m2!1sen!2sbd"
+            width="100%"
+            height="100%"
+            frameborder="0"
+            style="border: 0"
+            allowfullscreen=""
+            aria-hidden="false"
+            tabindex="0"
+          ></iframe>
+          <!-- <div id="map"></div> -->
         </div>
       </div>
     </div>
@@ -60,34 +74,64 @@
       <p>If You Have Any Query , Don't Hesitate to Contact With Us</p>
     </div>
     <!--sec-title end-->
-    <div *ngIf="success" class="alert alert-success alert-dismissible fade show" role="alert"
-      [@animate]="{value:'*',params:{y:'-120px',opacity:'0',delay:'100ms', duration: '400ms'}}">
-      <button type="button" class="close" (click)="success=false">
+    <div
+      *ngIf="success"
+      class="alert alert-success alert-dismissible fade show"
+      role="alert"
+      [@animate]="{
+        value: '*',
+        params: { y: '-120px', opacity: '0', delay: '100ms', duration: '400ms' }
+      }"
+    >
+      <button type="button" class="close" (click)="success = false">
         <span aria-hidden="true">&times;</span>
       </button>
       <strong>Your Message Sent succefully</strong>
     </div>
 
     <div class="post-comment">
-      <form #contactForm=ngForm (ngSubmit)="submitForm(contactForm)" role="form">
+      <form
+        #contactForm="ngForm"
+        (ngSubmit)="submitForm(contactForm)"
+        role="form"
+      >
         <div class="row">
           <div class="col-lg-6 col-md-6 col-sm-6">
             <div class="form-field">
               <label>Full Name*</label>
-              <input type="text" name="name" [(ngModel)]="name" placeholder="Full Name">
+              <input
+                type="text"
+                name="name"
+                [(ngModel)]="name"
+                placeholder="Full Name"
+              />
             </div>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6">
             <div class="form-field">
               <label>Your Email*</label>
-              <input type="email" required name='email' email ngModel class="form-control" placeholder="Email">
+              <input
+                type="email"
+                required
+                name="email"
+                email
+                ngModel
+                class="form-control"
+                placeholder="Email"
+              />
             </div>
           </div>
           <div class="col-lg-12">
             <div class="form-field">
               <label>Subject*</label>
-              <input type="text" name="subject" [formControl]="subject" [(ngModel)]="subjects" required
-                placeholder="Subject">
+              <input
+                type="text"
+                name="subject"
+                [formControl]="subject"
+                [(ngModel)]="subjects"
+                required
+                placeholder="Subject"
+              />
             </div>
           </div>
           <div class="col-lg-12">
@@ -98,8 +142,13 @@
           </div>
           <div class="col-lg-12">
             <div class="form-submit">
-              <button type="submit" [disabled]='!contactForm.valid' class="lnk-default">Send Message <i
-                  class="la la-arrow-right"></i></button>
+              <button
+                type="submit"
+                [disabled]="!contactForm.valid"
+                class="lnk-default"
+              >
+                Send Message <i class="la la-arrow-right"></i>
+              </button>
             </div>
           </div>
         </div>

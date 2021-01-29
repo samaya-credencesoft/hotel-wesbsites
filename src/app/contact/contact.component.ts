@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { Component, OnInit, Input } from '@angular/core';
 import { Property } from '../property/property';
 import { ApiService, PROPERTY_ID } from '../api.service';
@@ -85,7 +86,7 @@ export class ContactComponent implements OnInit {
     // const TO_EMAIL = 'abir.sayeed@gmail.com';
     const TO_EMAIL = this.property.email;
 
-    const API_URL = 'https://api.bookonepms.com:8443/api-bookone/';
+    const API_URL = environment.apiUrl;
     // const API_URL = 'http://localhost:8080';
 
     this.email.fromEmail = form.value.email;
@@ -100,7 +101,7 @@ export class ContactComponent implements OnInit {
     this.email.subject = '' + this.subjects ;
     console.log('form data ' + JSON.stringify(this.email));
     //  this.success = true;
-    this.http.post<Email>(API_URL + 'api/website/sendEmailFromWebSite', this.email ).
+    this.http.post<Email>(API_URL + '/api/website/sendEmailFromWebSite', this.email ).
    subscribe(response => {
     this.success = response;
     console.log(response);
