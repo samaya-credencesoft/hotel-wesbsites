@@ -2,9 +2,21 @@
   <div class="container-fluid">
     <div class="ttop_header">
       <ul class="social-links">
-        <li *ngIf="property.facebook"><a href="{{property.facebook}}" title=""><i class="fa fa-facebook"></i></a></li>
-        <li *ngIf="property.twitter"><a href="{{property.twitter}}" title=""><i class="fa fa-twitter"></i></a></li>
-        <li *ngIf="property.instagram"><a href="{{property.instagram}}" title=""><i class="fa fa-instagram"></i></a></li>
+        <li *ngIf="property.facebook">
+          <a href="https://fb.com/{{ property.facebook }}" title=""
+            ><i class="fa fa-facebook"></i
+          ></a>
+        </li>
+        <li *ngIf="property.twitter">
+          <a href="https://twitter.com/{{ property.twitter }}" title=""
+            ><i class="fa fa-twitter"></i
+          ></a>
+        </li>
+        <li *ngIf="property.instagram">
+          <a href="https://instagram.com/{{ property.instagram }}" title=""
+            ><i class="fa fa-instagram"></i
+          ></a>
+        </li>
         <!-- <li><a routerLink="#" title=""><i class="fa fa-pinterest-square"></i></a></li>
         <li><a routerLink="#" title=""><i class="fa fa-dribbble"></i></a></li>
         <li><a routerLink="#" title=""><i class="fa fa-google"></i></a></li> -->
@@ -14,28 +26,48 @@
         <h4>{{ property.mobile }}</h4>
       </div>
       <ul class="cont-list">
-        <li *ngIf="weatherData !== '' ">{{property.address.city}} <img src="assets/images/icon9.png" alt="">{{weatherData.weather[0].main}}, {{weatherData.main.temp}} °C / feels like {{weatherData.main.feels_like}} °C</li>
+        <li *ngIf="weatherData !== ''">
+          {{ property.address.city }}
+          <img src="assets/images/icon9.png" alt="" />{{
+            weatherData.weather[0].main
+          }}, {{ weatherData.main.temp }} °C / feels like
+          {{ weatherData.main.feels_like }} °C
+        </li>
       </ul>
       <div class="clearfix"></div>
     </div>
     <!--top_header end-->
     <div class="bbtm-header">
+      <div class="ft-logo">
+        <a routerLink="/" title="">
+          <img src="assets/images/logo.jpg" alt="" />
+          <!-- <div class="ft-text" >
+            <h2  *ngIf="property.name">{{ property.name }}</h2>
+          <h3  *ngIf="property.slogan">{{ property.slogan }}</h3>
+          </div> -->
+        </a>
+      </div>
       <nav>
         <ul>
-          <li><a routerLink="/" title="">Home</a>
-
-          </li>
-          <li><a routerLink="/rooms" title="">Rooms</a>
-            <ul  >
-              <li *ngFor ="let room of rooms;"><a routerLink="/rooms/details/{{ room.id}}" title="{{ room.name}}">{{ room.name}}</a></li>
+          <li><a routerLink="/" title="">Home</a></li>
+          <li>
+            <a routerLink="/rooms" title="">Rooms</a>
+            <ul>
+              <li *ngFor="let room of rooms">
+                <a
+                  routerLink="/rooms/details/{{ room.id }}"
+                  title="{{ room.name }}"
+                  >{{ room.name }}</a
+                >
+              </li>
             </ul>
           </li>
           <li><a routerLink="/about" title="">About Us</a></li>
-           <li><a routerLink="/policy" title="">Terms & Conditions</a></li>
-          <li><a routerLink="/contact" title="">Contact</a>
-          </li>
+          <li><a routerLink="/policy" title="">Terms & Conditions</a></li>
+          <li><a routerLink="/contact" title="">Contact</a></li>
         </ul>
-      </nav><!--Navigations end-->
+      </nav>
+      <!--Navigations end-->
       <div class="menu-bar">
         <a href="#" title="">
           <span class="bar1"></span>
@@ -43,20 +75,12 @@
           <span class="bar3"></span>
         </a>
       </div>
-      <div class="ft-logo">
-        <a routerLink="/" title="">
-          <img src="assets/images/logo.jpg" alt="">
-          <!-- <div class="ft-text" >
-            <h2  *ngIf="property.name">{{ property.name }}</h2>
-          <h3  *ngIf="property.slogan">{{ property.slogan }}</h3>
-          </div> -->
-        </a>
-      </div><!--ft-logo end-->
+      <!--ft-logo end-->
       <!-- <ul class="src-book"> -->
-        <!-- <li class="searc_h">
+      <!-- <li class="searc_h">
           <a href="#" title="" class="search-btn"><img src="assets/images/icon11.png" alt=""></a>
         </li> -->
-        <!-- <li class="lang_slct">
+      <!-- <li class="lang_slct">
           <div class="lang-slct">
             <div class="custom-select hvrr">
               <select>
@@ -70,28 +94,32 @@
       <!-- </ul> -->
       <!--src-book end-->
       <div class="clearfix"></div>
-    </div><!--bbtm-header end-->
+    </div>
+    <!--bbtm-header end-->
   </div>
-</header><!--HEADER END-->
+</header>
+<!--HEADER END-->
 
 <div class="responsive_mobile_menu">
   <div class="resp_head">
     <div class="ft-logo">
       <a href="index.html" title="{{ property.name }}">
-        <img src="assets/images/logo.jpg" alt="">
+        <img src="assets/images/logo.jpg" alt="" />
         <div class="ft-text">
           <h2>{{ property.name }}</h2>
           <h3>{{ property.slogan }}</h3>
         </div>
       </a>
-    </div><!--ft-logo end-->
+    </div>
+    <!--ft-logo end-->
     <div class="menu-bar">
       <a href="#" title="">
         <span class="bar1"></span>
         <span class="bar2"></span>
         <span class="bar3"></span>
       </a>
-    </div><!--menu-bar end-->
+    </div>
+    <!--menu-bar end-->
     <div class="clearfix"></div>
   </div>
   <div class="ct_head">
@@ -104,30 +132,40 @@
             <option value="2">EN</option>
         </select>
       </div> -->
-    </div><!--lang-select end-->
-  </div><!--ct_head end-->
+    </div>
+    <!--lang-select end-->
+  </div>
+  <!--ct_head end-->
   <div class="navigations">
     <ul>
-      <li><a class="active" routerLink="/" title="">Home</a>
-      </li>
-      <li><a routerLink="/rooms" title="">Rooms</a>
-        <ul  >
-          <li *ngFor ="let room of rooms;"><a routerLink="/rooms/details/{{ room.id}}" title="{{ room.name}}">{{ room.name}}</a></li>
+      <li><a class="active" routerLink="/" title="">Home</a></li>
+      <li>
+        <a routerLink="/rooms" title="">Rooms</a>
+        <ul>
+          <li *ngFor="let room of rooms">
+            <a
+              routerLink="/rooms/details/{{ room.id }}"
+              title="{{ room.name }}"
+              >{{ room.name }}</a
+            >
+          </li>
         </ul>
       </li>
       <li><a routerLink="/about" title="">About Us</a></li>
       <li><a routerLink="/policy" title="">Terms & Conditions</a></li>
-      <li><a routerLink="/contact" title="">Contact</a>
-
-      </li>
+      <li><a routerLink="/contact" title="">Contact</a></li>
     </ul>
-  </div><!--navigations end-->
+  </div>
+  <!--navigations end-->
   <ul class="mbl_contact_info">
-    <li>{{ property.address.streetNumber }}
-      {{ property.address.streetName }},
+    <li>
+      {{ property.address.streetNumber }} {{ property.address.streetName }},
       {{ property.address.suburb }}, {{ property.address.city }},
-      {{ property.address.postcode }}</li>
+      {{ property.address.postcode }}
+    </li>
     <li><a href="/contact" title="Contact">Map</a></li>
     <li>{{ property.email }}</li>
-  </ul><!--mbl_contact_info end-->
-</div><!--responsive_mobile_menu end-->
+  </ul>
+  <!--mbl_contact_info end-->
+</div>
+<!--responsive_mobile_menu end-->

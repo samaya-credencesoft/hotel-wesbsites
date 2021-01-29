@@ -27,7 +27,6 @@ import { AgmCoreModule } from '@agm/core';
 import { SharedModule } from './shared/shared.module';
 import { RouterModule, Routes } from '@angular/router';
 import { SiteModule } from './site/site.module';
-import { LayoutModule } from './shared/layout/layout.module';
 import { FooterComponent } from './shared/layout/footer/footer.component';
 import { HeaderComponent } from './shared/layout/header/header.component';
 import { SidebarComponent } from './shared/layout/sidebar/sidebar.component';
@@ -65,7 +64,6 @@ const routes: Routes = [
   entryComponents: [BookingComponent],
   imports: [
     SharedModule,
-    LayoutModule,
     SiteModule,
     BrowserModule,
     AppRoutingModule,
