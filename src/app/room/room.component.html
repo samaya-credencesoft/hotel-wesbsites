@@ -22,14 +22,14 @@
           <p>
             <a style="color:rgb(255, 0, 0);">* </a
             ><b
-              >Standard Price (Person/Night): {{ room.roomOnlyPrice }} INR</b
+              >Standard Price (Person/Night): {{ room.roomOnlyPrice | currency: token.getProperty().localCurrency.toUpperCase() }} </b
             >
           </p>
           <p>
             <a style="color:rgb(255, 0, 0);">* </a
             ><b
               >Extra Charge (Person/Night):
-              {{ room.extraChargePerPerson }} INR</b
+              {{ room.extraChargePerPerson | currency: token.getProperty().localCurrency.toUpperCase() }}</b
             >
           </p>
           <p>

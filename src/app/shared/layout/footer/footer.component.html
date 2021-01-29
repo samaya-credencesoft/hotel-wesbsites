@@ -2,9 +2,9 @@
   <div class="top-footer">
     <div class="container">
       <div class="ft-logo">
-        <img src="assets/images/ft-logo.png" alt="">
+        <img src="assets/images/logo.jpg" alt="">
         <div class="ft-text">
-          <h2>Hotel Space Setter</h2>
+          <h2>{{token.getProperty().name}}</h2>
           <h3>Go happy. Go Bhubaneswar & Go Hotel Space Setter. Stay there.</h3>
         </div>
       </div><!--ft-logo end-->
@@ -14,7 +14,7 @@
             <div class="widget widget_support">
               <h4>24 HOURS A DAY</h4>
               <h3>Phone Support</h3>
-              <span>+917326084820</span>
+              <span>+{{token.getProperty().landphone}}</span>
             </div><!--widget_support end-->
           </div>
           <div class="col-lg-4 col-md-6">
@@ -22,7 +22,7 @@
               <h4>SOCIAL MEDIA CHANNELS</h4>
               <h3>Connect With Us</h3>
               <ul class="social_links">
-                <li><a href="https://fb.com/hotelspacesetter" title=""><i class="fa fa-facebook"></i></a></li>
+                <li><a href="{{token.getProperty().facebook}}" title=""><i class="fa fa-facebook"></i></a></li>
                 <!-- <li><a href="#" title=""><i class="fa fa-twitter"></i></a></li>
                 <li><a href="#" title=""><i class="fa fa-pinterest"></i></a></li>
                 <li><a href="#" title=""><i class="fa fa-linkedin"></i></a></li>
@@ -47,7 +47,7 @@
   </div><!--top-header end-->
   <div class="bottom_footer">
     <div class="container-fluid">
-      <p>© 2021 Hotel Space Setter. All Rights Reserved. Design & Developed by CredenceSoft. Powered by BookOne</p>
+      <p>© 2021 {{token.getProperty().name}}. All Rights Reserved. Design & Developed by CredenceSoft. Powered by BookOne</p>
       <!-- <ul class="partn-list">
         <li><a href="#" title=""><img src="https://via.placeholder.com/85x41" alt=""></a></li>
         <li><a href="#" title=""><img src="https://via.placeholder.com/43x53" alt=""></a></li>

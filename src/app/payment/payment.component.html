@@ -236,10 +236,10 @@
                               "
                               >Invalid Card Number!</mat-error
                             >
-                            <mat-error *ngIf="cardNumberFormControl.minlength"
+                            <mat-error *ngIf="cardNumberFormControl.errors.minlength"
                               >Card Number must be 16 digits !</mat-error
                             >
-                            <mat-error *ngIf="cardNumberFormControl.maxlength"
+                            <mat-error *ngIf="cardNumberFormControl.errors.maxlength"
                               >Card Number must be 16 digits !</mat-error
                             >
                           </mat-form-field>
@@ -337,8 +337,8 @@
                             >
                             <mat-error
                               *ngIf="
-                                cvvFormControl.minlength ||
-                                cvvFormControl.maxlength
+                                cvvFormControl.errors.minlength ||
+                                cvvFormControl.errors.maxlength
                               "
                               >CVV must be of 3 digits !</mat-error
                             >

@@ -1,3 +1,4 @@
+import { TokenStorage } from 'src/app/token.storage';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { ApiService, PROPERTY_ID } from 'src/app/api.service';
@@ -66,7 +67,9 @@ export class DetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private apiService: ApiService) {
+    private apiService: ApiService,
+    public token: TokenStorage
+    ) {
 
 
     this.room = new Room();

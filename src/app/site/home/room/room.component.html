@@ -15,7 +15,7 @@
                     <img *ngIf="room.imageList?.length" src="{{ room.imageList[0].url}}" alt="">
                   </div>
                 </div>
-                <span class="price-tag">{{ room.roomOnlyPrice}} / <b>night</b></span>
+                <span class="price-tag">{{ room.roomOnlyPrice | currency: token.getProperty().localCurrency.toUpperCase() }} / <b>night</b></span>
               </div>
               <div class="room_info">
                 <h3><a routerLink="/rooms/details/{{room.id}}" title="">{{ room.name}}</a></h3>

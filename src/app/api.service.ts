@@ -64,4 +64,7 @@ export class ApiService {
   getGoogleReviews() {
   return this.http.get<GuestReview[]>(API_URL + '/getGoogleReviews?PropertyId=' + PROPERTY_ID ,  { observe: 'response' });
 }
+getWeather(city) {
+  return this.http.get<any>('https://api.openweathermap.org/data/2.5/weather?id='+city+'&appid=e7cd0a5bb0b7f7da10995c75d8e6a6d5&units=metric' ,  { observe: 'response' });
+}
 }

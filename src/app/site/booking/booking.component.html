@@ -37,7 +37,7 @@
                                   <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
                                 </span>
                               </div>
-                              <input type="text" name="dateIn" class="date-pick">
+                              <input type="text" name="dateIn" [(ngModel)]="fromDate" class="date-pick">
                               <div class="clearfix"></div>
                             </div><!--check-form end-->
                           </li>
@@ -51,7 +51,7 @@
                                   <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
                                 </span>
                               </div>
-                              <input type="text" name="dateOut" class="date-pick">
+                              <input type="text" name="dateOut" [(ngModel)]="toDate" class="date-pick">
                               <div class="clearfix"></div>
                             </div><!--check-form end-->
                           </li>
@@ -75,7 +75,7 @@
                             <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
                           </li>
                           <li class="check-avail">
-                            <a (click)="getRoomByDate()" title="" class="check-status">CHECK AVAILABILITY</a>
+                            <a (click)="getRoomByDate(fromDate,toDate)" title="" class="check-status">CHECK AVAILABILITY</a>
                           </li>
                         </ul>
                         <div class="clearfix"></div>
@@ -389,7 +389,7 @@
                             <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
                           </li>
                           <li class="check-avail">
-                            <a (click)="getRoomByDate()" title="" class="check-status">CHECK AVAILABILITY</a>
+                            <a (click)="getRoomByDate(fromDate, toDate)" title="" class="check-status">CHECK AVAILABILITY</a>
                           </li>
                         </ul>
                         <div class="clearfix"></div>
@@ -585,7 +585,7 @@
                             <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
                           </li>
                           <li class="check-avail">
-                            <a (click)="getRoomByDate()" title="" class="check-status">CHECK AVAILABILITY</a>
+                            <a (click)="getRoomByDate(fromDate, toDate)" title="" class="check-status">CHECK AVAILABILITY</a>
                           </li>
                         </ul>
                         <div class="clearfix"></div>
@@ -887,7 +887,7 @@
                             <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
                           </li>
                           <li class="check-avail">
-                            <a (click)="getRoomByDate()" title="" class="check-status">CHECK AVAILABILITY</a>
+                            <a (click)="getRoomByDate(fromDate, toDate)" title="" class="check-status">CHECK AVAILABILITY</a>
                           </li>
                         </ul>
                         <div class="clearfix"></div>

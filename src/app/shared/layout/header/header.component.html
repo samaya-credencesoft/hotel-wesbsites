@@ -1,23 +1,23 @@
 <header class="pb hp_5 static">
   <div class="container-fluid">
-    <!-- <div class="ttop_header"> -->
-      <!-- <ul class="social-links">
-        <li><a href="https://www.facebook.com/Mangal-Niketan-103391477915570/" title=""><i class="fa fa-facebook"></i></a></li>
-        <li><a routerLink="#" title=""><i class="fa fa-twitter"></i></a></li>
-        <li><a routerLink="#" title=""><i class="fa fa-instagram"></i></a></li>
-        <li><a routerLink="#" title=""><i class="fa fa-pinterest-square"></i></a></li>
+    <div class="ttop_header">
+      <ul class="social-links">
+        <li *ngIf="property.facebook"><a href="{{property.facebook}}" title=""><i class="fa fa-facebook"></i></a></li>
+        <li *ngIf="property.twitter"><a href="{{property.twitter}}" title=""><i class="fa fa-twitter"></i></a></li>
+        <li *ngIf="property.instagram"><a href="{{property.instagram}}" title=""><i class="fa fa-instagram"></i></a></li>
+        <!-- <li><a routerLink="#" title=""><i class="fa fa-pinterest-square"></i></a></li>
         <li><a routerLink="#" title=""><i class="fa fa-dribbble"></i></a></li>
-        <li><a routerLink="#" title=""><i class="fa fa-google"></i></a></li>
-      </ul> -->
+        <li><a routerLink="#" title=""><i class="fa fa-google"></i></a></li> -->
+      </ul>
       <!--social-links end-->
-      <!-- <div class="cont-lit">
+      <div class="cont-lit">
         <h4>{{ property.mobile }}</h4>
-      </div> -->
-      <!-- <ul class="cont-list"> -->
-        <!-- <div <li><img src="assets/images/icon9.png" alt="">A few clouds, 22 °C / 71 °F</li> -->
-      <!-- </ul>
+      </div>
+      <ul class="cont-list">
+        <li *ngIf="weatherData !== '' ">{{property.address.city}} <img src="assets/images/icon9.png" alt="">{{weatherData.weather[0].main}}, {{weatherData.main.temp}} °C / feels like {{weatherData.main.feels_like}} °C</li>
+      </ul>
       <div class="clearfix"></div>
-    </div> -->
+    </div>
     <!--top_header end-->
     <div class="bbtm-header">
       <nav>
@@ -27,7 +27,7 @@
           </li>
           <li><a routerLink="/rooms" title="">Rooms</a>
             <ul  >
-              <li *ngFor ="let room of rooms;"><a routerLink="/rooms/details/{{ room.id}}" title="">{{ room.name}}</a></li>
+              <li *ngFor ="let room of rooms;"><a routerLink="/rooms/details/{{ room.id}}" title="{{ room.name}}">{{ room.name}}</a></li>
             </ul>
           </li>
           <li><a routerLink="/about" title="">About Us</a></li>
@@ -52,7 +52,7 @@
           </div> -->
         </a>
       </div><!--ft-logo end-->
-      <ul class="src-book">
+      <!-- <ul class="src-book"> -->
         <!-- <li class="searc_h">
           <a href="#" title="" class="search-btn"><img src="assets/images/icon11.png" alt=""></a>
         </li> -->
@@ -67,7 +67,7 @@
             </div>
           </div>
         </li> -->
-      </ul>
+      <!-- </ul> -->
       <!--src-book end-->
       <div class="clearfix"></div>
     </div><!--bbtm-header end-->
@@ -78,7 +78,7 @@
   <div class="resp_head">
     <div class="ft-logo">
       <a href="index.html" title="{{ property.name }}">
-        <img src="assets/images/ft-logo.png" alt="">
+        <img src="assets/images/logo.jpg" alt="">
         <div class="ft-text">
           <h2>{{ property.name }}</h2>
           <h3>{{ property.slogan }}</h3>
@@ -108,11 +108,11 @@
   </div><!--ct_head end-->
   <div class="navigations">
     <ul>
-      <li><a class="active" href="index.html" title="">Home</a>
+      <li><a class="active" routerLink="/" title="">Home</a>
       </li>
       <li><a routerLink="/rooms" title="">Rooms</a>
         <ul  >
-          <li *ngFor ="let room of rooms;"><a routerLink="/rooms/details/{{ room.id}}" title="">{{ room.name}}</a></li>
+          <li *ngFor ="let room of rooms;"><a routerLink="/rooms/details/{{ room.id}}" title="{{ room.name}}">{{ room.name}}</a></li>
         </ul>
       </li>
       <li><a routerLink="/about" title="">About Us</a></li>

@@ -1,3 +1,4 @@
+import { TokenStorage } from 'src/app/token.storage';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Room } from './room';
 import { Property } from './../property/property';
@@ -14,7 +15,7 @@ export class RoomComponent implements OnInit {
   @Output() checkAvailabilityEmit = new EventEmitter<boolean>();
   @Output() roomSelectionEmit = new EventEmitter<Room>();
   constructor(
-
+public token: TokenStorage
   ) { }
   ngOnInit() { }
   checkAvailability() {

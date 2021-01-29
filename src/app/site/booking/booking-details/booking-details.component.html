@@ -31,8 +31,8 @@
 
                   <div class="row">
                     <ul class="col-sm-6">
-                      <li><b>Check-In Date</b><br> {{ dateService.convertMillisecondsToDateFormat(booking.fromDate) }}</li>
-                      <li><b>Check-Out Date</b> <br> {{ dateService.convertMillisecondsToDateFormat(booking.toDate) }}</li>
+                      <li><b>Check-In Date</b><br> {{ dateService.convertMillisecondsToDateFormat(booking.fromDate) | date:'EEE, MMM d, y' }}</li>
+                      <li><b>Check-Out Date</b> <br> {{ dateService.convertMillisecondsToDateFormat(booking.toDate) | date:'EEE, MMM d, y' }}</li>
                       <li><b>First Name</b> <br> {{ booking.firstName }}</li>
                       <li><b>Last Name</b>  <br> {{ booking.lastName }}</li>
                       <li><b>Contact Number</b> <br> {{ booking.mobile }}</li>

@@ -80,7 +80,7 @@
 	.room-feats-list ul li:last-child {margin-right: 0;}
 	.room-feats-list {width: 420px;}
 	.room-feats-list ul li > h4 {font-size: 15px;}
-	.top-footer .ft-logo {width: 250px;}
+	.top-footer .ft-logo {max-width: 500px;}
 	.widget-newsletter > form {position: relative;}
 	.widget-newsletter > form button {position: absolute;top: 0;right: 0;}
 	.widget-newsletter > form input {width: 100%;}
@@ -582,7 +582,7 @@
 	.more_information_sec table tr td span {font-size: 15px;}
 	.more_information_sec table tr td h4 {font-size: 15px;}
 	.md-info > h3 {font-size: 15px;}
-	.abt_img.vv2 {padding-left: 0;} 
+	.abt_img.vv2 {padding-left: 0;}
 	.lyr3 {font-size: 10px !important;margin-top: 25px !important;}
 	.lyr1 {font-size: 15px !important;margin-bottom: 15px !important;}
 	.lyrp {margin-top: 10px !important;}
@@ -621,7 +621,7 @@
 	.meta li {padding: 0 10px 4px;}
 	.cm-info {display: inline-block;padding-left: 0;padding-top: 20px;}
 	.comments-list li > ul {padding-left: 25px;}
-	.blogs-page .blog_post .blog_item {width: 100%;padding-left: 0;} 
+	.blogs-page .blog_post .blog_item {width: 100%;padding-left: 0;}
 	.blog_lft {width: 100%;}
 	.svx-list li {width: 100%;}
 	.check-status {padding: 0 15px;}
@@ -683,7 +683,7 @@
 	.hp10 .menu-bar {padding-right: 15px;}
 	.hp10 .cont-wt {width: auto;}
 	.hp10 .cont-lit {display: none;}
-	header.hp_5 .ttop_header .social-links {width: 100%;margin-top: 10px;}	
+	header.hp_5 .ttop_header .social-links {width: 100%;margin-top: 10px;}
 	.log_list {width: 100%;margin-top: 7px;margin-bottom: 10px;}
 	header.hp_5 .ttop_header {text-align: center;}
 	.avail-sec .checkform {padding: 0 20px;}

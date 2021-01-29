@@ -1423,7 +1423,7 @@ footer {
 }
 .ft-logo {
 	float: left;
-	width: 340px;
+	width: 500px;
 	display: table;
 	padding: 16px 0;
 }
@@ -10276,4 +10276,9 @@ header.novib .lang-chose {
 
 .event.busy {
     background: #f64747;
+}
+.booking-form {
+  background: #ffffff;
+  padding: 30px 20px 30px 20px;
+  border-radius: 4px;
 }

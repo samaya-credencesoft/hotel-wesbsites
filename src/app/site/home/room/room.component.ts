@@ -1,3 +1,4 @@
+import { TokenStorage } from 'src/app/token.storage';
 import { Component, OnInit } from '@angular/core';
 import { Room } from 'src/app/room/room';
 import { ApiService, PROPERTY_ID } from 'src/app/api.service';
@@ -47,7 +48,8 @@ export class RoomComponent implements OnInit {
      ]
   };
   constructor(private apiService: ApiService,
-              private router: Router) {
+              private router: Router,
+              public token: TokenStorage) {
       this.dateModel = new DateModel();
     }
   ngOnInit() {

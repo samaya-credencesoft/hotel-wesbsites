@@ -16,7 +16,7 @@
     <div class="container">
       <div class="room-single-head">
         <h3>{{room.name}}</h3>
-        <span>{{room.roomOnlyPrice}}.00<b>/night</b></span>
+        <span>{{room.roomOnlyPrice | currency: token.getProperty().localCurrency.toUpperCase() }}<b>/night</b></span>
         <div class="clearfix"></div>
       </div>
       <!--room-single-head end-->

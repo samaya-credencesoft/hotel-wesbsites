@@ -11,7 +11,7 @@ import { TokenStorage } from '../../../token.storage';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  weatherData:any = '';
   property: Property;
   rooms: Room[];
   constructor(
@@ -26,11 +26,20 @@ export class HeaderComponent implements OnInit {
         this.property = this.token.getProperty();
       }
       this.getRoom();
+      this.getWeather();
     }
 
   ngOnInit() {
   }
+getWeather(){
+  this.apiService.getWeather('1275817').subscribe(
+    response => {
+        this.weatherData = response.body;
+     console.log('weatherData ' + JSON.stringify(response.body));
 
+      }
+  )
+}
   getRoom()
   {
     this.apiService.getRoomDetailsByPropertyId(PROPERTY_ID).subscribe(response => {

@@ -32,6 +32,8 @@ export class BookingComponent implements OnInit {
 
   monthArray =['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
+   fromDate: string;
+   toDate: string;
   constructor(
     private apiService: ApiService,
     private acRoute: ActivatedRoute,

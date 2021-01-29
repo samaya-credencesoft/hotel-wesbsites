@@ -22,7 +22,7 @@ export class BookingDetailsComponent implements OnInit {
 
     constructor(
       private activatedRoute: ActivatedRoute,
-      private dateService : DateService,
+      public dateService : DateService,
       private apiServices: ApiService) {
 
         this.booking = new Booking();

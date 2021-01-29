@@ -78,7 +78,7 @@ export class NewBookingComponent implements OnInit {
     private apiService: ApiService,
     private router: Router,
     private formBuilder: FormBuilder,
-    private token: TokenStorage,
+    public token: TokenStorage,
     private acRoute: ActivatedRoute
   ) {
     this.dateModel = new DateModel();

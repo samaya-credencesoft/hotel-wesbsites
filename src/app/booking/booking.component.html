@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-12" data-animate-effect="fadeInLeft">
-    <form (ngSubmit)="onSubmit()">
+    <form (ngSubmit)="submit()">
       <mat-progress-bar *ngIf="spinner" mode="indeterminate"></mat-progress-bar>
       <div *ngFor="let msg of msgs" class="text-center">
         <span
