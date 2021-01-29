@@ -36,6 +36,7 @@
               "src/assets/css/flatpickr.min.css",
               "src/assets/css/style.css",
               "src/assets/css/responsive.css",
+              "src/assets/css/flaticon.css",
               "src/assets/css/color.css"
             ],
             "scripts": [
@@ -129,6 +130,7 @@
               "src/assets/js/lib/slick/slick-theme.css",
               "src/assets/css/flatpickr.min.css",
               "src/assets/css/style.css",
+              "src/assets/css/flaticon.css",
               "src/assets/css/responsive.css",
               "src/assets/css/color.css"
             ],
