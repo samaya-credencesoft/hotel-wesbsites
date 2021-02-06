@@ -68,9 +68,6 @@ export class PaymentComponent implements OnInit {
     cardNumber: this.cardNumberFormControl
   });
   years: Year[] = [
-    { value: '2018', viewValue: '2018' },
-    { value: '2019', viewValue: '2019' },
-    { value: '2020', viewValue: '2020' },
     { value: '2021', viewValue: '2021' },
     { value: '2022', viewValue: '2022' },
     { value: '2023', viewValue: '2023' },

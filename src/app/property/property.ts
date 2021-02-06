@@ -1,3 +1,4 @@
+import { Room } from '../room/room';
 import { BankAccount } from '../site/home/model/BankAccount';
 import { BusinessServiceDtoList } from '../site/home/model/businessServiceDtoList';
 import { MobileWallet } from '../site/home/model/mobileWallet';
@@ -5,11 +6,8 @@ import { SubscriptionList } from '../site/home/model/subscriptionList';
 import { Address } from './address';
 
 export class Property {
-
   name: string;
   id: number;
-
-  bankAccount : BankAccount;
   businessDescription: string;
   businessShortDescription: string;
   businessName: string;
@@ -36,6 +34,7 @@ export class Property {
   gstNumber: string;
   imageUrl: string;
   bookOneRating: number;
+  minimumRoooPrice: number;
   imageList: [
     {
       description: string,
@@ -58,6 +57,7 @@ export class Property {
   minimumOccupancy: number;
   mobile: string;
   noOfFloor: number;
+  noOfBookOneReview: number;
   noOfRoomType: number;
   placeId: string;
   paymentGateway: string;
@@ -75,9 +75,11 @@ export class Property {
   subscriptionList: SubscriptionList[];
   website: string;
   whatsApp: string;
-
   businessServiceDtoList: BusinessServiceDtoList[];
+  roomList: Room[];
+  bankAccount : any;
   mobileWallet : MobileWallet;
+
   taxDetails:  [
     {
       country: string,

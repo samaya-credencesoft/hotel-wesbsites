@@ -49,16 +49,20 @@ export class CheckoutComponent implements OnInit {
   isAvailableChecked: boolean = true;
 
   years: Year[] = [
-    { value: '2018', viewValue: '2018' },
-    { value: '2019', viewValue: '2019' },
-    { value: '2020', viewValue: '2020' },
     { value: '2021', viewValue: '2021' },
     { value: '2022', viewValue: '2022' },
     { value: '2023', viewValue: '2023' },
+    { value: '2024', viewValue: '2024' },
+    { value: '2025', viewValue: '2025' },
+    { value: '2026', viewValue: '2026' },
+    { value: '2027', viewValue: '2027' },
+    { value: '2028', viewValue: '2028' },
+    { value: '2029', viewValue: '2029' },
+    { value: '2030', viewValue: '2030' }
   ];
   paymentModes: PaymentMode[] = [
+    { value: 'Cash', viewValue: 'Cash on arrival' },
     { value: 'Card', viewValue: 'Card' },
-    { value: 'Cash', viewValue: 'Cash' },
     { value: 'BankTransfer', viewValue: 'BankTransfer' },
     { value: 'Wallet', viewValue: 'Wallet' },
     { value: 'Cheque', viewValue: 'Cheque' },
@@ -67,9 +71,10 @@ export class CheckoutComponent implements OnInit {
   currencies: Currency[] = [
     { value: 'INR', viewValue: 'INR' },
     { value: 'AUD', viewValue: 'AUD' },
-    { value: 'GBP', viewValue: 'GBP' },
-    { value: 'USD', viewValue: 'USD' },
+    { value: 'BDT', viewValue: 'BDT' },
     { value: 'EUR', viewValue: 'EUR' },
+    { value: 'GBP', viewValue: 'GBP' },
+    { value: 'USD', viewValue: 'USD' }
   ];
   months: Month[] = [
     { value: '01', viewValue: '01' },

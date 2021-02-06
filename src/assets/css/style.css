@@ -10282,3 +10282,31 @@ header.novib .lang-chose {
   padding: 30px 20px 30px 20px;
   border-radius: 4px;
 }
+.policy ul{
+  display: block !important;
+  list-style-type: disc !important;
+  margin-block-start: 1em !important;
+  margin-block-end: 1em !important;
+  margin-inline-start: 0px !important;
+  margin-inline-end: 0px !important;
+  padding-inline-start: 40px !important;
+}
+.policy li {
+  display: list-item !important;
+  text-align: -webkit-match-parent !important;
+}
+.policy h1{
+  font-size: xx-large;
+}
+.policy h2{
+  font-size: x-large;
+}
+.policy h3{
+  font-size: large;
+}
+.policy h4{
+  font-size: medium;
+}
+.policy h5{
+  font-size: small;
+}
