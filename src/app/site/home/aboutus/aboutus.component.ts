@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenStorage } from 'src/app/token.storage';
 
 @Component({
   selector: 'app-aboutus',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutusComponent implements OnInit {
 
-  constructor() { }
+  constructor(public token :TokenStorage) { }
 
   ngOnInit() {
   }
