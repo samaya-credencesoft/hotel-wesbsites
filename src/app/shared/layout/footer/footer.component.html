@@ -118,3 +118,123 @@
 <a href="#" title="" class="scrollTop"><i class="la la-arrow-up"></i></a>
 
 <div class="max-cont"></div>
+
+
+
+<div class="footer_area bnr_ftr_overlay">
+  <div class="holder">
+      <div class="hr">
+          <div class="vc-sd-8 vc-sd-offset-2">
+              <div class="footer_area_top_inner">
+                  <div class="footer_text  align-center">
+                      <h2>HAVE A ROOM ? HAVE A SEAT?</h2>
+                      <p>You can book your room online, and if your room supports it, automatically reserve a seat
+                          for dinner in our 5-star gourme restaurant. So do not wait, book your room now!</p>
+                  </div>
+                  <div class="footer_btn  align-center">
+                      <a href="booking.html" class="common_btn btn_hbreffect2">book now</a>
+                  </div>
+              </div>
+          </div>
+          <div class="vc-sd-11 vc-sd-offset-1 vc-od-10 vc-od-offset-1 vc-ld-8 vc-ld-offset-2">
+              <ul class="footer_contact">
+                  <li>
+                      <div class="footer-phone">
+                          <span><i class="fa fa-mobile"></i></span>
+                          <p>+{{ token.getProperty().landphone }}</p>
+                      </div>
+                  </li>
+                  <li>
+                      <div class="footer-mail">
+                          <span><i class="fa fa-map-marker"></i></span>
+                          <p>{{ token.getProperty().address.streetNumber +', ' }}{{ token.getProperty().address.streetName +', ' }}<br>{{ token.getProperty().address.suburb +', ' }} {{ token.getProperty().address.city +', ' }} {{ token.getProperty().address.state +', ' }} {{ token.getProperty().address.country }}</p>
+                      </div>
+                  </li>
+                  <li>
+                      <div class="footer-info">
+                          <span><i class="fa fa-window-maximize"></i></span>
+                          <p><a href="mailto::{{token.getProperty().email}}"
+                                  >{{ token.getProperty().email }}</a>
+                          </p>
+                      </div>
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </div>
+  <div class="footer_area_bottom">
+      <div class="holder">
+          <div class="hr">
+              <div class="vc-sd-6">
+                  <div class="copyright-right">
+                      <p>COPYRIGHT © 2021 {{ token.getProperty().name }} ALL RIGHT RESERVED. Design &
+                        Developed by <a href="https://credencesoft.co.nz" target="_blank" rel="noopener noreferrer">CredenceSoft</a>. Powered by BookOne</p>
+                  </div>
+              </div>
+              <div class="vc-sd-6">
+                  <div class="footer_area_bottom_inner align-right">
+                      <div class="footer_menu">
+                          <nav>
+                              <ul>
+                                  <li><a href="booking.html">Booking</a></li>
+                                  <li><a href="room2.html">rooms</a></li>
+                                  <li><a href="contact-us.html">contact</a></li>
+                              </ul>
+                          </nav>
+                      </div>
+                      <div class="footer_social_area">
+                          <ul class="contact-links">
+                            <li *ngIf="token.getProperty().facebook">
+                              <a href="https://fb.com/{{ token.getProperty().facebook }}" target="_blank" title="">
+                                <i class="front fa fa-facebook"></i>
+                                <i class="back fa fa-facebook"></i>
+
+                              </a>
+                            </li>
+                            <li *ngIf="token.getProperty().twitter">
+                              <a href="https://twitter.com/{{ token.getProperty().twitter }}" target="_blank" title="">
+                                <i class="front fa fa-twitter"></i>
+                                <i class="back fa fa-twitter"></i>
+
+                              </a>
+                            </li>
+                            <li *ngIf="token.getProperty().instagram">
+                              <a href="https://instagram.com/{{ token.getProperty().instagram }}" target="_blank" title="">
+                                <i class="front fa fa-instagram"></i>
+                                <i class="back fa fa-instagram"></i>
+
+                              </a>
+                            </li>
+                              <!-- <li>
+                                  <a href="#" target="_blank">
+                                      <i class="front fa fa-twitter-square"></i>
+                                      <i class="back fa fa-twitter-square"></i>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="#" target="_blank">
+                                      <i class="front fa fa-google-plus"></i>
+                                      <i class="back fa fa-google-plus"></i>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="#" target="_blank">
+                                      <i class="front fa fa-pinterest-square"></i>
+                                      <i class="back fa fa-pinterest-square"></i>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="#" target="_blank">
+                                      <i class="front fa fa-skype"></i>
+                                      <i class="back fa fa-skype"></i>
+                                  </a>
+                              </li> -->
+                          </ul>
+
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

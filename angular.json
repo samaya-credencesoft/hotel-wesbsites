@@ -23,45 +23,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/assets/css/animate.css",
-              "src/assets/css/bootstrap.min.css",
-              "src/assets/revolution/css/settings.css",
-              "src/assets/revolution/css/navigation.css",
-              "src/assets/css/line-awesome.min.css",
-              "src/assets/css/font-awesome.min.css",
-              "src/assets/js/lib/slick/slick.css",
-              "src/assets/js/lib/slick/slick-theme.css",
-              "src/assets/css/flatpickr.min.css",
-              "src/assets/css/style.css",
-              "src/assets/css/responsive.css",
-              "src/assets/css/flaticon.css",
-              "src/assets/css/color.css"
+
             ],
             "scripts": [
-              "src/assets/js/jquery.min.js",
-              "src/assets/js/popper.js",
-              "src/assets/js/bootstrap.min.js",
-              "src/assets/js/custom-select.js",
-              "src/assets/js/html5lightbox.js",
-              "src/assets/js/lib/slick/slick.js",
-              "src/assets/js/map.js",
-              "src/assets/js/handleCounter.js",
-              "src/assets/js/flatpickr.js",
-              "src/assets/revolution/js/jquery.themepunch.tools.min.js",
-              "src/assets/revolution/js/jquery.themepunch.revolution.min.js",
 
-              "src/assets/revolution/js/revolution.extension.actions.min.js",
-              "src/assets/revolution/js/revolution.extension.carousel.min.js",
-              "src/assets/revolution/js/revolution.extension.kenburn.min.js",
-              "src/assets/revolution/js/revolution.extension.layeranimation.min.js",
-              "src/assets/revolution/js/revolution.extension.migration.min.js",
-              "src/assets/revolution/js/revolution.extension.navigation.min.js",
-              "src/assets/revolution/js/revolution.extension.parallax.min.js",
-              "src/assets/revolution/js/revolution.extension.slideanims.min.js",
-              "src/assets/revolution/js/revolution.extension.video.min.js",
-              "src/assets/revolution/js/revolution.initialize5.js"
 
             ],
             "es5BrowserSupport": true
@@ -118,45 +83,10 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/assets/css/animate.css",
-              "src/assets/css/bootstrap.min.css",
-              "src/assets/revolution/css/settings.css",
-              "src/assets/revolution/css/navigation.css",
-              "src/assets/css/line-awesome.min.css",
-              "src/assets/css/font-awesome.min.css",
-              "src/assets/js/lib/slick/slick.css",
-              "src/assets/js/lib/slick/slick-theme.css",
-              "src/assets/css/flatpickr.min.css",
-              "src/assets/css/style.css",
-              "src/assets/css/flaticon.css",
-              "src/assets/css/responsive.css",
-              "src/assets/css/color.css"
+
             ],
             "scripts": [
-              "src/assets/js/jquery.min.js",
-              "src/assets/js/popper.js",
-              "src/assets/js/bootstrap.min.js",
-              "src/assets/js/custom-select.js",
-              "src/assets/js/html5lightbox.js",
-              "src/assets/js/lib/slick/slick.js",
-              "src/assets/js/map.js",
-              "src/assets/js/handleCounter.js",
-              "src/assets/js/flatpickr.js",
-              "src/assets/revolution/js/jquery.themepunch.tools.min.js",
-              "src/assets/revolution/js/jquery.themepunch.revolution.min.js",
 
-              "src/assets/revolution/js/revolution.extension.actions.min.js",
-              "src/assets/revolution/js/revolution.extension.carousel.min.js",
-              "src/assets/revolution/js/revolution.extension.kenburn.min.js",
-              "src/assets/revolution/js/revolution.extension.layeranimation.min.js",
-              "src/assets/revolution/js/revolution.extension.migration.min.js",
-              "src/assets/revolution/js/revolution.extension.navigation.min.js",
-              "src/assets/revolution/js/revolution.extension.parallax.min.js",
-              "src/assets/revolution/js/revolution.extension.slideanims.min.js",
-              "src/assets/revolution/js/revolution.extension.video.min.js",
-              "src/assets/revolution/js/revolution.initialize5.js"
             ],
             "assets": [
               "src/favicon.ico",

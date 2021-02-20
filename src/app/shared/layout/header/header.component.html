@@ -1,27 +1,20 @@
-<header class="pb hp_5 static">
+<!-- <header class="pb hp_5 static">
   <div class="container-fluid">
     <div class="ttop_header">
       <ul class="social-links">
         <li *ngIf="property.facebook">
-          <a href="https://fb.com/{{ property.facebook }}" target="_blank" title=""
-            ><i class="fa fa-facebook"></i
-          ></a>
+          <a href="https://fb.com/{{ property.facebook }}" target="_blank" title=""><i class="fa fa-facebook"></i></a>
         </li>
         <li *ngIf="property.twitter">
-          <a href="https://twitter.com/{{ property.twitter }}" target="_blank" title=""
-            ><i class="fa fa-twitter"></i
-          ></a>
+          <a href="https://twitter.com/{{ property.twitter }}" target="_blank" title=""><i
+              class="fa fa-twitter"></i></a>
         </li>
         <li *ngIf="property.instagram">
-          <a href="https://instagram.com/{{ property.instagram }}" target="_blank" title=""
-            ><i class="fa fa-instagram"></i
-          ></a>
+          <a href="https://instagram.com/{{ property.instagram }}" target="_blank" title=""><i
+              class="fa fa-instagram"></i></a>
         </li>
-        <!-- <li><a routerLink="#" title=""><i class="fa fa-pinterest-square"></i></a></li>
-        <li><a routerLink="#" title=""><i class="fa fa-dribbble"></i></a></li>
-        <li><a routerLink="#" title=""><i class="fa fa-google"></i></a></li> -->
+
       </ul>
-      <!--social-links end-->
       <div class="cont-lit">
         <h4>{{ property.mobile }}</h4>
       </div>
@@ -36,15 +29,11 @@
       </ul>
       <div class="clearfix"></div>
     </div>
-    <!--top_header end-->
     <div class="bbtm-header">
       <div class="ft-logo">
         <a routerLink="/" title="">
           <img src="assets/images/logo.jpg" alt="" />
-          <!-- <div class="ft-text" >
-            <h2  *ngIf="property.name">{{ property.name }}</h2>
-          <h3  *ngIf="property.slogan">{{ property.slogan }}</h3>
-          </div> -->
+
         </a>
       </div>
       <nav>
@@ -54,11 +43,7 @@
             <a routerLink="/rooms" title="">Rooms</a>
             <ul>
               <li *ngFor="let room of rooms">
-                <a
-                  routerLink="/rooms/details/{{ room.id }}"
-                  title="{{ room.name }}"
-                  >{{ room.name }}</a
-                >
+                <a routerLink="/rooms/details/{{ room.id }}" title="{{ room.name }}">{{ room.name }}</a>
               </li>
             </ul>
           </li>
@@ -67,7 +52,6 @@
           <li><a routerLink="/contact" title="">Contact</a></li>
         </ul>
       </nav>
-      <!--Navigations end-->
       <div class="menu-bar">
         <a href="#" title="">
           <span class="bar1"></span>
@@ -75,30 +59,11 @@
           <span class="bar3"></span>
         </a>
       </div>
-      <!--ft-logo end-->
-      <!-- <ul class="src-book"> -->
-      <!-- <li class="searc_h">
-          <a href="#" title="" class="search-btn"><img src="assets/images/icon11.png" alt=""></a>
-        </li> -->
-      <!-- <li class="lang_slct">
-          <div class="lang-slct">
-            <div class="custom-select hvrr">
-              <select>
-                  <option value="0">En</option>
-                  <option value="1">TR</option>
-                  <option value="2">EN</option>
-              </select>
-            </div>
-          </div>
-        </li> -->
-      <!-- </ul> -->
-      <!--src-book end-->
+
       <div class="clearfix"></div>
     </div>
-    <!--bbtm-header end-->
   </div>
 </header>
-<!--HEADER END-->
 
 <div class="responsive_mobile_menu">
   <div class="resp_head">
@@ -111,7 +76,6 @@
         </div>
       </a>
     </div>
-    <!--ft-logo end-->
     <div class="menu-bar">
       <a href="#" title="">
         <span class="bar1"></span>
@@ -119,23 +83,13 @@
         <span class="bar3"></span>
       </a>
     </div>
-    <!--menu-bar end-->
     <div class="clearfix"></div>
   </div>
   <div class="ct_head">
     <h3>{{ property.mobile }}</h3>
     <div class="lang-slct">
-      <!-- <div class="custom-select">
-        <select>
-            <option value="0">En</option>
-            <option value="1">TR</option>
-            <option value="2">EN</option>
-        </select>
-      </div> -->
     </div>
-    <!--lang-select end-->
   </div>
-  <!--ct_head end-->
   <div class="navigations">
     <ul>
       <li><a class="active" routerLink="/" title="">Home</a></li>
@@ -143,11 +97,7 @@
         <a routerLink="/rooms" title="">Rooms</a>
         <ul>
           <li *ngFor="let room of rooms">
-            <a
-              routerLink="/rooms/details/{{ room.id }}"
-              title="{{ room.name }}"
-              >{{ room.name }}</a
-            >
+            <a routerLink="/rooms/details/{{ room.id }}" title="{{ room.name }}">{{ room.name }}</a>
           </li>
         </ul>
       </li>
@@ -156,7 +106,6 @@
       <li><a routerLink="/contact" title="">Contact</a></li>
     </ul>
   </div>
-  <!--navigations end-->
   <ul class="mbl_contact_info">
     <li>
       {{ property.address.streetNumber }} {{ property.address.streetName }},
@@ -166,6 +115,94 @@
     <li><a href="/contact" title="Contact">Map</a></li>
     <li>{{ property.email }}</li>
   </ul>
-  <!--mbl_contact_info end-->
+</div> -->
+
+
+
+
+<div class="preloader">
+  <div class="loader">
+    <span class="inner-loader">
+      Luxury
+    </span>
+  </div>
 </div>
-<!--responsive_mobile_menu end-->
+
+<header class="navbar-fixed">
+
+  <div class="toolbar-inner-area sticky-navbar" data-sticky-offset="50">
+    <div class="holder">
+      <div class="hr">
+        <div class="vc">
+          <div class="toolbar_contact align-right">
+            <div class="contact_phone">
+
+              <span>{{ property.mobile }}</span>
+            </div>
+            <div class="toolbar_social_area">
+              <ul class="icon_list">
+                <li *ngIf="weatherData !== ''">
+                  {{ property.address.city }}
+                  <img src="assets/images/icon9.png" alt="" />{{
+                    weatherData.weather[0].main
+                  }}, {{ weatherData.main.temp }} °C / feels like
+                  {{ weatherData.main.feels_like }} °C
+                </li>
+              </ul>
+              <ul class="icon_list">
+                <li *ngIf="property.facebook">
+                  <a href="https://fb.com/{{ property.facebook }}" target="_blank" title=""><i
+                      class="fa fa-facebook"></i></a>
+                </li>
+                <li *ngIf="property.twitter">
+                  <a href="https://twitter.com/{{ property.twitter }}" target="_blank" title=""><i
+                      class="fa fa-twitter"></i></a>
+                </li>
+                <li *ngIf="property.instagram">
+                  <a href="https://instagram.com/{{ property.instagram }}" target="_blank" title=""><i
+                      class="fa fa-instagram"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="navbar_inner_area">
+    <nav class="navigation-area overlay sticky-navbar fadeInUp" data-sticky-offset="50">
+      <div class="holder">
+        <div class="menu_toggle">
+          <i class="fa fa-align-left"></i>
+        </div>
+        <a href="index.html" class="brand-logo">
+          <img src="assets/images/logo.png" alt="logo">
+        </a>
+        <div class="navbar-mobile">
+          <ul class="navbar-nav single-item-right">
+
+            <li><a routerLink="/" title="">Home</a></li>
+            <li class="DpSign">
+              <a href="#" title="">Rooms</a>
+              <ul class="DropDown">
+                <li><a routerLink="/rooms" title="">Rooms List</a></li>
+                <li *ngFor="let room of rooms">
+                  <a routerLink="/rooms/details/{{ room.id }}" title="{{ room.name }}">{{ room.name }}</a>
+                </li>
+              </ul>
+            </li>
+            <li><a routerLink="/about" title="">About Us</a></li>
+            <li><a routerLink="/policy" title="">Rules & Policies</a></li>
+            <li><a routerLink="/contact" title="">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+</header>
