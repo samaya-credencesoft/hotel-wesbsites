@@ -1,3 +1,4 @@
+import { TokenStorage } from './../token.storage';
 import { environment } from 'src/environments/environment';
 import { Component, OnInit, Input } from '@angular/core';
 import { Property } from '../property/property';
@@ -37,8 +38,10 @@ export class ContactComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private http: HttpClient,
-    private acRoute: ActivatedRoute
+    private acRoute: ActivatedRoute,
+    private token: TokenStorage
     ) {
+
 
     }
     subject: FormControl = new FormControl();
@@ -64,7 +67,11 @@ export class ContactComponent implements OnInit {
       subject: '',
       message: ''
     };
-    this.getProperty();
+    if (this.token.getProperty() === null) {
+      this.getProperty();
+    } else {
+      this.property = this.token.getProperty();
+    }
   }
 
   getProperty() {

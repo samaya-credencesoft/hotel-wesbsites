@@ -23,6 +23,18 @@ export class ServiceComponent implements OnInit {
       title: '4',
       image: 'assets/images/slides/gallery-4.jpg',
     },
+    {
+      title: '5',
+      image: 'assets/images/slides/gallery-5.jpg',
+    },
+    {
+      title: '6',
+      image: 'assets/images/slides/gallery-6.jpg',
+    },
+    {
+      title: '7',
+      image: 'assets/images/slides/gallery-7.jpg',
+    },
   ];
   slideConfig =
   {
