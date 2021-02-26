@@ -43,3 +43,6 @@ ngb-carousel {
 .carousel-indicators{
   z-index: 20;
 }
+.slide{
+  height: 650px;
+}
