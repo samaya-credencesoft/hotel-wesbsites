@@ -18,7 +18,7 @@ export const SMS_NUMBER = '+1 956 903 2629';
 //const API_URL = 'http://localhost:8080/api/website';
 // production
 export const PROPERTY_ID = environment.propertyId
-;
+  ;
 // development
 //export const PROPERTY_ID = 8;
 
@@ -33,38 +33,38 @@ export class ApiService {
   }
   getBookingDetailsByIdAndEmail(booking: Booking) {
     return this.http.get<BookingDetails>(API_URL + '/findBookingByIdAndEmail?BookingReferenceNumber='
-    + booking.id + '&BookingEmail=' + booking.email,  { observe: 'response' });
+      + booking.id + '&BookingEmail=' + booking.email, { observe: 'response' });
 
   }
   getPropertyDetailsByPropertyId(propertyId: number) {
-    return this.http.get<Property>(API_URL + '/findByPropertyId/' + propertyId,  { observe: 'response' });
+    return this.http.get<Property>(API_URL + '/findByPropertyId/' + propertyId, { observe: 'response' });
   }
   getRoomDetailsByPropertyId(propertyId: number) {
-    return this.http.get <Room[]>(API_URL + '/findAllRoomsByPropertyId/' + propertyId,  { observe: 'response' });
+    return this.http.get<Room[]>(API_URL + '/findAllRoomsByPropertyId/' + propertyId, { observe: 'response' });
   }
   getRoomDetailsByPropertyIdAndDate(propertyId: number, fromDate: string, toDate: string) {
-    return this.http.get <Room[]>(API_URL + '/getAllRoomsByDate?PropertyId=' + propertyId + '&FromDate=' + fromDate + '&ToDate=' + toDate,  { observe: 'response' });
+    return this.http.get<Room[]>(API_URL + '/getAllRoomsByDate?PropertyId=' + propertyId + '&FromDate=' + fromDate + '&ToDate=' + toDate, { observe: 'response' });
   }
 
   checkAvailability(booking: Booking) {
-    return this.http.post<Booking> (API_URL + '/checkAvailability', booking ,  { observe: 'response' });
+    return this.http.post<Booking>(API_URL + '/checkAvailability', booking, { observe: 'response' });
   }
   processPayment(paymentDetails: Payment) {
     return this.http.post<Payment>(API_URL + '/processPayment', paymentDetails, { observe: 'response' });
-}
+  }
   createBooking(booking: Booking) {
     return this.http.post<Booking>(API_URL + '/booking', booking, { observe: 'response' });
   }
-  sendTextMessage(message: Msg ) {
+  sendTextMessage(message: Msg) {
     return this.http.post<Msg>(API_URL + '/message/send', message, { observe: 'response' });
   }
   savePayment(paymentDetails: Payment) {
     return this.http.post<Payment>(API_URL + '/savePayment', paymentDetails, { observe: 'response' });
-}
+  }
   getGoogleReviews() {
-  return this.http.get<GuestReview[]>(API_URL + '/getGoogleReviews?PropertyId=' + PROPERTY_ID ,  { observe: 'response' });
-}
-getWeather(city) {
-  return this.http.get<any>('https://api.openweathermap.org/data/2.5/weather?id='+city+'&appid=e7cd0a5bb0b7f7da10995c75d8e6a6d5&units=metric' ,  { observe: 'response' });
-}
+    return this.http.get<GuestReview[]>(API_URL + '/getGoogleReviews?PropertyId=' + PROPERTY_ID, { observe: 'response' });
+  }
+  getWeather(city) {
+    return this.http.get<any>('https://api.openweathermap.org/data/2.5/weather?id=' + city + '&appid=e7cd0a5bb0b7f7da10995c75d8e6a6d5&units=metric', { observe: 'response' });
+  }
 }
