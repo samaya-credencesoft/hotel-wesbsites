@@ -7,6 +7,7 @@ import { NewBookingComponent } from './new-booking/new-booking.component';
 import { ChooseRoomComponent } from './choose-room/choose-room.component';
 import { CompleteComponent } from './complete/complete.component';
 import {MatSelectModule} from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
@@ -28,6 +29,7 @@ const routes: Routes = [
     MatSelectModule,
     MatProgressBarModule,
     MatFormFieldModule,
+    MatRadioModule,
     FormsModule,
     MatCardModule,
     MatInputModule,

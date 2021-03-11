@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { Booking } from './../../../booking/booking';
+import { TokenStorage } from 'src/app/token.storage';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Room } from 'src/app/room/room';
 import { PROPERTY_ID, ApiService } from 'src/app/api.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -6,6 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 import { DateModel } from './../../home/model/dateModel';
 import { NavigationExtras } from '@angular/router';
 import { Router } from '@angular/router';
+import { BusinessUser } from '../../home/model/user';
+import { RoomRatePlans } from '../../home/model/roomRatePlans';
 
 @Component({
   selector: 'app-choose-room',
@@ -23,8 +28,28 @@ export class ChooseRoomComponent implements OnInit {
   daySelected2: string;
   yearSelected2: string;
   monthSelected2: number;
-
+  booking:Booking;
   currentDay: string;
+  checkAvailabilityStatus: boolean;
+  checkAvailabilityStatusName: string;
+  checkAvailabilityStatusHide: boolean;
+  planDetails: RoomRatePlans;
+
+  businessUser: BusinessUser;
+
+  taxPercentage: number =  0;
+
+  adults: number = 1;
+  children: number = 0;
+  noOfrooms: number = 1;
+  DiffDate;
+  planSelected:boolean = false;
+
+  planAmount = 0;
+  extraPersonRate = 0;
+  maxSelectRoom = 1;
+  maxOccupancy = 2;
+  // planDetails:FormControl = new FormControl('', Validators.nullValidator);
 
   monthArray = [
     'Jan',
@@ -43,11 +68,14 @@ export class ChooseRoomComponent implements OnInit {
 
   constructor(
     private apiService: ApiService,
+    public token: TokenStorage,
     private router: Router,
+    private changeDetectorRefs: ChangeDetectorRef,
     private acRoute: ActivatedRoute
   ) {
     this.dateModel = new DateModel();
-    this.getRoom();
+    this.booking = new Booking();
+    // this.getRoom();
 
     this.acRoute.queryParams.subscribe((params) => {
       if (params['dateob'] != undefined) {
@@ -57,6 +85,13 @@ export class ChooseRoomComponent implements OnInit {
 
         this.getCheckInDateFormat(this.dateModel.checkIn);
         this.getCheckOutDateFormat(this.dateModel.checkOut);
+        this.booking.fromDate = this.dateModel.checkIn;
+        this.booking.toDate = this.dateModel.checkOut;
+        this.booking.noOfRooms = this.dateModel.noOfRooms;
+        this.booking.noOfPersons = this.dateModel.guest;
+
+
+this.getAvailableRoom();
       }
     });
   }
@@ -74,9 +109,87 @@ export class ChooseRoomComponent implements OnInit {
         dateob: JSON.stringify(this.dateModel),
       },
     };
-    this.router.navigate(['/booking/booking'], navigationExtras);
+    // this.router.navigate(['/booking/booking'], navigationExtras);
   }
+  onPlanSelected(plan, room) {
+    // this.checkAvailabilityStatus = false;
+    // this.checkAvailabilityStatusHide = true;
+    // this.checkAvailabilityStatusName = undefined;
+    // if(this.adults > 2){
+    //   this.adults = 2;
+    // }
+    // this.children = 0;
+    // this.noOfrooms = 1;
+    // if(room.ratesAndAvailabilityDtos.noOfAvailable * room.maximumOccupancy < this.adults){
+    //   this.adults = room.ratesAndAvailabilityDtos.noOfAvailable * room.maximumOccupancy;
 
+    // }
+    // this.noOfrooms =  Number((this.adults / room.maximumOccupancy).toFixed(0));
+    // if(plan.noOfAvailable < this.noOfrooms){
+    //   this.noOfrooms = plan.noOfAvailable;
+    // }
+    this.booking.netAmount = plan.amount * this.DiffDate * this.noOfrooms;
+    if (this.businessUser.taxDetails.length > 0) {
+      this.taxPercentage = this.businessUser.taxDetails[0].percentage;
+    }
+    if (this.businessUser.taxDetails[0].taxSlabsList.length > 0) {
+      this.businessUser.taxDetails[0].taxSlabsList.forEach((element) => {
+        if (
+          element.maxAmount > this.booking.netAmount &&
+          element.minAmount < this.booking.netAmount
+        ) {
+          this.taxPercentage = element.percentage;
+        } else if (element.maxAmount < this.booking.netAmount) {
+          this.taxPercentage = element.percentage;
+        }
+      });
+    }
+    this.booking.taxPercentage = this.taxPercentage;
+    this.planDetails = plan;
+    this.booking.planCode = plan.code;
+    this.booking.roomRatePlanName = plan.name;
+    this.booking.roomPrice = plan.amount;
+    this.planSelected = true;
+    this.planAmount = plan.amount;
+
+    if (this.booking.noOfPersons > room.maximumOccupancy) {
+      this.extraPersonRate = room.extraChargePerPerson;
+    }
+    this.booking.extraPersonCharge = this.extraPersonRate;
+    // this.fromDate = undefined;
+    // this.toDate = undefined;
+    // this.booking.fromDate = undefined;
+    // this.booking.toDate = undefined;
+    console.log(JSON.stringify(this.booking));
+    console.log(JSON.stringify(this.checkAvailabilityStatusHide));
+    this.changeDetectorRefs.detectChanges();
+    // this.checki
+
+  }
+  getAvailableRoom() {
+    this.apiService.checkAvailabilityByID(this.booking).subscribe(
+      (response) => {
+        this.businessUser = response.body;
+        this.rooms = response.body.roomList;
+        this.checkAvailabilityStatus = response.body.available;
+        this.booking.bookingAmount = response.body.bookingAmount;
+        this.booking.extraPersonCharge = response.body.extraPersonCharge;
+        // this.selectedRoomMaximumOccupancy = response.body.noOfPersons;
+
+        if (response.body.available == true) {
+          this.checkAvailabilityStatusName = "Available";
+        } else {
+          this.checkAvailabilityStatusName = "Not Available";
+        }
+
+        console.log("checkAvailability " + JSON.stringify(response.body));
+      },
+      (error) => {
+        if (error instanceof HttpErrorResponse) {
+        }
+      }
+    );
+  }
   getRoom() {
     this.apiService.getRoomDetailsByPropertyId(PROPERTY_ID).subscribe(
       (response) => {

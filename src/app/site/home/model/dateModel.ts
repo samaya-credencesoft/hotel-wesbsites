@@ -8,6 +8,7 @@ export class DateModel {
   checkIn: string;
   checkOut: string;
   guest: number;
+  noOfRooms: number;
   room: Room;
   booking: Booking;
   payment: Payment;

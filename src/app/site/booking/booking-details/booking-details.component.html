@@ -48,7 +48,7 @@
                       </li>
                       <li><b>Email</b> <br> {{ booking.email }}</li>
                       <li>
-                        <b>Booking Amount</b> <br> {{ booking.payableAmount }}
+                        <b>Booking Amount</b> <br> {{ booking.payableAmount | currency: token.getProperty().localCurrency.toUpperCase() }}
                       </li>
                       <li>
                         <b>Booking Status</b> <br> {{ booking.bookingStatus }}

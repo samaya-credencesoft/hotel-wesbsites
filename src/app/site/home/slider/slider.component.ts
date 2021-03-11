@@ -157,6 +157,9 @@ export class SliderComponent implements OnInit {
       this.dateModel.checkOut = this.getDateFormat(this.guest.value);
     }
 
+    this.dateModel.noOfRooms = 1;
+
+
     // console.log(' this.dateModel '+JSON.stringify( this.dateModel));
 
     const navigationExtras: NavigationExtras = {
