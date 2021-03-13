@@ -1,8 +1,10 @@
-import { Property } from './property/property';
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
+import { Property } from "./property/property";
+import { Booking } from "./site/home/model/booking";
 
 const PROPERTY = 'Property';
 const PROPERTY_NAME = 'PropertyName';
+const BOOKINGDATA = "booking";
 
 
 
@@ -31,6 +33,24 @@ export class TokenStorage {
 
   public getPropertyName(): string {
     return sessionStorage.getItem(PROPERTY_NAME);
+  }
+
+  // Booking
+  public saveBookingData(booking: Booking) {
+    window.sessionStorage.removeItem(BOOKINGDATA);
+    if (booking !== null || booking !== undefined) {
+      window.sessionStorage.setItem(BOOKINGDATA, JSON.stringify(booking));
+    } else {
+      window.sessionStorage.setItem(BOOKINGDATA, null);
+    }
+  }
+
+  public getBookingData(): Booking {
+    return JSON.parse(sessionStorage.getItem(BOOKINGDATA));
+  }
+
+  clearHotelBooking() {
+    window.sessionStorage.removeItem(BOOKINGDATA);
   }
 
 }

@@ -1,26 +1,26 @@
-import { FormControl, Validators } from '@angular/forms';
-import { Booking } from './../../../booking/booking';
-import { TokenStorage } from 'src/app/token.storage';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { Room } from 'src/app/room/room';
-import { PROPERTY_ID, ApiService } from 'src/app/api.service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
-import { DateModel } from './../../home/model/dateModel';
-import { NavigationExtras } from '@angular/router';
-import { Router } from '@angular/router';
-import { BusinessUser } from '../../home/model/user';
-import { RoomRatePlans } from '../../home/model/roomRatePlans';
+import { FormControl, Validators } from "@angular/forms";
+import { Booking } from "../../home/model/booking";
+import { TokenStorage } from "src/app/token.storage";
+import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
+import { Room } from "src/app/room/room";
+import { PROPERTY_ID, ApiService } from "src/app/api.service";
+import { HttpErrorResponse } from "@angular/common/http";
+import { ActivatedRoute } from "@angular/router";
+import { DateModel } from "./../../home/model/dateModel";
+import { NavigationExtras } from "@angular/router";
+import { Router } from "@angular/router";
+import { BusinessUser } from "../../home/model/user";
+import { RoomRatePlans } from "../../home/model/roomRatePlans";
 
 @Component({
-  selector: 'app-choose-room',
-  templateUrl: './choose-room.component.html',
-  styleUrls: ['./choose-room.component.css'],
+  selector: "app-choose-room",
+  templateUrl: "./choose-room.component.html",
+  styleUrls: ["./choose-room.component.css"],
 })
 export class ChooseRoomComponent implements OnInit {
   rooms: Room[];
   dateModel: DateModel;
-
+  selectedIndex:number;
   daySelected: string;
   yearSelected: string;
   monthSelected: number;
@@ -28,7 +28,7 @@ export class ChooseRoomComponent implements OnInit {
   daySelected2: string;
   yearSelected2: string;
   monthSelected2: number;
-  booking:Booking;
+  booking: Booking;
   currentDay: string;
   checkAvailabilityStatus: boolean;
   checkAvailabilityStatusName: string;
@@ -37,13 +37,13 @@ export class ChooseRoomComponent implements OnInit {
 
   businessUser: BusinessUser;
 
-  taxPercentage: number =  0;
+  taxPercentage: number = 0;
 
   adults: number = 1;
   children: number = 0;
   noOfrooms: number = 1;
   DiffDate;
-  planSelected:boolean = false;
+  planSelected: boolean = false;
 
   planAmount = 0;
   extraPersonRate = 0;
@@ -52,18 +52,18 @@ export class ChooseRoomComponent implements OnInit {
   // planDetails:FormControl = new FormControl('', Validators.nullValidator);
 
   monthArray = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
 
   constructor(
@@ -78,8 +78,8 @@ export class ChooseRoomComponent implements OnInit {
     // this.getRoom();
 
     this.acRoute.queryParams.subscribe((params) => {
-      if (params['dateob'] != undefined) {
-        this.dateModel = JSON.parse(params['dateob']);
+      if (params["dateob"] != undefined) {
+        this.dateModel = JSON.parse(params["dateob"]);
 
         //  this.getRoomByDate( this.dateModel.checkIn  ,this.dateModel.checkout  );
 
@@ -90,19 +90,18 @@ export class ChooseRoomComponent implements OnInit {
         this.booking.noOfRooms = this.dateModel.noOfRooms;
         this.booking.noOfPersons = this.dateModel.guest;
 
-
-this.getAvailableRoom();
+        this.getAvailableRoom();
       }
     });
   }
 
   ngOnInit() {
     //this.checkincheckoutDate();
-
   }
 
-  onRoomBooking(room) {
+  onRoomBooking(room, index) {
     this.dateModel.room = room;
+    this.selectedIndex = index;
 
     let navigationExtras: NavigationExtras = {
       queryParams: {
@@ -163,8 +162,18 @@ this.getAvailableRoom();
     console.log(JSON.stringify(this.booking));
     console.log(JSON.stringify(this.checkAvailabilityStatusHide));
     this.changeDetectorRefs.detectChanges();
-    // this.checki
+// this.checkingAvailability();
+  }
+  bookRoomNow() {
+    this.booking.noOfRooms = this.noOfrooms;
+    this.booking.noOfPersons = this.adults;
+    this.booking.noOfExtraPerson = this.children;
 
+    // this.booking.netAmount =
+    this.changeDetectorRefs.detectChanges();
+
+    this.token.saveBookingData(this.booking);
+    this.router.navigate(["/booking/booking"]);
   }
   getAvailableRoom() {
     this.apiService.checkAvailabilityByID(this.booking).subscribe(
@@ -193,7 +202,9 @@ this.getAvailableRoom();
   getRoom() {
     this.apiService.getRoomDetailsByPropertyId(PROPERTY_ID).subscribe(
       (response) => {
-        console.log('response room choose room ' + JSON.stringify(response.body));
+        console.log(
+          "response room choose room " + JSON.stringify(response.body)
+        );
         this.rooms = response.body;
       },
       (error) => {
@@ -218,15 +229,15 @@ this.getAvailableRoom();
   }
 
   getCheckInDateFormat(dateString: string) {
-    var yearAndMonth = dateString.split('-', 3);
-    this.daySelected = String(yearAndMonth[2].split(' ', 1));
+    var yearAndMonth = dateString.split("-", 3);
+    this.daySelected = String(yearAndMonth[2].split(" ", 1));
     this.yearSelected = yearAndMonth[0];
     this.monthSelected = parseInt(yearAndMonth[1]) - 1;
   }
 
   getCheckOutDateFormat(dateString: string) {
-    var yearAndMonth = dateString.split('-', 3);
-    this.daySelected2 = String(yearAndMonth[2].split(' ', 1));
+    var yearAndMonth = dateString.split("-", 3);
+    this.daySelected2 = String(yearAndMonth[2].split(" ", 1));
     this.yearSelected2 = yearAndMonth[0];
     this.monthSelected2 = parseInt(yearAndMonth[1]) - 1;
   }

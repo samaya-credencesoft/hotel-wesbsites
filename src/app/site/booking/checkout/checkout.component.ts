@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DateModel } from './../../home/model/dateModel';
 import { NavigationExtras } from '@angular/router';
 import { Router } from '@angular/router';
-import { Booking } from '../../../booking/booking';
+import { Booking } from '../../home/model/booking';
 import { Payment } from './../../../payment/payment';
 import {
   FormControl,
@@ -16,9 +16,9 @@ import {
   Validators,
   FormBuilder,
 } from '@angular/forms';
-import { Msg } from './../../../booking/msg';
 import { Message } from 'primeng/api/message';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Msg } from '../../home/model/msg';
 export interface Year {
   value: string;
   viewValue: string;

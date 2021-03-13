@@ -1,6 +1,7 @@
-import { Room } from 'src/app/room/room';
-import { Booking } from '../../../booking/booking';
-import { Payment } from './../../../payment/payment';
+import { Payment } from "src/app/payment/payment";
+import { Room } from "src/app/room/room";
+import { Booking } from "./booking";
+
 
 
 export class DateModel {

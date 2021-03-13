@@ -39,7 +39,7 @@ const routes: Routes = [
     HomeModule,
     RoomsModule,
     BookingModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
   ]
 })
 export class SiteModule { }

@@ -1,8 +1,9 @@
-import { Room } from 'src/app/model/room';
+
 import { Address } from './address';
 import { BusinessServiceDtoList } from './businessServiceDtoList';
 import { SubscriptionList } from './subscriptionList';
 import { MobileWallet } from './mobileWallet';
+import { Room } from 'src/app/room/room';
 
 export class BusinessUser {
   name: string;
@@ -78,7 +79,7 @@ export class BusinessUser {
   roomList: Room[];
   bankAccount : any;
   mobileWallet : MobileWallet;
- 
+
   taxDetails:  [
     {
       country: string,

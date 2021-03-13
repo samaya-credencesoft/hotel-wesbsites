@@ -31,7 +31,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     CommonModule,
     SlickCarouselModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
     AgmCoreModule.forRoot({
       apiKey: environment.googleKey // 'AIzaSyAYT8pe61MUbk27eiYi9LnnPhwo031Ye7w'
     })

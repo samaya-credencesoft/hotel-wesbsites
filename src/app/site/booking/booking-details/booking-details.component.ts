@@ -1,6 +1,7 @@
+import { TokenStorage } from 'src/app/token.storage';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Booking } from '../../booking/../../booking/booking';
+import { Booking } from '../../home/model/booking';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from './../../../api.service';
 import { DateService } from '../../../date-service.service'
@@ -21,6 +22,7 @@ export class BookingDetailsComponent implements OnInit {
   loader : boolean = false;
 
     constructor(
+      public token: TokenStorage,
       private activatedRoute: ActivatedRoute,
       public dateService : DateService,
       private apiServices: ApiService) {

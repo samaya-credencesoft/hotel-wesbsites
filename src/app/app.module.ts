@@ -35,6 +35,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { TokenStorage } from '../../src/app/token.storage';
 import { AboutComponent } from './site/about/about.component';
 import { environment } from 'src/environments/environment';
+import {Ng2TelInputModule} from 'ng2-tel-input';
 
 const routes: Routes = [
   { path: '', component: SiteModule},
@@ -73,7 +74,8 @@ const routes: Routes = [
     AppMaterialModules,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(routes),
+    Ng2TelInputModule,
+    RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
     AgmCoreModule.forRoot({
       apiKey: environment.googleKey // 'AIzaSyAYT8pe61MUbk27eiYi9LnnPhwo031Ye7w'
     })

@@ -413,7 +413,12 @@
                                   </li>
                                 </ul>
                                 <!--fct-list end-->
-                                <a title="" (click)="onRoomBooking(room)" class="lnk-default">Book Now <i
+                                <a title="" (click)="onRoomBooking(room, i);
+                                                booking.roomId = room.id;
+                                                selectedRoomMaximumOccupancy = room.maximumOccupancy;
+                                                selectedRoomAvailableNumber = room.noOfRooms;
+                                                checkAvailabilityStatus = true;
+                                                bookRoomNow() " class="lnk-default">Book Now <i
                                     class="la la-arrow-right"></i></a>
 
                                 <div class="clearfix"></div>
