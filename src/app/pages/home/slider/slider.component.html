@@ -1,0 +1,85 @@
+<!-- <ngx-slick-carousel class="carousel listing-slider mfp-gallery-container margin-bottom-0"
+#slickModal="slick-carousel" >
+<div ngxSlickItem *ngFor="let gallery of slideImage" class="slide">
+  <img class="d-block w-100" height="650px" src="{{gallery.image}}" alt="First slide">
+
+</div>
+</ngx-slick-carousel> -->
+
+<div class="banner_area_type1 banner_area overlapping-fix slider1">
+  <div class="slider_overlay_area slider_height">
+      <div class="holder slider_height">
+          <div class="hr slider_height">
+              <div class="vc-cd-12 vc-rd-8 vc-rd-offset-2 vc-sd-12 vc-ad-8 vc-ad-offset-2 slider_height vc-ad-">
+                  <div class="slider_inner_area slider_height">
+                      <div class="slider_inner_content align-center">
+                          <div class="section_title align-center">
+                              <div class="section_sub_title">
+                                  <p>Hotel</p>
+                              </div>
+                              <h1>Enjoy a Luxurious <br> Experience</h1>
+                          </div>
+                          <!-- <div class="bnr_check_room_area">
+                              <form action="#" id="ajax-contact">
+                                  <div class="hr">
+                                      <div class="vc-cd-12  vc-rd-12  vc-sd-3 vc-od-3">
+                                          <div class="cmn_field">
+                                              <label for="check1">
+                                                  <i class="fa fa-calendar"></i>
+                                              </label>
+                                              <input type="text" class="field-control datepicker" id="check1" placeholder="Check In">
+                                          </div>
+                                      </div>
+                                      <div class="vc-cd-12 vc-rd-12 vc-sd-3 vc-od-3">
+                                          <div class="cmn_field">
+                                              <label for="check2">
+                                                  <i class="fa fa-calendar"></i>
+                                              </label>
+                                              <input type="text" class="field-control datepicker" id="check2" placeholder="Check Out">
+                                          </div>
+                                      </div>
+                                      <div class="vc-cd-12  vc-rd-12  vc-sd-3 vc-od-3">
+                                          <div class="cmn_field">
+                                              <label for="check3">
+                                                  <i class="fa fa-user"></i>
+                                              </label>
+                                              <input type="number" class="field-control" id="check3" placeholder="Guest">
+                                          </div>
+                                      </div>
+                                      <div class="vc-cd-12 vc-rd-12 vc-sd-3 vc-od-3">
+                                          <a href="room-details.php" class="common_btn2 btn_hbreffect1">
+                                              check rooms
+                                          </a>
+                                      </div>
+                                  </div>
+                              </form>
+                          </div> -->
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+  </div>
+  <ngx-slick-carousel class="carousel listing-slider mfp-gallery-container margin-bottom-0 hero_slider"
+#slickModal="slick-carousel" [config]="slideConfig">
+<div ngxSlickItem *ngFor="let gallery of slideImage" class="slide">
+  <img class="d-block w-100" height="650px" src="{{gallery.imageUrl}}" alt="First slide">
+   <a [ngStyle]="{'background-image': 'url(' + gallery.imageUrl + ')'}" style="background-size: cover;"
+    class="item mfp-gallery cover" title="{{gallery.title}}"></a>
+</div>
+</ngx-slick-carousel>
+  <div class="camera_wrap " id="banner_slider1">
+      <!-- <div class="hero_slider" *ngFor="let gallery of slideImage" data-src="{{gallery.imageUrl}}"></div> -->
+
+
+  </div>
+</div>
+<!-- <ngx-slick-carousel class="carousel listing-slider mfp-gallery-container margin-bottom-0 hero_slider"
+#slickModal="slick-carousel" [config]="slideConfig">
+<div ngxSlickItem *ngFor="let gallery of slideImage" class="slide">
+  <img class="d-block w-100" height="650px" src="{{gallery.imageUrl}}" alt="First slide">
+  <a [ngStyle]="{'background-image': 'url(' + gallery.imageUrl + ')'}" style="background-size: cover;"
+    class="item mfp-gallery cover" title="{{gallery.title}}"></a>
+</div>
+</ngx-slick-carousel> -->

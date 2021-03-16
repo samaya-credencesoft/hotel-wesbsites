@@ -1,0 +1,132 @@
+<div class="cmn_banner_area banner_type13 bnr_overlay2">
+  <div class="holder">
+    <div class="hr">
+      <div class="vc">
+        <div class="section_title align-center">
+          <div class="section_sub_title">
+            <p>contact</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hr">
+      <div class="vc">
+        <div class="bradecrumbe">
+          <ul class="breadcrumb justify-content-center
+            justify-content-cd--center">
+            <li>
+              <a href="index.php">
+                Home
+              </a>
+            </li>
+            <li class="active">
+              contact
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="contact_N_map_area ptb-100">
+  <div class="holder">
+    <div class="hr">
+      <div class="vc-sd-6">
+        <div class="contact_inner">
+          <h2>Drop Us A Message</h2>
+          <p>If You Have Any Query , Don't Hesitate to Contact With Us</p>
+          <form *ngIf="success== false" #contactForm="ngForm" (ngSubmit)="submitForm(contactForm)" role="form">
+            <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="form-field">
+                  <label>Full Name*</label>
+                  <input type="text" name="name" [(ngModel)]="name" class="form-control" placeholder="Full Name" />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="form-field">
+                  <label>Your Email*</label>
+                  <input type="email" required name="email" email ngModel class="form-control" placeholder="Email" />
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="form-field">
+                  <label>Subject*</label>
+                  <input type="text" class="form-control" name="subject" [formControl]="subject" [(ngModel)]="subjects"
+                    required placeholder="Subject" />
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="form-field">
+                  <label>Your Message</label>
+                  <textarea require class="form-control" d name="message" ngModel rows="5"></textarea>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="form-submit">
+                  <button type="submit" [disabled]="!contactForm.valid" class="btn btn-primary">
+                    Send Message <i class="la la-arrow-right"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div *ngIf="success" class="alert alert-success alert-dismissible fade show" role="alert" [@animate]="{
+          value: '*',
+          params: { y: '-120px', opacity: '0', delay: '100ms', duration: '400ms' }
+          }">
+            <button type="button" class="close" (click)="success= false">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <strong>Your Message Sent succefully</strong>
+          </div>
+        </div>
+      </div>
+      <div class="vc-sd-6">
+        <div class="map_inner">
+          <div>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d961047.1165664695!2d84.2589551!3d19.7937684!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a19097061b67253%3A0xae21b26c29ed1406!2sZoris%20Boutique%20Hotel!5e0!3m2!1sen!2sbd!4v1614155565311!5m2!1sen!2sbd"
+              width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+
+          <div class="map_info">
+            <div class="hr">
+              <div class="vc-sd-11 vc-sd-offset-1 vc-od-6 vc-od-offset-0">
+                <!-- <p>
+                  <span>Address:</span> 421/1617/2422, Bajrang Vihar, Patia,
+                  Bhubaneswar, Odisha 751024, India
+                </p> -->
+                <p> <span><strong>Address:</strong> {{
+                    property.address.streetName }} {{
+                    property.address.streetNumber }} {{ property.address.suburb
+                    }} {{ property.address.city }} {{ property.address.state }}
+                    {{ property.address.country }} {{ property.address.postcode
+                    }}</span></p>
+
+                <div class="icon_numb">
+                  <span class="info_icon"><i class="fa fa-mobile"></i></span>
+                  <!-- <h3>+91 063 647 36555</h3> -->
+                  <h3>{{property.mobile}}</h3>
+
+                </div>
+              </div>
+              <div class="vc-sd-11 vc-sd-offset-1 vc-od-6 vc-od-offset-0
+                no-gap">
+                <p>
+                  <span>phone number:</span>{{property.mobile}}
+                </p>
+                <p>
+                  <span>Email:</span> <a href="mailto::booking@zorisboutiquehotel.com">{{property.email}}
+                  </a>
+                <p class="highlt">24/7 Available </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

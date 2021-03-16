@@ -1,0 +1,518 @@
+<div class="cmn_banner_area banner_type14 bnr_overlay2">
+  <div class="holder">
+      <div class="hr">
+          <div class="vc">
+              <div class="section_title align-center">
+                  <div class="section_sub_title">
+                      <p>Gallery</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="hr">
+          <div class="vc">
+              <div class="bradecrumbe">
+                  <ul class="breadcrumb justify-content-center justify-content-cd--center">
+                      <li>
+                          <a href="index.php">
+                              Home
+                          </a>
+                      </li>
+                      <li class="active">
+                          Gallrey
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<div class="gallery_area_type1 ptb-70">
+  <div class="holder">
+      <div class="hr">
+          <div class="vc-sd-12">
+              <div class="gallery_filter align-center">
+                  <ul class="filter" id="grid">
+                      <li class="active" data-filter="*">
+                          <span class="common_btn">All Photos</span>
+                      </li>
+                      <li data-filter=".rooms">
+                          <span class="common_btn">Rooms</span>
+                      </li>
+                      <li data-filter=".restaurant" class="">
+                          <span class="common_btn">Restaurant & Club</span>
+                      </li>
+                      <li data-filter=".hotel">
+                          <span class="common_btn">Hotel</span>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+      <div class="hr">
+          <div class="vc-sd-12">
+              <div class="gallery_item align-center">
+                  <div class="grid gallery_item1">
+                      <div *ngFor="let gallery of galleryImage" class="grid-item width-1-4 hotel" ngClass="gallery.class">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="{{gallery.imageURL}}" alt="gallery" >
+                                  <a href="{{gallery.imageURL}}" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>{{gallery.title}}</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                      <!-- <div class="grid-item width-1-4 hotel">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img2.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img2.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Hotel</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div> -->
+                      <!-- <div class="grid-item width-1-4 hotel">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img3.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img3.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Hotel</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div> -->
+                      <!-- <div class="grid-item width-1-4 hotel">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img4.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img4.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Hotel</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div> -->
+                      <!-- <div class="grid-item width-1-4 hotel">
+                          <div class="item_content">
+                              <div class="single_grid_item ">
+                                  <img src="assets/images/gallery_img5.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img5.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Hotel</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div> -->
+                      <!-- <div class="grid-item width-1-4 hotel">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img6.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img6.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Hotel</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div> -->
+                      <!-- <div class="grid-item width-1-4 hotel">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img7.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img7.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Hotel</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="grid-item width-1-4 design hotel">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img8.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img8.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Hotel</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div> -->
+                      <!-- <div class="grid-item width-1-4 hotel">
+                          <div class="item_content">
+                              <div class="single_grid_item ">
+                                  <img src="assets/images/gallery_img9.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img9.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Hotel</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div> -->
+                      <!-- <div class="grid-item width-1-4 hotel">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img10.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img10.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Top Notch Air</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div> -->
+                      <!-- <div class="grid-item width-1-4 hotel">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img11.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img11.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Top Notch Air</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div> -->
+                      <!-- <div class="grid-item width-1-4 design rooms">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img12.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img12.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Room</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div> -->
+                      <!-- <div class="grid-item width-1-4 design rooms">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img13.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img13.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Room</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div> -->
+                      <!-- <div class="grid-item width-1-4 design rooms">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img14.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img14.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Room</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div> -->
+                      <!-- <div class="grid-item width-1-4 design rooms">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img15.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img15.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Room</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="grid-item width-1-4 design rooms">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img16.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img16.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Room</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="grid-item width-1-4 design rooms">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img17.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img17.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Room</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="grid-item width-1-4 design rooms">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img18.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img18.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Room</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="grid-item width-1-4 design restaurant">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img19.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img19.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Top Notch Air</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="grid-item width-1-4 design restaurant">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img20.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img20.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Top Notch Air</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="grid-item width-1-4 design restaurant">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img21.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img21.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Top Notch Air</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="grid-item width-1-4 design restaurant">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img22.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img22.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Top Notch Air</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="grid-item width-1-4 design restaurant">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img23.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img23.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Top Notch Air</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="grid-item width-1-4 design restaurant">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img24.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img24.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Top Notch Air</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="grid-item width-1-4 design restaurant">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img25.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img25.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Top Notch Air</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="grid-item width-1-4 design restaurant">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img26.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img26.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Top Notch Air</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="grid-item width-1-4 design restaurant">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img27.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img27.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Top Notch Air</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="grid-item width-1-4 design restaurant">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img28.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img28.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Top Notch Air</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="grid-item width-1-4 design restaurant">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img29.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img29.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Top Notch Air</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="grid-item width-1-4 design restaurant">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img30.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img30.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Top Notch</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="grid-item width-1-4 design restaurant">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img31.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img31.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Top Notch</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="grid-item width-1-4 design restaurant">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img32.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img32.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Top Notch</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="grid-item width-1-4 design restaurant">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img33.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img33.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Top Notch</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="grid-item width-1-4 design restaurant">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img34.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img34.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Top Notch</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="grid-item width-1-4 design restaurant">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img35.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img35.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Top Notch</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="grid-item width-1-4 design restaurant">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img36.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img36.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Top Notch</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="grid-item width-1-4 design restaurant">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img37.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img37.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Top Notch</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="grid-item width-1-4 design restaurant">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img38.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img38.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Top Notch</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="grid-item width-1-4 design restaurant">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img39.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img39.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Top Notch</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="grid-item width-1-4 design restaurant">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img40.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img40.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Top Notch</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="grid-item width-1-4 design restaurant">
+                          <div class="item_content">
+                              <div class="single_grid_item">
+                                  <img src="assets/images/gallery_img41.jpg" alt="gallery">
+                                  <a href="assets/images/gallery_img41.jpg" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                      <h5>Top Notch</h5>
+
+                                  </a>
+                              </div>
+                          </div>
+                      </div> -->
+
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+

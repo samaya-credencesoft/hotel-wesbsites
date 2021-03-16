@@ -1,0 +1,7 @@
+a{
+color: #fff !important;
+text-decoration: none;
+}
+ul.navbar-nav>li>a:hover {
+  color: #ffbf00 !important;
+}

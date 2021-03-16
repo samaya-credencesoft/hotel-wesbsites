@@ -1,0 +1,119 @@
+<div class="cmn_banner_area banner_type4 bnr_overlay2">
+  <div class="holder">
+    <div class="hr">
+      <div class="vc">
+        <div class="section_title align-center">
+          <div class="section_sub_title">
+            <p>all kinds of rooms</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hr">
+      <div class="vc">
+        <div class="bradecrumbe">
+          <ul class="breadcrumb justify-content-center
+            justify-content-cd--center">
+            <li>
+              <a href="index.php">
+                Home
+              </a>
+            </li>
+            <li class="active">
+              Rooms
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="rooms_details_area ptb-95-70">
+  <div class="holder">
+    <div class="rooms_details_inner secondary-bg-color" *ngFor="let room of
+      rooms;">
+      <div class="hr">
+        <div class="vc-sd-6 vc-od-4">
+          <div class="room_details_img align-center">
+            <!-- <img src="assets/images/room-detail-img5.jpg" alt="rooms"> -->
+            <img *ngIf="room.imageList?.length" src="{{ room.imageList[0].url}}"
+              alt="">
+          </div>
+        </div>
+        <div class="vc-sd-6 vc-od-5">
+          <ul class="rooms_details">
+            <li>
+              <div class="rooms_ditels_view">
+                <div class="details_inner">
+                  <span><i class="fa fa-wifi"></i></span> wifi
+                </div>
+                <div class="details_inner">
+                  <span><i class="fa fa-archive"></i></span> Mini bar
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="rooms_ditels_view">
+                <div class="details_inner">
+                  <span><i class="fa fa-coffee"></i></span> Tea & Coffee
+                </div>
+                <div class="details_inner">
+                  <span><i class="fa fa-lock"></i></span> Security Service
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="rooms_ditels_view">
+                <div class="details_inner">
+                  <span><i class="fa fa-tv"></i></span> LED TV
+                </div>
+                <div class="details_inner">
+                  <span><i class="fa fa-clock-o"></i></span> 24 Hour Room
+                  Service
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="vc-sd-12 vc-od-3">
+          <div class="rooms_details_view align-center">
+            <h3 class="romans">{{room.name}}</h3>
+            <h3 class="bold"><span>₹</span>{{room.roomOnlyPrice}}</h3>
+            <!-- <a href="booking.php" class="common_btn3 spacial_btn">Book now</a> -->
+            <p>per night</p>
+            <p class="highlt">available</p>
+            <!-- <div class="room_icon">
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                      </div> -->
+            <p>Min. Occupancy {{room.minimumOccupancy}}, Max. Occupancy
+              {{room.maximumOccupancy}}, No. Of Rooms {{room.noOfRooms}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- <div class="pagination_area">
+          <div class="hr">
+              <div class="vc">
+                  <div class="nav-links nav-links-bordered default-nav-links ">
+                      <a href="#" class="active">
+                          1
+                      </a>
+                      <a href="#">
+                          2
+                      </a>
+                      <a href="#">
+                          3
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </div> -->
+  </div>
+</div>

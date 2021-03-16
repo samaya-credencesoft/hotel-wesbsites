@@ -1,0 +1,46 @@
+<div class="preloader">
+  <div class="loader">
+    <span class="inner-loader">
+      <img *ngIf="property.logoUrl !== null && property.logoUrl !== undefined" [src]="property.logoUrl" alt="" />
+      <img *ngIf="property.logoUrl == null || property.logoUrl == undefined" src="assets/images/logo.png" alt="" />
+
+    </span>
+  </div>
+</div>
+
+<header class="navbar-fixed">
+  <div class="toolbar-inner-area sticky-navbar" data-sticky-offset="50">
+    <div class="holder">
+      <div class="hr">
+        <div class="vc">
+          <div class="toolbar_contact align-right">
+            <div class="contact_phone">
+              <span>{{property.mobile}}</span>
+
+            </div>
+            <div class="toolbar_social_area">
+              <ul class="icon_list">
+                <li>
+                  <a href="https://www.facebook.com/zorisboutiquehotel/"
+                    ><i class="fab fa-facebook-f"></i></a>
+                </li>
+                <li>
+                  <a href="https://www.instagram.com/zorisboutique/"
+                    ><i class="fab fa-instagram"></i></a>
+                </li>
+                <!-- <li>
+                                  <a href=""><i class="fa fa-skype"></i></a>
+                              </li>
+                              <li>
+                                  <a href=""><i class="fa fa-pinterest-square"></i></a>
+                              </li> -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-navbar></app-navbar>
+</header>

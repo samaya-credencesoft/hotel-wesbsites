@@ -1,0 +1,24 @@
+<div class="hotel_service_type1 secondary-bg-color ptb-100-5">
+  <div class="holder">
+    <div class="hr">
+      <div class="vc">
+        <div class="section_title align-center">
+          <div class="section_sub_title">
+            <p>luxurious service</p>
+          </div>
+          <h1>hotel service</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hotel_service_inner">
+    <div class="single_hotel_service" *ngFor="let item of galleryItems">
+      <img src="{{item.imageUrl}}" alt="">
+      <div class="image_details">
+        <h3>{{item.title}}</h3>
+        <!-- <p>starting $ 120</p> -->
+      </div>
+    </div>
+  </div>
+</div>
