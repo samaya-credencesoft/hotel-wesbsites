@@ -154,7 +154,7 @@ export class SliderComponent implements OnInit {
     if (this.guest.value === null) {
       this.dateModel.guest = 1;
     } else {
-      this.dateModel.checkOut = this.getDateFormat(this.guest.value);
+      this.dateModel.guest = this.guest.value;
     }
 
     this.dateModel.noOfRooms = 1;

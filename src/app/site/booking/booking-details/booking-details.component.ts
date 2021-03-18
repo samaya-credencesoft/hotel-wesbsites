@@ -14,10 +14,11 @@ import { Payment } from './../../../../app/payment/payment';
   styleUrls: ['./booking-details.component.css']
 })
 export class BookingDetailsComponent implements OnInit {
-
+  currency: string;
   booking: Booking ;
   bookingEmail: string ;
   bookingReferenceNumber: string ;
+  payment: Payment;
   payments: Payment [] ;
   loader : boolean = false;
 
@@ -55,6 +56,8 @@ export class BookingDetailsComponent implements OnInit {
        this.booking = response.body.bookingDetails ;
        this.payments = response.body.paymentDetails;
        this.loader = false;
+
+       this.currency = this.booking.currency;
       //  console.log(this.booking);
       //  console.log(this.payments);
       },error=>{ this.loader = false;});

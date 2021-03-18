@@ -1,3 +1,5 @@
+import { BankAccount } from './../../home/model/BankAccount';
+import { MobileWallet } from './../../home/model/mobileWallet';
 import { FormControl, Validators } from "@angular/forms";
 import { Booking } from "../../home/model/booking";
 import { TokenStorage } from "src/app/token.storage";
@@ -24,7 +26,8 @@ export class ChooseRoomComponent implements OnInit {
   daySelected: string;
   yearSelected: string;
   monthSelected: number;
-
+  mobileWallet: MobileWallet;
+   bankAccount: BankAccount;
   daySelected2: string;
   yearSelected2: string;
   monthSelected2: number;
@@ -172,6 +175,32 @@ export class ChooseRoomComponent implements OnInit {
     // this.booking.netAmount =
     this.changeDetectorRefs.detectChanges();
 
+    this.mobileWallet = this.businessUser.mobileWallet;
+        this.bankAccount = this.businessUser.bankAccount;
+        //  Logger.log(' this.businessUser ===='+JSON.stringify( this.businessUser));
+        if (this.businessUser.taxDetails.length > 0) {
+          this.taxPercentage = this.businessUser.taxDetails[0].percentage;
+        }
+        if (this.businessUser.taxDetails[0].taxSlabsList.length > 0) {
+          this.businessUser.taxDetails[0].taxSlabsList.forEach((element) => {
+            if (
+              element.maxAmount > this.booking.roomPrice &&
+              element.minAmount < this.booking.roomPrice
+            ) {
+              this.taxPercentage = element.percentage;
+            } else if (element.maxAmount < this.booking.roomPrice) {
+              this.taxPercentage = element.percentage;
+            }
+          });
+        }
+
+        this.booking.totalAmount = this.booking.netAmount + ((this.booking.netAmount * this.taxPercentage) / 100) - this.booking.discountAmount;
+        this.booking.discountAmount = 0;
+        this.booking.netAmount = this.booking.roomPrice * this.booking.noOfRooms * this.DiffDate;
+        this.booking.gstAmount = (this.booking.netAmount * this.booking.taxPercentage) / 100;
+        this.booking.totalAmount = this.booking.netAmount + this.booking.gstAmount - this.booking.discountAmount;
+
+
     this.token.saveBookingData(this.booking);
     this.router.navigate(["/booking/booking"]);
   }
@@ -179,6 +208,7 @@ export class ChooseRoomComponent implements OnInit {
     this.apiService.checkAvailabilityByID(this.booking).subscribe(
       (response) => {
         this.businessUser = response.body;
+        this.token.saveBusinessUser(this.businessUser );
         this.rooms = response.body.roomList;
         this.checkAvailabilityStatus = response.body.available;
         this.booking.bookingAmount = response.body.bookingAmount;

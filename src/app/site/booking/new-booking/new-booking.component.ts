@@ -1,3 +1,4 @@
+import { Property } from './../../../property/property';
 import { Component, OnInit } from '@angular/core';
 import { Room } from 'src/app/room/room';
 import { PROPERTY_ID, ApiService } from 'src/app/api.service';
@@ -30,9 +31,8 @@ import { Customer } from '../../home/model/customer';
 export class NewBookingComponent implements OnInit {
   rooms: Room[];
   room: Room;
-  dateModel: DateModel;
   booking: Booking;
-
+  dateModel: DateModel;
   daySelected: string;
   yearSelected: string;
   monthSelected: number;
@@ -72,7 +72,7 @@ export class NewBookingComponent implements OnInit {
   payment: Payment;
   homeDelivery = false;
   cashPayment = false;
-
+  property: Property;
   isSuccess: boolean;
 
   mobileHasError: boolean = true;
@@ -88,6 +88,8 @@ export class NewBookingComponent implements OnInit {
 
   roomsAndOccupancy: boolean = false;
   bookingCity: string;
+  guest: number = 1;
+
   adults: number = 2;
   children: number = 0;
   noOfrooms: number = 1;
@@ -136,36 +138,70 @@ export class NewBookingComponent implements OnInit {
     public token: TokenStorage,
     private acRoute: ActivatedRoute
   ) {
-    this.dateModel = new DateModel();
+    // this.dateModel = new DateModel();
     this.booking = new Booking();
     this.room = new Room();
-    this.acRoute.queryParams.subscribe((params) => {
-      if (params['dateob'] != undefined) {
-        this.dateModel = JSON.parse(params['dateob']);
+    if (this.token.getProperty() != undefined && this.token.getProperty() != null) {
+this.property = this.token.getProperty();
+    }
 
-        this.room = this.dateModel.room;
+    if (this.token.getBookingData() != undefined && this.token.getBookingData() != null) {
+      this.booking = this.token.getBookingData();
 
-        console.log('this.dateModel : ' + JSON.stringify(this.dateModel));
+        console.log('this.booking : ', JSON.stringify(this.booking));
 
         if (
-          this.dateModel.checkIn != undefined &&
-          this.dateModel.checkOut != undefined
+          this.booking.fromDate != undefined &&
+          this.booking.toDate != undefined
         ) {
           this.isAvailableChecked = true;
-          this.getCheckInDateFormat(this.dateModel.checkIn);
-          this.getcheckOutDateFormat(this.dateModel.checkOut);
+          this.getCheckInDateFormat(this.booking.fromDate);
+          this.getcheckOutDateFormat(this.booking.toDate);
         } else {
           this.isAvailableChecked = false;
           this.checkincheckOutDate();
         }
       }
-    });
+    // });
   }
 
   ngOnInit() {
 
   }
+  onBook() {
+    this.dateModel = new DateModel();
 
+    if (this.checkIn.value === null) {
+      this.dateModel.checkIn = this.yearSelected + '-' + (this.monthSelected + 1) + '-' + this.daySelected;
+    } else {
+      this.dateModel.checkIn = this.getDateFormat(this.checkIn.value);
+    }
+
+    if (this.checkOut.value === null) {
+      this.dateModel.checkOut =  this.yearSelected2 + '-' + (this.monthSelected2 + 1) + '-' + this.daySelected2;
+    } else {
+      this.dateModel.checkOut = this.getDateFormat(this.checkOut.value);
+    }
+    if (this.guest === null) {
+      this.dateModel.guest = 1;
+    } else {
+      this.dateModel.guest = this.guest;
+
+    }
+
+    this.dateModel.noOfRooms = 1;
+
+
+    // console.log(' this.dateModel '+JSON.stringify( this.dateModel));
+
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+          dateob: JSON.stringify(this.dateModel),
+      }
+    };
+
+    this.router.navigate(['/booking/choose'], navigationExtras );
+  }
   checkincheckOutDate() {
     let currentDate: Date = new Date();
     this.daySelected = this.getDay(currentDate);
@@ -189,7 +225,9 @@ export class NewBookingComponent implements OnInit {
 
     return this.currentDay;
   }
+  onCheckoutSubmit(){
 
+  }
   checkedOutEvent() {
     this.isAvailableChecked = false;
   }
@@ -210,19 +248,13 @@ export class NewBookingComponent implements OnInit {
 
   getRoomByDate() {
     if (this.checkIn.value === null) {
-      this.dateModel.checkIn =
-        this.yearSelected +
-        '-' +
-        this.monthSelected +
-        1 +
-        '-' +
-        this.daySelected;
+      this.booking.fromDate = this.yearSelected + '-' +  this.monthSelected + 1 + '-' +  this.daySelected;
     } else {
-      this.dateModel.checkIn = this.getDateFormat(this.checkIn.value);
+      this.booking.fromDate = this.getDateFormat(this.checkIn.value);
     }
 
     if (this.checkOut.value === null) {
-      this.dateModel.checkOut =
+      this.booking.toDate =
         this.yearSelected2 +
         '-' +
         this.monthSelected2 +
@@ -230,12 +262,12 @@ export class NewBookingComponent implements OnInit {
         '-' +
         this.daySelected2;
     } else {
-      this.dateModel.checkOut = this.getDateFormat(this.checkOut.value);
+      this.booking.toDate = this.getDateFormat(this.checkOut.value);
     }
 
     if (
-      this.dateModel.checkOut != undefined &&
-      this.dateModel.checkIn != undefined
+      this.booking.toDate != undefined &&
+      this.booking.fromDate != undefined
     ) {
       this.isAvailableChecked = true;
     }
@@ -414,14 +446,15 @@ export class NewBookingComponent implements OnInit {
   }
 
   onCheckOut() {
-    this.dateModel.booking = this.booking;
+    // this.dateModel.booking = this.booking;
 
-    let navigationExtras: NavigationExtras = {
-      queryParams: {
-        dateob: JSON.stringify(this.dateModel),
-      },
-    };
-    this.router.navigate(['/booking/payment'], navigationExtras);
+    // let navigationExtras: NavigationExtras = {
+    //   queryParams: {
+    //     dateob: JSON.stringify(this.dateModel),
+    //   },
+    // };
+    this.token.saveBookingData(this.booking);
+    this.router.navigate(['/booking/payment']);
   }
 
   getCheckInDateFormat(dateString: string) {
