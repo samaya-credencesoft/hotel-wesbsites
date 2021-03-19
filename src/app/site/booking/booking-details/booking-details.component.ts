@@ -2,7 +2,7 @@ import { TokenStorage } from 'src/app/token.storage';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Booking } from '../../home/model/booking';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from './../../../api.service';
 import { DateService } from '../../../date-service.service'
 import { Payment } from './../../../../app/payment/payment';
@@ -21,8 +21,11 @@ export class BookingDetailsComponent implements OnInit {
   payment: Payment;
   payments: Payment [] ;
   loader : boolean = false;
-
+  taxPercentage: number;
+  discountPercentage: boolean = false;
+  showAlert: boolean = false;
     constructor(
+      private router: Router,
       public token: TokenStorage,
       private activatedRoute: ActivatedRoute,
       public dateService : DateService,
@@ -62,5 +65,8 @@ export class BookingDetailsComponent implements OnInit {
       //  console.log(this.payments);
       },error=>{ this.loader = false;});
     }
-
+    onGoHome() {
+      this.router.navigate(["/"]);
+      // this.locationBack.back();
+    }
   }

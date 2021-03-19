@@ -1,6 +1,6 @@
 import { BusinessUser } from './../../home/model/user';
 import { TokenStorage } from './../../../token.storage';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Room } from 'src/app/room/room';
 import { PROPERTY_ID, ApiService, SMS_NUMBER } from 'src/app/api.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -23,6 +23,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Msg } from '../../home/model/msg';
 import { BankAccount } from '../../home/model/BankAccount';
 import { MobileWallet } from '../../home/model/mobileWallet';
+import { MessageDto } from '../../home/model/MessageDto';
 export interface Year {
   value: string;
   viewValue: string;
@@ -59,7 +60,7 @@ export class CheckoutComponent implements OnInit {
 
   bankAccount: BankAccount;
   mobileWallet: MobileWallet;
-
+  mobileHasError: boolean;
   years: Year[] = [
     { value: '2021', viewValue: '2021' },
     { value: '2022', viewValue: '2022' },
@@ -139,6 +140,16 @@ export class CheckoutComponent implements OnInit {
   monthSelected2: number;
   currentDay: string;
 
+  isSuccess: boolean;
+  headerTitle: string;
+  bodyMessage: string;
+
+  message: MessageDto;
+
+  showAlert: boolean = false;
+  alertType: string;
+  contentDialog: any;
+
   monthArray = [
     'Jan',
     'Feb',
@@ -154,11 +165,16 @@ export class CheckoutComponent implements OnInit {
     'Dec',
   ];
 
+  private ewaySecureFieldCode: string;
+  private ewayErrors: string = null;
+  private ewayInitComplete: boolean = false;
+
   constructor(
     private apiService: ApiService,
     public token: TokenStorage,
     private router: Router,
     private snackBar: MatSnackBar,
+    private changeDetectorRefs: ChangeDetectorRef,
     private formBuilder: FormBuilder,
     private acRoute: ActivatedRoute
   ) {
@@ -403,75 +419,75 @@ this.businessUser = new BusinessUser();
   }
 
   chargeCreditCard(payment: Payment) {
-    // this.paymentLoader = true;
-    // if (this.businessUser.paymentGateway == "eway") {
-    //   const eWAY = (window as any).eWAY;
+    this.paymentLoader = true;
+    if (this.businessUser.paymentGateway == "eway") {
+      const eWAY = (window as any).eWAY;
 
-    //   const comp = this;
+      const comp = this;
 
-    //   eWAY.saveAllFields(() => {
-    //     comp.paymentLoader = false;
+      eWAY.saveAllFields(() => {
+        comp.paymentLoader = false;
 
-    //     if (
-    //       comp.ewaySecureFieldCode == null ||
-    //       comp.ewaySecureFieldCode == undefined ||
-    //       comp.ewaySecureFieldCode.trim().length < 5
-    //     ) {
-    //       comp.paymentLoader = false;
-    //       comp.isSuccess = false;
-    //       comp.headerTitle = "Error!";
-    //       comp.bodyMessage = "Missing card information!";
-    //       comp.showDanger(comp.contentDialog);
-    //       comp.changeDetectorRefs.detectChanges();
-    //     } else if (comp.ewayErrors != null && comp.ewayErrors != undefined) {
-    //       comp.paymentLoader = false;
-    //       comp.isSuccess = false;
-    //       comp.headerTitle = "Error!";
-    //       comp.bodyMessage =
-    //         "Wrong card information!" + " Codes: " + comp.ewayErrors;
-    //       comp.showDanger(comp.contentDialog);
-    //       comp.changeDetectorRefs.detectChanges();
-    //     } else {
-    //       payment.token = comp.ewaySecureFieldCode;
-    //       comp.processPayment(payment);
-    //     }
-    //   }, 2000);
-    // } else {
-    //   (window as any).Stripe.card.createToken(
-    //     {
-    //       number: payment.cardNumber,
-    //       exp_month: payment.expMonth,
-    //       exp_year: payment.expYear,
-    //       cvc: payment.cvv,
-    //     },
-    //     (status: number, response: any) => {
-    //       if (status === 200) {
-    //         const token = response.id;
-    //         payment.token = token;
+        if (
+          comp.ewaySecureFieldCode == null ||
+          comp.ewaySecureFieldCode == undefined ||
+          comp.ewaySecureFieldCode.trim().length < 5
+        ) {
+          comp.paymentLoader = false;
+          comp.isSuccess = false;
+          comp.headerTitle = "Error!";
+          comp.bodyMessage = "Missing card information!";
+          comp.showDanger(comp.contentDialog);
+          comp.changeDetectorRefs.detectChanges();
+        } else if (comp.ewayErrors != null && comp.ewayErrors != undefined) {
+          comp.paymentLoader = false;
+          comp.isSuccess = false;
+          comp.headerTitle = "Error!";
+          comp.bodyMessage =
+            "Wrong card information!" + " Codes: " + comp.ewayErrors;
+          comp.showDanger(comp.contentDialog);
+          comp.changeDetectorRefs.detectChanges();
+        } else {
+          payment.token = comp.ewaySecureFieldCode;
+          comp.processPayment(payment);
+        }
+      }, 2000);
+    } else {
+      (window as any).Stripe.card.createToken(
+        {
+          number: payment.cardNumber,
+          exp_month: payment.expMonth,
+          exp_year: payment.expYear,
+          cvc: payment.cvv,
+        },
+        (status: number, response: any) => {
+          if (status === 200) {
+            const token = response.id;
+            payment.token = token;
 
-    //         this.processPayment(payment);
-    //         this.changeDetectorRefs.detectChanges();
-    //       } else if (status === 402) {
-    //         this.paymentLoader = false;
-    //         this.isSuccess = false;
-    //         this.headerTitle = "Error!";
-    //         this.bodyMessage = "Wrong card information!" + " Code: " + status;
-    //         this.showDanger(this.contentDialog);
-    //         this.changeDetectorRefs.detectChanges();
-    //       } else {
-    //         this.paymentLoader = false;
-    //         this.isSuccess = false;
-    //         this.headerTitle = "Error!";
-    //         this.bodyMessage = "Card Payment Faied!" + " Code: " + status;
-    //         this.showDanger(this.contentDialog);
-    //         this.changeDetectorRefs.detectChanges();
-    //       }
-    //     }
-    //   ),
-    //     (error) => {
-    //       this.paymentLoader = false;
-    //     };
-    // }
+            this.processPayment(payment);
+            this.changeDetectorRefs.detectChanges();
+          } else if (status === 402) {
+            this.paymentLoader = false;
+            this.isSuccess = false;
+            this.headerTitle = "Error!";
+            this.bodyMessage = "Wrong card information!" + " Code: " + status;
+            this.showDanger(this.contentDialog);
+            this.changeDetectorRefs.detectChanges();
+          } else {
+            this.paymentLoader = false;
+            this.isSuccess = false;
+            this.headerTitle = "Error!";
+            this.bodyMessage = "Card Payment Faied!" + " Code: " + status;
+            this.showDanger(this.contentDialog);
+            this.changeDetectorRefs.detectChanges();
+          }
+        }
+      ),
+        (error) => {
+          this.paymentLoader = false;
+        };
+    }
 
 
 
@@ -527,7 +543,26 @@ this.businessUser = new BusinessUser();
   //     }
   //   });
   // }
-
+  showSuccess(content) {
+    this.alertType = "success";
+    this.showAlert = true;
+  }
+  showWarning(content) {
+    this.alertType = "warning";
+    this.showAlert = true;
+    setTimeout(() => {
+      this.showAlert = false;
+      this.changeDetectorRefs.detectChanges();
+    }, 3000);
+  }
+  showDanger(content) {
+    this.alertType = "danger";
+    this.showAlert = true;
+    setTimeout(() => {
+      this.showAlert = false;
+      this.changeDetectorRefs.detectChanges();
+    }, 3000);
+  }
   cashOnDelivery() {
     this.cashPayment = true;
   }

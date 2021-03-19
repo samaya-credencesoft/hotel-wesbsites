@@ -1,4 +1,3 @@
-import { Property } from './../../../property/property';
 import { Component, OnInit } from '@angular/core';
 import { Room } from 'src/app/room/room';
 import { PROPERTY_ID, ApiService } from 'src/app/api.service';
@@ -22,6 +21,7 @@ import { MessageDto } from '../../home/model/MessageDto';
 import { BusinessUser } from '../../home/model/user';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { Customer } from '../../home/model/customer';
+import { Property } from 'src/app/property/property';
 
 @Component({
   selector: 'app-new-booking',
@@ -142,26 +142,26 @@ export class NewBookingComponent implements OnInit {
     this.booking = new Booking();
     this.room = new Room();
     if (this.token.getProperty() != undefined && this.token.getProperty() != null) {
-this.property = this.token.getProperty();
+      this.property = this.token.getProperty();
     }
 
     if (this.token.getBookingData() != undefined && this.token.getBookingData() != null) {
       this.booking = this.token.getBookingData();
 
-        console.log('this.booking : ', JSON.stringify(this.booking));
+      console.log('this.booking : ', JSON.stringify(this.booking));
 
-        if (
-          this.booking.fromDate != undefined &&
-          this.booking.toDate != undefined
-        ) {
-          this.isAvailableChecked = true;
-          this.getCheckInDateFormat(this.booking.fromDate);
-          this.getcheckOutDateFormat(this.booking.toDate);
-        } else {
-          this.isAvailableChecked = false;
-          this.checkincheckOutDate();
-        }
+      if (
+        this.booking.fromDate != undefined &&
+        this.booking.toDate != undefined
+      ) {
+        this.isAvailableChecked = true;
+        this.getCheckInDateFormat(this.booking.fromDate);
+        this.getcheckOutDateFormat(this.booking.toDate);
+      } else {
+        this.isAvailableChecked = false;
+        this.checkincheckOutDate();
       }
+    }
     // });
   }
 
@@ -178,7 +178,7 @@ this.property = this.token.getProperty();
     }
 
     if (this.checkOut.value === null) {
-      this.dateModel.checkOut =  this.yearSelected2 + '-' + (this.monthSelected2 + 1) + '-' + this.daySelected2;
+      this.dateModel.checkOut = this.yearSelected2 + '-' + (this.monthSelected2 + 1) + '-' + this.daySelected2;
     } else {
       this.dateModel.checkOut = this.getDateFormat(this.checkOut.value);
     }
@@ -196,11 +196,11 @@ this.property = this.token.getProperty();
 
     const navigationExtras: NavigationExtras = {
       queryParams: {
-          dateob: JSON.stringify(this.dateModel),
+        dateob: JSON.stringify(this.dateModel),
       }
     };
 
-    this.router.navigate(['/booking/choose'], navigationExtras );
+    this.router.navigate(['/booking/choose'], navigationExtras);
   }
   checkincheckOutDate() {
     let currentDate: Date = new Date();
@@ -225,7 +225,7 @@ this.property = this.token.getProperty();
 
     return this.currentDay;
   }
-  onCheckoutSubmit(){
+  onCheckoutSubmit() {
 
   }
   checkedOutEvent() {
@@ -248,7 +248,7 @@ this.property = this.token.getProperty();
 
   getRoomByDate() {
     if (this.checkIn.value === null) {
-      this.booking.fromDate = this.yearSelected + '-' +  this.monthSelected + 1 + '-' +  this.daySelected;
+      this.booking.fromDate = this.yearSelected + '-' + this.monthSelected + 1 + '-' + this.daySelected;
     } else {
       this.booking.fromDate = this.getDateFormat(this.checkIn.value);
     }
@@ -354,7 +354,7 @@ this.property = this.token.getProperty();
     this.mobileHasError = true;
     this.isVerified = false;
   }
-  onSubmit(orderForm) {}
+  onSubmit(orderForm) { }
   customerLookup() {
     if (this.verifyOption == "email") {
       this.apiService
