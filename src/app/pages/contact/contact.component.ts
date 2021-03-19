@@ -38,9 +38,9 @@ export class ContactComponent implements OnInit {
   subjects: string;
   constructor(
     private router: Router,
-    private token: TokenStorage,
-    private apiService: ApiService,
-    private http: HttpClient
+ public token: TokenStorage,
+ public apiService: ApiService,
+ public http: HttpClient
   ) {
     this.property = new Property();
     if (this.token.getProperty() !== null) {

@@ -15,15 +15,16 @@
               <div class="hotel_room_inner">
                   <div class="room-carousel-type1 owl-carousel">
 
-                      <div class="item">
+                      <div class="item" *ngFor="let room of rooms;" >
                           <div class="single_hotel_room align-center mb-30">
                               <div class="single_hotel_room_top">
-                                  <img src="assets/images/room-detail-img2.jpg" alt="hotel room">
+                                <img *ngIf="room.imageList?.length" src="{{ room.imageList[0].url}}"
+                                alt="">
                                   <!-- <a href="booking.php" class="book_btn common_btn2 btn_hbreffect1">book now</a> -->
                               </div>
                               <div class="single_hotel_room_bottom">
                                   <h3>Executive Twin Bed Room</h3>
-                                  <h3 class="numb"><span>₹</span>3800.00</h3>
+                                  <h3 class="numb"><span>₹</span>{{token.getProperty().pricePerNight}}</h3>
                                   <!-- <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
                                       nibh euismod</p> -->
                                   <div class="bottom_icon">
@@ -34,44 +35,8 @@
                               </div>
                           </div>
                       </div>
-                      <div class="item">
-                          <div class="single_hotel_room align-center mb-30">
-                              <div class="single_hotel_room_top">
-                                  <img src="assets/images/room-img-5.jpg" alt="hotel room">
-                                  <!-- <a href="#" class="book_btn common_btn2 btn_hbreffect1">book now</a> -->
-                              </div>
-                              <div class="single_hotel_room_bottom">
-                                  <h3>Executive Double Bed Room</h3>
-                                  <h3 class="numb"><span>₹</span>4200.00</h3>
-                                  <!-- <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-                                      nibh euismod</p> -->
-                                  <div class="bottom_icon">
-                                      <i class="fa fa-star"></i>
-                                      <i class="fa fa-star"></i>
-                                      <i class="fa fa-star"></i>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="item">
-                          <div class="single_hotel_room  align-center mb-30">
-                              <div class="single_hotel_room_top">
-                                  <img src="assets/images/room-detail-img1.jpg" alt="hotel room">
-                                  <!-- <a href="booking.php" class="book_btn common_btn2 btn_hbreffect1">book now</a> -->
-                              </div>
-                              <div class="single_hotel_room_bottom">
-                                  <h3>Premium Room</h3>
-                                  <h3 class="numb"><span>₹</span>4800.00</h3>
-                                  <!-- <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-                                      nibh euismod</p> -->
-                                  <div class="bottom_icon">
-                                      <i class="fa fa-star"></i>
-                                      <i class="fa fa-star"></i>
-                                      <i class="fa fa-star"></i>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
+
+
                   </div>
               </div>
           </div>

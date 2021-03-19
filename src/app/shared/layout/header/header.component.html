@@ -15,19 +15,25 @@
         <div class="vc">
           <div class="toolbar_contact align-right">
             <div class="contact_phone">
-              <span>{{property.mobile}}</span>
+              <span>{{token.getProperty().mobile}}</span>
 
             </div>
             <div class="toolbar_social_area">
               <ul class="icon_list">
-                <li>
-                  <a href="https://www.facebook.com/zorisboutiquehotel/"
-                    ><i class="fab fa-facebook-f"></i></a>
+                <li *ngIf="token.getProperty().facebook">
+                  <a href="https://fb.com/{{ token.getProperty().facebook }}" target="_blank"
+                  title="">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
                 </li>
-                <li>
-                  <a href="https://www.instagram.com/zorisboutique/"
-                    ><i class="fab fa-instagram"></i></a>
+                <li *ngIf="token.getProperty().instagram">
+                  <a href="https://fb.com/{{ token.getProperty().instagram }}" target="_blank" title="">
+                    <i class="fab fa-instagram"></i>
+
+                  </a>
                 </li>
+
+
                 <!-- <li>
                                   <a href=""><i class="fa fa-skype"></i></a>
                               </li>

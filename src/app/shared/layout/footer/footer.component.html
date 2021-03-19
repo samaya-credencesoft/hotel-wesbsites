@@ -18,7 +18,7 @@
                   <li>
                       <div class="footer-phone">
                           <span><i class="fas fa-mobile-alt"></i></span>
-                          <p>{{property.mobile}}</p>
+                          <p>{{token.getProperty().mobile}}</p>
 
                       </div>
                   </li>
@@ -27,14 +27,18 @@
                           <span><i class="fas fa-map-marker-alt"></i></span>
                           <!-- <p>421/1617/2422, Bajrang Vihar, Patia, Bhubaneswar, Odisha 751024, India
                           </p> -->
-                           <p>{{property.address.streetName}} </p>
+                           <p>{{token.getProperty().address.streetName}}  {{token.getProperty().address.streetNumber}}
+                              {{token.getProperty().address.suburb}}  {{token.getProperty().address.city}}
+                              {{token.getProperty().address.state}}  {{token.getProperty().address.country}}
+                              {{token.getProperty().address.postcode}} </p>
+<!-- <p>{{property.address}}</p> -->
 
                       </div>
                   </li>
                   <li>
                       <div class="footer-info">
                           <span><i class="fa fa-window-maximize"></i></span>
-                        <p><a href="mailto::dir@zorisboutiquehotel.com">b{{property.email}}
+                        <p><a routerLink="/mailto::dir@{{token.getProperty().email}}">{{property.email}}
                               </a>
                           </p>
 
@@ -50,8 +54,8 @@
           <div class="hr">
               <div class="vc-sd-6">
                   <div class="copyright-right">
-                      <p>COPYRIGHT @ 2021 ALL RIGHT RESERVED <a href="https://zorisboutiquehotel.com
-                              ">Zoris Boutique Hotel</a></p>
+                      <p>COPYRIGHT @ 2021 ALL RIGHT RESERVED <a routerLink="/https://{{token.getProperty().website}}
+                              ">{{token.getProperty().name}}</a></p>
                   </div>
               </div>
               <div class="vc-sd-6">
@@ -61,24 +65,31 @@
                               <ul>
                                   <!-- <li><a href="booking.php">Booking</a></li>
                                       <li><a href="room2.php">rooms</a></li> -->
-                                  <li><a href="contact-us.php">contact</a></li>
+                                  <li><a routerLink="/contact">contact</a></li>
                               </ul>
                           </nav>
                       </div>
                       <div class="footer_social_area">
                           <ul class="contact-links">
-                              <li>
-                                  <a href="https://www.instagram.com/zorisboutique/" target="_blank">
-                                    <i class=" front fab fa-instagram"></i>
-                                      <i class="back front fab fa-instagram"></i>
-                                  </a>
+
+
+                            <li *ngIf="token.getProperty().instagram">
+                              <a href="https://fb.com/{{ token.getProperty().instagram }}" target="_blank" title="">
+                                <i class=" front fab fa-instagram"></i>
+                                <i class="back front fab fa-instagram"></i>
+                              </a>
+                            </li>
+
+
+                              <li *ngIf="token.getProperty().facebook">
+                                <a href="https://fb.com/{{ token.getProperty().facebook }}" target="_blank" title=""
+                                  ><i class="front fab fa-facebook-f"></i>
+                                  <i class="back fab fa-facebook-f"></i></a>
                               </li>
-                              <li>
-                                  <a href="https://www.facebook.com/zorisboutiquehotel/" target="_blank">
-                                      <i class="front fab fa-facebook-f"></i>
-                                      <i class="back fab fa-facebook-f"></i>
-                                  </a>
-                              </li>
+
+
+
+
                               <!-- <li>
                                       <a href="#" target="_blank">
                                           <i class="front fa fa-pinterest-square"></i>
@@ -100,6 +111,7 @@
       </div>
   </div>
 </div>
-<a href="#top" class="scroll_top" data-smooth-scroll data-animate-time="500">
+<a routerLink="/top" class="scroll_top" data-smooth-scroll data-animate-time="500">
   <i class="fa fa-angle-double-up"></i>
+
 </a>

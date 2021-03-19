@@ -14,7 +14,7 @@
               <div class="bradecrumbe">
                   <ul class="breadcrumb justify-content-center justify-content-cd--center">
                       <li>
-                          <a href="index.php">
+                          <a routerLink="/home">
                               Home
                           </a>
                       </li>
@@ -59,7 +59,7 @@
                           <div class="item_content">
                               <div class="single_grid_item">
                                   <img src="{{gallery.imageURL}}" alt="gallery" >
-                                  <a href="{{gallery.imageURL}}" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
+                                  <a routerLink="{{gallery.imageURL}}" class="singel_item_hover_content restaurant_menu_image" data-gall="smg">
                                       <h5>{{gallery.title}}</h5>
 
                                   </a>

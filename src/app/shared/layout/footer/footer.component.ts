@@ -14,9 +14,9 @@ export class FooterComponent implements OnInit {
 
   property: Property;
   constructor(
-    private router: Router,
-    private token: TokenStorage,
-    private apiService: ApiService
+    public router: Router,
+   public token: TokenStorage,
+   public apiService: ApiService
   ) {
     this.property = new Property();
     if (this.token.getProperty() !== null) {
