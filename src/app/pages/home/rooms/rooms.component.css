@@ -4,6 +4,10 @@ justify-content: space-around;
 }
 .item{
 width: 300px;
+
+}
+.single_hotel_room{
+height: 430px;
 }
 .single_hotel_room_top img{
 height: 200px;
