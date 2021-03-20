@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { PagesRoutingModule } from './pages-routing.module';
-import { NgbCarousel, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SliderComponent } from './home/slider/slider.component';
 import { RoomsComponent } from './home/rooms/rooms.component';
 import { AllRoomsComponent } from './all-rooms/all-rooms.component';
@@ -21,7 +20,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     HomeComponent,
-    AboutComponent,
     SliderComponent,
     RoomsComponent,
     AllRoomsComponent,
