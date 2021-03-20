@@ -5,4 +5,9 @@ justify-content: space-around;
 .item{
 width: 300px;
 }
+.single_hotel_room_top img{
+height: 200px;
+width: 350px;
+}
+
 

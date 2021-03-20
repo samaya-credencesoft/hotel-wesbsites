@@ -123,7 +123,7 @@ export class GalleryComponent implements OnInit {
     },
     {
       imageURL: 'assets/images/gallery_img28.jpg',
-      title: 'Hotel'
+      title: 'Reception'
     },
     {
       imageURL: 'assets/images/gallery_img29.jpg',
