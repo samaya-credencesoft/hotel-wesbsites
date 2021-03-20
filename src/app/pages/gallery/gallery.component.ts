@@ -14,16 +14,16 @@ export class GalleryComponent implements OnInit {
   galleryImage = [
     {
       imageURL: 'assets/images/gallery_img1.jpg',
-      title: 'Hotel',
-class: 'hotel'
+      title: 'Room',
+      class: 'hotel'
     },
     {
       imageURL: 'assets/images/gallery_img2.jpg',
-      title: 'Hotel'
+      title: 'Room'
     },
     {
       imageURL: 'assets/images/gallery_img3.jpg',
-      title: 'Hotel'
+      title: 'Room'
     },
     {
       imageURL: 'assets/images/gallery_img4.jpg',
@@ -31,94 +31,91 @@ class: 'hotel'
     },
     {
       imageURL: 'assets/images/gallery_img5.jpg',
-      title: 'Hotel'
+      title: 'Room'
     },
     {
       imageURL: 'assets/images/gallery_img6.jpg',
-      title: 'Hotel'
+      title: 'Room'
     },
     {
       imageURL: 'assets/images/gallery_img7.jpg',
-      title: 'Hotel'
+      title: 'Room'
     },
     {
       imageURL: 'assets/images/gallery_img8.jpg',
-      title: 'Hotel'
+      title: 'Room'
     },
     {
       imageURL: 'assets/images/gallery_img9.jpg',
-      title: 'Hotel'
+      title: 'Room'
     },
     {
       imageURL: 'assets/images/gallery_img10.jpg',
-      title: 'Hotel'
+      title: 'Room'
     },
     {
       imageURL: 'assets/images/gallery_img11.jpg',
-      title: 'Hotel'
+      title: 'Room'
     },
     {
       imageURL: 'assets/images/gallery_img12.jpg',
-      title: 'Hotel'
+      title: 'Room'
     },
     {
       imageURL: 'assets/images/gallery_img13.jpg',
-      title: 'Hotel'
+      title: 'Hall'
     },
-    {
-      imageURL: 'assets/images/gallery_img1.jpg',
-      title: 'Hotel'
-    },
+
     {
       imageURL: 'assets/images/gallery_img14.jpg',
-      title: 'Hotel'
+      title: 'Hall'
     },
     {
       imageURL: 'assets/images/gallery_img15.jpg',
-      title: 'Hotel'
+      title: 'Hall'
     }, {
       imageURL: 'assets/images/gallery_img16.jpg',
-      title: 'Hotel'
+      title: 'Hall'
     },
     {
       imageURL: 'assets/images/gallery_img17.jpg',
-      title: 'Hotel'
+      title: 'Hall'
     },
     {
       imageURL: 'assets/images/gallery_img18.jpg',
-      title: 'Hotel'
+      title: 'Hall'
     },
     {
       imageURL: 'assets/images/gallery_img19.jpg',
-      title: 'Hotel'
+      title: 'Hall'
     },
     {
       imageURL: 'assets/images/gallery_img20.jpg',
-      title: 'Hotel'
+      title: 'Hall'
     },
     {
       imageURL: 'assets/images/gallery_img21.jpg',
-      title: 'Hotel'
+      title: 'Hall'
     },
     {
       imageURL: 'assets/images/gallery_img22.jpg',
-      title: 'Hotel'
+      title: 'Hall'
     },
     {
       imageURL: 'assets/images/gallery_img23.jpg',
-      title: 'Hotel'
+      title: 'Corrider'
     },
     {
       imageURL: 'assets/images/gallery_img24.jpg',
-      title: 'Hotel'
+      title: 'Hall'
     },
     {
       imageURL: 'assets/images/gallery_img25.jpg',
-      title: 'Hotel'
+      title: 'Lobby'
     },
     {
       imageURL: 'assets/images/gallery_img26.jpg',
-      title: 'Hotel'
+      title: 'Lobby'
     },
     {
       imageURL: 'assets/images/gallery_img27.jpg',
@@ -134,52 +131,25 @@ class: 'hotel'
     },
     {
       imageURL: 'assets/images/gallery_img30.jpg',
-      title: 'Hotel'
+      title: 'Reception'
     },
-    {
-      imageURL: 'assets/images/gallery_img31.jpg',
-      title: 'Hotel'
-    },
+    // {
+    //   imageURL: 'assets/images/gallery_img31.jpg',
+    //   title: 'Hotel'
+    // },
     {
       imageURL: 'assets/images/gallery_img32.jpg',
       title: 'Hotel'
     },
     {
       imageURL: 'assets/images/gallery_img33.jpg',
-      title: 'Hotel'
-    },
-    {
-      imageURL: 'assets/images/gallery_img34.jpg',
-      title: 'Hotel'
-    },
-    {
-      imageURL: 'assets/images/gallery_img35.jpg',
-      title: 'Hotel'
-    },
-    {
-      imageURL: 'assets/images/gallery_img36.jpg',
-      title: 'Hotel'
-    },
-    {
-      imageURL: 'assets/images/gallery_img37.jpg',
-      title: 'Hotel'
-    },
-    {
-      imageURL: 'assets/images/gallery_img38.jpg',
-      title: 'Hotel'
-    },
-    {
-      imageURL: 'assets/images/gallery_img39.jpg',
-      title: 'Hotel'
-    },
-    {
-      imageURL: 'assets/images/gallery_img40.jpg',
-      title: 'Hotel'
-    },
-    {
-      imageURL: 'assets/images/gallery_img41.jpg',
-      title: 'Hotel'
-    },
+      title: 'Lobby'
+     }
+    // {
+    //   imageURL: 'assets/images/gallery_img34.jpg',
+    //   title: 'Hotel'
+    // }
+
   ]
   property: Property;
   constructor(
