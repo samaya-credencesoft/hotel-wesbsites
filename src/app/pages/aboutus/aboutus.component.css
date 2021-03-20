@@ -1,0 +1,43 @@
+.room-features li span {
+  display: inline-block;
+  width: auto;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.room-features {
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 8%);
+  background-color: #ffffff;
+  border: solid 1px #e4e4e4;
+  padding: 30px 37px 0 37px;
+}
+.block-title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0;
+  color: #3c3c3c;
+  line-height: 24px;
+  text-transform: initial;
+  display: block;
+  margin-bottom: 15px;
+}
+.amenities-icon svg, .amenities-icon img {
+  width: 24px;
+  height: 24px;
+  line-height: 0;
+  vertical-align: top;
+}
+.room-features li {
+  -ms-flex: 0 0 25%;
+  flex: 0 0 25%;
+  max-width: 25%;
+  padding-bottom: 25px;
+}
+.room-features ul {
+  overflow: hidden;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
