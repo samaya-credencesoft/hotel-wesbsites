@@ -1,17 +1,16 @@
-import { APP_ID, Injectable } from '@angular/core';
+import { BusinessUser } from 'src/app/model/user';
+import { APP_ID, Host, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { Payment } from './payment/payment';
-import { Host } from './host';
-import { Booking } from './site/home/model/booking';
-import { Property } from './property/property';
-import { Room } from './room/room';
-import { Observable } from 'rxjs';
-import { GuestReview } from './guest/guest.component';
 import { environment } from 'src/environments/environment';
-import { Customer } from './site/home/model/customer';
-import { MessageDto } from './site/home/model/MessageDto';
-import { Msg } from './site/home/model/msg';
-import { BookingDetails } from './site/home/model/bookingdetails';
+import { Booking } from './model/booking';
+import { Customer } from './model/customer';
+import { MessageDto } from './model/MessageDto';
+import { Msg } from './model/msg';
+import { Payment } from './model/payment';
+import { Property } from './model/property';
+import { Room } from './model/room';
+import { GoogleReview } from './model/googleReview';
+
 
 const API_URL = environment.apiUrl + '/api/website';
 const API_URL2 = environment.apiUrl;
@@ -34,7 +33,7 @@ export class ApiService {
     return this.http.post<Booking[]>(API_URL2 + '/api/booking/findAll', host, { observe: 'response' });
   }
   getBookingDetailsByIdAndEmail(booking: Booking) {
-    return this.http.get<BookingDetails>(API_URL + '/findBookingByIdAndEmail?BookingReferenceNumber='
+    return this.http.get<any>(API_URL + '/findBookingByIdAndEmail?BookingReferenceNumber='
       + booking.id + '&BookingEmail=' + booking.email, { observe: 'response' });
   }
   authorisationToken(message: MessageDto) {
@@ -82,7 +81,7 @@ export class ApiService {
     return this.http.post<Payment>(API_URL + '/savePayment', paymentDetails, { observe: 'response' });
   }
   getGoogleReviews() {
-    return this.http.get<GuestReview[]>(API_URL + '/getGoogleReviews?PropertyId=' + PROPERTY_ID, { observe: 'response' });
+    return this.http.get<GoogleReview[]>(API_URL + '/getGoogleReviews?PropertyId=' + PROPERTY_ID, { observe: 'response' });
   }
 
   getWeather(city) {

@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
-import { Property } from "./property/property";
-import { Booking } from "./site/home/model/booking";
-import { BusinessUser } from "./site/home/model/user";
+import { Booking } from "./model/booking";
+import { Property } from "./model/property";
+import { BusinessUser } from "./model/user";
+
 
 const PROPERTY = 'Property';
 const PROPERTY_NAME = 'PropertyName';

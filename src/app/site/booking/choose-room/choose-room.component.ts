@@ -88,8 +88,8 @@ export class ChooseRoomComponent implements OnInit {
         this.getCheckOutDateFormat(this.dateModel.checkOut);
         this.booking.fromDate = this.dateModel.checkIn;
         this.booking.toDate = this.dateModel.checkOut;
-        this.booking.noOfRooms = this.dateModel.noOfRooms;
-        this.booking.noOfPersons = this.dateModel.guest;
+        this.booking.noOfRooms = this.dateModel.booking.noOfRooms;
+        this.booking.noOfPersons = this.dateModel.booking.noOfPersons;
 
         this.getAvailableRoom();
       }

@@ -1,10 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { ContactComponent } from '../contact/contact.component';
-import { PolicyComponent } from '../policy/policy.component';
-import { GalleryComponent } from '../gallery/gallery.component';
-import { BookComponent } from '../book/book.component';
 import { BookingModule } from './booking/booking.module';
 import { BookingComponent } from './booking/booking.component';
 

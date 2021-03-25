@@ -1,3 +1,4 @@
+import { Property } from 'src/app/model/property';
 import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { NgbDate } from "@ng-bootstrap/ng-bootstrap";
@@ -48,7 +49,7 @@ export class CompleteComponent implements OnInit {
   cashPayment = false;
 
   isSuccess: boolean;
-  businessUser: BusinessUser;
+  businessUser: Property;
   // totalQuantity: number ;
   // totalPrice: number;
   myDate: any;
@@ -131,7 +132,7 @@ export class CompleteComponent implements OnInit {
   {
     this.myDate = new Date();
     this.businessServiceDto = new BusinessServiceDtoList();
-    this.businessUser = new BusinessUser();
+    this.businessUser = new Property();
     this.booking = new Booking();
     this.payment = new Payment();
     this.mobileWallet = new MobileWallet();

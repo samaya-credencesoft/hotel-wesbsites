@@ -1,4 +1,5 @@
-import { Address } from "node:cluster";
+
+import { Address } from "./address";
 import { BankAccount } from "./BankAccount";
 import { BusinessServiceDtoList } from "./businessServiceDtoList";
 import { MobileWallet } from "./mobileWallet";
