@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Room } from 'src/app/room/room';
-import { PROPERTY_ID, ApiService } from 'src/app/api.service';
-import { HttpErrorResponse } from '@angular/common/http';
+import { ApiService } from 'src/app/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { DateModel } from './../../home/model/dateModel';
 import { NavigationExtras } from '@angular/router';
@@ -18,7 +17,6 @@ import {
 import { TokenStorage } from '../../../token.storage';
 import { Payment } from 'src/app/payment/payment';
 import { MessageDto } from '../../home/model/MessageDto';
-import { BusinessUser } from '../../home/model/user';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { Customer } from '../../home/model/customer';
 import { Property } from 'src/app/property/property';
