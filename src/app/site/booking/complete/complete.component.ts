@@ -1,24 +1,17 @@
+import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
+import { Router, ActivatedRoute } from "@angular/router";
+import { NgbDate } from "@ng-bootstrap/ng-bootstrap";
+import { ApiService } from "src/app/api.service";
+import { BankAccount } from "src/app/model/BankAccount";
+import { Booking } from "src/app/model/booking";
+import { BusinessServiceDtoList } from "src/app/model/businessServiceDtoList";
+import { Customer } from "src/app/model/customer";
+import { MessageDto } from "src/app/model/MessageDto";
+import { MobileWallet } from "src/app/model/mobileWallet";
+import { Payment } from "src/app/model/payment";
+import { BusinessUser } from "src/app/model/user";
+import { TokenStorage } from "src/app/token.storage";
 
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { Room } from 'src/app/room/room';
-import { PROPERTY_ID, ApiService } from 'src/app/api.service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { ActivatedRoute } from "@angular/router";
-import { DateModel } from './../../home/model/dateModel';
-import { NavigationExtras } from '@angular/router';
-import { Router } from '@angular/router';
-import { Booking } from '../../home/model/booking';
-import { FormControl, FormGroup, NgForm, FormGroupDirective, Validators, FormBuilder } from '@angular/forms';
-import { Payment } from './../../../payment/payment';
-import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
-import { BankAccount } from '../../home/model/BankAccount';
-import { BusinessServiceDtoList } from '../../home/model/businessServiceDtoList';
-import { Customer } from '../../home/model/customer';
-import { MobileWallet } from '../../home/model/mobileWallet';
-import { BusinessUser } from '../../home/model/user';
-import { TokenStorage } from 'src/app/token.storage';
-import { Property } from 'src/app/property/property';
-import { MessageDto } from '../../home/model/MessageDto';
 
 @Component({
   selector: 'app-complete',
@@ -55,7 +48,7 @@ export class CompleteComponent implements OnInit {
   cashPayment = false;
 
   isSuccess: boolean;
-  businessUser: Property;
+  businessUser: BusinessUser;
   // totalQuantity: number ;
   // totalPrice: number;
   myDate: any;
@@ -138,7 +131,7 @@ export class CompleteComponent implements OnInit {
   {
     this.myDate = new Date();
     this.businessServiceDto = new BusinessServiceDtoList();
-    this.businessUser = new Property();
+    this.businessUser = new BusinessUser();
     this.booking = new Booking();
     this.payment = new Payment();
     this.mobileWallet = new MobileWallet();

@@ -1,27 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { Room } from 'src/app/room/room';
-import { PROPERTY_ID, ApiService } from 'src/app/api.service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
-import { DateModel } from './../../home/model/dateModel';
-import { NavigationExtras } from '@angular/router';
-import { Router } from '@angular/router';
-import { Booking } from '../../home/model/booking';
-import {
-  FormControl,
-  FormGroup,
-  NgForm,
-  FormGroupDirective,
-  Validators,
-  FormBuilder,
-} from '@angular/forms';
-import { TokenStorage } from '../../../token.storage';
-import { Payment } from 'src/app/payment/payment';
-import { MessageDto } from '../../home/model/MessageDto';
-import { BusinessUser } from '../../home/model/user';
-import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
-import { Customer } from '../../home/model/customer';
-import { Property } from 'src/app/property/property';
+import { Component, OnInit } from "@angular/core";
+import { FormControl, Validators, FormGroup, FormBuilder } from "@angular/forms";
+import { Router, ActivatedRoute, NavigationExtras } from "@angular/router";
+import { NgbDate } from "@ng-bootstrap/ng-bootstrap";
+import { ApiService } from "src/app/api.service";
+import { Booking } from "src/app/model/booking";
+import { Customer } from "src/app/model/customer";
+import { DateModel } from "src/app/model/dateModel";
+import { MessageDto } from "src/app/model/MessageDto";
+import { Payment } from "src/app/model/payment";
+import { Property } from "src/app/model/property";
+import { Room } from "src/app/model/room";
+import { TokenStorage } from "src/app/token.storage";
+
 
 @Component({
   selector: 'app-new-booking',
@@ -183,13 +173,13 @@ export class NewBookingComponent implements OnInit {
       this.dateModel.checkOut = this.getDateFormat(this.checkOut.value);
     }
     if (this.guest === null) {
-      this.dateModel.guest = 1;
+      this.dateModel.booking.noOfPersons = 1;
     } else {
-      this.dateModel.guest = this.guest;
+      this.dateModel.booking.noOfPersons = this.guest;
 
     }
 
-    this.dateModel.noOfRooms = 1;
+    this.dateModel.booking.noOfRooms = 1;
 
 
     // console.log(' this.dateModel '+JSON.stringify( this.dateModel));

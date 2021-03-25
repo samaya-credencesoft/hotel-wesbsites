@@ -7,8 +7,8 @@ import { Room } from './room';
 
 export class DateModel {
 
-  checkedin: string;
-  checkout: string;
+  checkIn: string;
+  checkOut: string;
 
   room: Room;
   booking: Booking;

@@ -1,29 +1,20 @@
-import { BusinessUser } from './../../home/model/user';
-import { TokenStorage } from './../../../token.storage';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { Room } from 'src/app/room/room';
-import { PROPERTY_ID, ApiService, SMS_NUMBER } from 'src/app/api.service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
-import { DateModel } from './../../home/model/dateModel';
-import { NavigationExtras } from '@angular/router';
-import { Router } from '@angular/router';
-import { Booking } from '../../home/model/booking';
-import { Payment } from './../../../payment/payment';
-import {
-  FormControl,
-  FormGroup,
-  NgForm,
-  FormGroupDirective,
-  Validators,
-  FormBuilder,
-} from '@angular/forms';
-import { Message } from 'primeng/api/message';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Msg } from '../../home/model/msg';
-import { BankAccount } from '../../home/model/BankAccount';
-import { MobileWallet } from '../../home/model/mobileWallet';
-import { MessageDto } from '../../home/model/MessageDto';
+import { HttpErrorResponse } from "@angular/common/http";
+import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
+import { FormControl, Validators, FormGroup, FormBuilder } from "@angular/forms";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { Router, ActivatedRoute, NavigationExtras } from "@angular/router";
+import { ApiService, PROPERTY_ID, SMS_NUMBER } from "src/app/api.service";
+import { BankAccount } from "src/app/model/BankAccount";
+import { Booking } from "src/app/model/booking";
+import { DateModel } from "src/app/model/dateModel";
+import { MessageDto } from "src/app/model/MessageDto";
+import { MobileWallet } from "src/app/model/mobileWallet";
+import { Msg } from "src/app/model/msg";
+import { Payment } from "src/app/model/payment";
+import { Room } from "src/app/model/room";
+import { BusinessUser } from "src/app/model/user";
+import { TokenStorage } from "src/app/token.storage";
+
 export interface Year {
   value: string;
   viewValue: string;
@@ -51,7 +42,7 @@ export class CheckoutComponent implements OnInit {
 
   paymentLoader: boolean = false;
   verified = false;
-  msgs: Message[] = [];
+  msgs = [];
   loader: boolean = false;
   propertyName: string;
   isAvailableChecked: boolean = true;

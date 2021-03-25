@@ -1,18 +1,16 @@
-import { BankAccount } from './../../home/model/BankAccount';
-import { MobileWallet } from './../../home/model/mobileWallet';
-import { FormControl, Validators } from "@angular/forms";
-import { Booking } from "../../home/model/booking";
-import { TokenStorage } from "src/app/token.storage";
-import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
-import { Room } from "src/app/room/room";
-import { PROPERTY_ID, ApiService } from "src/app/api.service";
 import { HttpErrorResponse } from "@angular/common/http";
-import { ActivatedRoute } from "@angular/router";
-import { DateModel } from "./../../home/model/dateModel";
-import { NavigationExtras } from "@angular/router";
-import { Router } from "@angular/router";
-import { BusinessUser } from "../../home/model/user";
-import { RoomRatePlans } from "../../home/model/roomRatePlans";
+import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
+import { Router, ActivatedRoute, NavigationExtras } from "@angular/router";
+import { ApiService, PROPERTY_ID } from "src/app/api.service";
+import { BankAccount } from "src/app/model/BankAccount";
+import { Booking } from "src/app/model/booking";
+import { DateModel } from "src/app/model/dateModel";
+import { MobileWallet } from "src/app/model/mobileWallet";
+import { Room } from "src/app/model/room";
+import { RoomRatePlans } from "src/app/model/roomRatePlans";
+import { BusinessUser } from "src/app/model/user";
+import { TokenStorage } from "src/app/token.storage";
+
 
 @Component({
   selector: "app-choose-room",
