@@ -1,4 +1,4 @@
-import { Payment } from "src/app/payment/payment";
+import { Payment } from "src/app/site/home/model/payment";
 import { Room } from "src/app/room/room";
 import { Booking } from "./booking";
 

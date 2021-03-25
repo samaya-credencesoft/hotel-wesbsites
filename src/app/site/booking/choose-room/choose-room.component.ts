@@ -12,6 +12,7 @@ import { NavigationExtras } from "@angular/router";
 import { Router } from "@angular/router";
 import { RoomRatePlans } from "../../home/model/roomRatePlans";
 import { Property } from '../../home/model/property';
+import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: "app-choose-room",
@@ -19,6 +20,10 @@ import { Property } from '../../home/model/property';
   styleUrls: ["./choose-room.component.css"],
 })
 export class ChooseRoomComponent implements OnInit {
+
+  fromDate: NgbDate | null;
+  toDate: NgbDate | null;
+
   rooms: Room[];
   dateModel: DateModel;
   selectedIndex:number;
@@ -45,6 +50,8 @@ export class ChooseRoomComponent implements OnInit {
   children: number = 0;
   noOfrooms: number = 1;
   DiffDate;
+  enddate;
+  startDate;
   planSelected: boolean = false;
 
   planAmount = 0;
@@ -91,7 +98,17 @@ export class ChooseRoomComponent implements OnInit {
         this.booking.toDate = this.dateModel.checkOut;
         this.booking.noOfRooms = this.dateModel.noOfRooms;
         this.booking.noOfPersons = this.dateModel.guest;
-
+        this.fromDate = new NgbDate(
+          this.mileSecondToNGBDate(this.booking.fromDate).year,
+          this.mileSecondToNGBDate(this.booking.fromDate).month,
+          this.mileSecondToNGBDate(this.booking.fromDate).day
+        );
+        this.toDate = new NgbDate(
+          this.mileSecondToNGBDate(this.booking.toDate).year,
+          this.mileSecondToNGBDate(this.booking.toDate).month,
+          this.mileSecondToNGBDate(this.booking.toDate).day
+        );
+        this.getDiffDate(this.toDate, this.fromDate);
         this.getAvailableRoom();
       }
     });
@@ -100,7 +117,33 @@ export class ChooseRoomComponent implements OnInit {
   ngOnInit() {
     //this.checkincheckoutDate();
   }
+  mileSecondToNGBDate(date: string) {
+    const dsd = new Date(date);
+    const year = dsd.getFullYear();
+    const day = dsd.getDate();
+    const month = dsd.getMonth() + 1;
+    return { year: year, month: month, day: day };
+  }
+  getDiffDate(toDate, fromDate) {
+    this.startDate = new Date(fromDate.year, fromDate.month - 1, fromDate.day);
+    this.enddate = new Date(toDate.year, toDate.month - 1, toDate.day);
 
+    // console.log('this.fromDate: ', this.startDate);
+    // console.log('this.toDate: ', this.enddate);
+    this.DiffDate = Math.floor(
+      (Date.UTC(
+        this.enddate.getFullYear(),
+        this.enddate.getMonth(),
+        this.enddate.getDate()
+      ) -
+        Date.UTC(
+          this.startDate.getFullYear(),
+          this.startDate.getMonth(),
+          this.startDate.getDate()
+        )) /
+      (1000 * 60 * 60 * 24)
+    );
+  }
   onRoomBooking(room, index) {
     this.dateModel.room = room;
     this.selectedIndex = index;
@@ -113,23 +156,10 @@ export class ChooseRoomComponent implements OnInit {
     // this.router.navigate(['/booking/booking'], navigationExtras);
   }
   onPlanSelected(plan, room) {
-    // this.checkAvailabilityStatus = false;
-    // this.checkAvailabilityStatusHide = true;
-    // this.checkAvailabilityStatusName = undefined;
-    // if(this.adults > 2){
-    //   this.adults = 2;
-    // }
-    // this.children = 0;
-    // this.noOfrooms = 1;
-    // if(room.ratesAndAvailabilityDtos.noOfAvailable * room.maximumOccupancy < this.adults){
-    //   this.adults = room.ratesAndAvailabilityDtos.noOfAvailable * room.maximumOccupancy;
 
-    // }
-    // this.noOfrooms =  Number((this.adults / room.maximumOccupancy).toFixed(0));
-    // if(plan.noOfAvailable < this.noOfrooms){
-    //   this.noOfrooms = plan.noOfAvailable;
-    // }
     this.booking.netAmount = plan.amount * this.DiffDate * this.noOfrooms;
+    console.log('plan ',JSON.stringify(this.DiffDate));
+
     if (this.property.taxDetails.length > 0) {
       this.taxPercentage = this.property.taxDetails[0].percentage;
     }
@@ -193,13 +223,12 @@ export class ChooseRoomComponent implements OnInit {
           });
         }
 
-        this.booking.totalAmount = this.booking.netAmount + ((this.booking.netAmount * this.taxPercentage) / 100) - this.booking.discountAmount;
-        this.booking.discountAmount = 0;
         this.booking.netAmount = this.booking.roomPrice * this.booking.noOfRooms * this.DiffDate;
+        this.booking.discountAmount = 0;
+        // this.booking.totalAmount = this.booking.netAmount + ((this.booking.netAmount * this.taxPercentage) / 100) - this.booking.discountAmount;
         this.booking.gstAmount = (this.booking.netAmount * this.booking.taxPercentage) / 100;
         this.booking.totalAmount = this.booking.netAmount + this.booking.gstAmount - this.booking.discountAmount;
-
-
+        console.log('book now ',JSON.stringify(this.booking.netAmount));
     this.token.saveBookingData(this.booking);
     this.router.navigate(["/booking/booking"]);
   }

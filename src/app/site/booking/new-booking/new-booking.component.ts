@@ -15,7 +15,7 @@ import {
   FormBuilder,
 } from '@angular/forms';
 import { TokenStorage } from '../../../token.storage';
-import { Payment } from 'src/app/payment/payment';
+import { Payment } from 'src/app/site/home/model/payment';
 import { MessageDto } from '../../home/model/MessageDto';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { Customer } from '../../home/model/customer';
@@ -141,6 +141,7 @@ export class NewBookingComponent implements OnInit {
     this.room = new Room();
     if (this.token.getProperty() != undefined && this.token.getProperty() != null) {
       this.property = this.token.getProperty();
+      this.currency = this.property.localCurrency.toLocaleUpperCase();
     }
 
     if (this.token.getBookingData() != undefined && this.token.getBookingData() != null) {

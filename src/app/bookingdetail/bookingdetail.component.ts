@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Booking } from '../site/home/model/booking';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from './../api.service';
-import { Payment } from './../payment/payment';
+import { Payment } from '../site/home/model/payment';
 
 
 @Component({

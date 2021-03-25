@@ -1,4 +1,4 @@
-import { Payment } from "../../../payment/payment";
+import { Payment } from "./payment";
 import { Booking } from "./booking";
 
 export class BookingDetails {

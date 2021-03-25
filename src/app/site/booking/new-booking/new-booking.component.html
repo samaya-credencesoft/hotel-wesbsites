@@ -833,7 +833,7 @@
                     </span>
                   </li>
                   <li>
-                    <b>Tax Amount ({{ this.taxPercentage }}%):</b><span> {{ booking.gstAmount | currency: currency:"symbol":"1.2-2" }}</span>
+                    <b>Tax Amount:</b><span> {{ booking.gstAmount | currency: currency:"symbol":"1.2-2" }}</span>
                   </li>
                   <li *ngIf="discountPercentage">
                     <b>Discount Amount: </b>{{ booking.discountAmount | currency: currency:"symbol":"1.2-2" }}

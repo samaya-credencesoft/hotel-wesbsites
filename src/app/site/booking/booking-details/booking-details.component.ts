@@ -5,7 +5,7 @@ import { Booking } from '../../home/model/booking';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from './../../../api.service';
 import { DateService } from '../../../date-service.service'
-import { Payment } from './../../../../app/payment/payment';
+import { Payment } from '../../home/model/payment';
 
 
 @Component({

@@ -8,7 +8,7 @@ import { DateModel } from "./../../home/model/dateModel";
 import { NavigationExtras } from "@angular/router";
 import { Router } from "@angular/router";
 import { Booking } from "../../home/model/booking";
-import { Payment } from "./../../../payment/payment";
+import { Payment } from "../../home/model/payment";
 import {
   FormControl,
   FormGroup,
@@ -24,6 +24,7 @@ import { BankAccount } from "../../home/model/BankAccount";
 import { MobileWallet } from "../../home/model/mobileWallet";
 import { MessageDto } from "../../home/model/MessageDto";
 import { Property } from "../../home/model/property";
+import { formatDate } from "@angular/common";
 export interface Year {
   value: string;
   viewValue: string;
@@ -363,7 +364,9 @@ export class CheckoutComponent implements OnInit {
     this.payment.email = this.booking.email;
     this.payment.businessEmail = this.property.email;
     this.payment.currency = this.property.localCurrency;
-
+    this.payment.deliveryChargeAmount = 0;
+    this.payment.date = formatDate(new Date(), "yyyy-MM-dd", "en");
+    this.payment.taxAmount = this.booking.gstAmount;
     this.chargeCreditCard(this.payment);
   }
   onWalletPaymentSubmit() {
@@ -379,7 +382,9 @@ export class CheckoutComponent implements OnInit {
     this.payment.businessEmail = this.property.email;
     this.payment.transactionChargeAmount = this.booking.totalAmount;
     this.payment.currency = this.property.localCurrency;
-
+    this.payment.deliveryChargeAmount = 0;
+    this.payment.date = formatDate(new Date(), "yyyy-MM-dd", "en");
+    this.payment.taxAmount = this.booking.gstAmount;
     this.processPayment(this.payment);
   }
   onBankPaymentSubmit(content) {
@@ -395,7 +400,9 @@ export class CheckoutComponent implements OnInit {
     this.payment.businessEmail = this.property.email;
     this.payment.transactionChargeAmount = this.booking.totalAmount;
     this.payment.currency = this.property.localCurrency;
-
+    this.payment.deliveryChargeAmount = 0;
+    this.payment.date = formatDate(new Date(), "yyyy-MM-dd", "en");
+    this.payment.taxAmount = this.booking.gstAmount;
     this.processPayment(this.payment);
   }
 
@@ -412,7 +419,9 @@ export class CheckoutComponent implements OnInit {
     this.payment.businessEmail = this.property.email;
     this.payment.transactionChargeAmount = this.booking.totalAmount;
     this.payment.currency = this.property.localCurrency;
-
+    this.payment.deliveryChargeAmount = 0;
+    this.payment.date = formatDate(new Date(), "yyyy-MM-dd", "en");
+    this.payment.taxAmount = this.booking.gstAmount;
     this.processPayment(this.payment);
   }
 
@@ -523,21 +532,21 @@ export class CheckoutComponent implements OnInit {
     //     this.paymentLoader = false;
     //   };
   }
-  // savePaymentProcess() {
-  //   this.orderService.savePayment(this.payment).subscribe((res1) => {
-  //     if (res1.status === 200) {
-  //       this.payment = res1.body;
-  //       // Logger.log('res1 save payment : ' + JSON.stringify(res1.body));
-  //       // Logger.log('s : ' + JSON.stringify(this.slotReservation));
+  savePaymentProcess() {
+    this.apiService.savePayment(this.payment).subscribe((res1) => {
+      if (res1.status === 200) {
+        this.payment = res1.body;
+        // Logger.log('res1 save payment : ' + JSON.stringify(res1.body));
+        // Logger.log('s : ' + JSON.stringify(this.slotReservation));
 
-  //       this.bookingData.paymentId = this.payment.id;
-  //       this.booking.modeOfPayment = this.payment.paymentMode;
-  //       this.createBooking(this.booking);
-  //     } else {
-  //       this.paymentLoader = false;
-  //     }
-  //   });
-  // }
+        this.booking.paymentId = this.payment.id;
+        this.booking.modeOfPayment = this.payment.paymentMode;
+        this.createBooking();
+      } else {
+        this.paymentLoader = false;
+      }
+    });
+  }
   showSuccess(content) {
     this.alertType = "success";
     this.showAlert = true;
@@ -588,119 +597,116 @@ export class CheckoutComponent implements OnInit {
       this.payment.email = this.booking.email;
       this.payment.businessEmail = this.booking.businessEmail;
       this.payment.description = `Accomodation for  ${this.booking.firstName}  at  ${this.propertyName}`;
-      this.createBooking(this.booking);
+      this.createBooking();
     }
   }
 
-  // chargeCreditCard() {
-  //   this.loader = true;
-  //   (<any>window).Stripe.card.createToken(
-  //     {
-  //       number: this.payment.cardNumber,
-  //       exp_month: this.payment.expMonth,
-  //       exp_year: this.payment.expYear,
-  //       cvc: this.payment.cvv,
-  //     },
-  //     (status: number, response: any) => {
-  //       if (status === 200) {
-  //         const token = response.id;
-  //         this.payment.token = token;
-  //         this.payment.amount = this.booking.payableAmount;
-  //         this.payment.currency = 'INR';
-  //         this.payment.email = this.booking.email;
-  //         this.payment.businessEmail = this.booking.businessEmail;
-  //         this.payment.paymentMode = this.booking.modeOfPayment;
-  //         this.payment.description = `Accomodation for   ${this.booking.firstName} at ${this.booking.businessName}`;
-  //         console.log('payment ' + JSON.stringify(this.payment));
-  //         this.processPayment(this.payment);
-  //       } else {
-  //         this.loader = false;
-  //         const snackBarRef = this.snackBar.open(
-  //           'Error message :' + response.error.message
-  //         );
-  //         snackBarRef.dismiss();
-  //       }
-  //     }
-  //   );
-  // }
-
   processPayment(payment: Payment) {
+    this.paymentLoader = true;
     this.apiService.processPayment(payment).subscribe((response) => {
       if (response.status === 200) {
-        this.payment = response.body;
-        if (this.payment.status === "Paid") {
-          const snackBarRef = this.snackBar.open(
-            "Payment processed successfully.Creating booking ...",
-            "close"
-          );
-          snackBarRef._dismissAfter(5000);
-          this.createBooking(this.booking);
+        if (response.body.failureMessage != null) {
+          this.paymentLoader = false;
+          this.isSuccess = false;
+          this.headerTitle = "Error!";
+          this.bodyMessage =
+            "Unable to process payment" +
+            " Code: " +
+            response.body.failureMessage;
+          this.showDanger(this.contentDialog);
+
+          this.changeDetectorRefs.detectChanges();
         } else {
-          this.loader = false;
-          this.snackBar.open(
-            "Error Code:" +
-              payment.failureCode +
-              "and Error message :" +
-              payment.failureMessage,
-            "",
-            {
-              duration: 5000,
+          this.paymentLoader = false;
+          this.payment = response.body;
+          this.booking.paymentId = response.body.id;
+          this.booking.modeOfPayment = this.payment.paymentMode;
+
+          this.apiService.savePayment(this.payment).subscribe(
+            (res1) => {
+              if (res1.status === 200) {
+                this.paymentLoader = false;
+                this.changeDetectorRefs.detectChanges();
+
+                this.createBooking();
+              } else {
+                this.paymentLoader = false;
+                this.isSuccess = false;
+                this.headerTitle = "Error!";
+                this.bodyMessage =
+                  "Unable to save payment" + " Code: " + status;
+                this.showDanger(this.contentDialog);
+
+                this.paymentLoader = false;
+                this.changeDetectorRefs.detectChanges();
+              }
+            },
+            (error) => {
+              this.paymentLoader = false;
+              this.isSuccess = false;
+              this.headerTitle = "Error!";
+              this.bodyMessage = "Saving Payment Failed! Code: " + error.status;
+              this.showDanger(this.contentDialog);
+              this.changeDetectorRefs.detectChanges();
             }
           );
         }
       } else {
-        this.loader = false;
+        this.paymentLoader = false;
+        this.isSuccess = false;
+        this.headerTitle = "Error!";
+        this.bodyMessage = "Payment Failed! Code: " + response.status;
+        this.showDanger(this.contentDialog);
+        this.changeDetectorRefs.detectChanges();
       }
     });
   }
 
-  createBooking(booking: Booking) {
-    const createBookingObsr = this.apiService
-      .createBooking(booking)
-      .subscribe((response) => {
-        if (response.status === 200) {
-          this.booking = response.body;
-          if (this.booking.id != null) {
-            this.openSuccessSnackBar(
-              `Thanks for the booking .Please not the Reservation No:  # ${this.booking.id} and an email is sent with the booking details.`
-            );
-            // this.msgs.push({
-            //   severity: 'success',
-            //   detail:
-            //     `Thanks for the booking .Please not the Reservation No:  # ${this.booking.id} and an email is sent with the booking details.`
-            // });
-            if (
-              this.booking.mobile !== null &&
-              this.booking.mobile !== undefined
-            ) {
-              this.sendConfirmationMessage();
-            }
-            this.payment.referenceNumber = this.booking.id.toString();
-            this.payment.externalReference = this.booking.externalBookingID;
-            this.apiService.savePayment(this.payment).subscribe((res) => {
-              if (res.status === 200) {
-                this.openSuccessSnackBar(`Payment Details Saved`);
-              } else {
-                this.openErrorSnackBar(`Error in updating payment details`);
-              }
-            });
-            this.completedPage();
-            this.loader = false;
-          } else {
-            this.loader = false;
-            // this.msgs.push({
-            //   severity: 'error',
-            //   summary: 'Please check the booking details and try again !'
-            // });
+  createBooking() {
+    this.apiService.createBooking(this.booking).subscribe((response) => {
+      if (response.status === 200) {
+        this.booking = response.body;
+        if (this.booking.id != null) {
+          this.openSuccessSnackBar(
+            `Thanks for the booking .Please not the Reservation No:  # ${this.booking.id} and an email is sent with the booking details.`
+          );
+          // this.msgs.push({
+          //   severity: 'success',
+          //   detail:
+          //     `Thanks for the booking .Please not the Reservation No:  # ${this.booking.id} and an email is sent with the booking details.`
+          // });
+          if (
+            this.booking.mobile !== null &&
+            this.booking.mobile !== undefined
+          ) {
+            this.sendConfirmationMessage();
           }
+          this.payment.referenceNumber = this.booking.id.toString();
+          this.payment.externalReference = this.booking.externalBookingID;
+          this.apiService.savePayment(this.payment).subscribe((res) => {
+            if (res.status === 200) {
+              this.openSuccessSnackBar(`Payment Details Saved`);
+            } else {
+              this.openErrorSnackBar(`Error in updating payment details`);
+            }
+          });
+          this.completedPage();
+          this.loader = false;
         } else {
           this.loader = false;
           // this.msgs.push({
           //   severity: 'error',
-          //   summary: response.statusText + ':' + response.statusText
+          //   summary: 'Please check the booking details and try again !'
           // });
         }
-      });
+      } else {
+        this.loader = false;
+        // this.msgs.push({
+        //   severity: 'error',
+        //   summary: response.statusText + ':' + response.statusText
+        // });
+      }
+    });
     /*setTimeout(() => {
     this.msgs = [];
     createBookingObsr.unsubscribe();

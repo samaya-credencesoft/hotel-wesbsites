@@ -10,7 +10,7 @@ import { Observable, throwError } from 'rxjs';
 import { Room } from './../room/room';
 import { Property } from '../site/home/model/property';
 
-import { Payment } from './../payment/payment';
+import { Payment } from '../site/home/model/payment';
 
 import { Message } from 'primeng/api/message';
 import { MatSnackBar } from '@angular/material/snack-bar';

@@ -353,10 +353,12 @@
                                       (ngModelChange)="onPlanSelected(planDetails, room)">
                                       <mat-radio-button class="example-radio-button"
                                         *ngFor="let plan of rates.roomRatePlans; let p= index;" [value]="plan" (click)="booking.roomName = rates.roomName;
+                                        booking.roomPrice = plan.amount;
                                         selectedRoomName = rates.roomName;
                                         booking.roomType = rates.roomName;
                                         maxSelectRoom = rates.noOfAvailable;
-                                        maxOccupancy = room.maximumOccupancy;  ">
+                                        maxOccupancy = room.maximumOccupancy;
+                                         ">
                                         {{plan.name}}
                                       </mat-radio-button>
                                     </mat-radio-group>

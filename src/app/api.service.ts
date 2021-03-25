@@ -1,6 +1,6 @@
 import { APP_ID, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { Payment } from './payment/payment';
+import { Payment } from './site/home/model/payment';
 import { Host } from './host';
 import { Booking } from './site/home/model/booking';
 import { Property } from './site/home/model/property';

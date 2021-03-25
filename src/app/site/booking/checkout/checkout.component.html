@@ -23,7 +23,7 @@
         <div class="col-lg-4">
           <div class="sidebar">
             <div class="avail-sec">
-              <form>
+              <form >
                 <div class="checking-form">
                   <ul class="checkform">
                     <li>
@@ -45,7 +45,7 @@
                     </li>
                     <li>
                       <div class="check-form">
-                        <h4>CHECK-OUt</h4>
+                        <h4>CHECK-OUT</h4>
                         <div class="det">
                           <b class="val-date">{{ this.daySelected2 }}</b>
                           <span>
@@ -124,7 +124,7 @@
             <div class="rq-info cv_lst">
               <h4>Room Information :</h4>
               <ul>
-                <li><b>Room Name : </b> {{ room.name }}</li>
+                <li><b>Room Name : </b> {{ booking.roomName }}</li>
                 <li><b>No of rooms : </b> {{ booking.noOfRooms }}</li>
                 <li><b>No of guest : </b> {{ booking.noOfPersons }}</li>
               </ul>
@@ -182,10 +182,8 @@
 
                           <div class="col-md-12">
                             <button class="btn btn-primary" type="button" [disabled]="
-                                !orderForm.form.valid ||
                                 !payForm.form.valid ||
-                                paymentLoader ||
-                                submitButtonDisable
+                                paymentLoader
                               " (click)="onCardPaymentSubmit()">
                               Confirm
                             </button>
@@ -318,11 +316,8 @@
                           </div>
                           <div class="col-md-12">
                             <button class="btn btn-primary" type="button" [disabled]="
-                                !orderForm.form.valid ||
                                 !payForm.form.valid ||
-                                paymentLoader ||
-                                submitButtonDisable ||
-                                !mobileHasError
+                                paymentLoader
                               " (click)="onCardPaymentSubmit()">
                               Confirm
                             </button>
@@ -332,7 +327,7 @@
                     </div>
                     <div class="tab-pane fade show active" id="tabs-icons-text-2" role="tabpanel"
                       aria-labelledby="tabs-icons-text-2-tab">
-                      <form action="">
+                      <form  class="form" (ngSubmit)="orderForm.form.valid" #orderForm="ngForm">
                         <div class="row">
                           <div class="col-md-12">
                             <h5>Confirm booking</h5>
@@ -343,7 +338,7 @@
                             </p>
                           </div>
                           <div class="col-md-12 mt-3">
-                            <button class="btn btn-primary" type="button" [disabled]="paymentLoader ||!mobileHasError" (click)="onCashPaymentSubmit()">
+                            <button class="btn btn-primary" type="button" [disabled]="paymentLoader" (click)="onCashPaymentSubmit()">
                               Confirm
                             </button>
                           </div>
@@ -428,10 +423,6 @@
                           </div>
                           <div class="col-md-12">
                             <button class="btn btn-primary" type="button" [disabled]="
-                                !orderForm.form.valid ||
-                                paymentLoader ||
-                                submitButtonDisable ||
-                                !mobileHasError ||
                                 payment.receiptNumber === undefined ||
                                 payment.receiptNumber === ''
                               " (click)="onBankPaymentSubmit()">
@@ -522,10 +513,6 @@
 
                           <div class="col-md-12">
                             <button class="btn btn-primary" type="button" [disabled]="
-
-                                paymentLoader ||
-                                submitButtonDisable ||
-                                !mobileHasError ||
                                 payment.receiptNumber === undefined ||
                                 payment.receiptNumber === ''
                               " (click)="onWalletPaymentSubmit()">

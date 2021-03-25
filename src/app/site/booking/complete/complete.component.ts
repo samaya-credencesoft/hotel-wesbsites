@@ -9,7 +9,7 @@ import { NavigationExtras } from '@angular/router';
 import { Router } from '@angular/router';
 import { Booking } from '../../home/model/booking';
 import { FormControl, FormGroup, NgForm, FormGroupDirective, Validators, FormBuilder } from '@angular/forms';
-import { Payment } from './../../../payment/payment';
+import { Payment } from '../../home/model/payment';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { BankAccount } from '../../home/model/BankAccount';
 import { BusinessServiceDtoList } from '../../home/model/businessServiceDtoList';

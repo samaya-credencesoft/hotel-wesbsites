@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Payment } from './payment';
+import { Payment } from '../site/home/model/payment';
 import { ApiService } from './../api.service';
 import { HTTPStatus } from './../app.interceptor';
 import { MatSnackBar } from '@angular/material/snack-bar';

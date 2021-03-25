@@ -11,6 +11,7 @@ export class Payment {
   amount: number;
   currency: string;
   state: string;
+  date: string;
   token: string;
   expYear: string;
   expMonth: string;
@@ -21,6 +22,7 @@ export class Payment {
   receiptNumber: string;
   failureMessage: string;
   failureCode: string;
+  deliveryChargeAmount: number;
   paymentMode: string;
   externalReference: string;
   propertyId: number;
