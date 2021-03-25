@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ApiService, PROPERTY_ID } from '../api.service';
-import { Property } from '../property/property';
+import { Property } from '../site/home/model/property';
 import { TokenStorage } from '../token.storage';
 
 @Component({

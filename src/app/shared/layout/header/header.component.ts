@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Property } from "src/app/property/property";
+import { Property } from "src/app/site/home/model/property";
 import { ApiService, PROPERTY_ID } from "src/app/api.service";
 import { HttpErrorResponse } from "@angular/common/http";
 import { Room } from "src/app/room/room";

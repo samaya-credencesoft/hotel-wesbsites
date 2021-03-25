@@ -1,7 +1,7 @@
 import { TokenStorage } from './../token.storage';
 import { environment } from 'src/environments/environment';
 import { Component, OnInit, Input } from '@angular/core';
-import { Property } from '../property/property';
+import { Property } from '../site/home/model/property';
 import { ApiService, PROPERTY_ID } from '../api.service';
 import { HttpErrorResponse, HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';

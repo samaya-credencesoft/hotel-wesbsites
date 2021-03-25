@@ -4,7 +4,7 @@ import { ApiService } from './../api.service';
 import { HTTPStatus } from './../app.interceptor';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Property } from '../property/property';
+import { Property } from '../site/home/model/property';
 import { Message } from 'primeng/api/message';
 
 export interface Year {

@@ -8,7 +8,7 @@ import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapte
 import { MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core';
 import { Observable, throwError } from 'rxjs';
 import { Room } from './../room/room';
-import { Property } from './../property/property';
+import { Property } from '../site/home/model/property';
 
 import { Payment } from './../payment/payment';
 

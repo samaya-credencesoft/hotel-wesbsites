@@ -1,6 +1,5 @@
 import { BankAccount } from './../../home/model/BankAccount';
 import { MobileWallet } from './../../home/model/mobileWallet';
-import { FormControl, Validators } from "@angular/forms";
 import { Booking } from "../../home/model/booking";
 import { TokenStorage } from "src/app/token.storage";
 import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
@@ -11,8 +10,8 @@ import { ActivatedRoute } from "@angular/router";
 import { DateModel } from "./../../home/model/dateModel";
 import { NavigationExtras } from "@angular/router";
 import { Router } from "@angular/router";
-import { BusinessUser } from "../../home/model/user";
 import { RoomRatePlans } from "../../home/model/roomRatePlans";
+import { Property } from '../../home/model/property';
 
 @Component({
   selector: "app-choose-room",
@@ -38,7 +37,7 @@ export class ChooseRoomComponent implements OnInit {
   checkAvailabilityStatusHide: boolean;
   planDetails: RoomRatePlans;
 
-  businessUser: BusinessUser;
+  property: Property;
 
   taxPercentage: number = 0;
 
@@ -131,11 +130,11 @@ export class ChooseRoomComponent implements OnInit {
     //   this.noOfrooms = plan.noOfAvailable;
     // }
     this.booking.netAmount = plan.amount * this.DiffDate * this.noOfrooms;
-    if (this.businessUser.taxDetails.length > 0) {
-      this.taxPercentage = this.businessUser.taxDetails[0].percentage;
+    if (this.property.taxDetails.length > 0) {
+      this.taxPercentage = this.property.taxDetails[0].percentage;
     }
-    if (this.businessUser.taxDetails[0].taxSlabsList.length > 0) {
-      this.businessUser.taxDetails[0].taxSlabsList.forEach((element) => {
+    if (this.property.taxDetails[0].taxSlabsList.length > 0) {
+      this.property.taxDetails[0].taxSlabsList.forEach((element) => {
         if (
           element.maxAmount > this.booking.netAmount &&
           element.minAmount < this.booking.netAmount
@@ -175,14 +174,14 @@ export class ChooseRoomComponent implements OnInit {
     // this.booking.netAmount =
     this.changeDetectorRefs.detectChanges();
 
-    this.mobileWallet = this.businessUser.mobileWallet;
-        this.bankAccount = this.businessUser.bankAccount;
-        //  Logger.log(' this.businessUser ===='+JSON.stringify( this.businessUser));
-        if (this.businessUser.taxDetails.length > 0) {
-          this.taxPercentage = this.businessUser.taxDetails[0].percentage;
+    this.mobileWallet = this.property.mobileWallet;
+        this.bankAccount = this.property.bankAccount;
+        //  Logger.log(' this.property ===='+JSON.stringify( this.property));
+        if (this.property.taxDetails.length > 0) {
+          this.taxPercentage = this.property.taxDetails[0].percentage;
         }
-        if (this.businessUser.taxDetails[0].taxSlabsList.length > 0) {
-          this.businessUser.taxDetails[0].taxSlabsList.forEach((element) => {
+        if (this.property.taxDetails[0].taxSlabsList.length > 0) {
+          this.property.taxDetails[0].taxSlabsList.forEach((element) => {
             if (
               element.maxAmount > this.booking.roomPrice &&
               element.minAmount < this.booking.roomPrice
@@ -207,8 +206,8 @@ export class ChooseRoomComponent implements OnInit {
   getAvailableRoom() {
     this.apiService.checkAvailabilityByID(this.booking).subscribe(
       (response) => {
-        this.businessUser = response.body;
-        this.token.saveBusinessUser(this.businessUser );
+        this.property = response.body;
+        this.token.saveProperty(this.property );
         this.rooms = response.body.roomList;
         this.checkAvailabilityStatus = response.body.available;
         this.booking.bookingAmount = response.body.bookingAmount;

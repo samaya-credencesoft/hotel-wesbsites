@@ -15,9 +15,8 @@ import { BankAccount } from '../../home/model/BankAccount';
 import { BusinessServiceDtoList } from '../../home/model/businessServiceDtoList';
 import { Customer } from '../../home/model/customer';
 import { MobileWallet } from '../../home/model/mobileWallet';
-import { BusinessUser } from '../../home/model/user';
 import { TokenStorage } from 'src/app/token.storage';
-import { Property } from 'src/app/property/property';
+import { Property } from 'src/app/site/home/model/property';
 import { MessageDto } from '../../home/model/MessageDto';
 
 @Component({
@@ -55,7 +54,7 @@ export class CompleteComponent implements OnInit {
   cashPayment = false;
 
   isSuccess: boolean;
-  businessUser: Property;
+  property: Property;
   // totalQuantity: number ;
   // totalPrice: number;
   myDate: any;
@@ -138,7 +137,7 @@ export class CompleteComponent implements OnInit {
   {
     this.myDate = new Date();
     this.businessServiceDto = new BusinessServiceDtoList();
-    this.businessUser = new Property();
+    this.property = new Property();
     this.booking = new Booking();
     this.payment = new Payment();
     this.mobileWallet = new MobileWallet();
@@ -172,7 +171,28 @@ export class CompleteComponent implements OnInit {
 
  ngOnInit()
  {
+  if (this.token.getBookingData() != undefined) {
+    this.booking = this.token.getBookingData();
 
+    // this.room = this.dateModel.room;
+    // this.booking = this.dateModel.booking;
+
+    this.getCheckInDateFormat(this.booking.fromDate);
+    this.getCheckOutDateFormat(this.booking.toDate);
+
+    this.booking.businessEmail = this.booking.email;
+    // this.booking.fromDate = this.dateModel.checkIn;
+    // this.booking.toDate = this.dateModel.checkOut;
+    // this.booking.roomId = this.room.id;
+    this.booking.propertyId = PROPERTY_ID;
+    // this.checkAvailabilty();
+  }
+  if (this.token.getProperty() != undefined) {
+  this.property = this.token.getProperty();
+
+  this.bankAccount= this.property.bankAccount;
+  this.mobileWallet= this.property.mobileWallet;
+  }
  }
  mileSecondToNGBDate(date: string) {
   const dsd = new Date(date);
@@ -266,16 +286,16 @@ getPropertyDetails(id: number) {
   this.loader = true;
   this.apiService.getPropertyDetailsByPropertyId(id).subscribe(
     (data) => {
-      this.businessUser = data.body;
-      this.currency = this.businessUser.localCurrency.toUpperCase();
-      this.mobileWallet = this.businessUser.mobileWallet;
-      this.bankAccount = this.businessUser.bankAccount;
-      //  console.log(' this.businessUser ===='+JSON.stringify( this.businessUser));
-      if (this.businessUser.taxDetails.length > 0) {
-        this.taxPercentage = this.businessUser.taxDetails[0].percentage;
+      this.property = data.body;
+      this.currency = this.property.localCurrency.toUpperCase();
+      this.mobileWallet = this.property.mobileWallet;
+      this.bankAccount = this.property.bankAccount;
+      //  console.log(' this.property ===='+JSON.stringify( this.property));
+      if (this.property.taxDetails.length > 0) {
+        this.taxPercentage = this.property.taxDetails[0].percentage;
       }
-      if (this.businessUser.taxDetails[0].taxSlabsList.length > 0) {
-        this.businessUser.taxDetails[0].taxSlabsList.forEach((element) => {
+      if (this.property.taxDetails[0].taxSlabsList.length > 0) {
+        this.property.taxDetails[0].taxSlabsList.forEach((element) => {
           if (
             element.maxAmount > this.booking.roomPrice &&
             element.minAmount < this.booking.roomPrice
@@ -289,8 +309,8 @@ getPropertyDetails(id: number) {
 
       this.booking.totalAmount = this.booking.netAmount + ((this.booking.netAmount * this.taxPercentage) / 100) - this.booking.discountAmount;
 
-      this.businessServiceDto = this.businessUser.businessServiceDtoList.find(
-        (data) => data.name === this.businessUser.businessType
+      this.businessServiceDto = this.property.businessServiceDtoList.find(
+        (data) => data.name === this.property.businessType
       );
 
       this.loader = false;

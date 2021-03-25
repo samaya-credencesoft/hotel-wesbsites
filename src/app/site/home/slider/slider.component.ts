@@ -4,7 +4,7 @@ import { FormControl, FormGroup, NgForm, FormGroupDirective, Validators } from '
 import { NavigationExtras } from '@angular/router';
 import { Router } from '@angular/router';
 import { ApiService, PROPERTY_ID } from 'src/app/api.service';
-import { Property } from 'src/app/property/property';
+import { Property } from 'src/app/site/home/model/property';
 import { TokenStorage } from 'src/app/token.storage';
 import { DateModel } from '../model/dateModel';
 @Component({

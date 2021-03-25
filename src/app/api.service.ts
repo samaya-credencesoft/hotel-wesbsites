@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Payment } from './payment/payment';
 import { Host } from './host';
 import { Booking } from './site/home/model/booking';
-import { Property } from './property/property';
+import { Property } from './site/home/model/property';
 import { Room } from './room/room';
 import { Observable } from 'rxjs';
 import { GuestReview } from './guest/guest.component';

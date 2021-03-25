@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Property } from './property';
+import { Property } from '../site/home/model/property';
 
 @Component({
     selector: 'app-property',

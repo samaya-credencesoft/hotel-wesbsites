@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Property } from './../property/property';
+import { Property } from '../site/home/model/property';
 import { Room } from './../room/room';
 import { ApiService } from './../api.service';
 

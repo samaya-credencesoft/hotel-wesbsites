@@ -1,8 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ApiService, PROPERTY_ID } from 'src/app/api.service';
-import { Property } from 'src/app/property/property';
 import { TokenStorage } from 'src/app/token.storage';
+import { Property } from '../model/property';
 
 @Component({
   selector: 'app-getintouch',
@@ -22,6 +22,7 @@ export class GetintouchComponent implements OnInit {
     private token :TokenStorage
 
   ) {
+    this.property = new Property();
     if(this.token.getProperty() === null ){
 
       this.getProperty();

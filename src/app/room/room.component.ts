@@ -1,7 +1,7 @@
 import { TokenStorage } from 'src/app/token.storage';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Room } from './room';
-import { Property } from './../property/property';
+import { Property } from '../site/home/model/property';
 
 @Component({
   selector: 'app-room',

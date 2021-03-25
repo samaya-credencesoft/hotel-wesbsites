@@ -1,11 +1,11 @@
-
-import { Address } from './address';
+import { Room } from '../../../room/room';
+import { BankAccount } from './BankAccount';
 import { BusinessServiceDtoList } from './businessServiceDtoList';
-import { SubscriptionList } from './subscriptionList';
 import { MobileWallet } from './mobileWallet';
-import { Room } from 'src/app/room/room';
+import { Address } from '../../../property/address';
+import { SubscriptionList } from './subscriptionList';
 
-export class BusinessUser {
+export class Property {
   name: string;
   id: number;
   businessDescription: string;
@@ -97,5 +97,5 @@ export class BusinessUser {
       taxableAmount: number
     }
   ];
-  constructor() {}
+    constructor() { }
 }

@@ -19,7 +19,7 @@ import { Payment } from 'src/app/payment/payment';
 import { MessageDto } from '../../home/model/MessageDto';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { Customer } from '../../home/model/customer';
-import { Property } from 'src/app/property/property';
+import { Property } from 'src/app/site/home/model/property';
 
 @Component({
   selector: 'app-new-booking',

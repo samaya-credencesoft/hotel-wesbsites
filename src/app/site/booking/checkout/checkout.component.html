@@ -150,8 +150,8 @@
                   </li>
 
                   <li class="nav-item" *ngIf="
-                      businessUser.bankAccount != undefined &&
-                      businessUser.bankAccount != null
+                      property.bankAccount != undefined &&
+                      property.bankAccount != null
                     ">
                     <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-3-tab" data-toggle="tab"
                       href="#tabs-icons-text-3" role="tab" aria-controls="tabs-icons-text-3" aria-selected="false"
@@ -159,8 +159,8 @@
                   </li>
 
                   <li class="nav-item" *ngIf="
-                      businessUser.mobileWallet != undefined &&
-                      businessUser.mobileWallet != null
+                      property.mobileWallet != undefined &&
+                      property.mobileWallet != null
                     ">
                     <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-4-tab" data-toggle="tab"
                       href="#tabs-icons-text-4" role="tab" aria-controls="tabs-icons-text-4" aria-selected="false"
@@ -176,7 +176,7 @@
                       <form #payForm="ngForm">
                         <div class="row" *ngIf="
                             !cashPayment &&
-                            businessUser.paymentGateway == 'eway'
+                            property.paymentGateway == 'eway'
                           ">
                           <div id="eway-secure-panel" style="width: 100%; margin-bottom: 1rem" class="col-md-12"></div>
 
@@ -193,7 +193,7 @@
                         </div>
                         <div class="row" *ngIf="
                             !cashPayment &&
-                            businessUser.paymentGateway != 'eway'
+                            property.paymentGateway != 'eway'
                           ">
                           <div class="col-md-12">
                             <h5>Confirm booking by advance card payment</h5>
@@ -338,7 +338,7 @@
                             <h5>Confirm booking</h5>
                             <p>
                               Pay the total amount
-                              {{ booking.totalAmount  | currency: businessUser.localCurrency.toUpperCase():"symbol":"1.2-2"  }}
+                              {{ booking.totalAmount  | currency: property.localCurrency.toUpperCase():"symbol":"1.2-2"  }}
                               when you check-in at the hotel.
                             </p>
                           </div>
