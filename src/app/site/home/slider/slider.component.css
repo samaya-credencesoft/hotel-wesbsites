@@ -46,3 +46,38 @@ ngb-carousel {
 .slide{
   height: 650px;
 }
+
+
+.form-group.hidden {
+	width: 0;
+	margin: 0;
+	border: none;
+	padding: 0;
+	height: 0;
+  }
+.form-group.hidden > div > input{
+	padding: 0;
+    margin: 0;
+    border: 0;
+}
+  .custom-day {
+	text-align: center;
+	padding: 0.185rem 0.25rem;
+	display: inline-block;
+	height: 2rem;
+    width: 2rem;
+    color: #000;
+  }
+  .custom-day.focused {
+	background-color: #e6e6e6;
+  }
+  .custom-day.range, .custom-day:hover {
+	background-color: rgb(50, 50, 93);
+	color: white;
+  }
+  .custom-day.faded {
+	background-color: rgba(50, 50, 93, 0.5);
+  }
+  .ngb-dp-header, .ngb-dp-month-name, .ngb-dp-weekdays {
+    background-color: #2b333f !important;
+}

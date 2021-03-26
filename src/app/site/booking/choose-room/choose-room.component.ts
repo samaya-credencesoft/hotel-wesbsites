@@ -196,7 +196,14 @@ export class ChooseRoomComponent implements OnInit {
     this.changeDetectorRefs.detectChanges();
 // this.checkingAvailability();
   }
+  getDateFormat(dateString: string) {
+    const yearAndMonth = dateString.split('-', 3);
+    return yearAndMonth[0] + '-' + yearAndMonth[1] + '-' + yearAndMonth[2].split(' ', 1);
+  }
   bookRoomNow() {
+
+    this.booking.fromDate = this.getDateFormat(this.booking.fromDate);
+    this.booking.toDate = this.getDateFormat(this.booking.toDate);
     this.booking.noOfRooms = this.noOfrooms;
     this.booking.noOfPersons = this.adults;
     this.booking.noOfExtraPerson = this.children;
@@ -233,6 +240,8 @@ export class ChooseRoomComponent implements OnInit {
     this.router.navigate(["/booking/booking"]);
   }
   getAvailableRoom() {
+    this.booking.fromDate = this.getDateFormat(this.booking.fromDate);
+    this.booking.toDate = this.getDateFormat(this.booking.toDate);
     this.apiService.checkAvailabilityByID(this.booking).subscribe(
       (response) => {
         this.property = response.body;

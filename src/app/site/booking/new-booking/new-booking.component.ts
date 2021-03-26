@@ -363,6 +363,8 @@ export class NewBookingComponent implements OnInit {
             this.customerDto = new Customer();
             this.customerDto = data.body;
             console.log('Get customer ' + JSON.stringify(data.body));
+this.booking.customerDtoList = [];
+            this.booking.customerDtoList.push(this.customerDto);
             this.booking.firstName = this.customerDto.firstName;
             this.booking.lastName = this.customerDto.lastName;
             this.booking.mobile = this.customerDto.mobile;
@@ -385,6 +387,9 @@ export class NewBookingComponent implements OnInit {
             this.customerDto = new Customer();
             this.customerDto = data.body;
             console.log('Get customer ' + JSON.stringify(data.body));
+this.booking.customerDtoList = [];
+
+            this.booking.customerDtoList.push(this.customerDto);
             this.booking.firstName = this.customerDto.firstName;
             this.booking.lastName = this.customerDto.lastName;
             this.booking.mobile = this.customerDto.mobile;
@@ -452,6 +457,7 @@ export class NewBookingComponent implements OnInit {
     //     dateob: JSON.stringify(this.dateModel),
     //   },
     // };
+    this.booking.customerId = this.customerDto.id;
     this.token.saveBookingData(this.booking);
     this.router.navigate(['/booking/payment']);
   }

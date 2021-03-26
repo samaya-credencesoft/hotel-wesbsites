@@ -194,14 +194,15 @@ export class CheckoutComponent implements OnInit {
       // this.booking = this.dateModel.booking;
 
       this.getCheckInDateFormat(this.booking.fromDate);
-      this.getcheckOutDateFormat(this.booking.toDate);
+      this.getCheckOutDateFormat(this.booking.toDate);
 
-      this.booking.businessEmail = this.booking.email;
-      this.booking.fromDate = this.dateModel.checkIn;
-      this.booking.toDate = this.dateModel.checkOut;
-      this.booking.roomId = this.room.id;
+      // this.booking.businessEmail = this.booking.email;
+      // this.booking.fromDate = this.dateModel.checkIn;
+      // this.booking.toDate = this.dateModel.checkOut;
+      // this.booking.roomId = this.room.id;
       this.booking.propertyId = PROPERTY_ID;
       // this.checkAvailabilty();
+      // this.booking.discountPercentage = 0;
     }
     if (this.token.getProperty() != undefined) {
       this.property = this.token.getProperty();
@@ -367,6 +368,7 @@ export class CheckoutComponent implements OnInit {
     this.payment.deliveryChargeAmount = 0;
     this.payment.date = formatDate(new Date(), "yyyy-MM-dd", "en");
     this.payment.taxAmount = this.booking.gstAmount;
+    this.booking.taxAmount = this.booking.gstAmount;
     this.chargeCreditCard(this.payment);
   }
   onWalletPaymentSubmit() {
@@ -385,6 +387,8 @@ export class CheckoutComponent implements OnInit {
     this.payment.deliveryChargeAmount = 0;
     this.payment.date = formatDate(new Date(), "yyyy-MM-dd", "en");
     this.payment.taxAmount = this.booking.gstAmount;
+    this.booking.taxAmount = this.booking.gstAmount;
+
     this.processPayment(this.payment);
   }
   onBankPaymentSubmit(content) {
@@ -403,6 +407,8 @@ export class CheckoutComponent implements OnInit {
     this.payment.deliveryChargeAmount = 0;
     this.payment.date = formatDate(new Date(), "yyyy-MM-dd", "en");
     this.payment.taxAmount = this.booking.gstAmount;
+    this.booking.taxAmount = this.booking.gstAmount;
+
     this.processPayment(this.payment);
   }
 
@@ -422,6 +428,8 @@ export class CheckoutComponent implements OnInit {
     this.payment.deliveryChargeAmount = 0;
     this.payment.date = formatDate(new Date(), "yyyy-MM-dd", "en");
     this.payment.taxAmount = this.booking.gstAmount;
+    this.booking.taxAmount = this.booking.gstAmount;
+
     this.processPayment(this.payment);
   }
 
@@ -663,6 +671,21 @@ export class CheckoutComponent implements OnInit {
   }
 
   createBooking() {
+    this.booking.modeOfPayment = this.payment.paymentMode;
+    this.booking.externalSite = "Website";
+    this.booking.businessName = this.property.name;
+    this.booking.businessEmail = this.property.email;
+    this.booking.roomBooking = true;
+    this.booking.bookingAmount = this.booking.totalAmount;
+    this.booking.groupBooking = false;
+    this.booking.available = true;
+    this.booking.payableAmount = this.booking.totalAmount;
+    this.booking.currency = this.property.localCurrency;
+
+    console.log("createBooking ", JSON.stringify(this.booking));
+
+    this.paymentLoader = true;
+
     this.apiService.createBooking(this.booking).subscribe((response) => {
       if (response.status === 200) {
         this.booking = response.body;
@@ -706,6 +729,7 @@ export class CheckoutComponent implements OnInit {
         //   summary: response.statusText + ':' + response.statusText
         // });
       }
+      this.loader = false;
     });
     /*setTimeout(() => {
     this.msgs = [];
@@ -774,7 +798,7 @@ export class CheckoutComponent implements OnInit {
     this.monthSelected = parseInt(yearAndMonth[1]) - 1;
   }
 
-  getcheckOutDateFormat(dateString: string) {
+  getCheckOutDateFormat(dateString: string) {
     var yearAndMonth = dateString.split("-", 3);
     this.daySelected2 = String(yearAndMonth[2].split(" ", 1));
     this.yearSelected2 = yearAndMonth[0];

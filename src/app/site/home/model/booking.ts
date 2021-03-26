@@ -1,3 +1,4 @@
+import { Customer } from "./customer";
 
 
 export class Booking {
@@ -15,6 +16,7 @@ export class Booking {
   roomPrice: number;
   airportShuttlePrice: string;
   customerId: number;
+  customerDtoList: Customer[];
   businessEmail: string;
   businessName: string;
   notes: string ;
@@ -61,6 +63,7 @@ export class Booking {
   createdDate:string;
   lastModifiedDate: string;
   roomRatePlanName: string;
+  taxAmount: number;
   planCode: string;
   constructor() { }
 }

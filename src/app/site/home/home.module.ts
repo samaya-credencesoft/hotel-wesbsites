@@ -12,6 +12,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AgmCoreModule } from '@agm/core';
 import { environment } from 'src/environments/environment';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 const routes: Routes = [
   { path: '', component: HomeComponent},
 
@@ -30,6 +31,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
+    NgbModule,
     SlickCarouselModule,
     RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
     AgmCoreModule.forRoot({
