@@ -168,7 +168,7 @@ export class CheckoutComponent implements OnInit {
   private ewaySecureFieldCode: string;
   private ewayErrors: string = null;
   private ewayInitComplete: boolean = false;
-
+  submitButtonDisabled : boolean = false;
   constructor(
     private apiService: ApiService,
     public token: TokenStorage,
@@ -212,7 +212,24 @@ export class CheckoutComponent implements OnInit {
     }
     // });
   }
+  getAvailableRoom() {
+    this.dateModel = new DateModel();
 
+    this.dateModel.checkIn = this.getDateFormat(this.booking.fromDate);
+    this.dateModel.checkOut = this.getDateFormat(this.booking.toDate);
+    this.dateModel.guest = this.booking.noOfPersons;
+    this.dateModel.noOfRooms = this.booking.noOfRooms;
+
+    // console.log(' this.dateModel '+JSON.stringify( this.dateModel));
+
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        dateob: JSON.stringify(this.dateModel),
+      },
+    };
+
+    this.router.navigate(["/booking/choose"], navigationExtras);
+  }
   checkedOutEvent() {
     this.isAvailableChecked = false;
   }

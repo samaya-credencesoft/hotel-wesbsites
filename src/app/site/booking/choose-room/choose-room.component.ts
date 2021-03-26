@@ -155,10 +155,17 @@ export class ChooseRoomComponent implements OnInit {
     };
     // this.router.navigate(['/booking/booking'], navigationExtras);
   }
+  hasPercentage(roomOnlyPrice, planAmount) {
+    if (((roomOnlyPrice - planAmount) / roomOnlyPrice * 100) > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   onPlanSelected(plan, room) {
 
     this.booking.netAmount = plan.amount * this.DiffDate * this.noOfrooms;
-    console.log('plan ',JSON.stringify(this.DiffDate));
+    console.log('plan ',JSON.stringify(plan));
 
     if (this.property.taxDetails.length > 0) {
       this.taxPercentage = this.property.taxDetails[0].percentage;

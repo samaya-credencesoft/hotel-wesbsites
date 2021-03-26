@@ -114,6 +114,8 @@ export class CompleteComponent implements OnInit {
   private ewayInitComplete: boolean = false;
 
 
+  dateModel: DateModel;
+
   daySelected: string;
   yearSelected: string;
   monthSelected: number;
@@ -219,6 +221,34 @@ getDiffDate(toDate, fromDate) {
         this.startDate.getDate()
       )) /
       (1000 * 60 * 60 * 24)
+  );
+}
+getAvailableRoom() {
+  this.dateModel = new DateModel();
+
+  this.dateModel.checkIn = this.getDateFormat(this.booking.fromDate);
+  this.dateModel.checkOut = this.getDateFormat(this.booking.toDate);
+  this.dateModel.guest = this.booking.noOfPersons;
+  this.dateModel.noOfRooms = this.booking.noOfRooms;
+
+  // console.log(' this.dateModel '+JSON.stringify( this.dateModel));
+
+  const navigationExtras: NavigationExtras = {
+    queryParams: {
+      dateob: JSON.stringify(this.dateModel),
+    },
+  };
+
+  this.router.navigate(["/booking/choose"], navigationExtras);
+}
+getDateFormat(dateString: string) {
+  var yearAndMonth = dateString.split("-", 3);
+  return (
+    yearAndMonth[0] +
+    "-" +
+    yearAndMonth[1] +
+    "-" +
+    yearAndMonth[2].split(" ", 1)
   );
 }
  getCheckInDateFormat(dateString: string)
