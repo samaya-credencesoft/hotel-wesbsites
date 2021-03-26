@@ -167,64 +167,114 @@
                 </div><!--sidebar end-->
                 </div>
                 <div class="col-lg-8">
-                  <div class="more_information_sec">
-                    <h3>Your Order Detaıls</h3>
-                    <h4>Order Transaction <span>{{ payment.referenceNumber  }}</span></h4>
-                    <table>
-                      <tr>
-                        <td>
-                          <h4>First Name :</h4>
-                          <span>{{ booking.firstName}}</span>
-                        </td>
-                        <td>
-                          <h4>Last Name :</h4>
-                          <span>{{ booking.lastName }}</span>
-                        </td>
-                        <td>
-                          <h4>Email :</h4>
-                          <span>{{ booking.email }}</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <h4>Phone :</h4>
-                          <span>{{ booking.mobile }}</span>
-                        </td>
+                  <div>
+                    <h4 class="mb-3 mt-4">Thank you for your booking!</h4>
 
-                      </tr>
-                    </table>
+                    <div class="row">
+                      <div class="col-12">
+                        <ul class="summery">
+                          <li>
+                            <b>Reservation No:</b>
+                            {{ booking.propertyReservationNumber }}
+                          </li>
+                          <li>
+                            <b>Full guest name: </b> {{ booking.firstName }}
+                            {{ booking.lastName }}
+                          </li>
+                          <li>
+                            <b>Email: </b> <span> {{ booking.email }}</span>
+                          </li>
+                          <li>
+                            <b>Phone: </b><span> {{ booking.mobile }}</span>
+                          </li>
+                          <li>
+                            <b>Selected Room: </b><span> {{ booking.roomName }}</span>
+                          </li>
+                          <li>
+                            <b>Room Price: </b
+                            ><span>
+                              {{
+                                booking.roomPrice | currency: currency:"symbol":"1.2-2"
+                              }}
+                            </span>
+                          </li>
+                          <li>
+                            <b>No Of Person(s): </b
+                            ><span> {{ booking.noOfPersons }}</span>
+                          </li>
 
-                    <!-- <div class="rq-info cv-lst">
-                      <h4>Extra Services :</h4>
-                      <ul>
-                        <li>
-                          Car Rental
-                        </li>
-                        <li>
-                          Wifi
-                        </li>
-                      </ul>
-                    </div> -->
-                    <!-- <div class="rq-info">
-                      <h4>Coupon :</h4>
-                      <p>Not set</p>
-                    </div> -->
-                    <!-- <div class="rq-info cv_lst">
-                      <h4>Tax :</h4>
-                      <ul>
-                        <li>
-                          Included 21 $ City Tax
-                        </li>
-                        <li>
-                          Included 22 % VAT
-                        </li>
-                      </ul>
-                    </div> -->
-                    <div class="rq-info no-bb">
-                      <h4>Payment Options :</h4>
-                      <p>{{ booking.modeOfPayment }}</p>
+                          <li>
+                            <b>Net Amount: </b>
+                            <span>
+                              {{  payment.netReceivableAmount
+                                  | currency: currency:"symbol":"1.2-2"
+                              }}
+                            </span>
+                          </li>
+                          <li>
+                            <b>Tax Amount ({{ this.taxPercentage }}%): </b>
+                            <span>
+                              {{
+                                payment.taxAmount | currency: currency:"symbol":"1.2-2"
+                              }}</span
+                            >
+                          </li>
+                          <li *ngIf="discountPercentage">
+                            <b>Discount: </b>{{ booking.discountPercentage }}%
+                          </li>
+                          <li></li>
+                          <li *ngIf="discountPercentage">
+                            <b>Discount Amount: </b
+                            >{{
+                              booking.discountAmount
+                                | currency: currency:"symbol":"1.2-2"
+                            }}
+                          </li>
+                          <li>
+                            <h5>
+                              Total Amount:
+                              <span>
+                                {{
+                                  booking.totalAmount
+                                    | currency: currency:"symbol":"1.2-2"
+                                }}
+                              </span>
+                            </h5>
+                          </li>
+                          <li>
+                            <b>Special Notes:</b> <span> {{ booking.notes }}</span>
+                          </li>
+                          <li>
+                            <b>Payment method:</b>
+                            <span> {{ payment.paymentMode }}</span>
+                          </li>
+
+                          <li *ngIf="payment.paymentMode == 'Card'">
+                            <h5>
+                              Paid amount:<span>
+                                {{
+                                  payment.transactionChargeAmount
+                                    | currency: currency:"symbol":"1.2-2"
+                                }}
+                              </span>
+                            </h5>
+                          </li>
+                          <li *ngIf="payment.paymentMode == 'Cash'">
+                            <h5>Payment Status:<span> Not Paid </span></h5>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="col-md-12">
+                        <!-- <button
+                          class="btn btn-primary"
+                          type="button"
+                          (click)="onGoHome()"
+                        >
+                          Go Back
+                        </button> -->
+                      </div>
                     </div>
-                  </div><!--more_information_sec end-->
+                  </div>
                 </div>
               </div>
 

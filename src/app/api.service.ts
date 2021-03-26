@@ -13,8 +13,10 @@ import { MessageDto } from './site/home/model/MessageDto';
 import { Msg } from './site/home/model/msg';
 import { BookingDetails } from './site/home/model/bookingdetails';
 
-const API_URL = environment.apiUrl + '/api/website';
-const API_URL2 = environment.apiUrl;
+export const API_URL = environment.apiUrl + '/api/website';
+export const API_URL2 = environment.apiUrl;
+
+
 export const SMS_NUMBER = '+1 956 903 2629';
 //const API_URL2 = 'https://localhost:8080';
 //const API_URL = 'http://localhost:8080/api/website';

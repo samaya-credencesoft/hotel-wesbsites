@@ -404,7 +404,7 @@ export class CheckoutComponent implements OnInit {
     this.payment.deliveryChargeAmount = 0;
     this.payment.date = formatDate(new Date(), "yyyy-MM-dd", "en");
     this.payment.taxAmount = this.booking.gstAmount;
-    this.booking.taxAmount = this.booking.gstAmount;
+    // this.booking.taxAmount = this.booking.gstAmount;
 
     this.processPayment(this.payment);
   }
@@ -424,7 +424,7 @@ export class CheckoutComponent implements OnInit {
     this.payment.deliveryChargeAmount = 0;
     this.payment.date = formatDate(new Date(), "yyyy-MM-dd", "en");
     this.payment.taxAmount = this.booking.gstAmount;
-    this.booking.taxAmount = this.booking.gstAmount;
+    // this.booking.taxAmount = this.booking.gstAmount;
 
     this.processPayment(this.payment);
   }
@@ -445,7 +445,7 @@ export class CheckoutComponent implements OnInit {
     this.payment.deliveryChargeAmount = 0;
     this.payment.date = formatDate(new Date(), "yyyy-MM-dd", "en");
     this.payment.taxAmount = this.booking.gstAmount;
-    this.booking.taxAmount = this.booking.gstAmount;
+    // this.booking.taxAmount = this.booking.gstAmount;
 
     this.processPayment(this.payment);
   }
@@ -767,7 +767,7 @@ export class CheckoutComponent implements OnInit {
         dateob: JSON.stringify(this.dateModel),
       },
     };
-    this.router.navigate(["/booking/complete"], navigationExtras);
+    this.router.navigate(["/booking/details/"+this.booking.id+"/"+this.booking.email+""] );
   }
 
   sendConfirmationMessage() {
