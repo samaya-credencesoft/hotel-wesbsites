@@ -1,3 +1,4 @@
+import { BookingModule } from './site/booking/booking.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -30,9 +31,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
+
     NgbModule,
     PagesModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BookingModule
   ],
   providers: [
     TokenStorage,

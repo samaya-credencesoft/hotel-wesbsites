@@ -1,6 +1,5 @@
-import { Booking } from "./booking";
 import { Payment } from "./payment";
-
+import { Booking } from "./booking";
 
 export class BookingDetails {
     bookingDetails: Booking;

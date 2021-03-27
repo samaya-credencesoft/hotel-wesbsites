@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService, PROPERTY_ID } from 'src/app/api.service';
-import { Property } from 'src/app/shared/models/property';
+import { Property } from 'src/app/model/property';
 import { TokenStorage } from 'src/app/token.storage';
 
 

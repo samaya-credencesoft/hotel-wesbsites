@@ -1,9 +1,9 @@
-import { Room } from "./room";
-import { Address } from "./address";
-import { BusinessServiceDtoList } from "./businessServiceDtoList";
-import { MobileWallet } from "./mobileWallet";
-import { SubscriptionList } from "./subscriptionList";
 
+import { Room } from '../shared/models/room';
+import { Address } from './address';
+import { BusinessServiceDtoList } from './businessServiceDtoList';
+import { MobileWallet } from './mobileWallet';
+import { SubscriptionList } from './subscriptionList';
 
 export class Property {
   name: string;

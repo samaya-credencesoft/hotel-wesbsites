@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService, PROPERTY_ID } from 'src/app/api.service';
-import { DateModel } from 'src/app/shared/models/dateModel';
+import { DateModel } from 'src/app/model/dateModel';
 import { Room } from 'src/app/shared/models/room';
 import { TokenStorage } from 'src/app/token.storage';
 

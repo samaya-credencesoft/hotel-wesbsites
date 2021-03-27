@@ -2,8 +2,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService, PROPERTY_ID } from 'src/app/api.service';
+import { Property } from 'src/app/model/property';
 import { TokenStorage } from 'src/app/token.storage';
-import { Property } from '../../models/property';
 
 @Component({
   selector: 'app-navbar',

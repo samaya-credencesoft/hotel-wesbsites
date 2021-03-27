@@ -1,13 +1,15 @@
 import { Host, Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Booking } from './shared/models/booking';
-import { BookingDetails } from './shared/models/bookingdetails';
-import { Msg } from './shared/models/msg';
-import { Payment } from './shared/models/payment';
-import { Property } from './shared/models/property';
 import { Room } from './shared/models/room';
 import { GuestReview } from './shared/models/guestReview';
+import { Booking } from './model/booking';
+import { BookingDetails } from './model/bookingdetails';
+import { Msg } from './model/msg';
+import { Payment } from './model/payment';
+import { Property } from './model/property';
+import { Customer } from './model/customer';
+import { MessageDto } from './model/MessageDto';
 
 
 const API_URL = environment.apiUrl + '/api/website';
@@ -33,36 +35,54 @@ export class ApiService {
   }
   getBookingDetailsByIdAndEmail(booking: Booking) {
     return this.http.get<BookingDetails>(API_URL + '/findBookingByIdAndEmail?BookingReferenceNumber='
-    + booking.id + '&BookingEmail=' + booking.email,  { observe: 'response' });
+      + booking.id + '&BookingEmail=' + booking.email, { observe: 'response' });
+  }
+  authorisationToken(message: MessageDto) {
+    return this.http.post<MessageDto[]>(API_URL + '/authorisationToken', message, { observe: 'response' });
+  }
+  send(message: MessageDto) {
+    return this.http.post<MessageDto[]>(API_URL2 + '/api/message/send', message, { observe: 'response' });
+  }
+  verifyAuthorisationToken(message: MessageDto) {
 
+    return this.http.post<MessageDto[]>(API_URL2 + '/api/message/verifyAuthorisationToken', message, { observe: 'response' });
+  }
+  getCustomerDetailsByEmail(email: string) {
+    return this.http.get<Customer>(API_URL + '/email/' + email + '/', { observe: 'response' });
+  }
+  getCustomerDetailsByMobile(mobile: string) {
+    return this.http.get<Customer>(API_URL + '/mobile/' + mobile, { observe: 'response' });
   }
   getPropertyDetailsByPropertyId(propertyId: number) {
-    return this.http.get<Property>(API_URL + '/findByPropertyId/' + propertyId,  { observe: 'response' });
+    return this.http.get<Property>(API_URL + '/findByPropertyId/' + propertyId, { observe: 'response' });
   }
   getRoomDetailsByPropertyId(propertyId: number) {
-    return this.http.get <Room[]>(API_URL + '/findAllRoomsByPropertyId/' + propertyId,  { observe: 'response' });
+    return this.http.get<Room[]>(API_URL + '/findAllRoomsByPropertyId/' + propertyId, { observe: 'response' });
   }
   getRoomDetailsByPropertyIdAndDate(propertyId: number, fromDate: string, toDate: string) {
-    return this.http.get <Room[]>(API_URL + '/getAllRoomsByDate?PropertyId=' + propertyId + '&FromDate=' + fromDate + '&ToDate=' + toDate,  { observe: 'response' });
+    return this.http.get<Room[]>(API_URL + '/getAllRoomsByDate?PropertyId=' + propertyId + '&FromDate=' + fromDate + '&ToDate=' + toDate, { observe: 'response' });
   }
 
   checkAvailability(booking: Booking) {
-    return this.http.post<Booking> (API_URL + '/checkAvailability', booking ,  { observe: 'response' });
+    return this.http.post<Booking>(API_URL + '/checkAvailability', booking, { observe: 'response' });
+  }
+  checkAvailabilityByID(booking: Booking) {
+    return this.http.get<any>(API_URL + '/checkAvailability/' + PROPERTY_ID + '?fromDate=' + booking.fromDate + '&toDate=' + booking.toDate + '&noOfRooms=' + booking.noOfRooms + '&noOfPersons=' + booking.noOfPersons + '', { observe: 'response' });
   }
   processPayment(paymentDetails: Payment) {
     return this.http.post<Payment>(API_URL + '/processPayment', paymentDetails, { observe: 'response' });
-}
+  }
   createBooking(booking: Booking) {
     return this.http.post<Booking>(API_URL + '/booking', booking, { observe: 'response' });
   }
-  sendTextMessage(message: Msg ) {
+  sendTextMessage(message: Msg) {
     return this.http.post<Msg>(API_URL + '/message/send', message, { observe: 'response' });
   }
   savePayment(paymentDetails: Payment) {
     return this.http.post<Payment>(API_URL + '/savePayment', paymentDetails, { observe: 'response' });
-}
+  }
   getGoogleReviews() {
-  return this.http.get<GuestReview[]>(API_URL + '/getGoogleReviews?PropertyId=' + PROPERTY_ID ,  { observe: 'response' });
-}
+    return this.http.get<GuestReview[]>(API_URL + '/getGoogleReviews?PropertyId=' + PROPERTY_ID, { observe: 'response' });
+  }
 
 }
