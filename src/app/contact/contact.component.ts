@@ -2,9 +2,9 @@ import { environment } from 'src/environments/environment';
 import { Component, OnInit, Input } from '@angular/core';
 import { Property } from '../property/property';
 import { ApiService, PROPERTY_ID } from '../api.service';
-import { HttpErrorResponse, HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup, NgForm } from '@angular/forms';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 export interface Email {
 

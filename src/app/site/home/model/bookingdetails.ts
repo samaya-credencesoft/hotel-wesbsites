@@ -1,5 +1,5 @@
-import { Booking } from "../site/home/model/booking";
-import { Payment } from "../site/home/model/payment";
+import { Payment } from "./payment";
+import { Booking } from "./booking";
 
 export class BookingDetails {
     bookingDetails: Booking;

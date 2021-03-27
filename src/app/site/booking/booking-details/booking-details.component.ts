@@ -1,10 +1,11 @@
+import { TokenStorage } from 'src/app/token.storage';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Booking } from '../../booking/../../booking/booking';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from './../../../api.service';
-import { DateService } from '../../../date-service.service'
-import { Payment } from './../../../../app/payment/payment';
+import { DateService } from '../../../date-service.service';
+import { Booking } from '../../home/model/booking';
+import { Payment } from '../../home/model/payment';
 
 
 @Component({
@@ -13,14 +14,19 @@ import { Payment } from './../../../../app/payment/payment';
   styleUrls: ['./booking-details.component.css']
 })
 export class BookingDetailsComponent implements OnInit {
-
+  currency: string;
   booking: Booking ;
   bookingEmail: string ;
   bookingReferenceNumber: string ;
+  payment: Payment;
   payments: Payment [] ;
   loader : boolean = false;
-
+  taxPercentage: number;
+  discountPercentage: boolean = false;
+  showAlert: boolean = false;
     constructor(
+      private router: Router,
+      public token: TokenStorage,
       private activatedRoute: ActivatedRoute,
       public dateService : DateService,
       private apiServices: ApiService) {
@@ -53,9 +59,14 @@ export class BookingDetailsComponent implements OnInit {
        this.booking = response.body.bookingDetails ;
        this.payments = response.body.paymentDetails;
        this.loader = false;
+
+       this.currency = this.booking.currency;
       //  console.log(this.booking);
       //  console.log(this.payments);
       },error=>{ this.loader = false;});
     }
-
+    onGoHome() {
+      this.router.navigate(["/"]);
+      // this.locationBack.back();
+    }
   }

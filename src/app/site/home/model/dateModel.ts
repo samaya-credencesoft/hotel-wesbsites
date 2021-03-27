@@ -1,6 +1,7 @@
-import { Room } from 'src/app/room/room';
-import { Booking } from '../../../booking/booking';
-import { Payment } from './../../../payment/payment';
+import { Payment } from "src/app/site/home/model/payment";
+import { Room } from "src/app/room/room";
+import { Booking } from "./booking";
+
 
 
 export class DateModel {
@@ -8,6 +9,7 @@ export class DateModel {
   checkIn: string;
   checkOut: string;
   guest: number;
+  noOfRooms: number;
   room: Room;
   booking: Booking;
   payment: Payment;
