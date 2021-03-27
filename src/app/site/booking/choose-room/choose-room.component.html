@@ -4,19 +4,20 @@
       <div class="booking-tabs-list">
         <ul class="nav nav-tabs" id="myTab3" role="tablist">
           <li class="nav-item">
-              <a class="nav-link active" > <span class="nom"></span>CHOSE ROOM</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" > <span class="nom"></span> BOOKING</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" > <span class="nom"></span> CHECKOUT</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" ><span class="nom"></span> THANK YOU</a>
-            </li>
+            <a class="nav-link active"> <span class="nom"></span>CHOSE ROOM</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"> <span class="nom"></span> BOOKING</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"> <span class="nom"></span> CHECKOUT</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"><span class="nom"></span> THANK YOU</a>
+          </li>
         </ul>
-      </div><!--booking-tabs-list end-->
+      </div>
+      <!--booking-tabs-list end-->
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="choose-room" role="tabpanel" aria-labelledby="choose-tab">
           <div class="tab-contentt">
@@ -33,13 +34,15 @@
                               <div class="det">
                                 <b class="val-date">{{ this.daySelected }}</b>
                                 <span>
-                                  <i class="month">{{monthArray[monthSelected] }}</i> <i class="year"> {{  this.yearSelected  }}</i>
+                                  <i class="month">{{monthArray[monthSelected] }}</i> <i class="year">
+                                    {{  this.yearSelected  }}</i>
                                   <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
                                 </span>
                               </div>
-                              <input type="text" disabled name="dateIn" class="date-pick">
+                              <input type="text" name="dateIn" class="date-pick" [(ngModel)]="booking.fromDate">
                               <div class="clearfix"></div>
-                            </div><!--check-form end-->
+                            </div>
+                            <!--check-form end-->
                           </li>
                           <li>
                             <div class="check-form">
@@ -47,13 +50,15 @@
                               <div class="det">
                                 <b class="val-date">{{ this.daySelected2 }}</b>
                                 <span>
-                                  <i class="month">{{ monthArray[monthSelected2] }}</i> <i class="year">{{  this.yearSelected2  }}</i>
+                                  <i class="month">{{ monthArray[monthSelected2] }}</i> <i
+                                    class="year">{{  this.yearSelected2  }}</i>
                                   <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
                                 </span>
                               </div>
-                              <input type="text" disabled name="dateOut" class="date-pick">
+                              <input type="text" name="dateOut" class="date-pick" [(ngModel)]="booking.toDate">
                               <div class="clearfix"></div>
-                            </div><!--check-form end-->
+                            </div>
+                            <!--check-form end-->
                           </li>
                           <!-- <li class="item-cont">
                             <div class="check-form">
@@ -74,21 +79,110 @@
                             </div>
                             <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
                           </li> -->
-                          <!-- <li class="check-avail">
-                            <a (click)="getRoomByDate()" title="" class="check-status">CHECK AVAILABILITY</a>
-                          </li> -->
+                          <li class="item-cont">
+                            <div class="check-form">
+                              <h4 class="text-center">Guest</h4>
+                              <div class="det">
+                                <div class="handle-counter" id="handleCounter">
+                                  <ul>
+                                    <li class="input-fieldd" style="color: #ffffff;
+                                    font-size: 35px;
+                                    font-weight: 600;">
+                                      <input style="display: none" type="number" class="stepper_input"
+                                        data-ref="input-stepper-field" id="group_adults" name="group_adults" min="1"
+                                        max="30" value="2" data-group-adults-count=""
+                                        [(ngModel)]="booking.noOfPersons">{{booking.noOfPersons}}
+
+                                    </li>
+                                    <li class="counter-control">
+                                      <!-- <button class="counter-plus btn">
+                                        <i class="fa fa-angle-up"></i>
+                                      </button>
+                                      <button class="counter-minus btn" disabled="">
+                                        <i class="fa fa-angle-down"></i>
+                                      </button> -->
+                                      <button class="btn btn-outline-default btn-sm" type="button"
+                                        (click)="booking.noOfPersons = booking.noOfPersons + 1;"
+                                        [disabled]="booking.noOfPersons >=30">
+                                        <!-- <span class="button_text">+</span> -->
+                                        <i class="fa fa-angle-up"></i>
+                                      </button>
+                                      <button class="btn btn-outline-default btn-sm" type="button"
+                                        (click)="booking.noOfPersons = booking.noOfPersons - 1;"
+                                        [disabled]="booking.noOfPersons <=1">
+                                        <!-- <span class="button_text">−</span> -->
+                                        <i class="fa fa-angle-down"></i>
+                                      </button>
+
+                                    </li>
+                                  </ul>
+                                  <div class="clearfix"></div>
+                                </div>
+                              </div>
+                              <div class="clearfix"></div>
+                            </div>
+                            <!--check-form end-->
+                          </li>
+                          <li class="item-cont">
+                            <div class="check-form">
+                              <h4 class="text-center">Room(s)</h4>
+                              <div class="det">
+                                <div class="handle-counter" id="handleCounter">
+                                  <ul>
+                                    <li class="input-fieldd" style="color: #ffffff;
+                                    font-size: 35px;
+                                    font-weight: 600;">
+                                      <input style="display: none" type="number" class="stepper_input"
+                                        data-ref="input-stepper-field" id="group_adults" name="group_adults" min="1"
+                                        max="30" value="2" data-group-adults-count=""
+                                        [(ngModel)]="booking.noOfRooms">{{booking.noOfRooms}}
+
+                                    </li>
+                                    <li class="counter-control">
+                                      <!-- <button class="counter-plus btn">
+                                        <i class="fa fa-angle-up"></i>
+                                      </button>
+                                      <button class="counter-minus btn" disabled="">
+                                        <i class="fa fa-angle-down"></i>
+                                      </button> -->
+                                      <button class="btn btn-outline-default btn-sm" type="button"
+                                        (click)="booking.noOfRooms = booking.noOfRooms + 1;"
+                                        [disabled]="booking.noOfRooms >=30">
+                                        <!-- <span class="button_text">+</span> -->
+                                        <i class="fa fa-angle-up"></i>
+                                      </button>
+                                      <button class="btn btn-outline-default btn-sm" type="button"
+                                        (click)="booking.noOfRooms = booking.noOfRooms - 1;"
+                                        [disabled]="booking.noOfRooms <=1">
+                                        <!-- <span class="button_text">−</span> -->
+                                        <i class="fa fa-angle-down"></i>
+                                      </button>
+
+                                    </li>
+                                  </ul>
+                                  <div class="clearfix"></div>
+                                </div>
+                              </div>
+                              <div class="clearfix"></div>
+                            </div>
+                            <!--check-form end-->
+                          </li>
+                          <li class="check-avail">
+                            <a (click)="getAvailableRoom()" title="" class="check-status">CHECK AVAILABILITY</a>
+                          </li>
                         </ul>
                         <div class="clearfix"></div>
                       </div>
                     </form>
-                  </div><!--avail-sec end-->
+                  </div>
+                  <!--avail-sec end-->
                   <!-- <div class="filter-field">
                                       <label for="amount">Max Night Price</label>
                                       <div id="slider-range"></div>
                                       <input type="text" id="amount" name="roomPrice" readonly>
                                   </div> -->
 
-                                  <!--widget-filter end-->
+                  <!--widget-filter end-->
                   <div class="services_select">
                     <!-- <div class="seachby">
                       <h3>Services</h3>
@@ -165,8 +259,10 @@
                       </ul>
                       <div class="clearfix"></div>
                     </div> -->
-                  </div><!--services_select end-->
-                </div><!--sidebar end-->
+                  </div>
+                  <!--services_select end-->
+                </div>
+                <!--sidebar end-->
               </div>
               <div class="col-lg-8">
                 <div class="main-dv">
@@ -176,76 +272,91 @@
                         <div class="lang-slct">
                           <div class="custom-select">
                             <select name="priceFilter" id="priceFilter" class="priceFilter">
-                                <option value="0">Price: Low to High</option>
-                                <option value="1">5000</option>
-                                <option value="2">10000</option>
-                                <option value="3">15000</option>
-                                <option value="4">25000</option>
+                              <option value="0">Price: Low to High</option>
+                              <option value="1">5000</option>
+                              <option value="2">10000</option>
+                              <option value="3">15000</option>
+                              <option value="4">25000</option>
                             </select>
                           </div>
-                        </div><!--lang-select end-->
+                        </div>
+                        <!--lang-select end-->
                       </li>
                       <li>
                         <div class="lang-slct">
                           <div class="custom-select">
-                            <select  name="sizeFilter" id="sizeFilter" class="sizeFilter">
-                                <option value="0">Size: Large to Small</option>
-                                <option value="1">15000</option>
-                                <option value="2">35000</option>
-                                <option value="3">45000</option>
-                                <option value="4">55000</option>
+                            <select name="sizeFilter" id="sizeFilter" class="sizeFilter">
+                              <option value="0">Size: Large to Small</option>
+                              <option value="1">15000</option>
+                              <option value="2">35000</option>
+                              <option value="3">45000</option>
+                              <option value="4">55000</option>
                             </select>
                           </div>
-                        </div><!--lang-select end-->
+                        </div>
+                        <!--lang-select end-->
                       </li>
-                    </ul><!--pc-list end-->
+                    </ul>
+                    <!--pc-list end-->
                     <ul class="nav nav-tabs" id="myTab1" role="tablist">
-                      <li class="nav-item">
-                          <a class="nav-link active" id="th-tabb" data-toggle="tab" href="#th-tab" role="tab" aria-controls="th-tab" aria-selected="false"><i class="fa fa-th"></i></a>
+                      <!-- <li class="nav-item">
+                          <a class="nav-link" id="th-tabb" data-toggle="tab" href="#th-tab" role="tab" aria-controls="th-tab" aria-selected="false"><i class="fa fa-th"></i></a>
                         </li>
                       <li class="nav-item">
                           <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><img src="assets/images/bar-icon1.png" alt=""></a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><img src="assets/images/bar-icon2.png" alt=""></a>
-                        </li>
+                        </li> -->
+                      <li class="nav-item">
+                        <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                          aria-controls="profile" aria-selected="false"><img src="assets/images/bar-icon2.png"
+                            alt=""></a>
+                      </li>
                     </ul>
                     <div class="clearfix"></div>
-                  </div><!--main-dv-head end-->
+                  </div>
+                  <!--main-dv-head end-->
                   <div class="tab-content" id="myTabContent2">
-                    <div class="tab-pane fade show active" id="th-tab" role="tabpanel" aria-labelledby="th-tab">
+                    <div class="tab-pane fade" id="th-tab" role="tabpanel" aria-labelledby="th-tab">
                       <div class="tb-detaiils st_4">
                         <div class="row">
-                          <div class="col-lg-6 col-md-6 col-sm-6"  *ngFor ="let room of rooms;">
-                            <div class="room-details">
-                              <img  src="{{room.imageList[0].url}}" alt="">
+                          <div class="col-lg-6 col-md-6 col-sm-6" *ngFor="let room of rooms;">
+
+                            <div class="room-details" >
+                              <img src="{{room.imageList[0].url}}" alt="">
 
                               <div class="room-hd">
-                                <h4>FROM {{room.roomOnlyPrice}}</h4>
+                                <h4>FROM
+                                  {{room.roomOnlyPrice | currency: token.getProperty().localCurrency.toUpperCase()}}
+                                </h4>
                                 <h3>{{room.name}}</h3>
                               </div>
                               <!-- routerLink="/booking/booking" -->
-                              <a  title="" (click)="onRoomBooking(room)" class="booking-btn text-white">BOOK NOW <i class="la la-arrow-right"></i></a>
-                            </div><!--room-details end-->
+                              <a title="" (click)="onRoomBooking(room)" class="booking-btn text-white">BOOK NOW <i
+                                  class="la la-arrow-right"></i></a>
+                            </div>
+                            <!--room-details end-->
                           </div>
 
 
                         </div>
-                      </div><!--tb-detaiils end-->
+                      </div>
+                      <!--tb-detaiils end-->
                     </div>
                     <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
                       <div class="tb-detaiils">
                         <div class="row">
-                          <div class="col-lg-6 col-md-6"  *ngFor ="let room of rooms;">
+                          <div class="col-lg-6 col-md-6" *ngFor="let room of rooms;">
                             <div class="room_details">
                               <div class="room-caroz">
                                 <div class="room_img">
-                                <img  src="{{room.imageList[0].url}}" alt="">
+                                  <img src="{{room.imageList[0].url}}" alt="">
 
-                                  <span class="price-tag">{{room.roomOnlyPrice}}<b>/night</b></span>
-                                </div><!--room_img end-->
+                                  <span
+                                    class="price-tag">{{ booking.roomPrice ||room.roomOnlyPrice  | currency: token.getProperty().localCurrency.toUpperCase()}}<b>/night</b></span>
+                                </div>
+                                <!--room_img end-->
 
-                              </div><!--room-caroz end-->
+                              </div>
+                              <!--room-caroz end-->
                               <div class="room_info">
                                 <h3><a href="#" title="">{{room.name}}</a></h3>
                                 <ul class="ppt-list">
@@ -257,42 +368,56 @@
                                     <img src="assets/images/icy2.png" alt="">
                                     15 Ft²
                                   </li>
-                                </ul><!--ppt-list end-->
-                                <p>Phasellus enim libero, blandit vel sapien ultricies magna et. </p>
+                                </ul>
+                                <!--ppt-list end-->
+                                <p>{{room.description}} </p>
                                 <ul class="fct-list">
                                   <li>
-                                    <span data-toggle="tooltip" data-placement="top" title="Wifi"><img src="assets/images/ci1.png" alt=""></span>
+                                    <span data-toggle="tooltip" data-placement="top" title="Wifi"><img
+                                        src="assets/images/ci1.png" alt=""></span>
                                   </li>
                                   <li>
-                                    <span data-toggle="tooltip" data-placement="top" title="Plane"><img src="assets/images/ci2.png" alt=""></span>
+                                    <span data-toggle="tooltip" data-placement="top" title="Plane"><img
+                                        src="assets/images/ci2.png" alt=""></span>
                                   </li>
                                   <li>
-                                    <span data-toggle="tooltip" data-placement="top" title="Car"><img src="assets/images/ci3.png" alt=""></span>
+                                    <span data-toggle="tooltip" data-placement="top" title="Car"><img
+                                        src="assets/images/ci3.png" alt=""></span>
                                   </li>
                                   <li>
-                                    <span data-toggle="tooltip" data-placement="top" title="Breakfast"><img src="assets/images/ci4.png" alt=""></span>
+                                    <span data-toggle="tooltip" data-placement="top" title="Breakfast"><img
+                                        src="assets/images/ci4.png" alt=""></span>
                                   </li>
-                                </ul><!--fct-list end-->
-                                <a title="" (click)="onRoomBooking(room)" class="lnk-default">Book Now <i class="la la-arrow-right"></i></a>
-                              </div><!--room_info end-->
-                            </div><!--room-details end-->
+                                </ul>
+                                <!--fct-list end-->
+                                <a title="" (click)="onRoomBooking(room)" class="lnk-default">Book Now <i
+                                    class="la la-arrow-right"></i></a>
+                              </div>
+                              <!--room_info end-->
+                            </div>
+                            <!--room-details end-->
                           </div>
 
                         </div>
-                      </div><!--tb-detaiils end-->
+                      </div>
+                      <!--tb-detaiils end-->
                     </div>
-                      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <div class="tb-detaiils"  *ngFor ="let room of rooms;">
+                    <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                      <div class="tb-detaiils" *ngFor="let room of rooms;">
+
                         <div class="tb-row">
                           <div class="room_details">
                             <div class="room-caroz">
                               <div class="room_img">
-                                <img  src="{{room.imageList[0].url}}" alt="">
+                                <img src="{{room.imageList[0].url}}" alt="">
 
-                                <span class="price-tag">{{room.roomOnlyPrice}}<b>/night</b></span>
-                              </div><!--room_img end-->
+                                <span
+                                  class="price-tag">{{ room.roomOnlyPrice | currency: token.getProperty().localCurrency.toUpperCase():'symbol':'1.2-2' }}<b>/night</b></span>
+                              </div>
+                              <!--room_img end-->
 
-                            </div><!--room-caroz end-->
+                            </div>
+                            <!--room-caroz end-->
                             <div class="room_info">
                               <h3><a href="#" title="">{{room.name}}</a></h3>
                               <ul class="ppt-list">
@@ -300,39 +425,130 @@
                                   <img src="assets/images/icy1.png" alt="">
                                   {{room.maximumOccupancy}} GUESTS
                                 </li>
-                                <li>
-                                  <img src="assets/images/icy2.png" alt="">
-                                  15 Ft²
+                                <li *ngIf="room.ratesAndAvailabilityDtos !== null">
+                                  <p>Available: {{room.ratesAndAvailabilityDtos[0].noOfAvailable}}
+                                    room<span *ngIf="room.ratesAndAvailabilityDtos[0].noOfAvailable > 1">s</span>
+                                  </p>
                                 </li>
-                              </ul><!--ppt-list end-->
+                              </ul>
+                              <!--ppt-list end-->
                               <p>{{room.description}} </p>
-                              <div class="fct-dv">
-                                <ul class="fct-list">
-                                  <li>
-                                    <span data-toggle="tooltip" data-placement="top" title="Wifi"><img src="assets/images/ci1.png" alt=""></span>
-                                  </li>
-                                  <li>
-                                    <span data-toggle="tooltip" data-placement="top" title="Plane"><img src="assets/images/ci2.png" alt=""></span>
-                                  </li>
-                                  <li>
-                                    <span data-toggle="tooltip" data-placement="top" title="Car"><img src="assets/images/ci3.png" alt=""></span>
-                                  </li>
-                                  <li>
-                                    <span data-toggle="tooltip" data-placement="top" title="Breakfast"><img src="assets/images/ci4.png" alt=""></span>
-                                  </li>
-                                </ul><!--fct-list end-->
-                                <a  title="" (click)="onRoomBooking(room)" class="lnk-default">Book Now <i class="la la-arrow-right"></i></a>
+                              <div class="fct-dv" *ngIf="room.ratesAndAvailabilityDtos !== null">
+                                <h6 class="text-default"><b>Plan:</b></h6>
+                                <div *ngFor="let rates of room.ratesAndAvailabilityDtos; let r= index; ">
+                                  <div *ngIf="room.id == rates.roomId && r<1">
+                                    <!-- <h6>{{ rates.date | date:'MMM d, y' }}</h6> -->
+                                    <mat-radio-group aria-labelledby="example-radio-group-label"
+                                      class="example-radio-group" name="planDetails" [(ngModel)]="planDetails"
+                                      (ngModelChange)="onPlanSelected(planDetails, room)">
+                                      <ng-container *ngFor="let plan of rates.roomRatePlans; let p= index;">
+                                        <mat-radio-button class="example-radio-button" [value]="plan" (click)="booking.roomName = rates.roomName;
+                                        booking.roomId = room.id;
+                                        booking.roomPrice = plan.amount;
+                                        selectedRoomName = rates.roomName;
+                                        booking.roomType = rates.roomName;
+                                        maxSelectRoom = rates.noOfAvailable;
+                                        maxOccupancy = room.maximumOccupancy;
+                                         ">
+                                          {{plan.name}}
+
+                                        </mat-radio-button>
+
+                                      </ng-container>
+
+                                    </mat-radio-group>
+                                    <div *ngIf="planDetails">
+                                      <h6 *ngIf="planDetails.roomId == room.id" >Price:
+                                        {{ planDetails.amount * DiffDate * noOfrooms | currency:
+                                          token.getProperty().localCurrency.toUpperCase():'symbol':'1.2-2' }} <div style="color: #f5365c;"
+                                          *ngIf="hasPercentage(room.roomOnlyPrice, planDetails.amount) == true">
+                                          ({{ ((room.roomOnlyPrice - planDetails.amount)/ room.roomOnlyPrice) * 100 }}%
+                                          Discount)</div>
+                                      </h6>
+                                      <p *ngIf="planDetails.roomId == room.id">Note:
+                                        {{ planDetails.description }}
+                                      </p>
+                                    </div>
+                                    <!-- <div class="form-check" ngbRadioGroup name="radioBasic" [(ngModel)]="planDetails"
+                                      (ngModelChange)="onPlanSelected(plan, room)"
+                                      *ngFor="let plan of rates.roomRatePlans; let p= index;">
+                                      <label ngbButtonLabel class="form-check-label text-default "
+                                        style="padding: 0; white-space: normal ; " (click)="booking.roomName = rates.roomName;
+                                      selectedRoomName = rates.roomName;
+                                      booking.roomType = rates.roomName;
+                                      maxSelectRoom = rates.noOfAvailable;
+                                      maxOccupancy = room.maximumOccupancy;  ">
+                                        <input ngbButton type="radio" class="form-check-input" [value]="plan">
+                                        {{ plan.name }}</label>
+                                      <h6>Price:
+                                        {{ plan.amount * DiffDate * noOfrooms | currency:
+                                            currency:'symbol':'1.2-2' }} <div style="color: #f5365c;"
+                                          *ngIf="hasPercentage(room.roomOnlyPrice, plan.amount) == true">
+                                          ({{ ((room.roomOnlyPrice -
+                                               plan.amount)/room.roomOnlyPrice) * 100 }}%
+                                          Discount)</div>
+                                      </h6>
+                                    </div> -->
+                                    <div *ngIf="rates.roomRatePlans.length == 0">
+                                      <p>Plan Not Available. Without plan you can't book room.
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+
                                 <div class="clearfix"></div>
                               </div>
-                            </div><!--room_info end-->
-                            <div class="clearfix"></div>
-                          </div><!--room-details end-->
-                        </div><!--tb-row end-->
 
-                      </div><!--tb-detaiils end-->
+                              <div class="fct-dv" *ngIf="room.ratesAndAvailabilityDtos !== null">
+                                <ul class="fct-list">
+                                  <li>
+                                    <span data-toggle="tooltip" data-placement="top" title="Wifi"><img
+                                        src="assets/images/ci1.png" alt=""></span>
+                                  </li>
+                                  <li>
+                                    <span data-toggle="tooltip" data-placement="top" title="Plane"><img
+                                        src="assets/images/ci2.png" alt=""></span>
+                                  </li>
+                                  <li>
+                                    <span data-toggle="tooltip" data-placement="top" title="Car"><img
+                                        src="assets/images/ci3.png" alt=""></span>
+                                  </li>
+                                  <li>
+                                    <span data-toggle="tooltip" data-placement="top" title="Breakfast"><img
+                                        src="assets/images/ci4.png" alt=""></span>
+                                  </li>
+                                </ul>
+                                <!--fct-list end-->
+                                <button title="" (click)="onRoomBooking(room, i);
+                                                booking.roomId = room.id;
+                                                selectedRoomMaximumOccupancy = room.maximumOccupancy;
+                                                selectedRoomAvailableNumber = room.noOfRooms;
+                                                checkAvailabilityStatus = true;
+                                                bookRoomNow() " class="lnk-default"
+                                  [disabled]="planDetails == undefined || planDetails.roomId!== room.id">Book Now <i
+                                    class="la la-arrow-right"></i></button>
+
+                                <div class="clearfix"></div>
+                              </div>
+                              <div *ngIf="room.ratesAndAvailabilityDtos == null">
+                                <h2>Not Available!</h2>
+                              </div>
+                            </div>
+                            <!--room_info end-->
+                            <div class="clearfix"></div>
+
+                          </div>
+                          <!--room-details end-->
+                        </div>
+                        <!--tb-row end-->
+
+
                       </div>
+                      <!--tb-detaiils end-->
+                    </div>
                   </div>
-                 <!-- <div class="lc-pagination">
+
+                  <!-- <div class="lc-pagination">
                     <nav>
                       <ul class="pagination">
                           <li class="page-item active"><a class="page-link" href="#">1</a></li>
@@ -347,13 +563,17 @@
                     </nav>
                   </div>
                   lc-pagination end-->
-                </div><!--main-dv end-->
+                </div>
+                <!--main-dv end-->
               </div>
             </div>
-          </div><!--tab-contentt end-->
+          </div>
+          <!--tab-contentt end-->
         </div>
       </div>
 
-    </div><!--page-content end-->
+    </div>
+    <!--page-content end-->
   </div>
-</section><!--main-content end-->
+</section>
+<!--main-content end-->

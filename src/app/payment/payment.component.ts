@@ -1,11 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Payment } from './payment';
 import { ApiService } from './../api.service';
 import { HTTPStatus } from './../app.interceptor';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Property } from '../property/property';
-import { Message } from 'primeng/api/message';
+import { Message } from '../site/home/model/message';
+import { Payment } from '../site/home/model/payment';
 
 export interface Year {
   value: string;

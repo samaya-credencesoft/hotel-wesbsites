@@ -1,9 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { Booking } from '../booking/booking';
 import { ActivatedRoute } from '@angular/router';
+import { Booking } from '../site/home/model/booking';
+import { Payment } from '../site/home/model/payment';
 import { ApiService } from './../api.service';
-import { Payment } from './../payment/payment';
 
 
 @Component({

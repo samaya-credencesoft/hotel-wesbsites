@@ -4,8 +4,8 @@
       <div class="col-sm-8 col-xs-12 col-sm-offset-2 col-xs-offset-0">
         <div class="section-heading">
           <h2 class="title">
-            <a style="color:rgb(0, 0, 0);">Booking</a
-            ><a style="color:rgb(255, 0, 0);"> Details</a>
+            <a style="color: rgb(0, 0, 0)">Booking</a
+            ><a style="color: rgb(255, 0, 0)"> Details</a>
           </h2>
         </div>
       </div>
@@ -17,60 +17,222 @@
     <div class="row">
       <div class="blog">
         <div class="col-sm-8 col-xs-12 col-sm-offset-2 col-xs-offset-0">
-          <div class="widget">
+          <!-- <div class="widget">
             <div class="wi-side">
               <div class="wi-border">
                 <div class="wi-content wi-trips">
                   <h4>
                     Booking Details for
-                    <a style="color:rgb(0, 13, 255);"
+                    <a style="color: rgb(0, 13, 255)"
                       >{{ booking.firstName }} {{ booking.lastName }}</a
                     >, &nbsp; Reservation ID #
-                    <a style="color:rgb(0, 13, 255);">{{ booking.id }}</a>
+                    <a style="color: rgb(0, 13, 255)">{{ booking.id }}</a>
                   </h4>
 
                   <div class="row">
                     <ul class="col-sm-6">
-                      <li><b>Check-In Date</b><br> {{ dateService.convertMillisecondsToDateFormat(booking.fromDate) | date:'EEE, MMM d, y' }}</li>
-                      <li><b>Check-Out Date</b> <br> {{ dateService.convertMillisecondsToDateFormat(booking.toDate) | date:'EEE, MMM d, y' }}</li>
-                      <li><b>First Name</b> <br> {{ booking.firstName }}</li>
-                      <li><b>Last Name</b>  <br> {{ booking.lastName }}</li>
-                      <li><b>Contact Number</b> <br> {{ booking.mobile }}</li>
-                      <li><b>Booking Notes</b> <br> {{ booking.notes }}</li>
+                      <li>
+                        <b>Check-In Date</b><br />
+                        {{
+                          dateService.convertMillisecondsToDateFormat(
+                            booking.fromDate
+                          ) | date: "EEE, MMM d, y"
+                        }}
+                      </li>
+                      <li>
+                        <b>Check-Out Date</b> <br />
+                        {{
+                          dateService.convertMillisecondsToDateFormat(
+                            booking.toDate
+                          ) | date: "EEE, MMM d, y"
+                        }}
+                      </li>
+                      <li>
+                        <b>First Name</b> <br />
+                        {{ booking.firstName }}
+                      </li>
+                      <li>
+                        <b>Last Name</b> <br />
+                        {{ booking.lastName }}
+                      </li>
+                      <li>
+                        <b>Contact Number</b> <br />
+                        {{ booking.mobile }}
+                      </li>
+                      <li>
+                        <b>Booking Notes</b> <br />
+                        {{ booking.notes }}
+                      </li>
                     </ul>
 
                     <ul class="col-sm-6">
                       <li>
-                        <b>Number Of Person(s)</b> <br> {{ booking.noOfPersons }}
+                        <b>Number Of Person(s)</b> <br />
+                        {{ booking.noOfPersons }}
                       </li>
                       <li>
-                        <b>Number Of Room(s)</b> <br> {{ booking.noOfRooms }}
-                      </li>
-                      <li><b>Email</b> <br> {{ booking.email }}</li>
-                      <li>
-                        <b>Booking Amount</b> <br> {{ booking.payableAmount }}
+                        <b>Number Of Room(s)</b> <br />
+                        {{ booking.noOfRooms }}
                       </li>
                       <li>
-                        <b>Booking Status</b> <br> {{ booking.bookingStatus }}
+                        <b>Email</b> <br />
+                        {{ booking.email }}
+                      </li>
+                      <li>
+                        <b>Booking Amount</b> <br />
+                        {{
+                          booking.payableAmount
+                            | currency
+                              : token.getProperty().localCurrency.toUpperCase()
+                        }}
+                      </li>
+                      <li>
+                        <b>Booking Status</b> <br />
+                        {{ booking.bookingStatus }}
                       </li>
                     </ul>
                   </div>
-                  <br>
+                  <br />
                   <div class="row" *ngFor="let payment of payments">
                     <ul class="col-sm-4">
-                      <li><b>Payment Ref#</b> <br> {{ payment.id }}</li>
+                      <li>
+                        <b>Payment Ref#</b> <br />
+                        {{ payment.id }}
+                      </li>
                     </ul>
                     <ul class="col-sm-4">
-                      <li><b>Payment Mode</b> <br> {{ payment.paymentMode }}</li>
+                      <li>
+                        <b>Payment Mode</b> <br />
+                        {{ payment.paymentMode }}
+                      </li>
                     </ul>
                     <ul class="col-sm-4">
-                      <li><b>Payment Status</b> <br> {{ payment.status }}</li>
+                      <li>
+                        <b>Payment Status</b> <br />
+                        {{ payment.status }}
+                      </li>
                     </ul>
                   </div>
                 </div>
               </div>
             </div>
+          </div> -->
+          <div>
+            <h4 class="mb-3 mt-4">Thank you for your booking!</h4>
+
+            <div class="row">
+              <div class="col-12">
+                <ul class="summery">
+                  <li>
+                    <b>Reservation No:</b>
+                    {{ booking.propertyReservationNumber }}
+                  </li>
+                  <li>
+                    <b>Full guest name: </b> {{ booking.firstName }}
+                    {{ booking.lastName }}
+                  </li>
+                  <li>
+                    <b>Email: </b> <span> {{ booking.email }}</span>
+                  </li>
+                  <li>
+                    <b>Phone: </b><span> {{ booking.mobile }}</span>
+                  </li>
+                  <li>
+                    <b>Selected Room: </b><span> {{ booking.roomName }}</span>
+                  </li>
+                  <li>
+                    <b>Room Price: </b
+                    ><span>
+                      {{
+                        booking.roomPrice | currency: currency:"symbol":"1.2-2"
+                      }}
+                    </span>
+                  </li>
+                  <li>
+                    <b>No Of Person(s): </b
+                    ><span> {{ booking.noOfPersons }}</span>
+                  </li>
+
+                  <li>
+                    <b>Net Amount: </b>
+                    <span>
+                      {{  payment.netReceivableAmount
+                          | currency: currency:"symbol":"1.2-2"
+                      }}
+                    </span>
+                  </li>
+                  <li>
+                    <b>Tax Amount ({{ this.taxPercentage }}%): </b>
+                    <span>
+                      {{
+                        payment.taxAmount | currency: currency:"symbol":"1.2-2"
+                      }}</span
+                    >
+                  </li>
+                  <li *ngIf="discountPercentage">
+                    <b>Discount: </b>{{ booking.discountPercentage }}%
+                  </li>
+                  <li></li>
+                  <li *ngIf="discountPercentage">
+                    <b>Discount Amount: </b
+                    >{{
+                      booking.discountAmount
+                        | currency: currency:"symbol":"1.2-2"
+                    }}
+                  </li>
+                  <li>
+                    <h5>
+                      Total Amount:
+                      <span>
+                        {{
+                          booking.totalAmount
+                            | currency: currency:"symbol":"1.2-2"
+                        }}
+                      </span>
+                    </h5>
+                  </li>
+                  <li>
+                    <b>Special Notes:</b> <span> {{ booking.notes }}</span>
+                  </li>
+                  <li>
+                    <b>Payment method:</b>
+                    <span> {{ payment.paymentMode }}</span>
+                  </li>
+
+                  <li *ngIf="payment.paymentMode == 'Card'">
+                    <h5>
+                      Paid amount:<span>
+                        {{
+                          payment.transactionChargeAmount
+                            | currency: currency:"symbol":"1.2-2"
+                        }}
+                      </span>
+                    </h5>
+                  </li>
+                  <li *ngIf="payment.paymentMode == 'Cash'">
+                    <h5>Payment Status:<span> Not Paid </span></h5>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-12">
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  (click)="onGoHome()"
+                >
+                  Go Back
+                </button>
+              </div>
+            </div>
           </div>
+          <ngb-alert
+            class="mt-3"
+            *ngIf="showAlert"
+            [type]="alertType"
+            (close)="showAlert = false"
+          >
+            <strong>{{ headerTitle }}</strong> {{ bodyMessage }}
+          </ngb-alert>
         </div>
       </div>
     </div>

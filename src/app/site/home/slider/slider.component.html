@@ -1,13 +1,12 @@
 <section class="main-slider hp_5">
   <div class="container-fluid">
-    <div class=" fullscreen-container" style="background-color:transparent;padding:0px;">
-
+    <div class="fullscreen-container" style="background-color: transparent; padding: 0px">
       <ngx-slick-carousel class="carousel listing-slider mfp-gallery-container margin-bottom-0"
         #slickModal="slick-carousel" [config]="slideConfig">
         <div ngxSlickItem *ngFor="let gallery of galleryImage" class="slide">
-          <img class="d-block w-100" height="650px" src="{{gallery.image}}" alt="First slide">
-          <a [ngStyle]="{'background-image': 'url(../../' + gallery.image + ')'}" style="background-size: cover;"
-            class="item mfp-gallery cover" title="{{gallery.title}}"></a>
+          <img class="image-fluid w-100" src="{{ gallery.image }}" style="background-size: cover" alt="First slide" />
+          <a [ngStyle]="{ 'background-image': 'url( gallery.image )' }" style="background-size: cover"
+            class="item mfp-gallery cover" title="{{ gallery.title }}"></a>
         </div>
       </ngx-slick-carousel>
     </div>
@@ -23,12 +22,13 @@
             <div class="det">
               <b class="val-date">{{ this.day }}</b>
               <span>
-                <i class="month">{{monthArray[month] }}</i> <i class="year">{{  this.year  }}</i>
+                <i class="month">{{ monthArray[month] }}</i>
+                <i class="year">{{ this.year }}</i>
                 <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
               </span>
             </div>
             <input type="text" [formControl]="checkIn" name="dateIn" [min]="minFromDate" [max]="maxFromDate"
-              class="date-pick" (ngModelChange)="checkInEvent()">
+              class="date-pick" (ngModelChange)="checkInEvent()" />
 
             <div class="clearfix"></div>
           </div>
@@ -36,15 +36,16 @@
         </li>
         <li>
           <div class="check-form">
-            <h4>CHECK-OUt</h4>
+            <h4>CHECK-OUT</h4>
             <div class="det">
               <b class="val-date">{{ this.day2 }}</b>
               <span>
-                <i class="month">{{monthArray[month2] }}</i> <i class="year">{{  this.year2  }}</i>
+                <i class="month">{{ monthArray[month2] }}</i>
+                <i class="year">{{ this.year2 }}</i>
                 <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
               </span>
             </div>
-            <input type="text" name="dateOut" [formControl]="checkOut" class="date-pick" >
+            <input type="text" name="dateOut" [formControl]="checkOut" class="date-pick" />
             <div class="clearfix"></div>
           </div>
           <!--check-form end-->
@@ -55,11 +56,31 @@
             <div class="det">
               <div class="handle-counter" id="handleCounter">
                 <ul>
-                  <li class="input-fieldd">
-                    <input type="number"   name="guest" #guest value="1" min="1"  ></li>
+                  <li class="input-fieldd" style="color: #262626;
+                  font-size: 35px;
+                  font-weight: 600;">
+                    <input style="display: none" type="number" class="stepper_input" data-ref="input-stepper-field"
+                      id="group_adults" name="group_adults" min="1" max="30" value="2" data-group-adults-count=""
+                      [(ngModel)]="guest">{{guest}}
+
+                  </li>
                   <li class="counter-control">
-                    <button class="counter-plus btn"><i class="fa fa-angle-up"></i></button>
-                    <button class="counter-minus btn" disabled=""><i class="fa fa-angle-down"></i></button>
+                    <!-- <button class="counter-plus btn">
+                      <i class="fa fa-angle-up"></i>
+                    </button>
+                    <button class="counter-minus btn" disabled="">
+                      <i class="fa fa-angle-down"></i>
+                    </button> -->
+                    <button class="btn btn-outline-default btn-sm" type="button" (click)="guest = guest + 1;" [disabled]="guest >=30">
+                      <!-- <span class="button_text">+</span> -->
+                      <i class="fa fa-angle-up"></i>
+                    </button>
+                    <button class="btn btn-outline-default btn-sm" type="button" (click)="guest = guest - 1;"
+                      [disabled]="guest <=1">
+                      <!-- <span class="button_text">−</span> -->
+                      <i class="fa fa-angle-down"></i>
+                    </button>
+
                   </li>
                 </ul>
                 <div class="clearfix"></div>
@@ -72,7 +93,7 @@
         <li class="bkk">
           <div class="bk_now" (click)="onBook()">
             <!-- routerLink="/booking" (click)="onBook()" -->
-            <a title=""><img src="assets/images/icon6.png" alt=""></a>
+            <a title=""><img src="assets/images/icon6.png" alt="" /></a>
             <a title="" class="bk-now">Book Now</a>
           </div>
         </li>
