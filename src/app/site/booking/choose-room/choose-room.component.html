@@ -319,7 +319,8 @@
                       <div class="tb-detaiils st_4">
                         <div class="row">
                           <div class="col-lg-6 col-md-6 col-sm-6" *ngFor="let room of rooms;">
-                            <div class="room-details">
+
+                            <div class="room-details" >
                               <img src="{{room.imageList[0].url}}" alt="">
 
                               <div class="room-hd">
@@ -403,6 +404,7 @@
                     </div>
                     <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                       <div class="tb-detaiils" *ngFor="let room of rooms;">
+
                         <div class="tb-row">
                           <div class="room_details">
                             <div class="room-caroz">
@@ -423,7 +425,7 @@
                                   <img src="assets/images/icy1.png" alt="">
                                   {{room.maximumOccupancy}} GUESTS
                                 </li>
-                                <li>
+                                <li *ngIf="room.ratesAndAvailabilityDtos !== null">
                                   <p>Available: {{room.ratesAndAvailabilityDtos[0].noOfAvailable}}
                                     room<span *ngIf="room.ratesAndAvailabilityDtos[0].noOfAvailable > 1">s</span>
                                   </p>
@@ -431,7 +433,7 @@
                               </ul>
                               <!--ppt-list end-->
                               <p>{{room.description}} </p>
-                              <div class="fct-dv">
+                              <div class="fct-dv" *ngIf="room.ratesAndAvailabilityDtos !== null">
                                 <h6 class="text-default"><b>Plan:</b></h6>
                                 <div *ngFor="let rates of room.ratesAndAvailabilityDtos; let r= index; ">
                                   <div *ngIf="room.id == rates.roomId && r<1">
@@ -496,7 +498,8 @@
 
                                 <div class="clearfix"></div>
                               </div>
-                              <div class="fct-dv">
+
+                              <div class="fct-dv" *ngIf="room.ratesAndAvailabilityDtos !== null">
                                 <ul class="fct-list">
                                   <li>
                                     <span data-toggle="tooltip" data-placement="top" title="Wifi"><img
@@ -527,6 +530,9 @@
 
                                 <div class="clearfix"></div>
                               </div>
+                              <div *ngIf="room.ratesAndAvailabilityDtos == null">
+                                <h2>Room Not Available!</h2>
+                              </div>
                             </div>
                             <!--room_info end-->
                             <div class="clearfix"></div>
@@ -535,6 +541,7 @@
                           <!--room-details end-->
                         </div>
                         <!--tb-row end-->
+
 
                       </div>
                       <!--tb-detaiils end-->
