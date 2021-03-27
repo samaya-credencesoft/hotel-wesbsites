@@ -32,13 +32,12 @@
                         <div class="det">
                           <b class="val-date">{{ this.daySelected }}</b>
                           <span>
-                            <i class="month">{{ monthArray[monthSelected] }}</i>
-                            <i class="year">{{ this.yearSelected2 }}</i>
+                            <i class="month">{{monthArray[monthSelected] }}</i> <i class="year">
+                              {{  this.yearSelected  }}</i>
                             <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
                           </span>
                         </div>
-                        <input type="text" [formControl]="checkIn" name="dateIn" class="date-pick"
-                          (ngModelChange)="checkInEvent()" />
+                        <input type="text"  name="dateIn" class="date-pick" [(ngModel)]="booking.fromDate">
                         <div class="clearfix"></div>
                       </div>
                       <!--check-form end-->
@@ -49,41 +48,117 @@
                         <div class="det">
                           <b class="val-date">{{ this.daySelected2 }}</b>
                           <span>
-                            <i class="month">{{
-                              monthArray[monthSelected2]
-                              }}</i>
-                            <i class="year">{{ this.yearSelected2 }}</i>
+                            <i class="month">{{ monthArray[monthSelected2] }}</i> <i
+                              class="year">{{  this.yearSelected2  }}</i>
                             <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
                           </span>
                         </div>
-                        <input type="text" [formControl]="checkOut" name="dateOut" class="date-pick"
-                          (ngModelChange)="checkedOutEvent()" />
+                        <input type="text"  name="dateOut" class="date-pick" [(ngModel)]="booking.toDate">
                         <div class="clearfix"></div>
                       </div>
                       <!--check-form end-->
                     </li>
                     <!-- <li class="item-cont">
-                            <div class="check-form">
-                              <h4 class="text-center">Guest</h4>
-                              <div class="det">
-                                <div class="handle-counter" id="handleCounter">
-                                                  <ul>
-                                                      <li class="input-fieldd"><input type="text" value="1" data-num="1"></li>
-                                                      <li class="counter-control">
-                                                        <button class="counter-minus btn" disabled=""><i class="fa fa-angle-up"></i></button>
-                                                        <button class="counter-plus btn"><i class="fa fa-angle-down"></i></button>
-                                                      </li>
-                                                  </ul>
-                                                  <div class="clearfix"></div>
-                                              </div>
-                              </div>
-                              <div class="clearfix"></div>
-                            </div>
-                            <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
-                          </li> -->
+                      <div class="check-form">
+                        <h4 class="text-center">Guest</h4>
+                        <div class="det">
+                          <div class="handle-counter" id="handleCounter">
+                                            <ul>
+                                                <li class="input-fieldd"><input type="text" value="1" data-num="1"></li>
+                                                <li class="counter-control">
+                                                  <button class="counter-minus btn" disabled=""><i class="fa fa-angle-up"></i></button>
+                                                  <button class="counter-plus btn"><i class="fa fa-angle-down"></i></button>
+                                                </li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>
+                        </div>
+                        <div class="clearfix"></div>
+                      </div>
+                      <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
+                    </li> -->
+                    <li class="item-cont">
+                      <div class="check-form">
+                        <h4 class="text-center">Guest</h4>
+                        <div class="det">
+                          <div class="handle-counter" id="handleCounter">
+                            <ul>
+                              <li class="input-fieldd" style="color: #ffffff;
+                              font-size: 35px;
+                              font-weight: 600;">
+                                <input style="display: none" type="number" class="stepper_input" data-ref="input-stepper-field"
+                                  id="group_adults" name="group_adults" min="1" max="30" value="2" data-group-adults-count=""
+                                  [(ngModel)]="booking.noOfPersons">{{booking.noOfPersons}}
+
+                              </li>
+                              <li class="counter-control">
+                                <!-- <button class="counter-plus btn">
+                                  <i class="fa fa-angle-up"></i>
+                                </button>
+                                <button class="counter-minus btn" disabled="">
+                                  <i class="fa fa-angle-down"></i>
+                                </button> -->
+                                <button class="btn btn-outline-default btn-sm" type="button" (click)="booking.noOfPersons = booking.noOfPersons + 1; submitButtonDisabled = true;" [disabled]="booking.noOfPersons >=30">
+                                  <!-- <span class="button_text">+</span> -->
+                                  <i class="fa fa-angle-up"></i>
+                                </button>
+                                <button class="btn btn-outline-default btn-sm" type="button" (click)="booking.noOfPersons = booking.noOfPersons - 1; submitButtonDisabled = true;"
+                                  [disabled]="booking.noOfPersons <=1">
+                                  <!-- <span class="button_text">−</span> -->
+                                  <i class="fa fa-angle-down"></i>
+                                </button>
+
+                              </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                          </div>
+                        </div>
+                        <div class="clearfix"></div>
+                      </div>
+                      <!--check-form end-->
+                    </li>
+                    <li class="item-cont">
+                      <div class="check-form">
+                        <h4 class="text-center">Room(s)</h4>
+                        <div class="det">
+                          <div class="handle-counter" id="handleCounter">
+                            <ul>
+                              <li class="input-fieldd" style="color: #ffffff;
+                              font-size: 35px;
+                              font-weight: 600;">
+                                <input style="display: none" type="number" class="stepper_input" data-ref="input-stepper-field"
+                                  id="group_adults" name="group_adults" min="1" max="30" value="2" data-group-adults-count=""
+                                  [(ngModel)]="booking.noOfRooms">{{booking.noOfRooms}}
+
+                              </li>
+                              <li class="counter-control">
+                                <!-- <button class="counter-plus btn">
+                                  <i class="fa fa-angle-up"></i>
+                                </button>
+                                <button class="counter-minus btn" disabled="">
+                                  <i class="fa fa-angle-down"></i>
+                                </button> -->
+                                <button class="btn btn-outline-default btn-sm" type="button" (click)="booking.noOfRooms = booking.noOfRooms + 1; submitButtonDisabled = true;" [disabled]="booking.noOfRooms >=30">
+                                  <!-- <span class="button_text">+</span> -->
+                                  <i class="fa fa-angle-up"></i>
+                                </button>
+                                <button class="btn btn-outline-default btn-sm" type="button" (click)="booking.noOfRooms = booking.noOfRooms - 1; submitButtonDisabled = true;"
+                                  [disabled]="booking.noOfRooms <=1">
+                                  <!-- <span class="button_text">−</span> -->
+                                  <i class="fa fa-angle-down"></i>
+                                </button>
+
+                              </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                          </div>
+                        </div>
+                        <div class="clearfix"></div>
+                      </div>
+                      <!--check-form end-->
+                    </li>
                     <li class="check-avail">
-                      <a (click)="getRoomByDate()" *ngIf="!isAvailableChecked" title="" class="check-status">CHECK
-                        AVAILABILITY</a>
+                      <a (click)="getAvailableRoom()" title="" class="check-status">CHECK AVAILABILITY</a>
                     </li>
                   </ul>
                   <div class="clearfix"></div>
@@ -124,7 +199,7 @@
             <div class="rq-info cv_lst">
               <h4>Room Information :</h4>
               <ul>
-                <li><b>Room Name : </b> {{ room.name }}</li>
+                <li><b>Room Name : </b> {{ booking.roomName }}</li>
                 <li><b>No of rooms : </b> {{ booking.noOfRooms }}</li>
                 <li><b>No of guest : </b> {{ booking.noOfPersons }}</li>
               </ul>
@@ -142,7 +217,7 @@
                       href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false"><i
                         class="fa fa-money mr-2" (click)="cashOnDelivery()"></i>Pay While Check-in</a>
                   </li>
-                  <li class="nav-item">
+                  <!-- <li class="nav-item">
                     <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-1-tab" data-toggle="tab"
                       href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true"
                       (click)="cardPayment()"><i class="fa fa-credit-card mr-2"></i>Credit/Debit
@@ -150,8 +225,8 @@
                   </li>
 
                   <li class="nav-item" *ngIf="
-                      businessUser.bankAccount != undefined &&
-                      businessUser.bankAccount != null
+                      property.bankAccount != undefined &&
+                      property.bankAccount != null
                     ">
                     <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-3-tab" data-toggle="tab"
                       href="#tabs-icons-text-3" role="tab" aria-controls="tabs-icons-text-3" aria-selected="false"
@@ -159,13 +234,13 @@
                   </li>
 
                   <li class="nav-item" *ngIf="
-                      businessUser.mobileWallet != undefined &&
-                      businessUser.mobileWallet != null
+                      property.mobileWallet != undefined &&
+                      property.mobileWallet != null
                     ">
                     <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-4-tab" data-toggle="tab"
                       href="#tabs-icons-text-4" role="tab" aria-controls="tabs-icons-text-4" aria-selected="false"
                       (click)="MobileWallet()"><i class="fa fa- mr-2"></i>Mobile Wallet</a>
-                  </li>
+                  </li> -->
                 </ul>
               </div>
               <div class="card shadow" >
@@ -176,16 +251,14 @@
                       <form #payForm="ngForm">
                         <div class="row" *ngIf="
                             !cashPayment &&
-                            businessUser.paymentGateway == 'eway'
+                            property.paymentGateway == 'eway'
                           ">
                           <div id="eway-secure-panel" style="width: 100%; margin-bottom: 1rem" class="col-md-12"></div>
 
                           <div class="col-md-12">
                             <button class="btn btn-primary" type="button" [disabled]="
-                                !orderForm.form.valid ||
                                 !payForm.form.valid ||
-                                paymentLoader ||
-                                submitButtonDisable
+                                paymentLoader
                               " (click)="onCardPaymentSubmit()">
                               Confirm
                             </button>
@@ -193,7 +266,7 @@
                         </div>
                         <div class="row" *ngIf="
                             !cashPayment &&
-                            businessUser.paymentGateway != 'eway'
+                            property.paymentGateway != 'eway'
                           ">
                           <div class="col-md-12">
                             <h5>Confirm booking by advance card payment</h5>
@@ -318,11 +391,8 @@
                           </div>
                           <div class="col-md-12">
                             <button class="btn btn-primary" type="button" [disabled]="
-                                !orderForm.form.valid ||
-                                !payForm.form.valid ||
-                                paymentLoader ||
-                                submitButtonDisable ||
-                                !mobileHasError
+                                !payForm.form.valid || submitButtonDisabled ||
+                                paymentLoader
                               " (click)="onCardPaymentSubmit()">
                               Confirm
                             </button>
@@ -332,18 +402,18 @@
                     </div>
                     <div class="tab-pane fade show active" id="tabs-icons-text-2" role="tabpanel"
                       aria-labelledby="tabs-icons-text-2-tab">
-                      <form action="">
+                      <form  class="form" (ngSubmit)="orderForm.form.valid" #orderForm="ngForm">
                         <div class="row">
                           <div class="col-md-12">
                             <h5>Confirm booking</h5>
                             <p>
                               Pay the total amount
-                              {{ booking.totalAmount  | currency: businessUser.localCurrency.toUpperCase():"symbol":"1.2-2"  }}
+                              {{ booking.totalAmount  | currency: property.localCurrency.toUpperCase():"symbol":"1.2-2"  }}
                               when you check-in at the hotel.
                             </p>
                           </div>
                           <div class="col-md-12 mt-3">
-                            <button class="btn btn-primary" type="button" [disabled]="paymentLoader ||!mobileHasError" (click)="onCashPaymentSubmit()">
+                            <button class="btn btn-primary" type="button" [disabled]="submitButtonDisabled || paymentLoader " (click)="onCashPaymentSubmit()">
                               Confirm
                             </button>
                           </div>
@@ -428,11 +498,7 @@
                           </div>
                           <div class="col-md-12">
                             <button class="btn btn-primary" type="button" [disabled]="
-                                !orderForm.form.valid ||
-                                paymentLoader ||
-                                submitButtonDisable ||
-                                !mobileHasError ||
-                                payment.receiptNumber === undefined ||
+                                payment.receiptNumber === undefined || submitButtonDisabled ||
                                 payment.receiptNumber === ''
                               " (click)="onBankPaymentSubmit()">
                               Confirm
@@ -522,10 +588,7 @@
 
                           <div class="col-md-12">
                             <button class="btn btn-primary" type="button" [disabled]="
-                                !orderForm.form.valid ||
-                                paymentLoader ||
-                                submitButtonDisable ||
-                                !mobileHasError ||
+                            submitButtonDisabled ||
                                 payment.receiptNumber === undefined ||
                                 payment.receiptNumber === ''
                               " (click)="onWalletPaymentSubmit()">

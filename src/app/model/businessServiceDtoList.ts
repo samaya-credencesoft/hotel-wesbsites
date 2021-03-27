@@ -7,7 +7,8 @@ export class BusinessServiceDtoList {
   closedDays: ClosedDays[];
   openDays: OpenDays[];
   name: string;
-
+  businessTypeId: number;
+  bookingButtonLabelText : string;
   businessLocationName: string;
   customerLocationName: string;
   canChangeBusinessAddress: boolean;
@@ -22,11 +23,12 @@ export class BusinessServiceDtoList {
   maxLeadTime: number;
   minLeadTime: number;
   stdPrepTime: number;
-  
+
   description: string;
   propertyId: number;
   businessServiceTypes: BusinessServiceTypes[];
   policy: string;
+
   serviceCloseList: [
     {
       day: string;

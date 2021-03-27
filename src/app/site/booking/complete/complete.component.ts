@@ -1,17 +1,18 @@
+
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
+import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
+import { ApiService, PROPERTY_ID } from 'src/app/api.service';
+import { BankAccount } from 'src/app/model/BankAccount';
+import { Booking } from 'src/app/model/booking';
+import { BusinessServiceDtoList } from 'src/app/model/businessServiceDtoList';
+import { Customer } from 'src/app/model/customer';
+import { DateModel } from 'src/app/model/dateModel';
+import { MessageDto } from 'src/app/model/MessageDto';
+import { MobileWallet } from 'src/app/model/mobileWallet';
+import { Payment } from 'src/app/model/payment';
 import { Property } from 'src/app/model/property';
-import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
-import { NgbDate } from "@ng-bootstrap/ng-bootstrap";
-import { ApiService } from "src/app/api.service";
-import { BankAccount } from "src/app/model/BankAccount";
-import { Booking } from "src/app/model/booking";
-import { BusinessServiceDtoList } from "src/app/model/businessServiceDtoList";
-import { Customer } from "src/app/model/customer";
-import { MessageDto } from "src/app/model/MessageDto";
-import { MobileWallet } from "src/app/model/mobileWallet";
-import { Payment } from "src/app/model/payment";
-import { BusinessUser } from "src/app/model/user";
-import { TokenStorage } from "src/app/token.storage";
+import { TokenStorage } from 'src/app/token.storage';
 
 
 @Component({
@@ -49,7 +50,7 @@ export class CompleteComponent implements OnInit {
   cashPayment = false;
 
   isSuccess: boolean;
-  businessUser: Property;
+  property: Property;
   // totalQuantity: number ;
   // totalPrice: number;
   myDate: any;
@@ -109,6 +110,8 @@ export class CompleteComponent implements OnInit {
   private ewayInitComplete: boolean = false;
 
 
+  dateModel: DateModel;
+
   daySelected: string;
   yearSelected: string;
   monthSelected: number;
@@ -132,7 +135,7 @@ export class CompleteComponent implements OnInit {
   {
     this.myDate = new Date();
     this.businessServiceDto = new BusinessServiceDtoList();
-    this.businessUser = new Property();
+    this.property = new Property();
     this.booking = new Booking();
     this.payment = new Payment();
     this.mobileWallet = new MobileWallet();
@@ -166,7 +169,28 @@ export class CompleteComponent implements OnInit {
 
  ngOnInit()
  {
+  if (this.token.getBookingData() != undefined) {
+    this.booking = this.token.getBookingData();
 
+    // this.room = this.dateModel.room;
+    // this.booking = this.dateModel.booking;
+
+    this.getCheckInDateFormat(this.booking.fromDate);
+    this.getCheckOutDateFormat(this.booking.toDate);
+
+    this.booking.businessEmail = this.booking.email;
+    // this.booking.fromDate = this.dateModel.checkIn;
+    // this.booking.toDate = this.dateModel.checkOut;
+    // this.booking.roomId = this.room.id;
+    this.booking.propertyId = PROPERTY_ID;
+    // this.checkAvailabilty();
+  }
+  if (this.token.getProperty() != undefined) {
+  this.property = this.token.getProperty();
+
+  this.bankAccount= this.property.bankAccount;
+  this.mobileWallet= this.property.mobileWallet;
+  }
  }
  mileSecondToNGBDate(date: string) {
   const dsd = new Date(date);
@@ -193,6 +217,34 @@ getDiffDate(toDate, fromDate) {
         this.startDate.getDate()
       )) /
       (1000 * 60 * 60 * 24)
+  );
+}
+getAvailableRoom() {
+  this.dateModel = new DateModel();
+
+  this.dateModel.checkIn = this.getDateFormat(this.booking.fromDate);
+  this.dateModel.checkOut = this.getDateFormat(this.booking.toDate);
+  this.dateModel.guest = this.booking.noOfPersons;
+  this.dateModel.noOfRooms = this.booking.noOfRooms;
+
+  // console.log(' this.dateModel '+JSON.stringify( this.dateModel));
+
+  const navigationExtras: NavigationExtras = {
+    queryParams: {
+      dateob: JSON.stringify(this.dateModel),
+    },
+  };
+
+  this.router.navigate(["/booking/choose"], navigationExtras);
+}
+getDateFormat(dateString: string) {
+  var yearAndMonth = dateString.split("-", 3);
+  return (
+    yearAndMonth[0] +
+    "-" +
+    yearAndMonth[1] +
+    "-" +
+    yearAndMonth[2].split(" ", 1)
   );
 }
  getCheckInDateFormat(dateString: string)
@@ -260,16 +312,16 @@ getPropertyDetails(id: number) {
   this.loader = true;
   this.apiService.getPropertyDetailsByPropertyId(id).subscribe(
     (data) => {
-      this.businessUser = data.body;
-      this.currency = this.businessUser.localCurrency.toUpperCase();
-      this.mobileWallet = this.businessUser.mobileWallet;
-      this.bankAccount = this.businessUser.bankAccount;
-      //  console.log(' this.businessUser ===='+JSON.stringify( this.businessUser));
-      if (this.businessUser.taxDetails.length > 0) {
-        this.taxPercentage = this.businessUser.taxDetails[0].percentage;
+      this.property = data.body;
+      this.currency = this.property.localCurrency.toUpperCase();
+      this.mobileWallet = this.property.mobileWallet;
+      this.bankAccount = this.property.bankAccount;
+      //  console.log(' this.property ===='+JSON.stringify( this.property));
+      if (this.property.taxDetails.length > 0) {
+        this.taxPercentage = this.property.taxDetails[0].percentage;
       }
-      if (this.businessUser.taxDetails[0].taxSlabsList.length > 0) {
-        this.businessUser.taxDetails[0].taxSlabsList.forEach((element) => {
+      if (this.property.taxDetails[0].taxSlabsList.length > 0) {
+        this.property.taxDetails[0].taxSlabsList.forEach((element) => {
           if (
             element.maxAmount > this.booking.roomPrice &&
             element.minAmount < this.booking.roomPrice
@@ -283,8 +335,8 @@ getPropertyDetails(id: number) {
 
       this.booking.totalAmount = this.booking.netAmount + ((this.booking.netAmount * this.taxPercentage) / 100) - this.booking.discountAmount;
 
-      this.businessServiceDto = this.businessUser.businessServiceDtoList.find(
-        (data) => data.name === this.businessUser.businessType
+      this.businessServiceDto = this.property.businessServiceDtoList.find(
+        (data) => data.name === this.property.businessType
       );
 
       this.loader = false;

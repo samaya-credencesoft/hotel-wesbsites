@@ -1,8 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Booking } from "./model/booking";
 import { Property } from "./model/property";
-import { BusinessUser } from "./model/user";
-
 
 const PROPERTY = 'Property';
 const PROPERTY_NAME = 'PropertyName';
@@ -29,14 +27,6 @@ export class TokenStorage {
     return JSON.parse(sessionStorage.getItem(PROPERTY));
   }
 
-  public saveBusinessUser(businessUser: BusinessUser) {
-    window.sessionStorage.removeItem(BUSINESSUSER);
-    window.sessionStorage.setItem(BUSINESSUSER, JSON.stringify(businessUser));
-  }
-
-  public getBusinessUser(): BusinessUser {
-    return JSON.parse(sessionStorage.getItem(BUSINESSUSER));
-  }
 
   public savePropertyName(name: string) {
     window.sessionStorage.removeItem(PROPERTY_NAME);

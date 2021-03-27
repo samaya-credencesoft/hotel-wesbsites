@@ -1,8 +1,9 @@
-import { BusinessUser } from 'src/app/model/user';
-import { APP_ID, Host, Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+
+import { HttpClient } from '@angular/common/http';
+import { Injectable, Host } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Booking } from './model/booking';
+import { BookingDetails } from './model/bookingdetails';
 import { Customer } from './model/customer';
 import { MessageDto } from './model/MessageDto';
 import { Msg } from './model/msg';
@@ -10,10 +11,10 @@ import { Payment } from './model/payment';
 import { Property } from './model/property';
 import { Room } from './model/room';
 import { GoogleReview } from './model/googleReview';
+export const API_URL = environment.apiUrl + '/api/website';
+export const API_URL2 = environment.apiUrl;
 
 
-const API_URL = environment.apiUrl + '/api/website';
-const API_URL2 = environment.apiUrl;
 export const SMS_NUMBER = '+1 956 903 2629';
 //const API_URL2 = 'https://localhost:8080';
 //const API_URL = 'http://localhost:8080/api/website';
@@ -33,7 +34,7 @@ export class ApiService {
     return this.http.post<Booking[]>(API_URL2 + '/api/booking/findAll', host, { observe: 'response' });
   }
   getBookingDetailsByIdAndEmail(booking: Booking) {
-    return this.http.get<any>(API_URL + '/findBookingByIdAndEmail?BookingReferenceNumber='
+    return this.http.get<BookingDetails>(API_URL + '/findBookingByIdAndEmail?BookingReferenceNumber='
       + booking.id + '&BookingEmail=' + booking.email, { observe: 'response' });
   }
   authorisationToken(message: MessageDto) {

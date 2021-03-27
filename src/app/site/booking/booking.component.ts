@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { PROPERTY_ID, ApiService } from 'src/app/api.service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { ActivatedRoute, Router } from "@angular/router";
-import { NavigationExtras } from '@angular/router';
-import { DateModel } from 'src/app/model/dateModel';
-import { Room } from 'src/app/model/room';
+import { HttpErrorResponse } from "@angular/common/http";
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router, NavigationExtras } from "@angular/router";
+import { ApiService, PROPERTY_ID } from "src/app/api.service";
+import { DateModel } from "src/app/model/dateModel";
+import { Room } from "src/app/model/room";
+
 
 @Component({
   selector: 'app-booking',

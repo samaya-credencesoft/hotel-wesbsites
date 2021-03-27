@@ -39,7 +39,7 @@
                                   <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
                                 </span>
                               </div>
-                              <input type="text" disabled name="dateIn" class="date-pick" [(ngModel)]="booking.fromDate">
+                              <input type="text" name="dateIn" class="date-pick" [(ngModel)]="booking.fromDate">
                               <div class="clearfix"></div>
                             </div>
                             <!--check-form end-->
@@ -55,12 +55,12 @@
                                   <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
                                 </span>
                               </div>
-                              <input type="text" disabled name="dateOut" class="date-pick" [(ngModel)]="booking.toDate">
+                              <input type="text" name="dateOut" class="date-pick" [(ngModel)]="booking.toDate">
                               <div class="clearfix"></div>
                             </div>
                             <!--check-form end-->
                           </li>
-                          <li class="item-cont">
+                          <!-- <li class="item-cont">
                             <div class="check-form">
                               <h4 class="text-center">Guest</h4>
                               <div class="det">
@@ -78,6 +78,94 @@
                               <div class="clearfix"></div>
                             </div>
                             <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
+                          </li> -->
+                          <li class="item-cont">
+                            <div class="check-form">
+                              <h4 class="text-center">Guest</h4>
+                              <div class="det">
+                                <div class="handle-counter" id="handleCounter">
+                                  <ul>
+                                    <li class="input-fieldd" style="color: #ffffff;
+                                    font-size: 35px;
+                                    font-weight: 600;">
+                                      <input style="display: none" type="number" class="stepper_input"
+                                        data-ref="input-stepper-field" id="group_adults" name="group_adults" min="1"
+                                        max="30" value="2" data-group-adults-count=""
+                                        [(ngModel)]="booking.noOfPersons">{{booking.noOfPersons}}
+
+                                    </li>
+                                    <li class="counter-control">
+                                      <!-- <button class="counter-plus btn">
+                                        <i class="fa fa-angle-up"></i>
+                                      </button>
+                                      <button class="counter-minus btn" disabled="">
+                                        <i class="fa fa-angle-down"></i>
+                                      </button> -->
+                                      <button class="btn btn-outline-default btn-sm" type="button"
+                                        (click)="booking.noOfPersons = booking.noOfPersons + 1;"
+                                        [disabled]="booking.noOfPersons >=30">
+                                        <!-- <span class="button_text">+</span> -->
+                                        <i class="fa fa-angle-up"></i>
+                                      </button>
+                                      <button class="btn btn-outline-default btn-sm" type="button"
+                                        (click)="booking.noOfPersons = booking.noOfPersons - 1;"
+                                        [disabled]="booking.noOfPersons <=1">
+                                        <!-- <span class="button_text">−</span> -->
+                                        <i class="fa fa-angle-down"></i>
+                                      </button>
+
+                                    </li>
+                                  </ul>
+                                  <div class="clearfix"></div>
+                                </div>
+                              </div>
+                              <div class="clearfix"></div>
+                            </div>
+                            <!--check-form end-->
+                          </li>
+                          <li class="item-cont">
+                            <div class="check-form">
+                              <h4 class="text-center">Room(s)</h4>
+                              <div class="det">
+                                <div class="handle-counter" id="handleCounter">
+                                  <ul>
+                                    <li class="input-fieldd" style="color: #ffffff;
+                                    font-size: 35px;
+                                    font-weight: 600;">
+                                      <input style="display: none" type="number" class="stepper_input"
+                                        data-ref="input-stepper-field" id="group_adults" name="group_adults" min="1"
+                                        max="30" value="2" data-group-adults-count=""
+                                        [(ngModel)]="booking.noOfRooms">{{booking.noOfRooms}}
+
+                                    </li>
+                                    <li class="counter-control">
+                                      <!-- <button class="counter-plus btn">
+                                        <i class="fa fa-angle-up"></i>
+                                      </button>
+                                      <button class="counter-minus btn" disabled="">
+                                        <i class="fa fa-angle-down"></i>
+                                      </button> -->
+                                      <button class="btn btn-outline-default btn-sm" type="button"
+                                        (click)="booking.noOfRooms = booking.noOfRooms + 1;"
+                                        [disabled]="booking.noOfRooms >=30">
+                                        <!-- <span class="button_text">+</span> -->
+                                        <i class="fa fa-angle-up"></i>
+                                      </button>
+                                      <button class="btn btn-outline-default btn-sm" type="button"
+                                        (click)="booking.noOfRooms = booking.noOfRooms - 1;"
+                                        [disabled]="booking.noOfRooms <=1">
+                                        <!-- <span class="button_text">−</span> -->
+                                        <i class="fa fa-angle-down"></i>
+                                      </button>
+
+                                    </li>
+                                  </ul>
+                                  <div class="clearfix"></div>
+                                </div>
+                              </div>
+                              <div class="clearfix"></div>
+                            </div>
+                            <!--check-form end-->
                           </li>
                           <li class="check-avail">
                             <a (click)="getAvailableRoom()" title="" class="check-status">CHECK AVAILABILITY</a>
@@ -231,7 +319,8 @@
                       <div class="tb-detaiils st_4">
                         <div class="row">
                           <div class="col-lg-6 col-md-6 col-sm-6" *ngFor="let room of rooms;">
-                            <div class="room-details">
+
+                            <div class="room-details" >
                               <img src="{{room.imageList[0].url}}" alt="">
 
                               <div class="room-hd">
@@ -262,7 +351,7 @@
                                   <img src="{{room.imageList[0].url}}" alt="">
 
                                   <span
-                                    class="price-tag">{{room.roomOnlyPrice  | currency: token.getProperty().localCurrency.toUpperCase()}}<b>/night</b></span>
+                                    class="price-tag">{{ booking.roomPrice ||room.roomOnlyPrice  | currency: token.getProperty().localCurrency.toUpperCase()}}<b>/night</b></span>
                                 </div>
                                 <!--room_img end-->
 
@@ -315,6 +404,7 @@
                     </div>
                     <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                       <div class="tb-detaiils" *ngFor="let room of rooms;">
+
                         <div class="tb-row">
                           <div class="room_details">
                             <div class="room-caroz">
@@ -322,7 +412,7 @@
                                 <img src="{{room.imageList[0].url}}" alt="">
 
                                 <span
-                                  class="price-tag">{{room.roomOnlyPrice | currency: token.getProperty().localCurrency.toUpperCase()}}<b>/night</b></span>
+                                  class="price-tag">{{ room.roomOnlyPrice | currency: token.getProperty().localCurrency.toUpperCase():'symbol':'1.2-2' }}<b>/night</b></span>
                               </div>
                               <!--room_img end-->
 
@@ -335,7 +425,7 @@
                                   <img src="assets/images/icy1.png" alt="">
                                   {{room.maximumOccupancy}} GUESTS
                                 </li>
-                                <li>
+                                <li *ngIf="room.ratesAndAvailabilityDtos !== null">
                                   <p>Available: {{room.ratesAndAvailabilityDtos[0].noOfAvailable}}
                                     room<span *ngIf="room.ratesAndAvailabilityDtos[0].noOfAvailable > 1">s</span>
                                   </p>
@@ -343,7 +433,7 @@
                               </ul>
                               <!--ppt-list end-->
                               <p>{{room.description}} </p>
-                              <div class="fct-dv">
+                              <div class="fct-dv" *ngIf="room.ratesAndAvailabilityDtos !== null">
                                 <h6 class="text-default"><b>Plan:</b></h6>
                                 <div *ngFor="let rates of room.ratesAndAvailabilityDtos; let r= index; ">
                                   <div *ngIf="room.id == rates.roomId && r<1">
@@ -351,15 +441,34 @@
                                     <mat-radio-group aria-labelledby="example-radio-group-label"
                                       class="example-radio-group" name="planDetails" [(ngModel)]="planDetails"
                                       (ngModelChange)="onPlanSelected(planDetails, room)">
-                                      <mat-radio-button class="example-radio-button"
-                                        *ngFor="let plan of rates.roomRatePlans; let p= index;" [value]="plan" (click)="booking.roomName = rates.roomName;
+                                      <ng-container *ngFor="let plan of rates.roomRatePlans; let p= index;">
+                                        <mat-radio-button class="example-radio-button" [value]="plan" (click)="booking.roomName = rates.roomName;
+                                        booking.roomId = room.id;
+                                        booking.roomPrice = plan.amount;
                                         selectedRoomName = rates.roomName;
                                         booking.roomType = rates.roomName;
                                         maxSelectRoom = rates.noOfAvailable;
-                                        maxOccupancy = room.maximumOccupancy;  ">
-                                        {{plan.name}}
-                                      </mat-radio-button>
+                                        maxOccupancy = room.maximumOccupancy;
+                                         ">
+                                          {{plan.name}}
+
+                                        </mat-radio-button>
+
+                                      </ng-container>
+
                                     </mat-radio-group>
+                                    <div *ngIf="planDetails">
+                                      <h6 *ngIf="planDetails.roomId == room.id" >Price:
+                                        {{ planDetails.amount * DiffDate * noOfrooms | currency:
+                                          token.getProperty().localCurrency.toUpperCase():'symbol':'1.2-2' }} <div style="color: #f5365c;"
+                                          *ngIf="hasPercentage(room.roomOnlyPrice, planDetails.amount) == true">
+                                          ({{ ((room.roomOnlyPrice - planDetails.amount)/ room.roomOnlyPrice) * 100 }}%
+                                          Discount)</div>
+                                      </h6>
+                                      <p *ngIf="planDetails.roomId == room.id">Note:
+                                        {{ planDetails.description }}
+                                      </p>
+                                    </div>
                                     <!-- <div class="form-check" ngbRadioGroup name="radioBasic" [(ngModel)]="planDetails"
                                       (ngModelChange)="onPlanSelected(plan, room)"
                                       *ngFor="let plan of rates.roomRatePlans; let p= index;">
@@ -386,14 +495,11 @@
                                     </div>
                                   </div>
                                 </div>
-                                <div *ngIf="planDetails">
-                                  <p *ngIf="planDetails.roomId == room.id" style="">Note:
-                                    {{ planDetails.description }}
-                                  </p>
-                                </div>
+
                                 <div class="clearfix"></div>
                               </div>
-                              <div class="fct-dv">
+
+                              <div class="fct-dv" *ngIf="room.ratesAndAvailabilityDtos !== null">
                                 <ul class="fct-list">
                                   <li>
                                     <span data-toggle="tooltip" data-placement="top" title="Wifi"><img
@@ -413,15 +519,19 @@
                                   </li>
                                 </ul>
                                 <!--fct-list end-->
-                                <a title="" (click)="onRoomBooking(room, i);
+                                <button title="" (click)="onRoomBooking(room, i);
                                                 booking.roomId = room.id;
                                                 selectedRoomMaximumOccupancy = room.maximumOccupancy;
                                                 selectedRoomAvailableNumber = room.noOfRooms;
                                                 checkAvailabilityStatus = true;
-                                                bookRoomNow() " class="lnk-default">Book Now <i
-                                    class="la la-arrow-right"></i></a>
+                                                bookRoomNow() " class="lnk-default"
+                                  [disabled]="planDetails == undefined || planDetails.roomId!== room.id">Book Now <i
+                                    class="la la-arrow-right"></i></button>
 
                                 <div class="clearfix"></div>
+                              </div>
+                              <div *ngIf="room.ratesAndAvailabilityDtos == null">
+                                <h2>Room Not Available!</h2>
                               </div>
                             </div>
                             <!--room_info end-->
@@ -431,6 +541,7 @@
                           <!--room-details end-->
                         </div>
                         <!--tb-row end-->
+
 
                       </div>
                       <!--tb-detaiils end-->

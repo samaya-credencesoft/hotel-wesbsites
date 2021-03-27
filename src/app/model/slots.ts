@@ -1,4 +1,4 @@
-import { ResourceList } from './resourceList';
+// import { ResourceList } from './resourceList';
 
 export class Slots {
   date: string;
@@ -11,6 +11,6 @@ export class Slots {
   price: number;
   businessServiceId: number;
   businessServiceTypeId: number;
-  resourceList: ResourceList[];
+  // resourceList: ResourceList[];
   constructor() { }
 }

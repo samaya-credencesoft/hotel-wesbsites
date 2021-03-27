@@ -1,119 +1,87 @@
+import { TaxDetails } from './TaxDetails';
 
 import { Address } from "./address";
-import { BankAccount } from "./BankAccount";
 import { BusinessServiceDtoList } from "./businessServiceDtoList";
 import { MobileWallet } from "./mobileWallet";
-import { TaxDetails } from "./TaxDetails";
+import { Room } from "./room";
+import { SubscriptionList } from "./subscriptionList";
+
 
 export class Property {
-
-    bookonePropertyId : number;
-    id: number;
-    name: string;
-    email: string;
-    managerName: string;
-
-    longitude : string;
-    latitude :string;
-
-    address: Address;
-    contactNumber: string;
-    landphone: string;
-    mobile: string ;
-    status: string;
-    gstNumber: string;
-    userId: string;
-    propertyBarCode: Uint8Array[] ;
-    logoUrl: string ;
-    imageUrl: string;
-    website: string;
-    slogan: string ;
-
-    localCurrency: string;
-    propertyStatus : string;
-    pricePerNight : string;
-    pricePerWeek: string;
-    priceFortNight: string;
-    priceMonthly:string;
-    minimumOccupancy:string;
-    maximumOccupancy:string;
-
-    managerFirstName: string;
-    managerLastName: string;
-    managerContactNo: string;
-    managerEmailAddress: string ;
-
-    taxDetails : TaxDetails[];
-
-    noOfFloor: number;
-    noOfRoomType: number;
-    placeId: string;
-    organisationId : number;
-
-
-    businessName: string;
-
-    confirmEmail: string;
-    password: string;
-    uuid : string;
-    resetStatus : boolean;
-    passwordResetLink : string;
-    confirmPassword: string;
-    username: string;
-    mobileNumber : string;
-    landphoneNumber: string;
-    firstname: string; // firstname
-    lastname:string; // lastname
-  // propertie :GroupUser;
-    propertyId : number;
-    createdBy : string;
-    shortName : string;
-
-    businessType : string;
-    businessDescription : string;
-
-    plan : string;
-
-    twitter	: string;
-    instagram :	string;
-    facebook	: string;
-    seoFriendlyName :	string;
-
-    bookingCommissionPercentage :	number;
-    transactionFee	: number;
-    cardProcessingFeePercentage : number;
-
-    paymentGateway: string;
-    paymentGatewayApiKey :string;
-    paymentGatewayApiToken :string;
-    paymentGatewayPublicKey: string;
-
-    businessServiceDtoList : BusinessServiceDtoList[];
-
-    imageList : [{
-      id: number;
-      description	:string;
-      mainImage :	boolean;
-      name :	string;
-      url :	string;
-    }];
-
-    bankName : string;
-    branchName : string;
-    verified : boolean;
-    bankAccount : BankAccount;
-    featuredBusiness : boolean;
-
-    socialMediaLinks : any[];
-
-    numberOfRooms : number;
-
-    mobileWallet : MobileWallet;
-    detailedView: {
-      totalNumberOfVisits : number;
-      yearWiseVisits: any;
+  name: string;
+  id: number;
+  businessDescription: string;
+  businessShortDescription: string;
+  businessName: string;
+  businessType: string;
+  businessTypeGroup: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  landphoneNumber: string;
+  landphone: string;
+  mobileNumber: string;
+  organisationId: number;
+  userStatus: string;
+  username: string;
+  password: string;
+  confirmPassword: string;
+  dashboardUrl: string;
+  plan: string;
+  newBusinessType: string;
+  address: Address;
+  facebook: string;
+  instagram: string;
+  twitter: string;
+  gstNumber: string;
+  imageUrl: string;
+  bookOneRating: number;
+  minimumRoooPrice: number;
+  imageList: [
+    {
+      description: string,
+      id: string,
+      mainImage: true,
+      name: string,
+      url: string
     }
-    whatsApp: string;
-    constructor() {
-     }
+  ];
+  longitude: string;
+  latitude: string;
+  seoFriendlyName: string;
+  localCurrency: string;
+  logoUrl: string;
+  managerContactNo: string;
+  managerEmailAddress: string;
+  managerFirstName: string;
+  managerLastName: string;
+  maximumOccupancy: number;
+  minimumOccupancy: number;
+  mobile: string;
+  noOfFloor: number;
+  noOfBookOneReview: number;
+  noOfRoomType: number;
+  placeId: string;
+  paymentGateway: string;
+  paymentGatewayApiKey: string;
+  paymentGatewayApiToken: string;
+  paymentGatewayPublicKey: string;
+  priceFortNight: number;
+  priceMonthly: number;
+  pricePerNight: number;
+  pricePerWeek: number;
+  propertyBarCode: string;
+  propertyStatus: string;
+  shortName: string;
+  slogan: string;
+  subscriptionList: SubscriptionList[];
+  website: string;
+  whatsApp: string;
+  businessServiceDtoList: BusinessServiceDtoList[];
+  roomList: Room[];
+  bankAccount : any;
+  mobileWallet : MobileWallet;
+
+  taxDetails:  TaxDetails[];
+    constructor() { }
 }

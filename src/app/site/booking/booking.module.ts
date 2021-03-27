@@ -17,7 +17,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 const routes: Routes = [
-  { path: '', component: BookingComponent},
+  { path: '', redirectTo: 'booking/choose', pathMatch:'full'},
   { path: 'booking/choose', component: ChooseRoomComponent},
   { path: 'booking/booking', component: NewBookingComponent},
   { path: 'booking/payment', component: CheckoutComponent},
@@ -37,7 +37,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatSnackBarModule,
     NgbModule,
-    RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })
+    RouterModule.forChild(routes)
   ],
   declarations: [BookingComponent, CheckoutComponent, NewBookingComponent, ChooseRoomComponent, CompleteComponent, BookingDetailsComponent]
 })

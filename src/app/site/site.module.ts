@@ -5,7 +5,7 @@ import { BookingModule } from './booking/booking.module';
 import { BookingComponent } from './booking/booking.component';
 
 const routes: Routes = [
-  { path: '', component: BookingComponent},
+  { path: '', redirectTo: 'booking', pathMatch:'full'},
 
   // { path: 'rooms', loadChildren: './rooms/rooms.module#RoomsModule'},
   // { path: 'rooms', component: RoomsComponent},

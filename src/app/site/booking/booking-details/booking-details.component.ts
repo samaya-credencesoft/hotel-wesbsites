@@ -1,9 +1,9 @@
 import { TokenStorage } from 'src/app/token.storage';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-import { ApiService } from 'src/app/api.service';
-import { DateService } from 'src/app/date-service.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ApiService } from './../../../api.service';
+import { DateService } from '../../../date-service.service';
 import { Booking } from 'src/app/model/booking';
 import { Payment } from 'src/app/model/payment';
 

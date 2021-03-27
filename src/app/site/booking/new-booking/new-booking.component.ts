@@ -1,17 +1,16 @@
-import { Component, OnInit } from "@angular/core";
-import { FormControl, Validators, FormGroup, FormBuilder } from "@angular/forms";
-import { Router, ActivatedRoute, NavigationExtras } from "@angular/router";
-import { NgbDate } from "@ng-bootstrap/ng-bootstrap";
-import { ApiService } from "src/app/api.service";
-import { Booking } from "src/app/model/booking";
-import { Customer } from "src/app/model/customer";
-import { DateModel } from "src/app/model/dateModel";
-import { MessageDto } from "src/app/model/MessageDto";
-import { Payment } from "src/app/model/payment";
-import { Property } from "src/app/model/property";
-import { Room } from "src/app/model/room";
-import { TokenStorage } from "src/app/token.storage";
-
+import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
+import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
+import { ApiService } from 'src/app/api.service';
+import { Booking } from 'src/app/model/booking';
+import { Customer } from 'src/app/model/customer';
+import { DateModel } from 'src/app/model/dateModel';
+import { MessageDto } from 'src/app/model/MessageDto';
+import { Payment } from 'src/app/model/payment';
+import { Property } from 'src/app/model/property';
+import { Room } from 'src/app/model/room';
+import { TokenStorage } from 'src/app/token.storage';
 
 @Component({
   selector: 'app-new-booking',
@@ -133,6 +132,7 @@ export class NewBookingComponent implements OnInit {
     this.room = new Room();
     if (this.token.getProperty() != undefined && this.token.getProperty() != null) {
       this.property = this.token.getProperty();
+      this.currency = this.property.localCurrency.toLocaleUpperCase();
     }
 
     if (this.token.getBookingData() != undefined && this.token.getBookingData() != null) {
@@ -158,6 +158,24 @@ export class NewBookingComponent implements OnInit {
   ngOnInit() {
 
   }
+  getAvailableRoom() {
+    this.dateModel = new DateModel();
+
+    this.dateModel.checkIn = this.getDateFormat(this.booking.fromDate);
+    this.dateModel.checkOut = this.getDateFormat(this.booking.toDate);
+    this.dateModel.guest = this.booking.noOfPersons;
+    this.dateModel.noOfRooms = this.booking.noOfRooms;
+
+    // console.log(' this.dateModel '+JSON.stringify( this.dateModel));
+
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        dateob: JSON.stringify(this.dateModel),
+      },
+    };
+
+    this.router.navigate(["/booking/choose"], navigationExtras);
+  }
   onBook() {
     this.dateModel = new DateModel();
 
@@ -173,13 +191,13 @@ export class NewBookingComponent implements OnInit {
       this.dateModel.checkOut = this.getDateFormat(this.checkOut.value);
     }
     if (this.guest === null) {
-      this.dateModel.booking.noOfPersons = 1;
+      this.dateModel.guest = 1;
     } else {
-      this.dateModel.booking.noOfPersons = this.guest;
+      this.dateModel.guest = this.guest;
 
     }
 
-    this.dateModel.booking.noOfRooms = 1;
+    this.dateModel.noOfRooms = 1;
 
 
     // console.log(' this.dateModel '+JSON.stringify( this.dateModel));
@@ -354,6 +372,8 @@ export class NewBookingComponent implements OnInit {
             this.customerDto = new Customer();
             this.customerDto = data.body;
             console.log('Get customer ' + JSON.stringify(data.body));
+this.booking.customerDtoList = [];
+            this.booking.customerDtoList.push(this.customerDto);
             this.booking.firstName = this.customerDto.firstName;
             this.booking.lastName = this.customerDto.lastName;
             this.booking.mobile = this.customerDto.mobile;
@@ -376,6 +396,9 @@ export class NewBookingComponent implements OnInit {
             this.customerDto = new Customer();
             this.customerDto = data.body;
             console.log('Get customer ' + JSON.stringify(data.body));
+this.booking.customerDtoList = [];
+
+            this.booking.customerDtoList.push(this.customerDto);
             this.booking.firstName = this.customerDto.firstName;
             this.booking.lastName = this.customerDto.lastName;
             this.booking.mobile = this.customerDto.mobile;
@@ -443,6 +466,7 @@ export class NewBookingComponent implements OnInit {
     //     dateob: JSON.stringify(this.dateModel),
     //   },
     // };
+    this.booking.customerId = this.customerDto.id;
     this.token.saveBookingData(this.booking);
     this.router.navigate(['/booking/payment']);
   }
