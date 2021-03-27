@@ -20,23 +20,25 @@
                               </div>
                               <h1>Enjoy a Luxurious <br> Experience</h1>
                           </div>
-                          <!-- <div class="bnr_check_room_area">
-                              <form action="#" id="ajax-contact">
+                          <div class="bnr_check_room_area">
+                              <form  >
                                   <div class="hr">
                                       <div class="vc-cd-12  vc-rd-12  vc-sd-3 vc-od-3">
                                           <div class="cmn_field">
                                               <label for="check1">
                                                   <i class="fa fa-calendar"></i>
                                               </label>
-                                              <input type="text" class="field-control datepicker" id="check1" placeholder="Check In">
+                                              <input class="field-control" name="checkIn" #checkIn="ngModel" placeholder="Check In" [(ngModel)]="checkIn" (click)="d1.toggle()" ngbDatepicker #d1="ngbDatepicker">
+
                                           </div>
                                       </div>
                                       <div class="vc-cd-12 vc-rd-12 vc-sd-3 vc-od-3">
-                                          <div class="cmn_field">
+                                          <div class="cmn_field" >
                                               <label for="check2">
                                                   <i class="fa fa-calendar"></i>
                                               </label>
-                                              <input type="text" class="field-control datepicker" id="check2" placeholder="Check Out">
+                                              <input class="field-control" name="checkOut" #checkOut="ngModel" placeholder="Check Out" [(ngModel)]="checkOut" (click)="d2.toggle()" ngbDatepicker #d2="ngbDatepicker">
+
                                           </div>
                                       </div>
                                       <div class="vc-cd-12  vc-rd-12  vc-sd-3 vc-od-3">
@@ -44,17 +46,17 @@
                                               <label for="check3">
                                                   <i class="fa fa-user"></i>
                                               </label>
-                                              <input type="number" class="field-control" id="check3" placeholder="Guest">
+                                              <input type="number" class="field-control" id="check3" name="guest" placeholder="Guest" [(ngModel)]="guest" >
                                           </div>
                                       </div>
                                       <div class="vc-cd-12 vc-rd-12 vc-sd-3 vc-od-3">
-                                          <a href="room-details.php" class="common_btn2 btn_hbreffect1">
+                                          <a href="#"  (click)="onBook()" class="common_btn2 btn_hbreffect1">
                                               check rooms
                                           </a>
                                       </div>
                                   </div>
                               </form>
-                          </div> -->
+                          </div>
                       </div>
                   </div>
               </div>

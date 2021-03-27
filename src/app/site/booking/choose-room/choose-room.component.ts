@@ -91,8 +91,8 @@ export class ChooseRoomComponent implements OnInit {
 
         //  this.getRoomByDate( this.dateModel.checkIn  ,this.dateModel.checkout  );
 
-        this.getCheckInDateFormat(this.dateModel.checkIn);
-        this.getCheckOutDateFormat(this.dateModel.checkOut);
+        // this.getCheckInDateFormat(this.dateModel.checkIn);
+        // this.getCheckOutDateFormat(this.dateModel.checkOut);
         this.booking.fromDate = this.dateModel.checkIn;
         this.booking.toDate = this.dateModel.checkOut;
         this.booking.noOfRooms = this.dateModel.noOfRooms;
@@ -208,8 +208,8 @@ export class ChooseRoomComponent implements OnInit {
   }
   bookRoomNow() {
 
-    this.booking.fromDate = this.getDateFormat(this.booking.fromDate);
-    this.booking.toDate = this.getDateFormat(this.booking.toDate);
+    // this.booking.fromDate = this.getDateFormat(this.booking.fromDate);
+    // this.booking.toDate = this.getDateFormat(this.booking.toDate);
     this.booking.noOfRooms = this.noOfrooms;
     this.booking.noOfPersons = this.adults;
     this.booking.noOfExtraPerson = this.children;
@@ -246,8 +246,8 @@ export class ChooseRoomComponent implements OnInit {
     this.router.navigate(["/booking/booking"]);
   }
   getAvailableRoom() {
-    this.booking.fromDate = this.getDateFormat(this.booking.fromDate);
-    this.booking.toDate = this.getDateFormat(this.booking.toDate);
+    // this.booking.fromDate = this.getDateFormat(this.booking.fromDate);
+    // this.booking.toDate = this.getDateFormat(this.booking.toDate);
     this.apiService.checkAvailabilityByID(this.booking).subscribe(
       (response) => {
         this.property = response.body;

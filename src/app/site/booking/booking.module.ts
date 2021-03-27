@@ -37,7 +37,7 @@ const routes: Routes = [
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
+    RouterModule.forChild(routes),
   ],
   declarations: [
     BookingComponent,
