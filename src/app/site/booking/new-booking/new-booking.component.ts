@@ -77,6 +77,8 @@ export class NewBookingComponent implements OnInit {
 
   roomsAndOccupancy: boolean = false;
   bookingCity: string;
+
+
   guest: number = 1;
 
   adults: number = 2;

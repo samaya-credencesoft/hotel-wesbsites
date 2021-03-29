@@ -230,9 +230,9 @@ export class ChooseRoomComponent implements OnInit {
 
     this.booking.fromDate = this.getDateFormat(this.booking.fromDate);
     this.booking.toDate = this.getDateFormat(this.booking.toDate);
-    this.booking.noOfRooms = this.noOfrooms;
-    this.booking.noOfPersons = this.adults;
-    this.booking.noOfExtraPerson = this.children;
+    // this.booking.noOfRooms = this.noOfrooms;
+    // this.booking.noOfPersons = this.adults;
+    // this.booking.noOfExtraPerson = this.children;
 
     // this.booking.netAmount =
     this.changeDetectorRefs.detectChanges();
