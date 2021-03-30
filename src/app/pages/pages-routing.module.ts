@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: "aboutus", component: AboutusComponent },
   { path: "contact", component: ContactComponent },
 
-  { path: 'booking', component: BookingModule }
+  // { path: 'booking', component: BookingModule }
 ];
 
 @NgModule({

@@ -1,11 +1,11 @@
 
-import { formatDate } from "@angular/common";
+import { ApiService, PROPERTY_ID, SMS_NUMBER } from "src/app/api.service";
 import { HttpErrorResponse } from "@angular/common/http";
+import { formatDate } from "@angular/common";
 import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
 import { FormControl, Validators, FormGroup, FormBuilder } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router, ActivatedRoute, NavigationExtras } from "@angular/router";
-import { ApiService, PROPERTY_ID, SMS_NUMBER } from "src/app/api.service";
 import { BankAccount } from "src/app/model/BankAccount";
 import { Booking } from "src/app/model/booking";
 import { DateModel } from "src/app/model/dateModel";
@@ -303,7 +303,7 @@ export class CheckoutComponent implements OnInit {
     this.loader = true;
     this.msgs = [];
 
-    let checkAvailabilityObsrv = this.apiService
+    this.apiService
       .checkAvailability(this.booking)
       .subscribe(
         (response) => {

@@ -1,4 +1,3 @@
-
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
@@ -14,23 +13,22 @@ import { Room } from 'src/app/shared/models/room';
 import { TokenStorage } from 'src/app/token.storage';
 
 @Component({
-  selector: "app-choose-room",
-  templateUrl: "./choose-room.component.html",
-  styleUrls: ["./choose-room.component.css"],
+  selector: 'app-choose-room',
+  templateUrl: './choose-room.component.html',
+  styleUrls: ['./choose-room.component.css'],
 })
 export class ChooseRoomComponent implements OnInit {
-
   fromDate: NgbDate | null;
   toDate: NgbDate | null;
 
   rooms: Room[];
   dateModel: DateModel;
-  selectedIndex:number;
+  selectedIndex: number;
   daySelected: string;
   yearSelected: string;
   monthSelected: number;
   mobileWallet: MobileWallet;
-   bankAccount: BankAccount;
+  bankAccount: BankAccount;
   daySelected2: string;
   yearSelected2: string;
   monthSelected2: number;
@@ -60,18 +58,18 @@ export class ChooseRoomComponent implements OnInit {
   // planDetails:FormControl = new FormControl('', Validators.nullValidator);
 
   monthArray = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
   ];
 
   constructor(
@@ -86,13 +84,10 @@ export class ChooseRoomComponent implements OnInit {
     // this.getRoom();
 
     this.acRoute.queryParams.subscribe((params) => {
-      if (params["dateob"] != undefined) {
-        this.dateModel = JSON.parse(params["dateob"]);
-
-        //  this.getRoomByDate( this.dateModel.checkIn  ,this.dateModel.checkout  );
-
-        // this.getCheckInDateFormat(this.dateModel.checkIn);
-        // this.getCheckOutDateFormat(this.dateModel.checkOut);
+      if (params['dateob'] != undefined) {
+        this.dateModel = JSON.parse(params['dateob']);
+        this.getCheckInDateFormat(this.dateModel.checkIn);
+        this.getCheckOutDateFormat(this.dateModel.checkOut);
         this.booking.fromDate = this.dateModel.checkIn;
         this.booking.toDate = this.dateModel.checkOut;
         this.booking.noOfRooms = this.dateModel.noOfRooms;
@@ -140,7 +135,7 @@ export class ChooseRoomComponent implements OnInit {
           this.startDate.getMonth(),
           this.startDate.getDate()
         )) /
-      (1000 * 60 * 60 * 24)
+        (1000 * 60 * 60 * 24)
     );
   }
   onRoomBooking(room, index) {
@@ -155,16 +150,15 @@ export class ChooseRoomComponent implements OnInit {
     // this.router.navigate(['/booking/booking'], navigationExtras);
   }
   hasPercentage(roomOnlyPrice, planAmount) {
-    if (((roomOnlyPrice - planAmount) / roomOnlyPrice * 100) > 0) {
+    if (((roomOnlyPrice - planAmount) / roomOnlyPrice) * 100 > 0) {
       return true;
     } else {
       return false;
     }
   }
   onPlanSelected(plan, room) {
-
     this.booking.netAmount = plan.amount * this.DiffDate * this.noOfrooms;
-    console.log('plan ',JSON.stringify(plan));
+    console.log('plan ', JSON.stringify(plan));
 
     if (this.property.taxDetails.length > 0) {
       this.taxPercentage = this.property.taxDetails[0].percentage;
@@ -200,58 +194,68 @@ export class ChooseRoomComponent implements OnInit {
     console.log(JSON.stringify(this.booking));
     console.log(JSON.stringify(this.checkAvailabilityStatusHide));
     this.changeDetectorRefs.detectChanges();
-// this.checkingAvailability();
+    // this.checkingAvailability();
   }
   getDateFormat(dateString: string) {
     const yearAndMonth = dateString.split('-', 3);
-    return yearAndMonth[0] + '-' + yearAndMonth[1] + '-' + yearAndMonth[2].split(' ', 1);
+    return (
+      yearAndMonth[0] +
+      '-' +
+      yearAndMonth[1] +
+      '-' +
+      yearAndMonth[2].split(' ', 1)
+    );
   }
   bookRoomNow() {
-
-    // this.booking.fromDate = this.getDateFormat(this.booking.fromDate);
-    // this.booking.toDate = this.getDateFormat(this.booking.toDate);
-    this.booking.noOfRooms = this.noOfrooms;
-    this.booking.noOfPersons = this.adults;
-    this.booking.noOfExtraPerson = this.children;
+    this.booking.fromDate = this.getDateFormat(this.booking.fromDate);
+    this.booking.toDate = this.getDateFormat(this.booking.toDate);
+    // this.booking.noOfRooms = this.noOfrooms;
+    // this.booking.noOfPersons = this.adults;
+    // this.booking.noOfExtraPerson = this.children;
 
     // this.booking.netAmount =
     this.changeDetectorRefs.detectChanges();
 
     this.mobileWallet = this.property.mobileWallet;
-        this.bankAccount = this.property.bankAccount;
-        //  Logger.log(' this.property ===='+JSON.stringify( this.property));
-        if (this.property.taxDetails.length > 0) {
-          this.taxPercentage = this.property.taxDetails[0].percentage;
+    this.bankAccount = this.property.bankAccount;
+    //  Logger.log(' this.property ===='+JSON.stringify( this.property));
+    if (this.property.taxDetails.length > 0) {
+      this.taxPercentage = this.property.taxDetails[0].percentage;
+    }
+    if (this.property.taxDetails[0].taxSlabsList.length > 0) {
+      this.property.taxDetails[0].taxSlabsList.forEach((element) => {
+        if (
+          element.maxAmount > this.booking.roomPrice &&
+          element.minAmount < this.booking.roomPrice
+        ) {
+          this.taxPercentage = element.percentage;
+        } else if (element.maxAmount < this.booking.roomPrice) {
+          this.taxPercentage = element.percentage;
         }
-        if (this.property.taxDetails[0].taxSlabsList.length > 0) {
-          this.property.taxDetails[0].taxSlabsList.forEach((element) => {
-            if (
-              element.maxAmount > this.booking.roomPrice &&
-              element.minAmount < this.booking.roomPrice
-            ) {
-              this.taxPercentage = element.percentage;
-            } else if (element.maxAmount < this.booking.roomPrice) {
-              this.taxPercentage = element.percentage;
-            }
-          });
-        }
+      });
+    }
 
-        this.booking.netAmount = this.booking.roomPrice * this.booking.noOfRooms * this.DiffDate;
-        this.booking.discountAmount = 0;
-        // this.booking.totalAmount = this.booking.netAmount + ((this.booking.netAmount * this.taxPercentage) / 100) - this.booking.discountAmount;
-        this.booking.gstAmount = (this.booking.netAmount * this.booking.taxPercentage) / 100;
-        this.booking.totalAmount = this.booking.netAmount + this.booking.gstAmount - this.booking.discountAmount;
-        console.log('book now ',JSON.stringify(this.booking.netAmount));
+    this.booking.netAmount =
+      this.booking.roomPrice * this.booking.noOfRooms * this.DiffDate;
+    this.booking.discountAmount = 0;
+    // this.booking.totalAmount = this.booking.netAmount + ((this.booking.netAmount * this.taxPercentage) / 100) - this.booking.discountAmount;
+    this.booking.gstAmount =
+      (this.booking.netAmount * this.booking.taxPercentage) / 100;
+    this.booking.totalAmount =
+      this.booking.netAmount +
+      this.booking.gstAmount -
+      this.booking.discountAmount;
+    console.log('book now ', JSON.stringify(this.booking.netAmount));
     this.token.saveBookingData(this.booking);
-    this.router.navigate(["/booking/booking"]);
+    this.router.navigate(['/booking/booking']);
   }
   getAvailableRoom() {
-    // this.booking.fromDate = this.getDateFormat(this.booking.fromDate);
-    // this.booking.toDate = this.getDateFormat(this.booking.toDate);
+    this.booking.fromDate = this.getDateFormat(this.booking.fromDate);
+    this.booking.toDate = this.getDateFormat(this.booking.toDate);
     this.apiService.checkAvailabilityByID(this.booking).subscribe(
       (response) => {
         this.property = response.body;
-        this.token.saveProperty(this.property );
+        this.token.saveProperty(this.property);
         this.rooms = response.body.roomList;
         this.checkAvailabilityStatus = response.body.available;
         this.booking.bookingAmount = response.body.bookingAmount;
@@ -259,12 +263,12 @@ export class ChooseRoomComponent implements OnInit {
         // this.selectedRoomMaximumOccupancy = response.body.noOfPersons;
 
         if (response.body.available == true) {
-          this.checkAvailabilityStatusName = "Available";
+          this.checkAvailabilityStatusName = 'Available';
         } else {
-          this.checkAvailabilityStatusName = "Not Available";
+          this.checkAvailabilityStatusName = 'Not Available';
         }
 
-        console.log("checkAvailability " + JSON.stringify(response.body));
+        console.log('checkAvailability ' + JSON.stringify(response.body));
       },
       (error) => {
         if (error instanceof HttpErrorResponse) {
@@ -276,7 +280,7 @@ export class ChooseRoomComponent implements OnInit {
     this.apiService.getRoomDetailsByPropertyId(PROPERTY_ID).subscribe(
       (response) => {
         console.log(
-          "response room choose room " + JSON.stringify(response.body)
+          'response room choose room ' + JSON.stringify(response.body)
         );
         this.rooms = response.body;
       },
@@ -302,15 +306,15 @@ export class ChooseRoomComponent implements OnInit {
   }
 
   getCheckInDateFormat(dateString: string) {
-    var yearAndMonth = dateString.split("-", 3);
-    this.daySelected = String(yearAndMonth[2].split(" ", 1));
+    var yearAndMonth = dateString.split('-', 3);
+    this.daySelected = String(yearAndMonth[2].split(' ', 1));
     this.yearSelected = yearAndMonth[0];
     this.monthSelected = parseInt(yearAndMonth[1]) - 1;
   }
 
   getCheckOutDateFormat(dateString: string) {
-    var yearAndMonth = dateString.split("-", 3);
-    this.daySelected2 = String(yearAndMonth[2].split(" ", 1));
+    var yearAndMonth = dateString.split('-', 3);
+    this.daySelected2 = String(yearAndMonth[2].split(' ', 1));
     this.yearSelected2 = yearAndMonth[0];
     this.monthSelected2 = parseInt(yearAndMonth[1]) - 1;
   }

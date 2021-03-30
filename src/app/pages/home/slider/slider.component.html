@@ -21,38 +21,47 @@
                               <h1>Enjoy a Luxurious <br> Experience</h1>
                           </div>
                           <div class="bnr_check_room_area">
-                              <form  >
+                              <form  #searchForm="ngForm"
+                              (ngSubmit)="submitForm(searchForm)" role="form">
                                   <div class="hr">
-                                      <div class="vc-cd-12  vc-rd-12  vc-sd-3 vc-od-3">
+                                      <div class="vc-cd-12  vc-rd-12  vc-sd-2 vc-od-2">
                                           <div class="cmn_field">
                                               <label for="check1">
                                                   <i class="fa fa-calendar"></i>
                                               </label>
-                                              <input class="field-control" name="checkIn" #checkIn="ngModel" placeholder="Check In" [(ngModel)]="checkIn" (click)="d1.toggle()" ngbDatepicker #d1="ngbDatepicker">
+                                              <input class="field-control" name="checkIn"  placeholder="Check In" [formControl]="CheckIn" [(ngModel)]="checkIn" (click)="d1.toggle()" ngbDatepicker #d1="ngbDatepicker" autocomplete="off">
 
                                           </div>
                                       </div>
-                                      <div class="vc-cd-12 vc-rd-12 vc-sd-3 vc-od-3">
+                                      <div class="vc-cd-12 vc-rd-12 vc-sd-2 vc-od-2">
                                           <div class="cmn_field" >
                                               <label for="check2">
                                                   <i class="fa fa-calendar"></i>
                                               </label>
-                                              <input class="field-control" name="checkOut" #checkOut="ngModel" placeholder="Check Out" [(ngModel)]="checkOut" (click)="d2.toggle()" ngbDatepicker #d2="ngbDatepicker">
+                                              <input class="field-control" name="checkOut" [formControl]="CheckOut" placeholder="Check Out" [(ngModel)]="checkOut" [minDate]="checkIn" (click)="d2.toggle()" ngbDatepicker #d2="ngbDatepicker" autocomplete="off">
 
                                           </div>
                                       </div>
-                                      <div class="vc-cd-12  vc-rd-12  vc-sd-3 vc-od-3">
+                                      <div class="vc-cd-12  vc-rd-12  vc-sd-2 vc-od-2">
                                           <div class="cmn_field">
                                               <label for="check3">
                                                   <i class="fa fa-user"></i>
                                               </label>
-                                              <input type="number" class="field-control" id="check3" name="guest" placeholder="Guest" [(ngModel)]="guest" >
+                                              <input type="number" class="field-control" id="check3" name="guest" placeholder="Guest" [formControl]="Guest" [(ngModel)]="guest" >
                                           </div>
                                       </div>
-                                      <div class="vc-cd-12 vc-rd-12 vc-sd-3 vc-od-3">
-                                          <a href="#"  (click)="onBook()" class="common_btn2 btn_hbreffect1">
-                                              check rooms
-                                          </a>
+                                      <div class="vc-cd-12  vc-rd-12  vc-sd-2 vc-od-2">
+                                        <div class="cmn_field">
+                                            <label for="check3">
+                                                <i class="fa fa-door-open"></i>
+                                            </label>
+                                            <input type="number" class="field-control" id="check3" name="noOfRooms" placeholder="Room" [formControl]="NoOfRooms" [(ngModel)]="noOfRooms" >
+                                        </div>
+                                    </div>
+                                      <div class="vc-cd-12 vc-rd-12 vc-sd-2 vc-od-2">
+                                          <button (click)="onBook()" class="common_btn2 btn_hbreffect1">
+                                              Check
+                                          </button>
                                       </div>
                                   </div>
                               </form>
