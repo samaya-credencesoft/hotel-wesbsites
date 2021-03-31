@@ -14,7 +14,7 @@ export const environment = {
   apiUrl: 'https://api.bookonelocal.in/api-bookone',
   apiUrlAddress: 'https://api.bookonelocal.in/api-address',
   apiUrlPromotion: 'https://api.bookonelocal.in/promotion-api',
-  propertyId: 267,
+  propertyId: 276,
   // propertyId: 237 ,
   country: 'in',
   googleKey: 'AIzaSyAYT8pe61MUbk27eiYi9LnnPhwo031Ye7w'
