@@ -55,7 +55,7 @@
           <div class="vc-sd-12">
               <div class="gallery_item align-center">
                   <div class="grid gallery_item1">
-                      <div *ngFor="let gallery of galleryImage" class="grid-item width-1-4 hotel" ngClass="gallery.class">
+                      <div *ngFor="let gallery of galleryImage" class="grid-item width-1-4 {{gallery.class}}" >
                           <div class="item_content">
                               <div class="single_grid_item">
                                   <img src="{{gallery.imageURL}}" alt="gallery" >

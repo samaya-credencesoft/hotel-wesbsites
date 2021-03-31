@@ -19,7 +19,7 @@ export class AllRoomsComponent implements OnInit {
   constructor(private apiService: ApiService,
               private router: Router,
               public token: TokenStorage) {
-      this.dateModel = new DateModel();
+              this.dateModel = new DateModel();
     }
   ngOnInit() {
     this.getRoom();
