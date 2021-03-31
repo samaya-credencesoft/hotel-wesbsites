@@ -1,96 +1,92 @@
 <div class="footer_area bnr_ftr_overlay">
   <div class="holder">
-      <div class="hr">
-          <div class="vc-sd-8 vc-sd-offset-2">
-              <div class="footer_area_top_inner">
-                  <div class="footer_text  align-center">
-                      <h2>HAVE A ROOM ? HAVE A SEAT?</h2>
-                      <p>You can book your room online, and if your room supports it, automatically reserve a seat
-                          for dinner in our 5-star gourme restaurant. So do not wait, book your room now!</p>
-                  </div>
-                  <div class="footer_btn  align-center">
-                      <a routerLink="#" class="common_btn btn_hbreffect2">book now</a>
-                  </div>
-              </div>
+    <div class="hr">
+      <div class="vc-sd-8 vc-sd-offset-2">
+        <div class="footer_area_top_inner">
+          <div class="footer_text  align-center">
+            <h2>HAVE A ROOM ? HAVE A SEAT?</h2>
+            <p>You can book your room online, and if your room supports it, automatically reserve a seat
+              for dinner in our 5-star gourme restaurant. So do not wait, book your room now!</p>
           </div>
-          <div class="vc-sd-11 vc-sd-offset-1 vc-od-10 vc-od-offset-1 vc-ld-8 vc-ld-offset-2">
-              <ul class="footer_contact">
-                  <li>
-                      <div class="footer-phone">
-                          <span><i class="fas fa-mobile-alt"></i></span>
-                          <p>{{token.getProperty().mobile}}</p>
-
-                      </div>
-                  </li>
-                  <li>
-                      <div class="footer-mail">
-                          <span><i class="fas fa-map-marker-alt"></i></span>
-                          <!-- <p>421/1617/2422, Bajrang Vihar, Patia, Bhubaneswar, Odisha 751024, India
-                          </p> -->
-                           <p>{{token.getProperty().address.streetName}}  {{token.getProperty().address.streetNumber}}
-                              {{token.getProperty().address.suburb}}  {{token.getProperty().address.city}}
-                              {{token.getProperty().address.state}}  {{token.getProperty().address.country}}
-                              {{token.getProperty().address.postcode}} </p>
-<!-- <p>{{property.address}}</p> -->
-
-                      </div>
-                  </li>
-                  <li>
-                      <div class="footer-info">
-                          <span><i class="fa fa-window-maximize"></i></span>
-                        <p><a routerLink="/mailto::dir@{{token.getProperty().email}}">{{property.email}}
-                              </a>
-                          </p>
-
-
-                      </div>
-                  </li>
-              </ul>
+          <div class="footer_btn  align-center">
+            <a routerLink="#" class="common_btn btn_hbreffect2">book now</a>
           </div>
+        </div>
       </div>
+      <div class="vc-sd-11 vc-sd-offset-1 vc-od-10 vc-od-offset-1 vc-ld-8 vc-ld-offset-2">
+        <ul class="footer_contact">
+          <li>
+            <div class="footer-phone">
+              <span><i class="fas fa-mobile-alt"></i></span>
+              <p>{{token.getProperty().mobile}}</p>
+
+            </div>
+          </li>
+          <li>
+            <div class="footer-mail">
+              <span><i class="fas fa-map-marker-alt"></i></span>
+              <!-- <p>421/1617/2422, Bajrang Vihar, Patia, Bhubaneswar, Odisha 751024, India
+                          </p> -->
+              <p>{{token.getProperty().address.streetName}} {{token.getProperty().address.streetNumber}}
+                {{token.getProperty().address.suburb}} {{token.getProperty().address.city}}
+                {{token.getProperty().address.state}} {{token.getProperty().address.country}}
+                {{token.getProperty().address.postcode}} </p>
+              <!-- <p>{{property.address}}</p> -->
+
+            </div>
+          </li>
+          <li>
+            <div class="footer-info">
+              <span><i class="fa fa-window-maximize"></i></span>
+              <p><a routerLink="/mailto::dir@{{token.getProperty().email}}">{{property.email}}
+                </a>
+              </p>
+
+
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
   <div class="footer_area_bottom">
-      <div class="holder">
-          <div class="hr">
-              <div class="vc-sd-6">
-                  <div class="copyright-right">
-                      <p>COPYRIGHT @ 2021 ALL RIGHT RESERVED. <a href="{{token.getProperty().website}}
+    <div class="holder">
+      <div class="hr">
+        <div class="vc-sd-6">
+          <div class="copyright-right">
+            <p>COPYRIGHT @ 2021 ALL RIGHT RESERVED. <a href="{{token.getProperty().website}}
                               ">{{token.getProperty().name}} Powered By BookOne</a></p>
-                  </div>
-              </div>
-              <div class="vc-sd-6">
-                  <div class="footer_area_bottom_inner align-right">
-                      <div class="footer_menu">
-                          <nav>
-                              <ul>
-                                  <!-- <li><a href="booking.php">Booking</a></li>
+          </div>
+        </div>
+        <div class="vc-sd-6">
+          <div class="footer_area_bottom_inner align-right">
+            <div class="footer_menu">
+              <nav>
+                <ul>
+                  <!-- <li><a href="booking.php">Booking</a></li>
                                       <li><a href="room2.php">rooms</a></li> -->
-                                  <li><a routerLink="/contact">contact</a></li>
-                              </ul>
-                          </nav>
-                      </div>
-                      <div class="footer_social_area">
-                          <ul class="contact-links">
+                  <li><a routerLink="/contact">contact</a></li>
+                </ul>
+              </nav>
+            </div>
+            <div class="footer_social_area">
+              <ul class="contact-links">
 
 
-                            <li *ngIf="token.getProperty().instagram">
-                              <a href="https://fb.com/{{ token.getProperty().instagram }}" target="_blank" title="">
-                                <i class=" front fab fa-instagram"></i>
-                                <i class="back front fab fa-instagram"></i>
-                              </a>
-                            </li>
+                <li *ngIf="token.getProperty().instagram">
+                  <a href="https://fb.com/{{ token.getProperty().instagram }}" target="_blank" title="">
+                    <i class=" front fab fa-instagram"></i>
+                    <i class="back front fab fa-instagram"></i>
+                  </a>
+                </li>
 
 
-                              <li *ngIf="token.getProperty().facebook">
-                                <a href="https://fb.com/{{ token.getProperty().facebook }}" target="_blank" title=""
-                                  ><i class="front fab fa-facebook-f"></i>
-                                  <i class="back fab fa-facebook-f"></i></a>
-                              </li>
-
-
-
-
-                              <!-- <li>
+                <li *ngIf="token.getProperty().facebook">
+                  <a href="https://fb.com/{{ token.getProperty().facebook }}" target="_blank" title=""><i
+                      class="front fab fa-facebook-f"></i>
+                    <i class="back fab fa-facebook-f"></i></a>
+                </li>
+                <!-- <li>
                                       <a href="#" target="_blank">
                                           <i class="front fa fa-pinterest-square"></i>
                                           <i class="back fa fa-pinterest-square"></i>
@@ -102,13 +98,12 @@
                                           <i class="back fa fa-skype"></i>
                                       </a>
                                   </li> -->
-                          </ul>
-
-                      </div>
-                  </div>
-              </div>
+              </ul>
+            </div>
           </div>
+        </div>
       </div>
+    </div>
   </div>
 </div>
 <a routerLink="/top" class="scroll_top" data-smooth-scroll data-animate-time="500">
