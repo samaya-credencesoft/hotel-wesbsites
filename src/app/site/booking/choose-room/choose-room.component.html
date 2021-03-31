@@ -468,11 +468,10 @@
                                 <div *ngFor="let rates of room.ratesAndAvailabilityDtos; let r= index; ">
                                   <div *ngIf="room.id == rates.roomId && r<1">
                                     <!-- <h6>{{ rates.date | date:'MMM d, y' }}</h6> -->
-                                    <mat-radio-group aria-labelledby="example-radio-group-label"
-                                      class="example-radio-group" name="planDetails" [(ngModel)]="planDetails"
+                                    <mat-radio-group aria-labelledby="example-radio-group-label"  name="planDetails" [(ngModel)]="planDetails"
                                       (ngModelChange)="onPlanSelected(planDetails, room)">
                                       <ng-container *ngFor="let plan of rates.roomRatePlans; let p= index;">
-                                        <mat-radio-button class="example-radio-button" [value]="plan" (click)="booking.roomName = rates.roomName;
+                                        <mat-radio-button  [value]="plan" (click)="booking.roomName = rates.roomName;
                                         booking.roomId = room.id;
                                         booking.roomPrice = plan.amount;
                                         selectedRoomName = rates.roomName;
