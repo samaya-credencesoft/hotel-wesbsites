@@ -104,6 +104,28 @@ export class ChooseRoomComponent implements OnInit {
         );
         this.getDiffDate(this.toDate, this.fromDate);
         this.getAvailableRoom();
+      } else {
+        this.dateModel.checkIn = new Date('dd-MM-yyyy').toString();
+        this.dateModel.checkOut = new Date('dd+1-MM-yyyy').toString();
+
+        this.getCheckInDateFormat(this.dateModel.checkIn);
+        this.getCheckOutDateFormat(this.dateModel.checkOut);
+        this.booking.fromDate = this.dateModel.checkIn;
+        this.booking.toDate = this.dateModel.checkOut;
+        this.booking.noOfRooms = this.dateModel.noOfRooms;
+        this.booking.noOfPersons = this.dateModel.guest;
+        this.fromDate = new NgbDate(
+          this.mileSecondToNGBDate(this.booking.fromDate).year,
+          this.mileSecondToNGBDate(this.booking.fromDate).month,
+          this.mileSecondToNGBDate(this.booking.fromDate).day
+        );
+        this.toDate = new NgbDate(
+          this.mileSecondToNGBDate(this.booking.toDate).year,
+          this.mileSecondToNGBDate(this.booking.toDate).month,
+          this.mileSecondToNGBDate(this.booking.toDate).day
+        );
+        this.getDiffDate(this.toDate, this.fromDate);
+        this.getAvailableRoom();
       }
     });
   }
