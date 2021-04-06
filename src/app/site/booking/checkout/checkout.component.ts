@@ -207,8 +207,8 @@ export class CheckoutComponent implements OnInit {
   getAvailableRoom() {
     this.dateModel = new DateModel();
 
-    this.dateModel.checkIn = this.getDateFormat(this.booking.fromDate);
-    this.dateModel.checkOut = this.getDateFormat(this.booking.toDate);
+    this.dateModel.checkIn = this.booking.fromDate;
+    this.dateModel.checkOut = this.booking.toDate;
     this.dateModel.guest = this.booking.noOfPersons;
     this.dateModel.noOfRooms = this.booking.noOfRooms;
 

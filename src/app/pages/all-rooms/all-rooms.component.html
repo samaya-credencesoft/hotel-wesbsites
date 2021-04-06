@@ -37,8 +37,7 @@
         <div class="vc-sd-6 vc-od-4">
           <div class="room_details_img align-center">
             <!-- <img src="assets/images/room-detail-img5.jpg" alt="rooms"> -->
-            <img *ngIf="room.imageList?.length" src="{{ room.imageList[0].url}}"
-              alt="">
+            <img *ngIf="room.imageList?.length" src="{{ room.imageList[0].url}}" alt="" width="390" height="335">
           </div>
         </div>
         <div class="vc-sd-6 vc-od-5">
@@ -80,7 +79,7 @@
           <div class="rooms_details_view align-center">
             <h3 class="romans">{{room.name}}</h3>
             <h3 class="bold"><span>₹</span>{{room.roomOnlyPrice}}</h3>
-            <a  [routerLink]="['/booking/choose']" class="common_btn3 spacial_btn">Book now</a>
+            <a [routerLink]="['/booking/choose']" class="common_btn3 spacial_btn">Book now</a>
             <p>per night</p>
             <p class="highlt">available</p>
             <!-- <div class="room_icon">

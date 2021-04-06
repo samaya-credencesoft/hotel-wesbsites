@@ -1,7 +1,8 @@
+import { formatDate } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
-import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService, PROPERTY_ID } from 'src/app/api.service';
 import { BankAccount } from 'src/app/model/BankAccount';
 import { Booking } from 'src/app/model/booking';
@@ -77,6 +78,7 @@ export class ChooseRoomComponent implements OnInit {
     public token: TokenStorage,
     private router: Router,
     private changeDetectorRefs: ChangeDetectorRef,
+    private calendar: NgbCalendar,
     private acRoute: ActivatedRoute
   ) {
     this.dateModel = new DateModel();
@@ -105,15 +107,26 @@ export class ChooseRoomComponent implements OnInit {
         this.getDiffDate(this.toDate, this.fromDate);
         this.getAvailableRoom();
       } else {
-        this.dateModel.checkIn = new Date('dd-MM-yyyy').toString();
-        this.dateModel.checkOut = new Date('dd+1-MM-yyyy').toString();
-
-        this.getCheckInDateFormat(this.dateModel.checkIn);
-        this.getCheckOutDateFormat(this.dateModel.checkOut);
-        this.booking.fromDate = this.dateModel.checkIn;
-        this.booking.toDate = this.dateModel.checkOut;
-        this.booking.noOfRooms = this.dateModel.noOfRooms;
-        this.booking.noOfPersons = this.dateModel.guest;
+        // this.dateModel.checkIn = formatDate(new Date(), 'yyyy-MM-dd', 'en');
+        // this.dateModel.checkOut = formatDate(new Date(new Date().getTime() + 24 * 60 * 60 * 1000), 'yyyy-MM-dd', 'en');
+        // this.getCheckInDateFormat(this.dateModel.checkIn);
+        // this.getCheckOutDateFormat(this.dateModel.checkOut);
+        // this.booking.fromDate = this.dateModel.checkIn;
+        // this.booking.toDate = this.dateModel.checkOut;
+        this.fromDate = calendar.getToday();
+        this.toDate = calendar.getNext(calendar.getToday(), 'd', 1);
+        this.booking.fromDate = this.getDateFormatYearMonthDay(
+          this.fromDate.day,
+          this.fromDate.month,
+          this.fromDate.year
+        );
+        this.booking.toDate = this.getDateFormatYearMonthDay(
+          this.toDate.day,
+          this.toDate.month,
+          this.toDate.year
+        );
+        this.booking.noOfRooms = 1;
+        this.booking.noOfPersons = 1;
         this.fromDate = new NgbDate(
           this.mileSecondToNGBDate(this.booking.fromDate).year,
           this.mileSecondToNGBDate(this.booking.fromDate).month,
@@ -339,5 +352,30 @@ export class ChooseRoomComponent implements OnInit {
     this.daySelected2 = String(yearAndMonth[2].split(' ', 1));
     this.yearSelected2 = yearAndMonth[0];
     this.monthSelected2 = parseInt(yearAndMonth[1]) - 1;
+  }
+  getDateFormatYearMonthDay(
+    day12: number,
+    month12: number,
+    year12: number
+  ): string {
+    const year = year12;
+    const date = day12;
+
+    const month = month12;
+
+    let month1;
+    let day1;
+    if (Number(month) < 10) {
+      month1 = `0${month}`;
+    } else {
+      month1 = `${month}`;
+    }
+    if (Number(date) < 10) {
+      day1 = `0${date}`;
+    } else {
+      day1 = `${date}`;
+    }
+
+    return `${year}-${month1}-${day1}`;
   }
 }

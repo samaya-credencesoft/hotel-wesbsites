@@ -1,31 +1,31 @@
 <div class="banner_area_type3 bnr_overlay2">
   <div class="holder">
-      <div class="hr">
-          <div class="vc">
-              <div class="banner_section_title align-center">
-                  <div class="section_sub_title">
-                      <p>Booking</p>
-                  </div>
-                  <h1>Find Your Desire Room</h1>
-              </div>
+    <div class="hr">
+      <div class="vc">
+        <div class="banner_section_title align-center">
+          <div class="section_sub_title">
+            <p>Booking</p>
           </div>
+          <h1>Find Your Desire Room</h1>
+        </div>
       </div>
-      <div class="hr">
-          <div class="vc">
-              <div class="bradecrumbe">
-                  <ul class="breadcrumb justify-content-center justify-content-cd--center">
-                      <li>
-                          <a routerLink='/'>
-                              Home
-                          </a>
-                      </li>
-                      <li class="active">
-                        Booking
-                      </li>
-                  </ul>
-              </div>
-          </div>
+    </div>
+    <div class="hr">
+      <div class="vc">
+        <div class="bradecrumbe">
+          <ul class="breadcrumb justify-content-center justify-content-cd--center">
+            <li>
+              <a routerLink='/'>
+                Home
+              </a>
+            </li>
+            <li class="active">
+              Booking
+            </li>
+          </ul>
+        </div>
       </div>
+    </div>
   </div>
 </div>
 <section class="main-content bkng">
@@ -67,7 +67,7 @@
                             <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
                           </span>
                         </div>
-                        <input type="text"  name="dateIn" class="date-pick" [(ngModel)]="booking.fromDate">
+                        <input type="text" name="dateIn" class="date-pick" [(ngModel)]="booking.fromDate">
                         <div class="clearfix"></div>
                       </div>
                       <!--check-form end-->
@@ -83,7 +83,7 @@
                             <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
                           </span>
                         </div>
-                        <input type="text"  name="dateOut" class="date-pick" [(ngModel)]="booking.toDate">
+                        <input type="text" name="dateOut" class="date-pick" [(ngModel)]="booking.toDate">
                         <div class="clearfix"></div>
                       </div>
                       <!--check-form end-->
@@ -116,8 +116,9 @@
                               <li class="input-fieldd" style="color: #ffffff;
                               font-size: 35px;
                               font-weight: 600;">
-                                <input style="display: none" type="number" class="stepper_input" data-ref="input-stepper-field"
-                                  id="group_adults" name="group_adults" min="1" max="30" value="2" data-group-adults-count=""
+                                <input style="display: none" type="number" class="stepper_input"
+                                  data-ref="input-stepper-field" id="group_adults" name="group_adults" min="1" max="30"
+                                  value="2" data-group-adults-count=""
                                   [(ngModel)]="booking.noOfPersons">{{booking.noOfPersons}}
 
                               </li>
@@ -128,11 +129,14 @@
                                 <button class="counter-minus btn" disabled="">
                                   <i class="fa fa-angle-down"></i>
                                 </button> -->
-                                <button class="btn btn-outline-default btn-sm" type="button" (click)="booking.noOfPersons = booking.noOfPersons + 1; submitButtonDisabled = true;" [disabled]="booking.noOfPersons >=30">
+                                <button class="btn btn-outline-default btn-sm" type="button"
+                                  (click)="booking.noOfPersons = booking.noOfPersons + 1; submitButtonDisabled = true;"
+                                  [disabled]="booking.noOfPersons >=30">
                                   <!-- <span class="button_text">+</span> -->
                                   <i class="fa fa-angle-up"></i>
                                 </button>
-                                <button class="btn btn-outline-default btn-sm" type="button" (click)="booking.noOfPersons = booking.noOfPersons - 1; submitButtonDisabled = true;"
+                                <button class="btn btn-outline-default btn-sm" type="button"
+                                  (click)="booking.noOfPersons = booking.noOfPersons - 1; submitButtonDisabled = true;"
                                   [disabled]="booking.noOfPersons <=1">
                                   <!-- <span class="button_text">−</span> -->
                                   <i class="fa fa-angle-down"></i>
@@ -156,8 +160,9 @@
                               <li class="input-fieldd" style="color: #ffffff;
                               font-size: 35px;
                               font-weight: 600;">
-                                <input style="display: none" type="number" class="stepper_input" data-ref="input-stepper-field"
-                                  id="group_adults" name="group_adults" min="1" max="30" value="2" data-group-adults-count=""
+                                <input style="display: none" type="number" class="stepper_input"
+                                  data-ref="input-stepper-field" id="group_adults" name="group_adults" min="1" max="30"
+                                  value="2" data-group-adults-count=""
                                   [(ngModel)]="booking.noOfRooms">{{booking.noOfRooms}}
 
                               </li>
@@ -168,11 +173,14 @@
                                 <button class="counter-minus btn" disabled="">
                                   <i class="fa fa-angle-down"></i>
                                 </button> -->
-                                <button class="btn btn-outline-default btn-sm" type="button" (click)="booking.noOfRooms = booking.noOfRooms + 1; submitButtonDisabled = true;" [disabled]="booking.noOfRooms >=30">
+                                <button class="btn btn-outline-default btn-sm" type="button"
+                                  (click)="booking.noOfRooms = booking.noOfRooms + 1; submitButtonDisabled = true;"
+                                  [disabled]="booking.noOfRooms >=30">
                                   <!-- <span class="button_text">+</span> -->
                                   <i class="fa fa-angle-up"></i>
                                 </button>
-                                <button class="btn btn-outline-default btn-sm" type="button" (click)="booking.noOfRooms = booking.noOfRooms - 1; submitButtonDisabled = true;"
+                                <button class="btn btn-outline-default btn-sm" type="button"
+                                  (click)="booking.noOfRooms = booking.noOfRooms - 1; submitButtonDisabled = true;"
                                   [disabled]="booking.noOfRooms <=1">
                                   <!-- <span class="button_text">−</span> -->
                                   <i class="fa fa-angle-down"></i>
@@ -187,9 +195,9 @@
                       </div>
                       <!--check-form end-->
                     </li>
-                    <li class="check-avail">
+                    <!-- <li class="check-avail">
                       <a (click)="getAvailableRoom()" title="" class="check-status">CHECK AVAILABILITY</a>
-                    </li>
+                    </li> -->
                   </ul>
                   <div class="clearfix"></div>
                 </div>
@@ -235,12 +243,12 @@
               </ul>
             </div>
             <div class="payment_options">
-              <h4 class="mb-3 mt-4" >Payment Method</h4>
+              <h4 class="mb-3 mt-4">Payment Method</h4>
               <div *ngIf="paymentLoader" class="progress">
                 <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
                   aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
               </div>
-              <div class="nav-wrapper" >
+              <div class="nav-wrapper">
                 <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
                   <li class="nav-item">
                     <a class="nav-link mb-sm-3 mb-md-0 show active" id="tabs-icons-text-2-tab" data-toggle="tab"
@@ -273,7 +281,7 @@
                   </li> -->
                 </ul>
               </div>
-              <div class="card shadow" >
+              <div class="card shadow">
                 <div class="card-body">
                   <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade" id="tabs-icons-text-1" role="tabpanel"
@@ -432,9 +440,9 @@
                     </div>
                     <div class="tab-pane fade show active" id="tabs-icons-text-2" role="tabpanel"
                       aria-labelledby="tabs-icons-text-2-tab">
-                      <form  class="form" (ngSubmit)="orderForm.form.valid" #orderForm="ngForm">
+                      <form class="form" (ngSubmit)="orderForm.form.valid" #orderForm="ngForm">
                         <div class="row">
-                          <div class="col-md-12">
+                          <div class="col-md-12 card">
                             <h5>Confirm booking</h5>
                             <p>
                               Pay the total amount
@@ -443,7 +451,8 @@
                             </p>
                           </div>
                           <div class="col-md-12 mt-3">
-                            <button class="btn btn-primary" type="button" [disabled]="submitButtonDisabled || paymentLoader " (click)="onCashPaymentSubmit()">
+                            <button class="btn btn-primary" type="button"
+                              [disabled]="submitButtonDisabled || paymentLoader " (click)="onCashPaymentSubmit()">
                               Confirm
                             </button>
                           </div>

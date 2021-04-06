@@ -94,6 +94,8 @@ export class SliderComponent implements OnInit {
   fromDateMinMilliSeconds: number;
   fromDateMaxMilliSeconds: number;
 
+  placement = 'top';
+
   checkIn: NgbDate;
   checkOut: NgbDate;
   guest: number = 1;

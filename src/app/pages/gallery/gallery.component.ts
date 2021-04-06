@@ -124,7 +124,7 @@ export class GalleryComponent implements OnInit {
     },
     {
       imageURL: 'assets/images/gallery_img23.jpg',
-      title: 'Corridor',
+      title: 'Conference Room',
       class: 'hotel'
     },
     {

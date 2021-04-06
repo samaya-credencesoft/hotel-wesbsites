@@ -1,3 +1,8 @@
 .form-submit{
   margin-left: 12px;
 }
+#fromDate, #toDate {
+  width: 100%;
+  background: none;
+    color: white;
+}

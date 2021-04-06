@@ -9,7 +9,7 @@
               for dinner in our 5-star gourme restaurant. So do not wait, book your room now!</p>
           </div>
           <div class="footer_btn  align-center">
-            <a routerLink="#" class="common_btn btn_hbreffect2">book now</a>
+            <a [routerLink]="['/booking/choose']" class="common_btn btn_hbreffect2">book now</a>
           </div>
         </div>
       </div>
@@ -38,7 +38,7 @@
           <li>
             <div class="footer-info">
               <span><i class="fa fa-window-maximize"></i></span>
-              <p><a routerLink="/mailto::dir@{{token.getProperty().email}}">{{property.email}}
+              <p><a href="mailto::{{property.email}}">{{property.email}}
                 </a>
               </p>
 
@@ -54,8 +54,8 @@
       <div class="hr">
         <div class="vc-sd-6">
           <div class="copyright-right">
-            <p>COPYRIGHT @ 2021 ALL RIGHT RESERVED. <a href="{{token.getProperty().website}}
-                              ">{{token.getProperty().name}} Powered By BookOne</a></p>
+            <p>COPYRIGHT @ 2021 ALL RIGHT RESERVED. <a
+                href="{{token.getProperty().website}}">{{token.getProperty().name}} Powered By BookOne</a></p>
           </div>
         </div>
         <div class="vc-sd-6">

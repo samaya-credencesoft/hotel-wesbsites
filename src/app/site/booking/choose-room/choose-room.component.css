@@ -78,3 +78,8 @@ height: 1400px;
 input {
   outline: none;
 }
+#fromDate, #toDate {
+  width: 100%;
+  background: none;
+    color: white;
+}

@@ -55,21 +55,21 @@
               <div class="col-lg-4">
                 <div class="sidebar">
                   <div class="avail-sec">
-                    <form>
+                    <!-- <form> -->
                       <div class="checking-form">
                         <ul class="checkform">
                           <li>
                             <div class="check-form">
                               <h4>CHECK-IN</h4>
-                              <div class="det">
+                              <!-- <div class="det">
                                 <b class="val-date">{{ this.daySelected }}</b>
                                 <span>
                                   <i class="month">{{monthArray[monthSelected] }}</i> <i class="year">
                                     {{  this.yearSelected  }}</i>
                                   <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
                                 </span>
-                              </div>
-                              <input type="text" name="dateIn" class="date-pick" [(ngModel)]="booking.fromDate">
+                              </div> -->
+                              <input type="text" id="fromDate"  [(ngModel)]="fromDate" (click)="d1.toggle()"  ngbDatepicker #d1="ngbDatepicker"  autocomplete="off">
                               <div class="clearfix"></div>
                             </div>
                             <!--check-form end-->
@@ -77,15 +77,15 @@
                           <li>
                             <div class="check-form">
                               <h4>CHECK-OUt</h4>
-                              <div class="det">
+                              <!-- <div class="det">
                                 <b class="val-date">{{ this.daySelected2 }}</b>
                                 <span>
                                   <i class="month">{{ monthArray[monthSelected2] }}</i> <i
                                     class="year">{{  this.yearSelected2  }}</i>
                                   <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
                                 </span>
-                              </div>
-                              <input type="text" name="dateOut" class="date-pick" [(ngModel)]="booking.toDate">
+                              </div> -->
+                              <input type="text" id="toDate"   [minDate]= "fromDate" [(ngModel)]="toDate" (click)="d2.toggle()"  ngbDatepicker #d2="ngbDatepicker"  autocomplete="off">
                               <div class="clearfix"></div>
                             </div>
                             <!--check-form end-->
@@ -203,7 +203,7 @@
                         </ul>
                         <div class="clearfix"></div>
                       </div>
-                    </form>
+                    <!-- </form> -->
                   </div>
                   <!--avail-sec end-->
                   <!-- <div class="filter-field">
