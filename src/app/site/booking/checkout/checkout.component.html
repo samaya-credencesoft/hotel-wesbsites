@@ -281,8 +281,8 @@
                   </li> -->
                 </ul>
               </div>
-              <div class="card shadow">
-                <div class="card-body">
+              <div class="card shadow mb-5">
+                <div class="card-body mb-5">
                   <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade" id="tabs-icons-text-1" role="tabpanel"
                       aria-labelledby="tabs-icons-text-1-tab">
@@ -444,7 +444,7 @@
                         <div class="row">
                           <div class="col-md-12 card">
                             <h5>Confirm booking</h5>
-                            <p>
+                            <p class="">
                               Pay the total amount
                               {{ booking.totalAmount  | currency: property.localCurrency.toUpperCase():"symbol":"1.2-2"  }}
                               when you check-in at the hotel.
@@ -637,13 +637,10 @@
                         </div>
                       </form>
                     </div>
-                    <!--payment_options end-->
                   </div>
-                  <!--more_information_sec end-->
                 </div>
               </div>
             </div>
-            <!--page-content end-->
           </div>
         </div>
       </div>

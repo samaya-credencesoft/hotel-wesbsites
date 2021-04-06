@@ -15,7 +15,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { TokenStorage } from './token.storage';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -31,7 +31,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-
+    BrowserAnimationsModule,
     NgbModule,
     PagesModule,
     ReactiveFormsModule,
