@@ -6,7 +6,7 @@ transition: width .4s, height .4s linear;
 opacity: 0.5;
 }
 
-/* ngb-carousel .wrapper {
+ngb-carousel .wrapper {
   position: relative;
   height: 0;
   padding-top: 55%;
@@ -18,4 +18,4 @@ ngb-carousel .wrapper>img {
   left: 0;
   bottom: 0;
   right: 0;
-} */
+}

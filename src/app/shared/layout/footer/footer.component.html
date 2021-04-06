@@ -17,14 +17,14 @@
         <ul class="footer_contact">
           <li>
             <div class="footer-phone">
-              <span><i class="fas fa-mobile-alt"></i></span>
+              <span><i class="fa fa-mobile"></i></span>
               <p>{{token.getProperty().mobile}}</p>
 
             </div>
           </li>
           <li>
             <div class="footer-mail">
-              <span><i class="fas fa-map-marker-alt"></i></span>
+              <span><i class="fa fa-map-marker"></i></span>
               <!-- <p>421/1617/2422, Bajrang Vihar, Patia, Bhubaneswar, Odisha 751024, India
                           </p> -->
               <p>{{token.getProperty().address.streetName}} {{token.getProperty().address.streetNumber}}
@@ -75,16 +75,16 @@
 
                 <li *ngIf="token.getProperty().instagram">
                   <a href="https://fb.com/{{ token.getProperty().instagram }}" target="_blank" title="">
-                    <i class=" front fab fa-instagram"></i>
-                    <i class="back front fab fa-instagram"></i>
+                    <i class="front fa fa-instagram"></i>
+                    <i class="back fa fa-instagram"></i>
                   </a>
                 </li>
 
 
                 <li *ngIf="token.getProperty().facebook">
                   <a href="https://fb.com/{{ token.getProperty().facebook }}" target="_blank" title=""><i
-                      class="front fab fa-facebook-f"></i>
-                    <i class="back fab fa-facebook-f"></i></a>
+                      class="front fa fa-facebook"></i>
+                    <i class="back fa fa-facebook"></i></a>
                 </li>
                 <!-- <li>
                                       <a href="#" target="_blank">
