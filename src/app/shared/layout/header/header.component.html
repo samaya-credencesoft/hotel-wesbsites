@@ -9,7 +9,7 @@
 </div>
 
 <header class="navbar-fixed">
-  <div class="toolbar-inner-area sticky-navbar" data-sticky-offset="50">
+  <div class="toolbar-inner-area sticky-navbar" [ngClass]="{'sticky': sticky}" (scroll)="onElementScroll($event)" data-sticky-offset="50">
     <div class="holder">
       <div class="hr">
         <div class="vc">
@@ -27,7 +27,7 @@
                   </a>
                 </li>
                 <li *ngIf="token.getProperty().instagram">
-                  <a href="https://fb.com/{{ token.getProperty().instagram }}" target="_blank" title="">
+                  <a href="https://instagram.com/{{ token.getProperty().instagram }}" target="_blank" title="">
                     <i class="fa fa-instagram"></i>
 
                   </a>

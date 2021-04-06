@@ -13,6 +13,8 @@ import { TokenStorage } from 'src/app/token.storage';
 export class NavbarComponent implements OnInit {
   property: Property;
   mobileActive: boolean = false;
+  sticky:boolean = false;
+
   constructor(
     public router: Router,
     public token: TokenStorage,
@@ -31,6 +33,14 @@ export class NavbarComponent implements OnInit {
       this.property = this.token.getProperty();
     } else {
       this.getProperty();
+    }
+  }
+  onElementScroll(){
+    if(this.sticky === true){
+      this.sticky = false;
+
+    } else{
+      this.sticky = true;
     }
   }
   menuToggle(){

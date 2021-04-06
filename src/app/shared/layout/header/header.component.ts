@@ -12,6 +12,7 @@ import { TokenStorage } from 'src/app/token.storage';
 })
 export class HeaderComponent implements OnInit {
   property: Property;
+  sticky:boolean = false;
   constructor(
    public router: Router,
   public token: TokenStorage,
@@ -26,6 +27,15 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+  onElementScroll(event){
+    console.log(event);
+    if(this.sticky === true){
+      this.sticky = false;
+
+    } else{
+      this.sticky = true;
+    }
   }
   getProperty() {
     this.apiService.getPropertyDetailsByPropertyId(PROPERTY_ID).subscribe(response => {
