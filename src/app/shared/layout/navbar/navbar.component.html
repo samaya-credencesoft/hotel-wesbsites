@@ -1,7 +1,7 @@
 <div class="navbar_inner_area">
   <nav class="navigation-area overlay sticky-navbar fadeInUp" data-sticky-offset="50">
     <div class="holder">
-      <div class="menu_toggle">
+      <div class="menu_toggle" [ngClass]="{'active': mobileActive}" (click)="menuToggle()">
         <i class="fa fa-align-left"></i>
       </div>
       <a routerLink="/" class="brand-logo">
@@ -12,7 +12,7 @@
         <ul class="navbar-nav single-item-right">
           <li class="">
             <a routerLink="/">
-              Home
+              Home {{mobileActive}}
             </a>
 
           </li>

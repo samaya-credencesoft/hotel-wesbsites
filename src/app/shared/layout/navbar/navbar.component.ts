@@ -12,6 +12,7 @@ import { TokenStorage } from 'src/app/token.storage';
 })
 export class NavbarComponent implements OnInit {
   property: Property;
+  mobileActive: boolean = false;
   constructor(
     public router: Router,
     public token: TokenStorage,
@@ -30,6 +31,13 @@ export class NavbarComponent implements OnInit {
       this.property = this.token.getProperty();
     } else {
       this.getProperty();
+    }
+  }
+  menuToggle(){
+    if(this.mobileActive  === false){
+      this.mobileActive  = true;
+    }else{
+      this.mobileActive  = false;
     }
   }
   getProperty() {
