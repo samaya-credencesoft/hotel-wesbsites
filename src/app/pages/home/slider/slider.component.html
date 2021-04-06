@@ -87,19 +87,19 @@
     </div>
 
   </div>
-  <ngx-slick-carousel class="carousel listing-slider mfp-gallery-container margin-bottom-0 hero_slider"
+  <ngx-slick-carousel class="camera_wrap carousel listing-slider mfp-gallery-container margin-bottom-0 hero_slider"
     #slickModal="slick-carousel" [config]="slideConfig">
-    <div ngxSlickItem *ngFor="let gallery of slideImage" class="slide">
+    <div ngxSlickItem *ngFor="let gallery of slideImage" class="slide camera_src camerastarted ">
       <img class=" " src="{{gallery.imageUrl}}" alt="First slide">
       <a [ngStyle]="{'background-image': 'url(' + gallery.imageUrl + ')'}" style="background-size: cover;"
         class="item mfp-gallery cover" title="{{gallery.title}}"></a>
     </div>
   </ngx-slick-carousel>
-  <div class="camera_wrap " id="banner_slider1">
-    <!-- <div class="hero_slider" *ngFor="let gallery of slideImage" data-src="{{gallery.imageUrl}}"></div> -->
+  <!-- <div class="camera_wrap " id="banner_slider1">
+    <div class="hero_slider" *ngFor="let gallery of slideImage" data-src="{{gallery.imageUrl}}"></div>
 
 
-  </div>
+  </div>-->
 </div>
 <!-- <ngx-slick-carousel class="carousel listing-slider mfp-gallery-container margin-bottom-0 hero_slider"
 #slickModal="slick-carousel" [config]="slideConfig">
