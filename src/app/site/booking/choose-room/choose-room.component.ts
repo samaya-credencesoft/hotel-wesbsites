@@ -98,18 +98,9 @@ export class ChooseRoomComponent implements OnInit {
         this.booking.toDate = this.dateModel.checkOut;
         this.booking.noOfRooms = this.dateModel.noOfRooms;
         this.booking.noOfPersons = this.dateModel.guest;
-        this.fromDate = new NgbDate(
-          this.mileSecondToNGBDate(this.booking.fromDate).year,
-          this.mileSecondToNGBDate(this.booking.fromDate).month,
-          this.mileSecondToNGBDate(this.booking.fromDate).day
-        );
-        this.toDate = new NgbDate(
-          this.mileSecondToNGBDate(this.booking.toDate).year,
-          this.mileSecondToNGBDate(this.booking.toDate).month,
-          this.mileSecondToNGBDate(this.booking.toDate).day
-        );
-        this.getDiffDate(this.toDate, this.fromDate);
-        this.getAvailableRoom();
+        this.calculateDate();
+
+        // this.getAvailableRoom();
       } else {
         this.booking.fromDate = formatDate(new Date(), 'yyyy-MM-dd', 'en');
         this.booking.toDate = formatDate(new Date(new Date().getTime() + 24 * 60 * 60 * 1000), 'yyyy-MM-dd', 'en');
@@ -117,24 +108,27 @@ export class ChooseRoomComponent implements OnInit {
         this.getCheckOutDateFormat(this.booking.toDate);
         this.booking.noOfRooms = 1;
         this.booking.noOfPersons = 1;
-        this.fromDate = new NgbDate(
-          this.mileSecondToNGBDate(this.booking.fromDate).year,
-          this.mileSecondToNGBDate(this.booking.fromDate).month,
-          this.mileSecondToNGBDate(this.booking.fromDate).day
-        );
-        this.toDate = new NgbDate(
-          this.mileSecondToNGBDate(this.booking.toDate).year,
-          this.mileSecondToNGBDate(this.booking.toDate).month,
-          this.mileSecondToNGBDate(this.booking.toDate).day
-        );
-        this.getDiffDate(this.toDate, this.fromDate);
-        this.getAvailableRoom();
+        this.calculateDate();
+        // this.getAvailableRoom();
       }
     });
   }
 
   ngOnInit() {
     //this.checkincheckoutDate();
+  }
+  calculateDate(){
+    this.fromDate = new NgbDate(
+      this.mileSecondToNGBDate(this.booking.fromDate).year,
+      this.mileSecondToNGBDate(this.booking.fromDate).month,
+      this.mileSecondToNGBDate(this.booking.fromDate).day
+    );
+    this.toDate = new NgbDate(
+      this.mileSecondToNGBDate(this.booking.toDate).year,
+      this.mileSecondToNGBDate(this.booking.toDate).month,
+      this.mileSecondToNGBDate(this.booking.toDate).day
+    );
+    this.getDiffDate(this.toDate, this.fromDate);
   }
   mileSecondToNGBDate(date: string) {
     const dsd = new Date(date);
@@ -183,7 +177,7 @@ export class ChooseRoomComponent implements OnInit {
   }
   onPlanSelected(plan, room) {
 
-    this.booking.netAmount = plan.amount * this.DiffDate * this.noOfrooms;
+    this.booking.netAmount = plan.amount * this.DiffDate * this.booking.noOfRooms;
     console.log('plan ',JSON.stringify(plan));
 
     if (this.property.taxDetails.length > 0) {

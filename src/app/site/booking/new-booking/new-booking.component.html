@@ -476,332 +476,169 @@
                    </div>
                  </div> -->
             <h4 class="mb-4">Booking Checkout</h4>
-
             <div class="row mb-4">
-              <div class="col-md-6" *ngIf="verified || customerExist">
-                <div class="form-group">
-                  <label class="form-label" for="firstName">First Name*</label>
-                  <input
-                    type="text"
-                    placeholder="First Name"
-                    id="firstName"
-                    class="form-control form-control-alternative"
-                    [(ngModel)]="booking.firstName"
-                    #firstName="ngModel"
-                    name="firstName"
-                    required
-                  />
-                  <span
-                    class="text-danger"
-                    *ngIf="
-                      (firstName.touched || orderForm.submitted) &&
-                      firstName.errors?.required
-                    "
-                  >
-                    First Name is required
-                  </span>
-                </div>
-              </div>
-              <div class="col-md-6" *ngIf="verified || customerExist">
-                <div class="form-group">
-                  <label class="form-label" for="lastName">Last Name*</label>
-                  <input
-                    type="text"
-                    placeholder="Last Name"
-                    id="lastName"
-                    class="form-control form-control-alternative"
-                    name="lastName"
-                    [(ngModel)]="booking.lastName"
-                    #lastName="ngModel"
-                    required
-                  />
-                  <span
-                    class="text-danger"
-                    *ngIf="
-                      (lastName.touched || orderForm.submitted) &&
-                      lastName.errors?.required
-                    "
-                  >
-                    Last Name is required
-                  </span>
-                </div>
-              </div>
-              <div class="col-md-12" *ngIf="!verified && !customerExist">
-                <div class="btn-group">
-                  <Label>Verification Method</Label>
-                  <div class="form-check form-check-inline ml-3">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="verifyOpt"
-                      id="verifyOpt1"
-                      [(ngModel)]="verifyOption"
-                      #verifyOpt1="ngModel"
-                      (ngModelChange)="clickEmail()"
-                      value="email"
-                      [disabled]="lookup"
-                    />
-                    <label class="form-check-label" for="verifyOpt1"
-                      >Email</label
-                    >
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="verifyOpt"
-                      [(ngModel)]="verifyOption"
-                      #verifyOpt2="ngModel"
-                      (ngModelChange)="clickPhone()"
-                      id="verifyOpt2"
-                      value="sms"
-                      [disabled]="lookup"
-                    />
-                    <label class="form-check-label" for="verifyOpt2">SMS</label>
-                  </div>
-                </div>
-                <button
-                  class="btn btn-rounded btn-outline-primary btn-sm ml-3"
-                  id="reload"
-                  (click)="onReload()"
-                  [disabled]=""
-                >
-                  Reset
-                </button>
-              </div>
-              <div class="col-md-6" *ngIf="verified">
-                <div class="form-group">
-                  <label class="form-label" for="email">Email*</label>
-                  <input
-                    type="email"
-                    placeholder="E-mail"
-                    id="email"
-                    class="form-control form-control-alternative w-100"
-                    name="email"
-                    [(ngModel)]="booking.email"
-                    #email="ngModel"
-                    required
-                    email
-                    [readonly]="booking.email !== '' && verifyOption == 'email'"
-                  />
-                  <span
-                    class="text-danger"
-                    *ngIf="
-                      (email.touched || orderForm.submitted) &&
-                      email.errors?.required
-                    "
-                  >
-                    Email is required
-                  </span>
-                  <span
-                    class="text-danger"
-                    *ngIf="
-                      (email.touched || orderForm.submitted) &&
-                      email.errors?.email
-                    "
-                  >
-                    Enter a valid email
-                  </span>
-                </div>
-              </div>
-              <div class="col-md-6" *ngIf="verified">
-                <div class="form-group">
-                  <label class="form-label" for="mobile">Phone*</label>
-                  <br />
-                  <input
-                    *ngIf="booking.mobile == ''"
-                    type="text"
-                    ng2TelInput
-                    [ng2TelInputOptions]="{ initialCountry: 'in' }"
-                    (hasError)="phoneHasError($event)"
-                    (ng2TelOutput)="getNumber($event)"
-                    class="form-control form-control-alternative"
-                    id="mobile"
-                    name="mobile"
-                    class="form-control form-control-alternative w-100"
-                    required
-                  />
-                  <input
-                    *ngIf="booking.mobile !== ''"
-                    type="text"
-                    class="form-control form-control-alternative w-100"
-                    id="mobile"
-                    name="mobile"
-                    [(ngModel)]="booking.mobile"
-                    #mobile="ngModel"
-                    required
-                    [readonly]="booking.mobile !== '' && verifyOption == 'sms'"
-                  />
-                  <span class="text-danger" *ngIf="!mobileHasError">
-                    Invalid Phone number
-                  </span>
-                  <!-- <span class="text-danger"
-                            *ngIf="(mobile.touched || orderForm.submitted) && mobile.errors?.required">
-                            Phone is required
-                          </span> -->
-                </div>
-              </div>
 
-              <div
-                class="col-md-6"
-                *ngIf="verifyOption == 'email' && !verified"
-              >
-                <div class="form-group">
-                  <!-- <label class="form-label" for="email">Email</label> -->
-                  <input
-                    type="email"
-                    placeholder="E-mail"
-                    class="form-control form-control-alternative w-100"
-                    id="email"
-                    name="email"
-                    [(ngModel)]="booking.email"
-                    #email="ngModel"
-                    required
-                    email
-                    [readonly]="lookup"
-                  />
-                  <span
-                    class="text-danger"
-                    *ngIf="
-                      (email.touched || orderForm.submitted) &&
-                      email.errors?.required
-                    "
-                  >
-                    Email is required
-                  </span>
-                  <span
-                    class="text-danger"
-                    *ngIf="
-                      (email.touched || orderForm.submitted) &&
-                      email.errors?.email
-                    "
-                  >
-                    Enter a valid email
-                  </span>
-                </div>
-              </div>
-              <div class="col-md-6" *ngIf="verifyOption == 'sms' && !verified">
-                <div class="form-group">
-                  <!-- <label class="form-label" for="mobile">Phone</label> -->
-                  <input
-                    type="text"
-                    [(ngModel)]="booking.mobile"
-                    (ngModelChange)="mobileTextChange()"
-                    ng2TelInput
-                    [ng2TelInputOptions]="{ initialCountry: 'in' }"
-                    (hasError)="phoneHasError($event)"
-                    (ng2TelOutput)="getNumber($event)"
-                    id="mobile"
-                    class="form-control form-control-alternative w-100"
-                    id="mobile"
-                    name="mobile"
-                    required
-                    [readonly]="lookup"
-                  />
-                  <br />
-                  <span class="text-danger" *ngIf="!mobileHasError">
-                    Invalid Phone number
-                  </span>
-                  <!-- <span class="text-danger"
-                            *ngIf="(mobile.touched || orderForm.submitted) && mobile.errors?.required">
-                            Phone is required
-                          </span> -->
-                </div>
-              </div>
-              <div class="col-md-6" *ngIf="verifyOption == 'sms' && !verified">
-                <button
-                  *ngIf="this.booking.mobile.length > 4 && !isVerified"
-                  (click)="onVerified()"
-                  class="btn btn-rounded btn-outline-primary btn-sm ml-3 verify"
-                >
-                  Verify
-                </button>
-              </div>
-              <!-- *ngIf="!verified && (order.mobile != null || order.email != null)" -->
-              <!-- <div class="col-md-12" *ngIf="!verified && !customerExist || order.email != '' && order.mobile != '' " > -->
-              <div
-                class="col-md-12"
-                *ngIf="
-                  lookup &&
-                  !customerExist &&
-                  !verified &&
-                  (booking.email != '' || booking.mobile != '')
-                "
-              >
-                <div class="form-group">
-                  <label>User Not Exist! Send Verification Code</label>
-                  <button
-                    class="btn btn-rounded btn-outline-primary btn-sm ml-3"
-                    (click)="checkCustomer()"
-                  >
-                    {{ sendBtn }}
-                  </button>
-                </div>
-              </div>
-              <div
-                class="col-md-6"
-                *ngIf="
-                  !lookup &&
-                  !customerExist &&
-                  (booking.email != '' || (isVerified && mobileHasError))
-                "
-              >
-                <div class="form-group">
-                  <!-- <label></label> -->
-                  <button
-                    class="btn btn-rounded btn-outline-primary"
-                    (click)="customerLookup()"
-                    [disabled]="
-                      (booking.email == '' || !orderForm.valid) &&
-                      !mobileHasError
-                    "
-                  >
-                    Search
-                  </button>
-                </div>
-              </div>
-              <div class="col-md-6" *ngIf="verificationSend && !verified">
-                <div class="form-group">
-                  <label>Verification Code Sent! Enter the code below</label>
-                  <input
-                    type="text"
-                    placeholder="Verification Code"
-                    name="verifyCode"
-                    id="verifyCode"
-                    [(ngModel)]="verificationCode"
-                    #verifyCode="ngModel"
-                    minlength="6"
-                    maxlength="6"
-                    class="form-control form-control-alternative"
-                  />
-                </div>
-              </div>
-              <div class="col-md-3" *ngIf="verificationSend && !verified">
-                <div class="form-group">
-                  <label>Click to verify</label>
-                  <button
-                    (click)="varificationSend()"
-                    class="btn btn-rounded btn-outline-primary"
-                    [disabled]="
-                      verificationCode == '' ||
-                      verificationCode == null ||
-                      !orderForm.valid
-                    "
-                  >
-                    Verify
-                  </button>
-                </div>
-              </div>
-              <div class="col-md-12" *ngIf="verified && verifySuccessMessage">
-                <p class="text-success">Verification Success!</p>
-              </div>
-              <div
-                class="col-md-12"
-                *ngIf="verifiedPending && verifySuccessMessage"
-              >
-                <p class="text-warning">Verification Error!</p>
-              </div>
-            </div>
+							<div class="col-md-6" *ngIf="verified  || customerExist">
+								<div class="form-group">
+									<label class="form-label" for="firstName">First Name*</label>
+									<input type="text" placeholder="First Name" id="firstName"
+										class="form-control form-control-alternative" [(ngModel)]="booking.firstName"
+										#firstName="ngModel" name="firstName" required>
+									<span class="text-danger"
+										*ngIf="(firstName.touched || orderForm.submitted) && firstName.errors?.required">
+										First Name is required
+									</span>
+								</div>
+							</div>
+							<div class="col-md-6" *ngIf="verified  || customerExist">
+								<div class="form-group">
+									<label class="form-label" for="lastName">Last Name*</label>
+									<input type="text" placeholder="Last Name" id="lastName"
+										class="form-control form-control-alternative" name="lastName"
+										[(ngModel)]="booking.lastName" #lastName="ngModel" required>
+									<span class="text-danger"
+										*ngIf="(lastName.touched || orderForm.submitted) && lastName.errors?.required">
+										Last Name is required
+									</span>
+								</div>
+							</div>
+							<div class="col-md-12" *ngIf="!verified  && !customerExist">
+								<div class="btn-group">
+									<Label>Verification Method</Label>
+									<div class="form-check form-check-inline ml-3">
+										<input class="form-check-input" type="radio" name="verifyOpt" id="verifyOpt1"
+											[(ngModel)]="verifyOption" #verifyOpt1="ngModel"
+											(ngModelChange)="clickEmail()" value="email" [disabled]="lookup">
+										<label class="form-check-label" for="verifyOpt1">Email</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="verifyOpt"
+											[(ngModel)]="verifyOption" #verifyOpt2="ngModel"
+											(ngModelChange)="clickPhone()" id="verifyOpt2" value="sms"
+											[disabled]="lookup">
+										<label class="form-check-label" for="verifyOpt2">SMS</label>
+									</div>
+
+								</div><button class="btn btn-rounded btn-outline-primary btn-sm ml-3" id="reload"
+									(click)="onReload()" [disabled]="">Reset</button>
+							</div>
+							<div class="col-md-6" *ngIf="verified ">
+								<div class="form-group">
+									<label class="form-label" for="email">Email*</label>
+									<input type="email" placeholder="E-mail" id="email"
+										class="form-control form-control-alternative w-100" name="email"
+										[(ngModel)]="booking.email" #email="ngModel" required email
+										[readonly]="booking.email !== '' && verifyOption == 'email' ">
+									<span class="text-danger"
+										*ngIf="(email.touched || orderForm.submitted) && email.errors?.required">
+										Email is required
+									</span>
+									<span class="text-danger"
+										*ngIf="(email.touched || orderForm.submitted) && email.errors?.email">
+										Enter a valid email
+									</span>
+								</div>
+							</div>
+							<div class="col-md-6" *ngIf="verified ">
+								<div class="form-group">
+									<label class="form-label" for="mobile">Phone*</label>
+									<br>
+									<input *ngIf="booking.mobile == ''" type="text" ng2TelInput
+										[ng2TelInputOptions]="{initialCountry: 'in'}" (hasError)="phoneHasError($event)"
+										(ng2TelOutput)="getNumber($event)" class="form-control form-control-alternative"
+										id="mobile" name="mobile" class="form-control form-control-alternative w-100"
+										required>
+									<input *ngIf="booking.mobile !== ''" type="text"
+										class="form-control form-control-alternative w-100" id="mobile" name="mobile"
+										[(ngModel)]="booking.mobile" #mobile="ngModel" required
+										[readonly]="booking.mobile !== '' && verifyOption == 'sms'">
+									<span class="text-danger" *ngIf="!mobileHasError"> Invalid Phone number </span>
+									<!-- <span class="text-danger"
+										*ngIf="(mobile.touched || orderForm.submitted) && mobile.errors?.required">
+										Phone is required
+									</span> -->
+								</div>
+							</div>
+
+
+
+							<div class="col-md-6" *ngIf="verifyOption == 'email' && !verified ">
+								<div class="form-group">
+									<!-- <label class="form-label" for="email">Email</label> -->
+									<input type="email" placeholder="E-mail"
+										class="form-control form-control-alternative w-100" id="email" name="email"
+										[(ngModel)]="booking.email" #email="ngModel" required [readonly]="lookup">
+									<span class="text-danger"
+										*ngIf="(email.touched || orderForm.submitted) && email.errors?.required">
+										Email is required
+									</span>
+									<span class="text-danger"
+										*ngIf="(email.touched || orderForm.submitted) && email.errors?.email">
+										Enter a valid email
+									</span>
+								</div>
+							</div>
+							<div class="col-md-6" *ngIf="verifyOption == 'sms' && !verified ">
+								<div class="form-group">
+									<!-- <label class="form-label" for="mobile">Phone</label> -->
+									<input type="text" [(ngModel)]="booking.mobile" (ngModelChange)="mobileTextChange()"
+										ng2TelInput [ng2TelInputOptions]="{initialCountry: 'in'}"
+										(hasError)="phoneHasError($event)" (ng2TelOutput)="getNumber($event)"
+										id="mobile" class="form-control form-control-alternative w-100" id="mobile"
+										name="mobile" required [readonly]="lookup">
+									<br>
+									<span class="text-danger" *ngIf="!mobileHasError"> Invalid Phone number </span>
+									<!-- <span class="text-danger"
+										*ngIf="(mobile.touched || orderForm.submitted) && mobile.errors?.required">
+										Phone is required
+									</span> -->
+								</div>
+							</div>
+							<div class="col-md-6" *ngIf="verifyOption == 'sms' && !verified ">
+								<button *ngIf="this.booking.mobile.length >4 && !isVerified" (click)="onVerified()"
+									class="btn btn-rounded btn-outline-primary btn-sm ml-3 verify">Verify</button>
+							</div>
+							<!-- *ngIf="!verified && (order.mobile != null || order.email != null)" -->
+							<!-- <div class="col-md-12" *ngIf="!verified && !customerExist || order.email != '' && order.mobile != '' " > -->
+							<div class="col-md-12"
+								*ngIf="lookup && !customerExist && !verified &&  (booking.email != '' || booking.mobile != '') ">
+								<div class="form-group">
+									<label>User Not Exist! Send Verification Code</label>
+									<button class="btn btn-rounded btn-outline-primary btn-sm ml-3"
+										(click)="checkCustomer()">{{sendBtn}}</button>
+
+								</div>
+							</div>
+							<div class="col-md-6"
+								*ngIf="!lookup && !customerExist && (booking.email != '' || isVerified && mobileHasError)">
+								<div class="form-group">
+									<!-- <label></label> -->
+									<button class="btn btn-rounded btn-outline-primary " (click)="customerLookup()"
+										[disabled]="(booking.email == '' || !orderForm.valid ) && !mobileHasError ">Search</button>
+								</div>
+							</div>
+							<div class="col-md-6" *ngIf="verificationSend && !verified">
+								<div class="form-group">
+									<label>Verification Code Sent! Enter the code below</label>
+									<input type="text" placeholder="Verification Code" name="verifyCode" id="verifyCode"
+										[(ngModel)]="verificationCode" #verifyCode="ngModel" minlength="6" maxlength="6"
+										class="form-control form-control-alternative">
+								</div>
+							</div>
+							<div class="col-md-3" *ngIf="verificationSend && !verified">
+								<div class="form-group">
+									<label>Click to verify</label>
+									<button (click)="varificationSend()" class="btn btn-rounded btn-outline-primary"
+										[disabled]="verificationCode == '' || verificationCode == null || !orderForm.valid">Verify</button>
+								</div>
+							</div>
+							<div class="col-md-12" *ngIf="verified && verifySuccessMessage ">
+								<p class="text-success">Verification Success!</p>
+							</div>
+							<div class="col-md-12" *ngIf="verifiedPending && verifySuccessMessage">
+								<p class="text-warning">Verification Error!</p>
+							</div>
+						</div>
             <h4 class="mb-3 mt-4" *ngIf="verified">Booking Overview</h4>
 
             <div class="row" *ngIf="verified">

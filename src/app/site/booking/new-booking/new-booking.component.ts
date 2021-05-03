@@ -178,6 +178,9 @@ export class NewBookingComponent implements OnInit {
 
     this.router.navigate(["/booking/choose"], navigationExtras);
   }
+  onReload() {
+    window.location.reload(true);
+  }
   onBook() {
     this.dateModel = new DateModel();
 
@@ -319,6 +322,7 @@ export class NewBookingComponent implements OnInit {
   clickEmail() {
     this.booking.mobile = "";
   }
+
   checkCustomer() {
     this.loader = true;
 
@@ -371,18 +375,21 @@ export class NewBookingComponent implements OnInit {
         .getCustomerDetailsByEmail(this.booking.email)
         .subscribe(
           (data) => {
-            this.customerDto = new Customer();
-            this.customerDto = data.body;
-            console.log('Get customer ' + JSON.stringify(data.body));
-this.booking.customerDtoList = [];
-            this.booking.customerDtoList.push(this.customerDto);
-            this.booking.firstName = this.customerDto.firstName;
-            this.booking.lastName = this.customerDto.lastName;
-            this.booking.mobile = this.customerDto.mobile;
-            this.booking.customerId = this.customerDto.id;
-            this.lookup = true;
-            this.customerExist = true;
-            this.verified = true;
+            if (data.status == 200) {
+              // this.bookingData.customerDtoList = [];
+              // Logger.log('Get customer ' + JSON.stringify(data.body));
+              this.booking.firstName = data.body.firstName;
+              this.booking.lastName = data.body.lastName;
+              this.booking.mobile = data.body.mobile;
+              this.customerDto = data.body;
+              this.booking.customerId = this.customerDto.id;
+              this.lookup = true;
+              this.customerExist = true;
+              this.verified = true;
+            } else if(data.status == 404){
+
+            }
+
           },
           (_error) => {
             this.loader = false;
@@ -395,19 +402,21 @@ this.booking.customerDtoList = [];
         .getCustomerDetailsByMobile(this.booking.mobile)
         .subscribe(
           (data) => {
-            this.customerDto = new Customer();
-            this.customerDto = data.body;
-            console.log('Get customer ' + JSON.stringify(data.body));
-this.booking.customerDtoList = [];
+            if (data.status == 200) {
+              // this.bookingData.customerDtoList = [];
+              //  Logger.log('Get customer ' + JSON.stringify(data.body));
+              this.booking.firstName = data.body.firstName;
+              this.booking.lastName = data.body.lastName;
+              // this.booking.mobile = data.body.mobile;
+              this.booking.email = data.body.email;
+              this.customerDto = data.body;
+              this.booking.customerId = this.customerDto.id;
+              this.lookup = true;
+              this.customerExist = true;
+              this.verified = true;
+            }else if(data.status == 404){
 
-            this.booking.customerDtoList.push(this.customerDto);
-            this.booking.firstName = this.customerDto.firstName;
-            this.booking.lastName = this.customerDto.lastName;
-            this.booking.mobile = this.customerDto.mobile;
-            this.booking.customerId = this.customerDto.id;
-            this.lookup = true;
-            this.customerExist = true;
-            this.verified = true;
+            }
           },
           (_error) => {
             this.loader = false;

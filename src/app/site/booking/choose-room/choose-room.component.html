@@ -39,14 +39,14 @@
                                   <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
                                 </span>
                               </div>
-                              <input type="text" name="dateIn" class="date-pick" [(ngModel)]="booking.fromDate">
+                              <input type="text" name="dateIn" class="date-pick" [(ngModel)]="booking.fromDate" (ngModelChange)="calculateDate()">
                               <div class="clearfix"></div>
                             </div>
                             <!--check-form end-->
                           </li>
                           <li>
                             <div class="check-form">
-                              <h4>CHECK-OUt</h4>
+                              <h4>CHECK-OUT</h4>
                               <div class="det">
                                 <b class="val-date">{{ this.daySelected2 }}</b>
                                 <span>
@@ -55,7 +55,7 @@
                                   <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
                                 </span>
                               </div>
-                              <input type="text" name="dateOut" class="date-pick" [(ngModel)]="booking.toDate">
+                              <input type="text" name="dateOut" class="date-pick" [(ngModel)]="booking.toDate" (ngModelChange)="calculateDate()">
                               <div class="clearfix"></div>
                             </div>
                             <!--check-form end-->
@@ -135,7 +135,7 @@
                                       <input style="display: none" type="number" class="stepper_input"
                                         data-ref="input-stepper-field" id="group_adults" name="group_adults" min="1"
                                         max="30" value="2" data-group-adults-count=""
-                                        [(ngModel)]="booking.noOfRooms">{{booking.noOfRooms}}
+                                        [(ngModel)]="booking.noOfRooms"  (ngModelChange)="getAvailableRoom()">{{booking.noOfRooms}}
 
                                     </li>
                                     <li class="counter-control">
@@ -459,7 +459,7 @@
                                     </mat-radio-group>
                                     <div *ngIf="planDetails">
                                       <h6 *ngIf="planDetails.roomId == room.id" >Price:
-                                        {{ planDetails.amount * DiffDate * noOfrooms | currency:
+                                        {{ planDetails.amount * DiffDate * booking.noOfRooms | currency:
                                           token.getProperty().localCurrency.toUpperCase():'symbol':'1.2-2' }} <div style="color: #f5365c;"
                                           *ngIf="hasPercentage(room.roomOnlyPrice, planDetails.amount) == true">
                                           ({{ ((room.roomOnlyPrice - planDetails.amount)/ room.roomOnlyPrice) * 100 }}%

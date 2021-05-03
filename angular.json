@@ -37,6 +37,7 @@
               "src/assets/css/style.css",
               "src/assets/css/responsive.css",
               "src/assets/css/flaticon.css",
+              "node_modules/intl-tel-input/build/css/intlTelInput.css",
               "src/assets/css/color.css"
             ],
             "scripts": [
@@ -60,7 +61,8 @@
               "src/assets/revolution/js/revolution.extension.parallax.min.js",
               "src/assets/revolution/js/revolution.extension.slideanims.min.js",
               "src/assets/revolution/js/revolution.extension.video.min.js",
-              "src/assets/revolution/js/revolution.initialize5.js"
+              "src/assets/revolution/js/revolution.initialize5.js",
+              "node_modules/intl-tel-input/build/js/intlTelInput.min.js"
             ]
           },
           "configurations": {
@@ -129,6 +131,8 @@
               "src/assets/css/style.css",
               "src/assets/css/flaticon.css",
               "src/assets/css/responsive.css",
+              "node_modules/intl-tel-input/build/css/intlTelInput.css",
+
               "src/assets/css/color.css"
             ],
             "scripts": [
@@ -154,7 +158,8 @@
               "src/assets/revolution/js/revolution.extension.parallax.min.js",
               "src/assets/revolution/js/revolution.extension.slideanims.min.js",
               "src/assets/revolution/js/revolution.extension.video.min.js",
-              "src/assets/revolution/js/revolution.initialize5.js"
+              "src/assets/revolution/js/revolution.initialize5.js",
+              "node_modules/intl-tel-input/build/js/intlTelInput.min.js"
             ],
             "assets": [
               "src/favicon.ico",

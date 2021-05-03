@@ -16,6 +16,7 @@ import { BookingDetailsComponent } from './booking-details/booking-details.compo
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { Ng2TelInputModule } from 'ng2-tel-input';
 const routes: Routes = [
   { path: '', redirectTo: 'booking/choose', pathMatch:'full'},
   { path: 'booking/choose', component: ChooseRoomComponent},
@@ -35,6 +36,7 @@ const routes: Routes = [
     MatCardModule,
     MatInputModule,
     ReactiveFormsModule,
+    Ng2TelInputModule,
     MatSnackBarModule,
     NgbModule,
     RouterModule.forChild(routes)

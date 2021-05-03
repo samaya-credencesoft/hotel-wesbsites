@@ -44,7 +44,6 @@ const routes: Routes = [{ path: "", component: SiteModule }];
     AppMaterialModules,
     FormsModule,
     ReactiveFormsModule,
-    Ng2TelInputModule,
     RouterModule.forRoot(routes, { relativeLinkResolution: "legacy" }),
     AgmCoreModule.forRoot({
       apiKey: environment.googleKey, // 'AIzaSyAYT8pe61MUbk27eiYi9LnnPhwo031Ye7w'
