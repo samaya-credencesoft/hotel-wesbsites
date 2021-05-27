@@ -540,6 +540,7 @@
 								</div>
 							</div>
 							<div class="col-md-6" *ngIf="verified ">
+
 								<div class="form-group">
 									<label class="form-label" for="mobile">Phone*</label>
 									<br>
@@ -567,7 +568,7 @@
 									<!-- <label class="form-label" for="email">Email</label> -->
 									<input type="email" placeholder="E-mail"
 										class="form-control form-control-alternative w-100" id="email" name="email"
-										[(ngModel)]="booking.email" #email="ngModel" required [readonly]="lookup">
+										[(ngModel)]="booking.email" #email="ngModel" required  >
 									<span class="text-danger"
 										*ngIf="(email.touched || orderForm.submitted) && email.errors?.required">
 										Email is required

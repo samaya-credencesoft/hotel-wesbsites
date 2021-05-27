@@ -325,6 +325,7 @@ export class NewBookingComponent implements OnInit {
 
   checkCustomer() {
     this.loader = true;
+    console.log(this.verifyOption);
 
     if (this.verifyOption == "email") {
       this.message.email = this.booking.email;
@@ -332,6 +333,7 @@ export class NewBookingComponent implements OnInit {
     } else if (this.verifyOption == "sms") {
       this.message.toNumber = this.booking.mobile;
       this.message.email = null;
+
     }
 
     this.sendBtn = "Resend";
@@ -370,6 +372,8 @@ export class NewBookingComponent implements OnInit {
   }
   onSubmit(orderForm) { }
   customerLookup() {
+    console.log(this.booking.email);
+
     if (this.verifyOption == "email") {
       this.apiService
         .getCustomerDetailsByEmail(this.booking.email)
@@ -386,8 +390,11 @@ export class NewBookingComponent implements OnInit {
               this.lookup = true;
               this.customerExist = true;
               this.verified = true;
-            } else if(data.status == 404){
-
+            } else{
+              console.log(this.booking.email);
+              this.loader = false;
+              this.lookup = true;
+              this.customerExist = false;
             }
 
           },
