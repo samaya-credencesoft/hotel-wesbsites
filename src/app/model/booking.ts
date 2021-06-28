@@ -54,6 +54,7 @@ export class Booking {
   invoiceUrl: string ;
   noOfRooms: number;
   noOfPersons: number;
+  noOfChildren: number;
   noOfExtraPerson: number;
   managerContactNo: string;
   extraPersonCharge: number;

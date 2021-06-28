@@ -47,7 +47,7 @@
                     </div>
                     <div class="vc-cd-12  vc-rd-12  vc-sd-3 vc-od-3">
                       <div class="row">
-                        <div class="col-6">
+                        <div class="col-4">
                           <div class="cmn_field">
                             <label for="check3">
                               <i class="fa fa-user"></i>
@@ -56,27 +56,45 @@
                               [formControl]="Guest" [(ngModel)]="guest">
                           </div>
                         </div>
-                        <div class="col-6">
+                        
+                        <div class="col-4">
+                          <div class="cmn_field">
+                            <label for="check3">
+                              <i class="fa fa-child"></i>
+                            </label>
+                            <input type="number" class="field-control" id="check3" name="child" placeholder="Child"
+                              [formControl]="NoOfChildren" [(ngModel)]="noOfChildren">
+                          </div>
+                        </div>
+                        <div class="col-4">
                           <div class="cmn_field">
                             <label for="check3">
                               <i class="fa fa-hotel"></i>
                             </label>
-                            <input type="number" class="field-control" id="check3" name="noOfRooms" placeholder="Room"
+                            <input type="number" class="field-control btn_3" id="check3" name="noOfRooms" placeholder="Room"
                               [formControl]="NoOfRooms" [(ngModel)]="noOfRooms">
                           </div>
                         </div>
+                       
+                  </div>
 
+                  
+                      </div>
+                        
+                     
                         <!-- </div>
                                       <div class="vc-cd-12  vc-rd-12  vc-sd-3 vc-od-3"> -->
 
-                      </div>
-
-                    </div>
-                    <div class="vc-cd-12 vc-rd-12 vc-sd-3 vc-od-3">
+                      
+                                        
+                    <div class="vc-cd-12 vc-rd-12 vc-sd-12 vc-od-3">
+                       
                       <button (click)="onBook()" class="common_btn2 btn_hbreffect1" style="width: 100%;">
                         Check
                       </button>
                     </div>
+                    
+                  
                   </div>
                 </form>
               </div>

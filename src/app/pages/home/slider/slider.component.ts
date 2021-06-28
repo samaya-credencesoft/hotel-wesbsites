@@ -100,17 +100,20 @@ export class SliderComponent implements OnInit {
   checkOut: NgbDate;
   guest: number = 1;
   noOfRooms: number = 1;
+  noOfChildren: number = 1;
 
   CheckIn: FormControl = new FormControl();
   CheckOut: FormControl = new FormControl();
   Guest: FormControl = new FormControl();
   NoOfRooms: FormControl = new FormControl();
+  NoOfChildren: FormControl = new FormControl();
 
   form = new FormGroup({
     CheckIn: new FormControl(),
     CheckOut: new FormControl(),
     Guest: new FormControl(),
     NoOfRooms: new FormControl(),
+    NoOfChildren: new FormControl()  
   });
 
   slideImage = [
@@ -228,7 +231,7 @@ export class SliderComponent implements OnInit {
       // this.dateModel.checkOut = this.getDateFormat(this.checkOut);
       this.dateModel.checkOut = this.getDateFormatYearMonthDay(
         this.checkOut.day,
-        this.checkOut.month,
+        this.checkOut.month, 
         this.checkOut.year
       );
     }
