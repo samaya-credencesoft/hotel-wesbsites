@@ -45,7 +45,7 @@ export class ChooseRoomComponent implements OnInit {
   taxPercentage: number = 0;
 
   adults: number = 1;
-  // children: number = 0;
+  children: number = 0;
   noOfrooms: number = 1;
   DiffDate;
   enddate;
