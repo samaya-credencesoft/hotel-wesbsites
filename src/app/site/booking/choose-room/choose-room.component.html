@@ -487,14 +487,15 @@
                               <div class="room_img">
                                 <img src="{{room.imageList[0].url}}" alt="">
 
-                                <span
-                                  class="price-tag">{{ room.roomOnlyPrice | currency: token.getProperty().localCurrency.toUpperCase():'symbol':'1.2-2' }}<b>/night</b></span>
+                                <!-- <span
+                                  class="price-tag">{{ room.roomOnlyPrice | currency: token.getProperty().localCurrency.toUpperCase():'symbol':'1.2-2' }}<b>/night</b></span> -->
                               </div>
                               <!--room_img end-->
 
                             </div>
                             <!--room-caroz end-->
                             <div class="room_info">
+                              
                               <h3><a href="#" title="">{{room.name}}</a></h3>
                               <ul class="ppt-list">
                                 <li>
@@ -508,13 +509,13 @@
                                 </li>
                               </ul>
                               <!--ppt-list end-->
-                              <p>{{room.description}} </p>
+                              <!-- <p>{{room.description}} </p>
                               <div class="fct-dv" *ngIf="room.ratesAndAvailabilityDtos !== null">
                                 <h6 class="text-default"><b>Plan:</b></h6>
                                 <div *ngFor="let rates of room.ratesAndAvailabilityDtos; let r= index; ">
-                                  <div *ngIf="room.id == rates.roomId && r<1">
+                                  <div *ngIf="room.id == rates.roomId && r<1"> -->
                                     <!-- <h6>{{ rates.date | date:'MMM d, y' }}</h6> -->
-                                    <mat-radio-group aria-labelledby="example-radio-group-label"  name="planDetails" [(ngModel)]="planDetails"
+                                    <!-- <mat-radio-group aria-labelledby="example-radio-group-label"  name="planDetails" [(ngModel)]="planDetails"
                                       (ngModelChange)="onPlanSelected(planDetails, room)">
                                       <ng-container *ngFor="let plan of rates.roomRatePlans; let p= index;">
                                         <mat-radio-button  [value]="plan" (click)="booking.roomName = rates.roomName;
@@ -531,8 +532,8 @@
 
                                       </ng-container>
 
-                                    </mat-radio-group>
-                                    <div *ngIf="planDetails">
+                                    </mat-radio-group> -->
+                                    <!-- <div *ngIf="planDetails">
                                       <h6 *ngIf="planDetails.roomId == room.id" >Price:
                                         {{ planDetails.amount * DiffDate * noOfrooms | currency:
                                           token.getProperty().localCurrency.toUpperCase():'symbol':'1.2-2' }} <div style="color: #f5365c;"
@@ -543,7 +544,7 @@
                                       <p *ngIf="planDetails.roomId == room.id">Note:
                                         {{ planDetails.description }}
                                       </p>
-                                    </div>
+                                    </div> -->
                                     <!-- <div class="form-check" ngbRadioGroup name="radioBasic" [(ngModel)]="planDetails"
                                       (ngModelChange)="onPlanSelected(plan, room)"
                                       *ngFor="let plan of rates.roomRatePlans; let p= index;">
@@ -564,7 +565,7 @@
                                           Discount)</div>
                                       </h6>
                                     </div> -->
-                                    <div *ngIf="rates.roomRatePlans.length == 0">
+                                    <!-- <div *ngIf="rates.roomRatePlans.length == 0">
                                       <p>Plan Not Available. Without plan you can't book room.
                                       </p>
                                     </div>
@@ -572,8 +573,10 @@
                                 </div>
 
                                 <div class="clearfix"></div>
-                              </div>
-
+                              </div> -->
+                              
+                              
+                             
                               <div class="fct-dv" *ngIf="room.ratesAndAvailabilityDtos !== null">
                                 <ul class="fct-list">
                                   <li>
@@ -594,30 +597,93 @@
                                   </li>
                                 </ul>
                                 <!--fct-list end-->
-                                <button title="" (click)="onRoomBooking(room, i);
+                                <!-- <button title="" (click)="onRoomBooking(room, i);
                                                 booking.roomId = room.id;
                                                 selectedRoomMaximumOccupancy = room.maximumOccupancy;
                                                 selectedRoomAvailableNumber = room.noOfRooms;
                                                 checkAvailabilityStatus = true;
                                                 bookRoomNow() " class="lnk-default"
                                   [disabled]="planDetails == undefined || planDetails.roomId!== room.id">Book Now <i
-                                    class="la la-arrow-right"></i></button>
+                                    class="la la-arrow-right"></i></button> -->
 
                                 <div class="clearfix"></div>
                               </div>
                               <div *ngIf="room.ratesAndAvailabilityDtos == null">
                                 <h2>Room Not Available!</h2>
                               </div>
+                              
                             </div>
+                            
                             <!--room_info end-->
                             <div class="clearfix"></div>
-
+                            <div class="col-12 pr-4 plan_layout">
+                              <div class="fct-dv mt-4">
+                                <h5 class="text-primary "><b>Select Plan:</b></h5>
+                                <div class="row"
+                                   *ngFor="let rates of room.ratesAndAvailabilityDtos; let r= index; ">
+                                   <div class="col-12" *ngIf="room.id == rates.roomId && r<1">
+                                    <div class="row"
+                                    *ngFor="let plan of rates.roomRatePlans; let p= index;">
+                                    <div class="col-6 pull-left">
+                                       <h5> {{ plan.name }}</h5>
+                                       <div>Extra person charge {{ plan.extraChargePerPerson | currency: currency:'symbol':'1.2-2'}}</div>
+                                       <div>Extra child charge {{ plan.extraChargePerChild | currency: currency:'symbol':'1.2-2'}}</div>
+    
+                                       <p> {{ plan.description }}</p>
+    
+                                    </div>
+                                    <div class="col-6 text-right"> 
+                                       <h5 class="mb-0">{{ (plan.amount * DiffDate * noOfrooms)   | currency: currency:'symbol':'1.2-2' }}</h5> 
+                                       <div style="color: #f5365c;" *ngIf="hasPercentage(room.roomOnlyPrice, plan.amount) == true">
+                                             ({{ ((room.roomOnlyPrice -
+                                             plan.amount)/room.roomOnlyPrice) * 100 | number:'1.2-2' }}%
+                                             Discount)</div>
+                                             <b class="small-text"> {{DiffDate}} nights,
+                                              {{booking.noOfPersons}}
+                                              adults</b><br>
+                                           <button ngbButton
+                                              class=" btn btn-sm btn-primary pull-right mb-4" (click)="
+                                        onPlanSelected(plan, room);
+                                        booking.roomName = rates.roomName;
+                                     selectedRoomName = rates.roomName; 
+                                     booking.roomType = rates.roomName;
+                                     maxSelectRoom = rates.noOfAvailable;
+                                     maxOccupancy = room.maximumOccupancy;
+                                        onRoomBook(room.id, i); 
+                                        booking.roomId = room.id; 
+                                        selectedRoomMaximumOccupancy = room.maximumOccupancy;
+                                        selectedRoomAvailableNumber = room.noOfRooms;
+                                        checkAvailabilityStatus = true;
+                                        bookRoomNow() ">Book Now</button>
+                                        </div>
+    
+                                     </div>
+                                     <div *ngIf="rates.roomRatePlans.length == 0">
+                                        <p>Plan Not Available. Without plan you can't book room.
+                                        </p>
+                                     </div>
+                                  </div>
+                               </div>
+                               <div class="clearfix"></div>
+                                <div class="col-12 mb-4" *ngIf="room.description">
+                                <h6>Description</h6>
+                                <div class=" mt-2" [innerHtml]="room.description"></div>
+                            
+                             </div>
+                              </div>
+                              </div>
                           </div>
-                          <!--room-details end-->
-                        </div>
-                        <!--tb-row end-->
 
+                          
+                          
+                          
+                        
 
+                       
+                        
+                <!--room-details end-->
+                      </div>
+                  <!--tb-row end-->
                       </div>
                       <!--tb-detaiils end-->
                     </div>
@@ -652,3 +718,4 @@
   </div>
 </section>
 <!--main-content end-->
+
