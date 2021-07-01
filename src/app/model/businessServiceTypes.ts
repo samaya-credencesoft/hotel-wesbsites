@@ -29,6 +29,5 @@ export class BusinessServiceTypes {
   };
   businessTypeId: number;
   slots: Slots[];
-  bookable : boolean;
   constructor() {}
 }

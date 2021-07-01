@@ -2,7 +2,7 @@ import { formatDate } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
-import { NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCalendar, NgbDate, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService, PROPERTY_ID } from 'src/app/api.service';
 import { BankAccount } from 'src/app/model/BankAccount';
 import { Booking } from 'src/app/model/booking';
@@ -72,12 +72,17 @@ export class ChooseRoomComponent implements OnInit {
     'Nov',
     'Dec',
   ];
+  roomsAndOccupancy: boolean = false;
+  hoveredDate: NgbDate | null = null;
 
+  bookingMinDate: NgbDate | null;
+  bookingMaxDate: NgbDate | null;
   constructor(
     private apiService: ApiService,
     public token: TokenStorage,
     private router: Router,
     private changeDetectorRefs: ChangeDetectorRef,
+    public formatter: NgbDateParserFormatter,
     private calendar: NgbCalendar,
     private acRoute: ActivatedRoute
   ) {
@@ -145,6 +150,59 @@ export class ChooseRoomComponent implements OnInit {
 
   ngOnInit() {
     //this.checkincheckoutDate();
+  }
+  toggleRoomsAndOccupancy() {
+    if (this.roomsAndOccupancy == false) {
+      this.roomsAndOccupancy = true;
+    } else if (this.roomsAndOccupancy == true) {
+      this.roomsAndOccupancy = false;
+    }
+  }
+  onDateSelection(date: NgbDate) {
+    if (!this.fromDate && !this.toDate) {
+      this.fromDate = date;
+    } else if (
+      this.fromDate &&
+      !this.toDate &&
+      date &&
+      date.after(this.fromDate)
+    ) {
+      this.toDate = date;
+    } else {
+      this.toDate = null;
+      this.fromDate = date;
+    }
+    this.getDiffDate(this.toDate, this.fromDate);
+  }
+
+  isHovered(date: NgbDate) {
+    return (
+      this.fromDate &&
+      !this.toDate &&
+      this.hoveredDate &&
+      date.after(this.fromDate) &&
+      date.before(this.hoveredDate)
+    );
+  }
+
+  isInside(date: NgbDate) {
+    return this.toDate && date.after(this.fromDate) && date.before(this.toDate);
+  }
+
+  isRange(date: NgbDate) {
+    return (
+      date.equals(this.fromDate) ||
+      (this.toDate && date.equals(this.toDate)) ||
+      this.isInside(date) ||
+      this.isHovered(date)
+    );
+  }
+
+  validateInput(currentValue: NgbDate | null, input: string): NgbDate | null {
+    const parsed = this.formatter.parse(input);
+    return parsed && this.calendar.isValid(NgbDate.from(parsed))
+      ? NgbDate.from(parsed)
+      : currentValue;
   }
   mileSecondToNGBDate(date: string) {
     const dsd = new Date(date);
