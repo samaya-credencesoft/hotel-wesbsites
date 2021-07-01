@@ -1,14 +1,13 @@
-import { Customer } from "./customer";
-
-
+import { Address } from "./address";
 export class Booking {
-
   id: number;
   referenceNumber: string;
   firstName: string;
   lastName: string;
   email: string;
   mobile: string;
+  checkInDateStr: string;
+  checkOutDateStr: string;
   fromDate: string;
   fromDateCal: Date;
   toDate: string;
@@ -16,40 +15,50 @@ export class Booking {
   roomPrice: number;
   airportShuttlePrice: string;
   customerId: number;
-  customerDtoList: Customer[];
+  customerAddress: Address;
+  customerCompanyName: string;
   businessEmail: string;
   businessName: string;
-  notes: string ;
+  notes: string;
   externalBookingID: string;
+  noOfNights: number;
+  noOfKids: number;
+  noOfPets: number;
+  referralCode: string;
+  referredBy: number;
+  roleName: string;
   externalSite: string;
-  commissionAmount: string;
-  gstAmount: number;
   paymentId: number;
-  paymentSurcharge: string ;
-  netAmount: number;
-  discountPercentage: number;
+  paymentSurcharge: string;
   airportService: string;
   accomodationType: string;
   propertyReservationNumber: string;
   roomId: number;
   propertyId: number;
-  available: Boolean ;
-  modeOfPayment: string ;
+  available: Boolean;
+  modeOfPayment: string;
   cardNumber: number;
   expMonth: number;
   expYear: number;
   cvv: number;
   currency: string;
-  token: string ;
-  bookingAmount: number ;
-  payableAmount: number ;
-  roomName: string ;
-  totalServiceAmount: number ;
-  totalExpenseAmount: number ;
-  totalPaymentAmount: number ;
-  outstandingAmount: number ;
+  token: string;
+  bookingAmount: number;
+  payableAmount: number;
+  roomName: string;
+  extraChildCharge: number;
+  extraPersonCharge: number;
+  outstandingAmount: number;
   discountAmount: number;
+  discountPercentage: number;
+  commissionAmount: string;
+  gstAmount: number;
+  taxPercentage: number;
+  netAmount: number;
   totalAmount: number;
+  totalServiceAmount: number;
+  totalExpenseAmount: number;
+  totalPaymentAmount: number;
   bookingStatus: string;
   invoiceUrl: string ;
   noOfRooms: number;
@@ -57,14 +66,14 @@ export class Booking {
   noOfChildren: number;
   noOfExtraPerson: number;
   managerContactNo: string;
-  extraPersonCharge: number;
-  taxPercentage: number;
   roomBooking: boolean;
   groupBooking: boolean;
-  createdDate:string;
+  createdDate: string;
   lastModifiedDate: string;
   roomRatePlanName: string;
-  taxAmount: number;
   planCode: string;
-  constructor() { }
+  noOfExtraChild: number;
+  customerDtoList: any[];
+  taxAmount: number;
+  constructor() {}
 }
