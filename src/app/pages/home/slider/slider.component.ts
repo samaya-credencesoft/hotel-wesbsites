@@ -240,6 +240,11 @@ export class SliderComponent implements OnInit {
     } else {
       this.dateModel.guest = this.guest;
     }
+    if (this.noOfChildren === null) {
+      this.dateModel.noOfChildren = 1;
+    } else {
+      this.dateModel.noOfChildren = this.noOfChildren;
+    }
     if (this.noOfRooms === null) {
       this.dateModel.noOfRooms = 1;
     } else {

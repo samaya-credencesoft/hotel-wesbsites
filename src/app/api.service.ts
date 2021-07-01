@@ -67,7 +67,7 @@ export class ApiService {
     return this.http.post<Booking>(API_URL + '/checkAvailability', booking, { observe: 'response' });
   }
   checkAvailabilityByID(booking: Booking) {
-    return this.http.get<any>(API_URL + '/checkAvailability/' + PROPERTY_ID + '?fromDate=' + booking.fromDate + '&toDate=' + booking.toDate + '&noOfRooms=' + booking.noOfRooms + '&noOfPersons=' + booking.noOfPersons + '&noOfChildren=' + booking.noOfChildren +'', { observe: 'response' });
+    return this.http.get<any>(API_URL + '/checkAvailability/' + PROPERTY_ID + '?fromDate=' + booking.fromDate + '&toDate=' + booking.toDate + '&noOfRooms=' + booking.noOfRooms + '&noOfPersons=' + booking.noOfPersons + '&noOfChildren=' + booking.noOfChildren + '', { observe: 'response' });
   }
   processPayment(paymentDetails: Payment) {
     return this.http.post<Payment>(API_URL + '/processPayment', paymentDetails, { observe: 'response' });
