@@ -45,7 +45,7 @@ export class ChooseRoomComponent implements OnInit {
   taxPercentage: number = 0;
 
   adults: number = 1;
-  children: number = 0;
+  // children: number = 0;
   noOfrooms: number = 1;
   DiffDate;
   enddate;
@@ -99,6 +99,7 @@ export class ChooseRoomComponent implements OnInit {
         this.booking.toDate = this.dateModel.checkOut;
         this.booking.noOfRooms = this.dateModel.noOfRooms;
         this.booking.noOfPersons = this.dateModel.guest;
+        this.booking.noOfChildren = this.dateModel.noOfChildren;
         this.fromDate = new NgbDate(
           this.mileSecondToNGBDate(this.booking.fromDate).year,
           this.mileSecondToNGBDate(this.booking.fromDate).month,
@@ -132,6 +133,7 @@ export class ChooseRoomComponent implements OnInit {
         );
         this.booking.noOfRooms = 1;
         this.booking.noOfPersons = 1;
+        this.booking.noOfChildren = 1;
         this.fromDate = new NgbDate(
           this.mileSecondToNGBDate(this.booking.fromDate).year,
           this.mileSecondToNGBDate(this.booking.fromDate).month,
@@ -276,7 +278,7 @@ export class ChooseRoomComponent implements OnInit {
     this.planSelected = true;
     this.planAmount = plan.amount;
 
-    if (this.booking.noOfPersons > room.maximumOccupancy) {
+    if (this.booking.noOfPersons > room.maximumOccupancy && this.booking.noOfChildren > room.maximumOccupancy) {
       this.extraPersonRate = room.extraChargePerPerson;
     }
     this.booking.extraPersonCharge = this.extraPersonRate;

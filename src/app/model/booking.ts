@@ -21,10 +21,6 @@ export class Booking {
   businessName: string;
   notes: string;
   externalBookingID: string;
-  noOfRooms: number;
-  noOfPersons: number;
-  noOfExtraPerson: number;
-  noOfChildren: number;
   noOfNights: number;
   noOfKids: number;
   noOfPets: number;
@@ -64,7 +60,11 @@ export class Booking {
   totalExpenseAmount: number;
   totalPaymentAmount: number;
   bookingStatus: string;
-  invoiceUrl: string;
+  invoiceUrl: string ;
+  noOfRooms: number;
+  noOfPersons: number;
+  noOfChildren: number;
+  noOfExtraPerson: number;
   managerContactNo: string;
   roomBooking: boolean;
   groupBooking: boolean;
