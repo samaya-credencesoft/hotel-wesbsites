@@ -233,7 +233,7 @@ export class ChooseRoomComponent implements OnInit {
         (1000 * 60 * 60 * 24)
     );
   }
-  onRoomBooking(room, index) {
+  onRoomBook(room, index) {
     this.dateModel.room = room;
     this.selectedIndex = index;
 

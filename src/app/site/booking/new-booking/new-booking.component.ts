@@ -20,6 +20,8 @@ import { TokenStorage } from 'src/app/token.storage';
 import { Booking } from 'src/app/model/booking';
 import { DateModel } from 'src/app/model/dateModel';
 import { Room } from 'src/app/shared/models/room';
+import { BusinessUser } from 'src/app/model/user';
+
 
 @Component({
   selector: 'app-new-booking',
@@ -94,6 +96,14 @@ export class NewBookingComponent implements OnInit {
 
   isVerified = false;
 
+  DiffDate;
+  enddate;
+  startDate;
+  businessUser: BusinessUser;
+ 
+
+  discountPercentage: number;
+
   monthArray = [
     'Jan',
     'Feb',
@@ -137,6 +147,7 @@ export class NewBookingComponent implements OnInit {
     private acRoute: ActivatedRoute
   ) {
     // this.dateModel = new DateModel();
+    this.businessUser = new BusinessUser();
     this.booking = new Booking();
     this.room = new Room();
     if (this.token.getProperty() != undefined && this.token.getProperty() != null) {
@@ -167,6 +178,9 @@ export class NewBookingComponent implements OnInit {
           this.mileSecondToNGBDate(this.booking.toDate).month,
           this.mileSecondToNGBDate(this.booking.toDate).day
         );
+        this.adults = this.booking.noOfPersons;
+        this.children = this.booking.noOfChildren;
+        this.noOfrooms = this.booking.noOfRooms;
       } else {
 
         this.booking.fromDate = this.getDateFormatYearMonthDay(
@@ -182,8 +196,12 @@ export class NewBookingComponent implements OnInit {
         this.isAvailableChecked = false;
         this.checkincheckOutDate();
       }
+      
+      this.getDiffDate(this.toDate, this.fromDate);
+    
     }
     // });
+    
   }
 
   ngOnInit() {
@@ -195,6 +213,26 @@ export class NewBookingComponent implements OnInit {
     const day = dsd.getDate();
     const month = dsd.getMonth() + 1;
     return { year: year, month: month, day: day };
+  }
+  getDiffDate(toDate, fromDate) {
+    this.enddate = new Date(toDate.year, toDate.month - 1, toDate.day);
+
+    this.startDate = new Date(fromDate.year, fromDate.month - 1, fromDate.day);
+    // console.log('this.fromDate: ', this.startDate);
+    // console.log('this.toDate: ', this.enddate);
+    this.DiffDate = Math.floor(
+      (Date.UTC(
+        this.enddate.getFullYear(),
+        this.enddate.getMonth(),
+        this.enddate.getDate()
+      ) -
+        Date.UTC(
+          this.startDate.getFullYear(),
+          this.startDate.getMonth(),
+          this.startDate.getDate()
+        )) /
+        (1000 * 60 * 60 * 24)
+    );
   }
   getDateFormatYearMonthDay(
     day12: number,
@@ -221,6 +259,7 @@ export class NewBookingComponent implements OnInit {
 
     return `${year}-${month1}-${day1}`;
   }
+  
   getAvailableRoom() {
     this.dateModel = new DateModel();
     this.booking.fromDate = this.getDateFormatYearMonthDay(
@@ -239,13 +278,13 @@ export class NewBookingComponent implements OnInit {
     this.dateModel.noOfRooms = this.booking.noOfRooms;
 
     // console.log(' this.dateModel '+JSON.stringify( this.dateModel));
-
+   
     const navigationExtras: NavigationExtras = {
       queryParams: {
         dateob: JSON.stringify(this.dateModel),
       },
     };
-
+    
     this.router.navigate(["/booking/choose"], navigationExtras);
   }
   onBook() {
