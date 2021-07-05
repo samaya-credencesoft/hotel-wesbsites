@@ -829,8 +829,8 @@
                     <b>No Of Person(s): </b><span>{{ booking.noOfPersons }}</span>
                   </li>
                   
-                  <!-- <li><b>No Of Extra Person(s): </b><span>{{ booking.noOfExtraPerson }}</span></li>
-									<li><b>Extra Person charges: </b><span>  {{ booking.extraPersonCharge | currency: currency:'symbol':'1.2-2' }}</span></li> -->
+                  <li><b>No Of Extra Person(s): </b><span>{{ booking.noOfExtraPerson }}</span></li>
+									<li><b>Extra Person charges: </b><span>  {{ booking.extraPersonCharge | currency: currency:'symbol':'1.2-2' }}</span></li>
 
                  
                   <li>
@@ -853,22 +853,22 @@
                   <li>
                     <b>No Of Child: </b><span>{{ booking.noOfChildren }}</span>
                   </li>
-                  <!-- <li>
+                  <li>
                     <b>No Of Extra Child(s): </b><span>{{ booking.noOfExtraChild }}</span>
-                  </li> -->
-                  <!-- <li>
+                  </li>
+                  <li>
                     <b>Extra Child charges: </b><span>{{ booking.extraChildCharge | currency: currency:'symbol':'1.2-2' }}</span>
-                  </li> -->
+                  </li>
                   <li>
                     <b>Room Price: </b><span>{{ booking.roomPrice | currency: currency:"symbol":"1.2-2" }}
                     </span>
                   </li>
-                  <li>
+                  <!-- <li>
                     <b>Tax Amount:</b><span> {{ booking.gstAmount | currency: currency:"symbol":"1.2-2" }}</span>
                   </li>
                   <li *ngIf="discountPercentage">
                     <b>Discount Amount: </b>{{ booking.discountAmount | currency: currency:"symbol":"1.2-2" }}
-                  </li>
+                  </li> -->
 
                   <!-- <li class="total-costs"><b>Total Cost: </b><span> 546.00</span></li> -->
                 </ul>

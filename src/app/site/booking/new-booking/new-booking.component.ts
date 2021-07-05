@@ -178,9 +178,9 @@ export class NewBookingComponent implements OnInit {
           this.mileSecondToNGBDate(this.booking.toDate).month,
           this.mileSecondToNGBDate(this.booking.toDate).day
         );
-        this.adults = this.booking.noOfPersons;
-        this.children = this.booking.noOfChildren;
-        this.noOfrooms = this.booking.noOfRooms;
+        // this.adults = this.booking.noOfPersons;
+        // this.children = this.booking.noOfChildren;
+        // this.noOfrooms = this.booking.noOfRooms;
       } else {
 
         this.booking.fromDate = this.getDateFormatYearMonthDay(
@@ -198,6 +198,12 @@ export class NewBookingComponent implements OnInit {
       }
       
       this.getDiffDate(this.toDate, this.fromDate);
+
+      console.log("this.bookingData ", JSON.stringify(this.booking));
+    this.booking.discountAmount = 0;
+    this.booking.netAmount = (this.booking.roomPrice * this.booking.noOfRooms * this.DiffDate) + this.booking.extraPersonCharge + this.booking.extraChildCharge;
+    this.booking.gstAmount = (this.booking.netAmount * this.booking.taxPercentage) / 100;
+    this.booking.totalAmount = this.booking.netAmount + this.booking.gstAmount - this.booking.discountAmount;
     
     }
     // });
@@ -234,6 +240,7 @@ export class NewBookingComponent implements OnInit {
         (1000 * 60 * 60 * 24)
     );
   }
+  
   getDateFormatYearMonthDay(
     day12: number,
     month12: number,
