@@ -40,6 +40,7 @@ export class SliderComponent implements OnInit {
   checkIn: FormControl = new FormControl();
   checkOut: FormControl = new FormControl();
   guest: number = 1;
+  child: number = 1;
 
 
   monthArray = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -158,7 +159,11 @@ export class SliderComponent implements OnInit {
     } else {
       this.dateModel.guest = this.guest;
     }
-
+    if (this.child === null) {
+      this.dateModel.child = 1;
+    } else {
+      this.dateModel.child = this.child;
+    }
     this.dateModel.noOfRooms = 1;
 
 
@@ -192,7 +197,9 @@ export class SliderComponent implements OnInit {
   }
   guestEvent(){
     this.dateModel.guest = this.guest;
+    this.dateModel.child = this.child;
   }
+ 
   getProperty() {
     this.apiService.getPropertyDetailsByPropertyId(PROPERTY_ID).subscribe(response => {
 

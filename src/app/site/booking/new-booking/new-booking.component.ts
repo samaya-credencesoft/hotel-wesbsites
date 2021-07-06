@@ -80,7 +80,7 @@ export class NewBookingComponent implements OnInit {
   bookingData: any;
   customerDto: Customer;
   timeDifferenceInDays: number;
-
+  
   fromDate: NgbDate | null;
   toDate: NgbDate | null;
 
@@ -91,6 +91,9 @@ export class NewBookingComponent implements OnInit {
   adults: number = 2;
   children: number = 0;
   noOfrooms: number = 1;
+  DiffDate;
+  enddate;
+  startDate;
 
   isVerified = false;
 
@@ -139,6 +142,7 @@ export class NewBookingComponent implements OnInit {
     // this.dateModel = new DateModel();
     this.booking = new Booking();
     this.room = new Room();
+      
     if (this.token.getProperty() != undefined && this.token.getProperty() != null) {
       this.property = this.token.getProperty();
       this.currency = this.property.localCurrency.toLocaleUpperCase();
@@ -153,19 +157,70 @@ export class NewBookingComponent implements OnInit {
         this.booking.fromDate != undefined &&
         this.booking.toDate != undefined
       ) {
+        // this.isAvailableChecked = true;
+        // this.getCheckInDateFormat(this.booking.fromDate);
+        // this.getcheckOutDateFormat(this.booking.toDate);
         this.isAvailableChecked = true;
-        this.getCheckInDateFormat(this.booking.fromDate);
-        this.getcheckOutDateFormat(this.booking.toDate);
+        // this.getCheckInDateFormat(this.booking.fromDate);
+        // this.getcheckOutDateFormat(this.booking.toDate);
+        this.fromDate = new NgbDate(
+          this.mileSecondToNGBDate(this.booking.fromDate).year,
+          this.mileSecondToNGBDate(this.booking.fromDate).month,
+          this.mileSecondToNGBDate(this.booking.fromDate).day
+        );
+        this.toDate = new NgbDate(
+          this.mileSecondToNGBDate(this.booking.toDate).year,
+          this.mileSecondToNGBDate(this.booking.toDate).month,
+          this.mileSecondToNGBDate(this.booking.toDate).day
+        );
       } else {
+        this.booking.fromDate = this.getDateFormatYearMonthDay(
+          this.fromDate.day,
+          this.fromDate.month,
+          this.fromDate.year
+        );
+        this.booking.toDate = this.getDateFormatYearMonthDay(
+          this.toDate.day,
+          this.toDate.month,
+          this.toDate.year
+        );
         this.isAvailableChecked = false;
         this.checkincheckOutDate();
       }
+       this.getDiffDate(this.toDate, this.fromDate);
+     
     }
+   
     // });
   }
 
   ngOnInit() {
 
+  }
+  getDateFormatYearMonthDay(
+    day12: number,
+    month12: number,
+    year12: number
+  ): string {
+    const year = year12;
+    const date = day12;
+
+    const month = month12;
+
+    let month1;
+    let day1;
+    if (Number(month) < 10) {
+      month1 = `0${month}`;
+    } else {
+      month1 = `${month}`;
+    }
+    if (Number(date) < 10) {
+      day1 = `0${date}`;
+    } else {
+      day1 = `${date}`;
+    }
+
+    return `${year}-${month1}-${day1}`;
   }
   getAvailableRoom() {
     this.dateModel = new DateModel();
@@ -261,6 +316,34 @@ export class NewBookingComponent implements OnInit {
     this.daySelected2 = this.getDay(afterDate);
     this.yearSelected2 = String(afterDate.getFullYear());
     this.monthSelected2 = afterDate.getMonth();
+  }
+
+  mileSecondToNGBDate(date: string) {
+    const dsd = new Date(date);
+    const year = dsd.getFullYear();
+    const day = dsd.getDate();
+    const month = dsd.getMonth() + 1;
+    return { year: year, month: month, day: day };
+  }
+  getDiffDate(toDate, fromDate) {
+    this.enddate = new Date(toDate.year, toDate.month - 1, toDate.day);
+
+    this.startDate = new Date(fromDate.year, fromDate.month - 1, fromDate.day);
+    // console.log('this.fromDate: ', this.startDate);
+    // console.log('this.toDate: ', this.enddate);
+    this.DiffDate = Math.floor(
+      (Date.UTC(
+        this.enddate.getFullYear(),
+        this.enddate.getMonth(),
+        this.enddate.getDate()
+      ) -
+        Date.UTC(
+          this.startDate.getFullYear(),
+          this.startDate.getMonth(),
+          this.startDate.getDate()
+        )) /
+        (1000 * 60 * 60 * 24)
+    );
   }
 
   getRoomByDate() {

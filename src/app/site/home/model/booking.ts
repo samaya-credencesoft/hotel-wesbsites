@@ -55,6 +55,9 @@ export class Booking {
   noOfRooms: number;
   noOfPersons: number;
   noOfExtraPerson: number;
+  noOfChildren: number;
+  noOfExtraChild: number;
+  extraChildCharge: number;
   managerContactNo: string;
   extraPersonCharge: number;
   taxPercentage: number;

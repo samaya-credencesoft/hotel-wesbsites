@@ -47,7 +47,7 @@ export class ChooseRoomComponent implements OnInit {
   taxPercentage: number = 0;
 
   adults: number = 1;
-  children: number = 0;
+  child: number = 0;
   noOfrooms: number = 1;
   DiffDate;
   enddate;
@@ -59,7 +59,13 @@ export class ChooseRoomComponent implements OnInit {
   maxSelectRoom = 1;
   maxOccupancy = 2;
   // planDetails:FormControl = new FormControl('', Validators.nullValidator);
+  roomsAndOccupancy: boolean = false;
+  hoveredDate: NgbDate | null = null;
 
+  bookingMinDate: NgbDate | null;
+  bookingMaxDate: NgbDate | null;
+  bookingRoomPrice: number;
+  PlanRoomPrice: number;
   monthArray = [
     "Jan",
     "Feb",
@@ -98,6 +104,7 @@ export class ChooseRoomComponent implements OnInit {
         this.booking.toDate = this.dateModel.checkOut;
         this.booking.noOfRooms = this.dateModel.noOfRooms;
         this.booking.noOfPersons = this.dateModel.guest;
+        this.booking.noOfChildren = this.dateModel.child;
         this.fromDate = new NgbDate(
           this.mileSecondToNGBDate(this.booking.fromDate).year,
           this.mileSecondToNGBDate(this.booking.fromDate).month,
@@ -116,6 +123,13 @@ export class ChooseRoomComponent implements OnInit {
 
   ngOnInit() {
     //this.checkincheckoutDate();
+  }
+  toggleRoomsAndOccupancy() {
+    if (this.roomsAndOccupancy == false) {
+      this.roomsAndOccupancy = true;
+    } else if (this.roomsAndOccupancy == true) {
+      this.roomsAndOccupancy = false;
+    }
   }
   mileSecondToNGBDate(date: string) {
     const dsd = new Date(date);
@@ -144,7 +158,7 @@ export class ChooseRoomComponent implements OnInit {
       (1000 * 60 * 60 * 24)
     );
   }
-  onRoomBooking(room, index) {
+  onRoomBook(room, index) {
     this.dateModel.room = room;
     this.selectedIndex = index;
 
@@ -164,44 +178,113 @@ export class ChooseRoomComponent implements OnInit {
   }
   onPlanSelected(plan, room) {
 
-    this.booking.netAmount = plan.amount * this.DiffDate * this.noOfrooms;
-    console.log('plan ',JSON.stringify(plan));
+    // this.booking.netAmount = plan.amount * this.DiffDate * this.noOfrooms;
+    // console.log('plan ',JSON.stringify(plan));
 
-    if (this.property.taxDetails.length > 0) {
-      this.taxPercentage = this.property.taxDetails[0].percentage;
-    }
-    if (this.property.taxDetails[0].taxSlabsList.length > 0) {
-      this.property.taxDetails[0].taxSlabsList.forEach((element) => {
-        if (
-          element.maxAmount > this.booking.netAmount &&
-          element.minAmount < this.booking.netAmount
-        ) {
-          this.taxPercentage = element.percentage;
-        } else if (element.maxAmount < this.booking.netAmount) {
-          this.taxPercentage = element.percentage;
-        }
-      });
-    }
-    this.booking.taxPercentage = this.taxPercentage;
-    this.planDetails = plan;
-    this.booking.planCode = plan.code;
-    this.booking.roomRatePlanName = plan.name;
-    this.booking.roomPrice = plan.amount;
-    this.planSelected = true;
-    this.planAmount = plan.amount;
+    // if (this.property.taxDetails.length > 0) {
+    //   this.taxPercentage = this.property.taxDetails[0].percentage;
+    // }
+    // if (this.property.taxDetails[0].taxSlabsList.length > 0) {
+    //   this.property.taxDetails[0].taxSlabsList.forEach((element) => {
+    //     if (
+    //       element.maxAmount > this.booking.netAmount &&
+    //       element.minAmount < this.booking.netAmount
+    //     ) {
+    //       this.taxPercentage = element.percentage;
+    //     } else if (element.maxAmount < this.booking.netAmount) {
+    //       this.taxPercentage = element.percentage;
+    //     }
+    //   });
+    // }
+    // this.booking.taxPercentage = this.taxPercentage;
+    // this.planDetails = plan;
+    // this.booking.planCode = plan.code;
+    // this.booking.roomRatePlanName = plan.name;
+    // this.booking.roomPrice = plan.amount;
+    // this.planSelected = true;
+    // this.planAmount = plan.amount;
 
-    if (this.booking.noOfPersons > room.maximumOccupancy) {
-      this.extraPersonRate = room.extraChargePerPerson;
-    }
-    this.booking.extraPersonCharge = this.extraPersonRate;
+    // if (this.booking.noOfPersons > room.maximumOccupancy) {
+    //   this.extraPersonRate = room.extraChargePerPerson;
+    // }
+    // this.booking.extraPersonCharge = this.extraPersonRate;
     // this.fromDate = undefined;
     // this.toDate = undefined;
     // this.booking.fromDate = undefined;
     // this.booking.toDate = undefined;
-    console.log(JSON.stringify(this.booking));
-    console.log(JSON.stringify(this.checkAvailabilityStatusHide));
-    this.changeDetectorRefs.detectChanges();
+    // console.log(JSON.stringify(this.booking));
+    // console.log(JSON.stringify(this.checkAvailabilityStatusHide));
+    // this.changeDetectorRefs.detectChanges();
 // this.checkingAvailability();
+if (this.booking.noOfPersons > room.maximumOccupancy) {
+  this.extraPersonRate = plan.extraChargePerPerson;
+}
+this.booking.extraPersonCharge = this.extraPersonRate;
+if (
+  plan.minimumOccupancy * this.booking.noOfRooms <
+  this.booking.noOfPersons
+) {
+  if (plan.extraChargePerPerson !== 0) {
+    this.booking.noOfExtraPerson =  this.booking.noOfPersons - plan.minimumOccupancy * this.booking.noOfRooms;
+    this.booking.extraPersonCharge = plan.extraChargePerPerson * this.booking.noOfExtraPerson * this.DiffDate;
+  } else {
+    this.booking.extraPersonCharge = 0;
+  }
+} else {
+  this.booking.noOfExtraPerson = 0;
+  this.booking.extraPersonCharge = 0;
+}
+if ( plan.noOfChildren * this.booking.noOfRooms < this.booking.noOfChildren ) {
+  if (plan.extraChargePerChild !== 0) {
+    this.booking.noOfExtraChild = this.booking.noOfChildren - (plan.noOfChildren * this.booking.noOfRooms);
+    this.booking.extraChildCharge = plan.extraChargePerChild * this.booking.noOfExtraChild * this.DiffDate;
+  } else {
+    this.booking.extraChildCharge = 0;
+  }
+} else {
+  this.booking.noOfExtraChild = 0;
+  this.booking.extraChildCharge = 0;
+}
+
+this.booking.netAmount = (plan.amount * this.DiffDate * this.noOfrooms) + this.booking.extraPersonCharge + this.booking.extraChildCharge;
+// if (this.businessUser.taxDetails.length > 0) {
+//   this.taxPercentage = this.businessUser.taxDetails[0].percentage;
+// }
+if (plan != undefined && plan.amount != undefined) {
+  this.bookingRoomPrice = (plan.amount * this.DiffDate * this.booking.noOfRooms) + this.booking.extraPersonCharge + this.booking.extraChildCharge;
+  this.PlanRoomPrice = plan.amount * this.DiffDate * this.booking.noOfRooms;
+} else {
+  this.bookingRoomPrice = 0;
+  this.PlanRoomPrice = 0;
+}
+// if (this.businessUser.taxDetails[0].taxSlabsList.length > 0) {
+//   this.businessUser.taxDetails[0].taxSlabsList.forEach((element) => {
+//     if (
+//       element.maxAmount > this.booking.netAmount &&
+//       element.minAmount < this.booking.netAmount
+//     ) {
+//       this.taxPercentage = element.percentage;
+//     } else if (element.maxAmount < this.booking.netAmount) {
+//       this.taxPercentage = element.percentage;
+//     }
+//   });
+// }
+this.booking.taxPercentage = this.taxPercentage;
+this.planDetails = plan;
+this.booking.planCode = plan.code;
+this.booking.roomRatePlanName = plan.name;
+this.booking.roomPrice = plan.amount;
+this.planSelected = true;
+this.planAmount = plan.amount;
+
+
+// this.fromDate = undefined;
+// this.toDate = undefined;
+// this.booking.fromDate = undefined;
+// this.booking.toDate = undefined;
+console.log(JSON.stringify(this.booking));
+console.log(JSON.stringify(this.checkAvailabilityStatusHide));
+this.changeDetectorRefs.detectChanges();
   }
   getDateFormat(dateString: string) {
     const yearAndMonth = dateString.split('-', 3);
@@ -213,7 +296,7 @@ export class ChooseRoomComponent implements OnInit {
     this.booking.toDate = this.getDateFormat(this.booking.toDate);
     this.booking.noOfRooms = this.noOfrooms;
     this.booking.noOfPersons = this.adults;
-    this.booking.noOfExtraPerson = this.children;
+    this.booking.noOfExtraPerson = this.child;
 
     // this.booking.netAmount =
     this.changeDetectorRefs.detectChanges();

@@ -81,3 +81,11 @@ ngb-carousel {
   .ngb-dp-header, .ngb-dp-month-name, .ngb-dp-weekdays {
     background-color: #2b333f !important;
 }
+
+
+@media only screen and (min-width: 1024px){
+
+  .checkform{
+    width: 1100px!important;
+  }
+}

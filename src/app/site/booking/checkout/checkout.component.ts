@@ -150,6 +150,12 @@ export class CheckoutComponent implements OnInit {
   alertType: string;
   contentDialog: any;
 
+  adults: number = 1;
+  child: number = 0;
+  noOfrooms: number = 1;
+
+  roomsAndOccupancy: boolean = false;
+
   monthArray = [
     "Jan",
     "Feb",
@@ -233,7 +239,13 @@ export class CheckoutComponent implements OnInit {
   checkedOutEvent() {
     this.isAvailableChecked = false;
   }
-
+  toggleRoomsAndOccupancy() {
+    if (this.roomsAndOccupancy == false) {
+      this.roomsAndOccupancy = true;
+    } else if (this.roomsAndOccupancy == true) {
+      this.roomsAndOccupancy = false;
+    }
+  }
   checkInEvent() {
     this.isAvailableChecked = false;
     let currentDate: Date = new Date(this.checkIn.value);

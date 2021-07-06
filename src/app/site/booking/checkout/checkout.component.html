@@ -77,86 +77,132 @@
                       </div>
                       <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
                     </li> -->
-                    <li class="item-cont">
+                    <li>
                       <div class="check-form">
-                        <h4 class="text-center">Guest</h4>
-                        <div class="det">
-                          <div class="handle-counter" id="handleCounter">
-                            <ul>
-                              <li class="input-fieldd" style="color: #ffffff;
-                              font-size: 35px;
-                              font-weight: 600;">
-                                <input style="display: none" type="number" class="stepper_input" data-ref="input-stepper-field"
-                                  id="group_adults" name="group_adults" min="1" max="30" value="2" data-group-adults-count=""
-                                  [(ngModel)]="booking.noOfPersons">{{booking.noOfPersons}}
+                        <label for="no-of-guest" class="text-white text-left pb-3">{{DiffDate}} night(s) stay</label>
+                        <div data-visible="accommodation,flights" class="input-group guests">
+                           <div data-component="index/guest-errors" data-id="main"
+                              data-view-id="accommodation" role="alert">
+                           </div>
+                           <div class="input-box" (click)="toggleRoomsAndOccupancy()">
 
-                              </li>
-                              <li class="counter-control">
-                                <!-- <button class="counter-plus btn">
-                                  <i class="fa fa-angle-up"></i>
-                                </button>
-                                <button class="counter-minus btn" disabled="">
-                                  <i class="fa fa-angle-down"></i>
-                                </button> -->
-                                <button class="btn btn-outline-default btn-sm" type="button" (click)="booking.noOfPersons = booking.noOfPersons + 1; submitButtonDisabled = true;" [disabled]="booking.noOfPersons >=30">
-                                  <!-- <span class="button_text">+</span> -->
-                                  <i class="fa fa-angle-up"></i>
-                                </button>
-                                <button class="btn btn-outline-default btn-sm" type="button" (click)="booking.noOfPersons = booking.noOfPersons - 1; submitButtonDisabled = true;"
-                                  [disabled]="booking.noOfPersons <=1">
-                                  <!-- <span class="button_text">−</span> -->
-                                  <i class="fa fa-angle-down"></i>
-                                </button>
+                              <label class="text-default ">
+                                 <span class="guests_count">
+                                    <span data-adults-count="">{{adults}} adults</span>
+                                    <span data-visible="accommodation">
+                                       &nbsp;·&nbsp;
+                                       <span data-children-count="">{{child}} child</span>
+                                    </span>
+                                    <span data-visible="accommodation">
+                                       &nbsp;·&nbsp;
+                                       <span data-room-count="">{{noOfrooms}} room</span>
+                                    </span>
+                                 </span>
+                              </label>
+                           </div>
+                           <div class="list-holder roomsAndOccupancy" role="region"
+                              aria-label="Rooms and occupancy" *ngIf="roomsAndOccupancy == true">
+                              <div class="item business-text p-4">
+                                 <div class="row">
+                                    <div class="col-10">
 
-                              </li>
-                            </ul>
-                            <div class="clearfix"></div>
+                                    </div>
+                                    <div class="col-2">
+                                       <button class="btn btn-default btn-sm"
+                                          (click)="toggleRoomsAndOccupancy()">X</button>
+                                    </div>
+                                 </div>
+                                 <div class="clearfix" data-render="">
+                                    <div class="group_field group_field-adults">
+
+                                       <div class="row stepper" data-component="InputStepper">
+                                          <div class="col-6 stepper_title-wrapper text-default">
+                                             <label class="stepper_title"
+                                                for="group_adults">Adults</label>
+                                          </div>
+                                          <div class="col-6">
+                                             <input style="display: none" type="number"
+                                                class="stepper_input" data-ref="input-stepper-field"
+                                                id="group_adults" name="group_adults" min="1" max="30"
+                                                value="2" data-group-adults-count=""
+                                                [(ngModel)]="adults">
+                                             <button class="btn btn-outline-primary btn-sm" type="button"
+                                                (click)="adults = adults - 1; booking.noOfPersons = adults;"
+                                                [disabled]="adults <=1">
+                                                <span class="button_text">−</span>
+                                             </button>
+                                             <span class="stepper_display text-default"
+                                                aria-hidden="true">{{adults}}</span>
+                                             <button class="btn btn-outline-primary btn-sm" type="button"
+                                                (click)="adults = adults + 1; booking.noOfPersons = adults; planDetails"
+                                                [disabled]="(maxOccupancy + child) * noOfrooms <= adults">
+                                                <span class="button_text">+</span>
+                                             </button>
+                                             <!-- <span class="stepper_display" aria-live="assertive" >{{adults}} Adults</span> -->
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="group_field group-children ">
+                                       <div class="row stepper" data-component="InputStepper">
+                                          <div class="col-6 stepper_title-wrapper">
+                                             <label class="stepper_title text-default"
+                                                for="group_children">child</label>
+                                          </div>
+                                          <div class="col-6">
+                                             <input style="display: none" type="number"
+                                                class="stepper_input" data-ref="input-stepper-field"
+                                                id="group_adults" name="group_adults" min="1" max="30"
+                                                value="2" data-group-adults-count="">
+                                             <button class="btn btn-outline-primary btn-sm" type="button"
+                                                (click)="child = child - 1; booking.noOfChildren = child;"
+                                                [disabled]="child <=0">
+                                                <span class="button_text">−</span>
+                                             </button>
+                                             <span class="stepper_display text-default"
+                                                aria-hidden="true">{{child}}</span>
+                                             <button class="btn btn-outline-primary btn-sm" type="button"
+                                                (click)="child = child + 1; booking.noOfChildren = child; "
+                                                [disabled]="(maxOccupancy + child)* noOfrooms <= child">
+                                                <span class="button_text">+</span>
+                                             </button>
+                                             <!-- <span class="stepper_display" aria-live="assertive" id="group_children_desc">{{children}} Children</span> -->
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="group_field group_field-rooms">
+                                      <div class="row stepper" data-component="InputStepper">
+                                         <div class="col-6 stepper_title-wrapper">
+                                            <label class="stepper_title text-default"
+                                               for="no_rooms">Rooms</label>
+                                         </div>
+                                         <div class="col-6">
+                                            <input style="display: none" type="number"
+                                               class="stepper_input" data-ref="input-stepper-field"
+                                               id="group_adults" name="group_adults" min="1" max="30"
+                                               value="2" data-group-adults-count="">
+                                            <button class="btn btn-outline-primary btn-sm" type="button"
+                                               (click)="noOfrooms = noOfrooms - 1; booking.noOfRooms = noOfrooms;"
+                                               [disabled]="noOfrooms <=1">
+                                               <span class="button_text">−</span>
+                                            </button>
+                                            <span class="stepper_display text-default"
+                                               aria-hidden="true">{{noOfrooms}}</span>
+                                            <button class="btn btn-outline-primary btn-sm" type="button"
+                                               (click)="noOfrooms = noOfrooms + 1; booking.noOfRooms = noOfrooms;"
+                                               [disabled]="maxSelectRoom <= noOfrooms">
+                                               <span class="button_text">+</span>
+                                            </button>
+                                            <!-- <span class="stepper_display" id="no_rooms_desc">{{noOfrooms}} Rooms</span> -->
+                                         </div>
+                                      </div>
+                                   </div>
+                                </div>
+                             </div>
                           </div>
-                        </div>
-                        <div class="clearfix"></div>
-                      </div>
-                      <!--check-form end-->
-                    </li>
-                    <li class="item-cont">
-                      <div class="check-form">
-                        <h4 class="text-center">Room(s)</h4>
-                        <div class="det">
-                          <div class="handle-counter" id="handleCounter">
-                            <ul>
-                              <li class="input-fieldd" style="color: #ffffff;
-                              font-size: 35px;
-                              font-weight: 600;">
-                                <input style="display: none" type="number" class="stepper_input" data-ref="input-stepper-field"
-                                  id="group_adults" name="group_adults" min="1" max="30" value="2" data-group-adults-count=""
-                                  [(ngModel)]="booking.noOfRooms">{{booking.noOfRooms}}
-
-                              </li>
-                              <li class="counter-control">
-                                <!-- <button class="counter-plus btn">
-                                  <i class="fa fa-angle-up"></i>
-                                </button>
-                                <button class="counter-minus btn" disabled="">
-                                  <i class="fa fa-angle-down"></i>
-                                </button> -->
-                                <button class="btn btn-outline-default btn-sm" type="button" (click)="booking.noOfRooms = booking.noOfRooms + 1; submitButtonDisabled = true;" [disabled]="booking.noOfRooms >=30">
-                                  <!-- <span class="button_text">+</span> -->
-                                  <i class="fa fa-angle-up"></i>
-                                </button>
-                                <button class="btn btn-outline-default btn-sm" type="button" (click)="booking.noOfRooms = booking.noOfRooms - 1; submitButtonDisabled = true;"
-                                  [disabled]="booking.noOfRooms <=1">
-                                  <!-- <span class="button_text">−</span> -->
-                                  <i class="fa fa-angle-down"></i>
-                                </button>
-
-                              </li>
-                            </ul>
-                            <div class="clearfix"></div>
-                          </div>
-                        </div>
-                        <div class="clearfix"></div>
-                      </div>
-                      <!--check-form end-->
-                    </li>
+                       </div>
+                    </div>
+                     <!--check-form end-->
+                  </li>
                     <li class="check-avail">
                       <a (click)="getAvailableRoom()" title="" class="check-status">CHECK AVAILABILITY</a>
                     </li>

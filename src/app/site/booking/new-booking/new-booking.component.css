@@ -1,3 +1,9 @@
 .form-submit{
   margin-left: 12px;
 }
+.bg-secondary{
+  background: #fff!important;
+}
+.bg-secondary i{
+  color: #eeeeee!important;
+  }
