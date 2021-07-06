@@ -4,3 +4,123 @@
 .payment_options{
   display: block;
 }
+.container{
+  height: 800px;
+  position: relative;
+  top: 20px;
+  }
+  
+  #choose-room{
+  position: relative;
+  top: 100px;
+  
+  }
+  .main-content{
+  height: 1500px;
+  }
+  .col-lg-8{
+  height: 1400px;
+  }
+  .plan_layout{
+    background: #fff;
+    padding: 20px;
+  }
+  .room_img{
+    padding: 10px;
+    height: 300px;
+  }
+  @media (min-width: 992px)And (max-width: 1199px){
+    .main-content{
+      height: 1700px;
+      }
+      .col-lg-8{
+      height: 1400px;
+      }
+  }
+  @media (min-width: 768px)And (max-width: 991px){
+    .main-content{
+      height: 2100px;
+      }
+      .col-lg-8{
+      height: 1400px;
+      }
+  }
+  
+  @media (min-width: 576px) And (max-width: 767px){
+    .main-content{
+      height: 2300px;
+      }
+      .col-lg-8{
+      height: 1400px;
+      }
+  }
+  @media (min-width: 320px) And (max-width: 575px){
+    .main-content{
+      height: 2600px;
+      }
+      .col-lg-8{
+      height: 1800px;
+      }
+  }
+  .mat-radio-button.mat-accent .mat-radio-inner-circle, .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple), .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple, .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+    background-color: #ffd740;
+  }
+  .mat-radio-checked .mat-radio-inner-circle {
+    transform: scale(0.5);
+  }
+  .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: #ffd740;
+  }
+  .mat-radio-input {
+    bottom: 0;
+    left: 50%;
+  }
+  .cdk-visually-hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    outline: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+  input {
+    outline: none;
+  }
+  #fromDate, #toDate {
+    width: 100%;
+    background: none;
+      color: white;
+  }
+  .input-box {
+    /* background-color: #fff; */
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    color: #fff;
+  }
+
+  
+ 
+  .business-text {
+    background-color: white;
+    padding: 5px 10px;
+  }
+  .group_field{
+    width: 220px;
+    font-size: 16px;
+    border: none;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    height: 44px;
+    line-height: 44px;
+  }
+  .stepper_display{
+    padding: 0 10px;
+  }
+  

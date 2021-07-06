@@ -17,6 +17,7 @@ import { Payment } from "src/app/model/payment";
 import { Property } from "src/app/model/property";
 import { Room } from "src/app/shared/models/room";
 import { TokenStorage } from "src/app/token.storage";
+import { NgbDate } from "@ng-bootstrap/ng-bootstrap";
 export interface Year {
   value: string;
   viewValue: string;
@@ -41,6 +42,8 @@ export interface PaymentMode {
   styleUrls: ["./checkout.component.css"],
 })
 export class CheckoutComponent implements OnInit {
+  fromDate: NgbDate | null;
+  toDate: NgbDate | null;
   paymentLoader: boolean = false;
   verified = false;
   msgs: Message[] = [];
@@ -141,6 +144,13 @@ export class CheckoutComponent implements OnInit {
   showAlert: boolean = false;
   alertType: string;
   contentDialog: any;
+  roomsAndOccupancy: boolean = false;
+  guest: number = 1;
+  noOfChildren: number = 0;
+  noOfrooms: number = 1;
+  DiffDate;
+  enddate;
+  startDate;
 
   monthArray = [
     "Jan",
@@ -175,8 +185,9 @@ export class CheckoutComponent implements OnInit {
     this.room = new Room();
     this.payment = new Payment();
     this.property = new Property();
+   
   }
-
+  
   ngOnInit() {
     // this.acRoute.queryParams.subscribe((params) => {
     if (this.token.getBookingData() != undefined) {
@@ -211,6 +222,7 @@ export class CheckoutComponent implements OnInit {
     this.dateModel.checkOut = this.booking.toDate;
     this.dateModel.guest = this.booking.noOfPersons;
     this.dateModel.noOfRooms = this.booking.noOfRooms;
+    this.dateModel.noOfChildren = this.booking.noOfChildren;
 
     // console.log(' this.dateModel '+JSON.stringify( this.dateModel));
 
@@ -222,10 +234,36 @@ export class CheckoutComponent implements OnInit {
 
     this.router.navigate(["/booking/choose"], navigationExtras);
   }
+  getDiffDate(toDate, fromDate) {
+    this.startDate = new Date(fromDate.year, fromDate.month - 1, fromDate.day);
+    this.enddate = new Date(toDate.year, toDate.month - 1, toDate.day);
+
+    // console.log('this.fromDate: ', this.startDate);
+    // console.log('this.toDate: ', this.enddate);
+    this.DiffDate = Math.floor(
+      (Date.UTC(
+        this.enddate.getFullYear(),
+        this.enddate.getMonth(),
+        this.enddate.getDate()
+      ) -
+        Date.UTC(
+          this.startDate.getFullYear(),
+          this.startDate.getMonth(),
+          this.startDate.getDate()
+        )) /
+        (1000 * 60 * 60 * 24)
+    );
+  }
   checkedOutEvent() {
     this.isAvailableChecked = false;
   }
-
+  toggleRoomsAndOccupancy() {
+    if (this.roomsAndOccupancy == false) {
+      this.roomsAndOccupancy = true;
+    } else if (this.roomsAndOccupancy == true) {
+      this.roomsAndOccupancy = false;
+    }
+  }
   checkInEvent() {
     this.isAvailableChecked = false;
     let currentDate: Date = new Date(this.checkIn.value);
