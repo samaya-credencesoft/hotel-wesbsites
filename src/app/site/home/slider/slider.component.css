@@ -43,3 +43,10 @@ ngb-carousel {
 .carousel-indicators{
   z-index: 20;
 }
+.checkform{
+  width: 1100px!important;
+}
+
+/* .check-form{
+  width: 40px!important;
+}  */
