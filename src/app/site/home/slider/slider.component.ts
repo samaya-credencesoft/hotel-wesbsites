@@ -23,7 +23,7 @@ export class SliderComponent implements OnInit {
   year2: string;
   month2: number;
 
-
+  placement = 'top';
   fromDate: string;
   dateModel: DateModel;
 
@@ -183,18 +183,18 @@ export class SliderComponent implements OnInit {
     return yearAndMonth[0] + '-' + yearAndMonth[1] + '-' + yearAndMonth[2].split(' ', 1);
   }
 
-  checkInEvent() {
-    const currentDate: Date = new Date(this.checkIn.value);
+  // checkInEvent() {
+  //   const currentDate: Date = new Date(this.checkIn.value);
 
-    const afterDate: Date = new Date();
-    afterDate.setDate(currentDate.getDate() + 1);
-    afterDate.setFullYear(currentDate.getFullYear());
-    afterDate.setMonth(currentDate.getMonth());
+  //   const afterDate: Date = new Date();
+  //   afterDate.setDate(currentDate.getDate() + 1);
+  //   afterDate.setFullYear(currentDate.getFullYear());
+  //   afterDate.setMonth(currentDate.getMonth());
 
-    this.day2 = this.getDay(afterDate);
-    this.year2 = String(afterDate.getFullYear());
-    this.month2 = afterDate.getMonth();
-  }
+  //   this.day2 = this.getDay(afterDate);
+  //   this.year2 = String(afterDate.getFullYear());
+  //   this.month2 = afterDate.getMonth();
+  // }
   guestEvent(){
     this.dateModel.guest = this.guest;
     this.dateModel.child = this.child;

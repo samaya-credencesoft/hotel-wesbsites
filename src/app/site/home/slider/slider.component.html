@@ -29,6 +29,15 @@
             </div>
             <input type="text" [formControl]="checkIn" name="dateIn" [min]="minFromDate" [max]="maxFromDate"
               class="date-pick" (ngModelChange)="checkInEvent()" />
+              <!-- <div class="cmn_field">
+                <label for="check1">
+                  <i class="fa fa-calendar"></i>
+                </label>
+                <input class="field-control" name="checkIn" placeholder="Check In" [formControl]="CheckIn"
+                  [(ngModel)]="checkIn" (click)="d1.toggle()" ngbDatepicker #d1="ngbDatepicker"
+                  [placement]="placement" autocomplete="off">
+
+              </div> -->
 
             <div class="clearfix"></div>
           </div>

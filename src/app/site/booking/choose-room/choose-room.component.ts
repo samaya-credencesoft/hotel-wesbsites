@@ -5,14 +5,6 @@ import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { NgbCalendar, NgbDate, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService, PROPERTY_ID } from 'src/app/api.service';
 import { Room } from 'src/app/room/room';
-// import { BankAccount } from 'src/app/model/BankAccount';
-// import { Booking } from 'src/app/model/booking';
-// import { DateModel } from 'src/app/model/dateModel';
-// import { MobileWallet } from 'src/app/model/mobileWallet';
-// import { Property } from 'src/app/model/property';
-// import { RoomRatePlans } from 'src/app/model/roomRatePlans';
-// import { BusinessUser } from 'src/app/model/user';
-// import { Room } from 'src/app/shared/models/room';
 import { TokenStorage } from 'src/app/token.storage';
 import { BankAccount } from '../../home/model/BankAccount';
 import { Booking } from '../../home/model/booking';
@@ -246,6 +238,31 @@ export class ChooseRoomComponent implements OnInit {
         (1000 * 60 * 60 * 24)
     );
   }
+  getDateFormatYearMonthDay(
+    day12: number,
+    month12: number,
+    year12: number
+  ): string {
+    const year = year12;
+    const date = day12;
+
+    const month = month12;
+
+    let month1;
+    let day1;
+    if (Number(month) < 10) {
+      month1 = `0${month}`;
+    } else {
+      month1 = `${month}`;
+    }
+    if (Number(date) < 10) {
+      day1 = `0${date}`;
+    } else {
+      day1 = `${date}`;
+    }
+
+    return `${year}-${month1}-${day1}`;
+  }
   onRoomBook(room, index) {
     // this.dateModel.room = room;
     this.selectedIndex = index;
@@ -475,29 +492,5 @@ export class ChooseRoomComponent implements OnInit {
     this.yearSelected2 = yearAndMonth[0];
     this.monthSelected2 = parseInt(yearAndMonth[1]) - 1;
   }
-  getDateFormatYearMonthDay(
-    day12: number,
-    month12: number,
-    year12: number
-  ): string {
-    const year = year12;
-    const date = day12;
-
-    const month = month12;
-
-    let month1;
-    let day1;
-    if (Number(month) < 10) {
-      month1 = `0${month}`;
-    } else {
-      month1 = `${month}`;
-    }
-    if (Number(date) < 10) {
-      day1 = `0${date}`;
-    } else {
-      day1 = `${date}`;
-    }
-
-    return `${year}-${month1}-${day1}`;
-  }
+  
 }
