@@ -1,3 +1,33 @@
+<div class="banner_area_type3 bnr_overlay2">
+  <div class="holder">
+      <div class="hr">
+          <div class="vc">
+              <div class="banner_section_title align-center">
+                  <div class="section_sub_title">
+                      <p>Booking</p>
+                  </div>
+                  <h1>Find Your Desire Room</h1>
+              </div>
+          </div>
+      </div>
+      <div class="hr">
+          <div class="vc">
+              <div class="bradecrumbe">
+                  <ul class="breadcrumb justify-content-center justify-content-cd--center">
+                      <li>
+                          <a routerLink='/'>
+                              Home
+                          </a>
+                      </li>
+                      <li class="active">
+                        Booking
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
 <section class="main-content bkng">
   <div class="container">
     <div class="page-content">
@@ -23,83 +53,84 @@
       <div class="row">
         <div class="col-lg-4">
           <div class="sidebar">
-           <!-- <div class="avail-sec"> -->
-              
-            
-            <div class="widget bg-secondary my-2">
-              <h4 class="bg-primary p-4"><i class="fa fa-calendar-check-o"></i> Your Booking
-                Details</h4>
-              <div class="row px-4">
-                <div class="col-6">
-                  <h6>Check-in</h6>
-                  <p>{{booking.fromDate | date:'EEE, MMM d, y'}}</p>
+            <!-- <div class="avail-sec"> -->
+              <!-- <form> -->
+                              <!-- </form> -->
+              <div class="widget bg-secondary my-2">
+                <h4 class="bg-primary p-4"><i class="fa fa-calendar-check-o"></i> Your Booking
+                  Details</h4>
+                <div class="row px-4">
+                  <div class="col-6">
+                    <h6>Check-in</h6>
+                    <p>{{booking.fromDate | date:'EEE, MMM d, y'}}</p>
+                  </div>
+                  <div class="col-6">
+                    <h6>Check-out</h6>
+                    <p>{{booking.toDate | date:'EEE, MMM d, y'}}</p>
+    
+                  </div>
                 </div>
-                <div class="col-6">
-                  <h6>Check-out</h6>
-                  <p>{{booking.toDate | date:'EEE, MMM d, y'}}</p>
-  
+                <div class="row px-4">
+                  <div class="col-12">
+                    <h6>Total length of stay:</h6>
+                    <p>{{DiffDate}} Night(s)</p>
+                    <h6>You selected:</h6>
+                    <p>{{booking.roomType}}</p>
+                  </div>
+                </div>
+                <div class="row px-4 pb-4">
+                  <div class="col-12">
+                    <h6>Guests:</h6>
+                    <div>{{booking.noOfPersons}} Adult(s) </div><span *ngIf="booking.noOfChildren > 0" >{{booking.noOfChildren}} Child </span>
+                    <!-- <h6>You selected:</h6>
+                    <p>{{booking.roomType}}</p> -->
+                  </div>
                 </div>
               </div>
-              <div class="row px-4">
-                <div class="col-12">
-                  <h6>Total length of stay:</h6>
-                  <p>{{DiffDate}} Night(s)</p>
-                  <h6>You selected:</h6>
-                  <p>{{booking.roomType}}</p>
-                </div>
-              </div>
-              <div class="row px-4 pb-4">
-                <div class="col-12">
-                  <h6>Guests:</h6>
-                  <div>{{booking.noOfPersons}} Adult(s) </div><span *ngIf="booking.noOfChildren > 0" >{{booking.noOfChildren}} Child </span>
-                  <!-- <h6>You selected:</h6>
-                  <p>{{booking.roomType}}</p> -->
-                </div>
-              </div>
-            </div>
 
-            <div class="widget bg-secondary my-4">
-              <h5 class="card-title bg-primary p-4 pb-5 w-100">Price<span class="pull-right text-right">
-                  {{ booking.totalAmount | currency: currency :'symbol':'1.2-2' }}
-                  <br>
-                  <p class="text-white">Total Payable Amount</p>
-                </span>
-              </h5>
-  
-              <div class="row px-4">
-                <div class="col-12">
-                  <h6>Total length of stay:</h6>
-                  <p>{{ DiffDate }} Night(s)</p>
-                  <h6>You selected:</h6>
-                  <p>{{ booking.roomName }}</p>
-                  <h6>Room price:</h6>
-                  <p>{{booking.roomPrice | currency: currency:'symbol':'1.2-2' }} x {{DiffDate}}</p>
-                  <h6 *ngIf="discountPercentage"><b>Discount ({{booking.discountPercentage}}%):
-                  </b>{{booking.discountAmount | currency: currency:'symbol':'1.2-2'}}
-                </h6>
-                  <!-- <h6>Tax Amount ({{this.taxPercentage}}%):</h6>
-                  <p *ngIf="businessUser.taxDetails">{{ businessUser.taxDetails[0].name }} & charges
-                    {{  (this.booking.netAmount * this.booking.taxPercentage) / 100 | currency: currency:'symbol':'1.2-2' }}
-                  </p> -->
-  
-                  <div *ngIf="booking.noOfExtraPerson > 0">
-                    <h6 class="">Extra Person charges</h6>
-                    <p class="">
-                       {{ booking.extraPersonCharge | currency: currency:'symbol':'1.2-2' }}
-                    </p>
-                   </div>
-        
-                   <div *ngIf="booking.noOfExtraChild > 0">
-        
-                    <h6 class="">Extra Child charges</h6>
-                    <p class="">
-                       {{ booking.extraChildCharge | currency: currency:'symbol':'1.2-2' }}
-                    </p>
-                   </div>
+              <div class="widget bg-secondary my-4">
+                <h5 class="card-title bg-primary p-4 pb-5 w-100">Price<span class="pull-right text-right">
+                    {{ booking.totalAmount | currency: currency :'symbol':'1.2-2' }}
+                    <br>
+                    <p class="text-white">Total Payable Amount</p>
+                  </span>
+                </h5>
+    
+                <div class="row px-4">
+                  <div class="col-12">
+                    <h6>Total length of stay:</h6>
+                    <p>{{ DiffDate }} Night(s)</p>
+                    <h6>You selected:</h6>
+                    <p>{{ booking.roomName }}</p>
+                    <h6>Room price:</h6>
+                    <p>{{booking.roomPrice | currency: currency:'symbol':'1.2-2' }} x {{DiffDate}}</p>
+                    <h6 *ngIf="discountPercentage"><b>Discount ({{booking.discountPercentage}}%):
+                    </b>{{booking.discountAmount | currency: currency:'symbol':'1.2-2'}}
+                  </h6>
+                    <!-- <h6>Tax Amount ({{this.taxPercentage}}%):</h6>
+                    <p *ngIf="businessUser.taxDetails">{{ businessUser.taxDetails[0].name }} & charges
+                      {{  (this.booking.netAmount * this.booking.taxPercentage) / 100 | currency: currency:'symbol':'1.2-2' }}
+                    </p> -->
+    
+                    <div *ngIf="booking.noOfExtraPerson > 0">
+                      <h6 class="">Extra Person charges</h6>
+                      <p class="">
+                         {{ booking.extraPersonCharge | currency: currency:'symbol':'1.2-2' }}
+                      </p>
+                     </div>
+          
+                     <div *ngIf="booking.noOfExtraChild > 0">
+          
+                      <h6 class="">Extra Child charges</h6>
+                      <p class="">
+                         {{ booking.extraChildCharge | currency: currency:'symbol':'1.2-2' }}
+                      </p>
+                     </div>
+                  </div>
                 </div>
               </div>
-            </div>
 <!-- Booking Summary / End -->
+
             <!-- </div> -->
             <div class="extra_info"></div>
           </div>
@@ -656,12 +687,7 @@
               <!-- <div class="col-md-12" *ngIf="!verified && !customerExist || order.email != '' && order.mobile != '' " > -->
               <div
                 class="col-md-12"
-                *ngIf="
-                  lookup &&
-                  !customerExist &&
-                  !verified &&
-                  (booking.email != '' || booking.mobile != '')
-                "
+                *ngIf="lookup && !customerExist && !verified &&  (booking.email != '' || booking.mobile != '') "
               >
                 <div class="form-group">
                   <label>User Not Exist! Send Verification Code</label>
@@ -673,13 +699,15 @@
                   </button>
                 </div>
               </div>
+              <!-- *ngIf="
+              !lookup &&
+              !customerExist &&
+              (booking.email != '' || (isVerified && mobileHasError))
+            " -->
               <div
                 class="col-md-6"
-                *ngIf="
-                  !lookup &&
-                  !customerExist &&
-                  (booking.email != '' || (isVerified && mobileHasError))
-                "
+               
+                *ngIf="!lookup && !customerExist && (booking.email != '' || isVerified && mobileHasError)"
               >
                 <div class="form-group">
                   <!-- <label></label> -->
@@ -800,8 +828,11 @@
                   <li>
                     <b>No Of Person(s): </b><span>{{ booking.noOfPersons }}</span>
                   </li>
+                  
                   <li><b>No Of Extra Person(s): </b><span>{{ booking.noOfExtraPerson }}</span></li>
 									<li><b>Extra Person charges: </b><span>  {{ booking.extraPersonCharge | currency: currency:'symbol':'1.2-2' }}</span></li>
+
+                 
                   <li>
                     <b>Net Amount: </b>
                     <span> {{ booking.netAmount | currency: currency:"symbol":"1.2-2" }} </span>
@@ -832,12 +863,12 @@
                     <b>Room Price: </b><span>{{ booking.roomPrice | currency: currency:"symbol":"1.2-2" }}
                     </span>
                   </li>
-                  <li>
+                  <!-- <li>
                     <b>Tax Amount:</b><span> {{ booking.gstAmount | currency: currency:"symbol":"1.2-2" }}</span>
                   </li>
                   <li *ngIf="discountPercentage">
                     <b>Discount Amount: </b>{{ booking.discountAmount | currency: currency:"symbol":"1.2-2" }}
-                  </li>
+                  </li> -->
 
                   <!-- <li class="total-costs"><b>Total Cost: </b><span> 546.00</span></li> -->
                 </ul>

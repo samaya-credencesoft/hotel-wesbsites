@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Room } from 'src/app/room/room';
 import { ApiService } from 'src/app/api.service';
 import { ActivatedRoute } from '@angular/router';
-import { DateModel } from './../../home/model/dateModel';
 import { NavigationExtras } from '@angular/router';
 import { Router } from '@angular/router';
-import { Booking } from '../../home/model/booking';
 import {
   FormControl,
   FormGroup,
@@ -14,12 +11,17 @@ import {
   Validators,
   FormBuilder,
 } from '@angular/forms';
-import { TokenStorage } from '../../../token.storage';
-import { Payment } from 'src/app/site/home/model/payment';
-import { MessageDto } from '../../home/model/MessageDto';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
+import { Room } from 'src/app/room/room';
+import { Booking } from '../../home/model/booking';
+import { DateModel } from '../../home/model/dateModel';
+import { MessageDto } from '../../home/model/MessageDto';
+import { Payment } from '../../home/model/payment';
+import { Property } from '../../home/model/property';
 import { Customer } from '../../home/model/customer';
-import { Property } from 'src/app/site/home/model/property';
+import { TokenStorage } from 'src/app/token.storage';
+
+
 
 @Component({
   selector: 'app-new-booking',
@@ -80,7 +82,7 @@ export class NewBookingComponent implements OnInit {
   bookingData: any;
   customerDto: Customer;
   timeDifferenceInDays: number;
-  
+
   fromDate: NgbDate | null;
   toDate: NgbDate | null;
 
@@ -91,11 +93,16 @@ export class NewBookingComponent implements OnInit {
   adults: number = 2;
   children: number = 0;
   noOfrooms: number = 1;
+
+  isVerified = false;
+
   DiffDate;
   enddate;
   startDate;
+  // businessUser: BusinessUser;
+ 
 
-  isVerified = false;
+  discountPercentage: number;
 
   monthArray = [
     'Jan',
@@ -140,9 +147,9 @@ export class NewBookingComponent implements OnInit {
     private acRoute: ActivatedRoute
   ) {
     // this.dateModel = new DateModel();
+    // this.businessUser = new BusinessUser();
     this.booking = new Booking();
     this.room = new Room();
-      
     if (this.token.getProperty() != undefined && this.token.getProperty() != null) {
       this.property = this.token.getProperty();
       this.currency = this.property.localCurrency.toLocaleUpperCase();
@@ -157,9 +164,7 @@ export class NewBookingComponent implements OnInit {
         this.booking.fromDate != undefined &&
         this.booking.toDate != undefined
       ) {
-        // this.isAvailableChecked = true;
-        // this.getCheckInDateFormat(this.booking.fromDate);
-        // this.getcheckOutDateFormat(this.booking.toDate);
+
         this.isAvailableChecked = true;
         // this.getCheckInDateFormat(this.booking.fromDate);
         // this.getcheckOutDateFormat(this.booking.toDate);
@@ -173,7 +178,11 @@ export class NewBookingComponent implements OnInit {
           this.mileSecondToNGBDate(this.booking.toDate).month,
           this.mileSecondToNGBDate(this.booking.toDate).day
         );
+        // this.adults = this.booking.noOfPersons;
+        // this.children = this.booking.noOfChildren;
+        // this.noOfrooms = this.booking.noOfRooms;
       } else {
+
         this.booking.fromDate = this.getDateFormatYearMonthDay(
           this.fromDate.day,
           this.fromDate.month,
@@ -187,16 +196,51 @@ export class NewBookingComponent implements OnInit {
         this.isAvailableChecked = false;
         this.checkincheckOutDate();
       }
-       this.getDiffDate(this.toDate, this.fromDate);
-     
+      
+      this.getDiffDate(this.toDate, this.fromDate);
+
+      console.log("this.bookingData ", JSON.stringify(this.booking));
+    this.booking.discountAmount = 0;
+    this.booking.netAmount = (this.booking.roomPrice * this.booking.noOfRooms * this.DiffDate) + this.booking.extraPersonCharge + this.booking.extraChildCharge;
+    this.booking.gstAmount = (this.booking.netAmount * this.booking.taxPercentage) / 100;
+    this.booking.totalAmount = this.booking.netAmount + this.booking.gstAmount - this.booking.discountAmount;
+    
     }
-   
     // });
+    
   }
 
   ngOnInit() {
 
   }
+  mileSecondToNGBDate(date: string) {
+    const dsd = new Date(date);
+    const year = dsd.getFullYear();
+    const day = dsd.getDate();
+    const month = dsd.getMonth() + 1;
+    return { year: year, month: month, day: day };
+  }
+  getDiffDate(toDate, fromDate) {
+    this.enddate = new Date(toDate.year, toDate.month - 1, toDate.day);
+
+    this.startDate = new Date(fromDate.year, fromDate.month - 1, fromDate.day);
+    // console.log('this.fromDate: ', this.startDate);
+    // console.log('this.toDate: ', this.enddate);
+    this.DiffDate = Math.floor(
+      (Date.UTC(
+        this.enddate.getFullYear(),
+        this.enddate.getMonth(),
+        this.enddate.getDate()
+      ) -
+        Date.UTC(
+          this.startDate.getFullYear(),
+          this.startDate.getMonth(),
+          this.startDate.getDate()
+        )) /
+        (1000 * 60 * 60 * 24)
+    );
+  }
+  
   getDateFormatYearMonthDay(
     day12: number,
     month12: number,
@@ -222,22 +266,32 @@ export class NewBookingComponent implements OnInit {
 
     return `${year}-${month1}-${day1}`;
   }
+  
   getAvailableRoom() {
     this.dateModel = new DateModel();
-
+    this.booking.fromDate = this.getDateFormatYearMonthDay(
+      this.fromDate.day,
+      this.fromDate.month,
+      this.fromDate.year
+    );
+    this.booking.toDate = this.getDateFormatYearMonthDay(
+      this.toDate.day,
+      this.toDate.month,
+      this.toDate.year
+    );
     this.dateModel.checkIn = this.getDateFormat(this.booking.fromDate);
     this.dateModel.checkOut = this.getDateFormat(this.booking.toDate);
     this.dateModel.guest = this.booking.noOfPersons;
     this.dateModel.noOfRooms = this.booking.noOfRooms;
 
     // console.log(' this.dateModel '+JSON.stringify( this.dateModel));
-
+   
     const navigationExtras: NavigationExtras = {
       queryParams: {
         dateob: JSON.stringify(this.dateModel),
       },
     };
-
+    
     this.router.navigate(["/booking/choose"], navigationExtras);
   }
   onBook() {
@@ -316,34 +370,6 @@ export class NewBookingComponent implements OnInit {
     this.daySelected2 = this.getDay(afterDate);
     this.yearSelected2 = String(afterDate.getFullYear());
     this.monthSelected2 = afterDate.getMonth();
-  }
-
-  mileSecondToNGBDate(date: string) {
-    const dsd = new Date(date);
-    const year = dsd.getFullYear();
-    const day = dsd.getDate();
-    const month = dsd.getMonth() + 1;
-    return { year: year, month: month, day: day };
-  }
-  getDiffDate(toDate, fromDate) {
-    this.enddate = new Date(toDate.year, toDate.month - 1, toDate.day);
-
-    this.startDate = new Date(fromDate.year, fromDate.month - 1, fromDate.day);
-    // console.log('this.fromDate: ', this.startDate);
-    // console.log('this.toDate: ', this.enddate);
-    this.DiffDate = Math.floor(
-      (Date.UTC(
-        this.enddate.getFullYear(),
-        this.enddate.getMonth(),
-        this.enddate.getDate()
-      ) -
-        Date.UTC(
-          this.startDate.getFullYear(),
-          this.startDate.getMonth(),
-          this.startDate.getDate()
-        )) /
-        (1000 * 60 * 60 * 24)
-    );
   }
 
   getRoomByDate() {
