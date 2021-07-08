@@ -116,7 +116,7 @@
                            <div data-component="index/guest-errors" data-id="main"
                               data-view-id="accommodation" role="alert">
                            </div>
-                           <div class="input-box" (click)="toggleRoomsAndOccupancy()">
+                           <!-- <div class="input-box" (click)="toggleRoomsAndOccupancy()"> -->
 
                               <label class="text-default ">
                                  <span class="guests_count">
@@ -131,8 +131,8 @@
                                     </span>
                                  </span>
                               </label>
-                           </div>
-                           <div class="list-holder roomsAndOccupancy" role="region"
+                           <!-- </div> -->
+                           <!-- <div class="list-holder roomsAndOccupancy" role="region"
                               aria-label="Rooms and occupancy" *ngIf="roomsAndOccupancy == true">
                               <div class="item business-text p-4">
                                  <div class="row">
@@ -171,7 +171,7 @@
                                                 <span class="button_text">+</span>
                                              </button>
                                              <!-- <span class="stepper_display" aria-live="assertive" >{{adults}} Adults</span> -->
-                                          </div>
+                                          <!-- </div>
                                        </div>
                                     </div>
                                     <div class="group_field group-children ">
@@ -198,7 +198,7 @@
                                                 <span class="button_text">+</span>
                                              </button>
                                              <!-- <span class="stepper_display" aria-live="assertive" id="group_children_desc">{{children}} Children</span> -->
-                                          </div>
+                                          <!-- </div>
                                        </div>
                                     </div>
                                     <div class="group_field group_field-rooms">
@@ -224,13 +224,13 @@
                                                 [disabled]="maxSelectRoom <= noOfrooms">
                                                 <span class="button_text">+</span>
                                              </button>
-                                             <!-- <span class="stepper_display" id="no_rooms_desc">{{noOfrooms}} Rooms</span> -->
+                                             
                                           </div>
                                        </div>
                                     </div>
                                  </div>
                               </div>
-                           </div>
+                           </div>  -->
                         </div>
                      </div>
                     </div>
@@ -485,7 +485,7 @@
                       <form class="form" (ngSubmit)="orderForm.form.valid" #orderForm="ngForm">
                         <div class="row">
                           <div class="col-md-12 card">
-                            <h5>Confirm booking</h5>
+                            <h5 class="px-4">Confirm booking</h5>
                             <p class="">
                               Pay the total amount
                               {{ booking.totalAmount  | currency: property.localCurrency.toUpperCase():"symbol":"1.2-2"  }}

@@ -106,10 +106,10 @@
 
   
  
-  .business-text {
-    background-color: white;
+  /* .business-text {
+    color: white;
     padding: 5px 10px;
-  }
+  } */
   .group_field{
     width: 220px;
     font-size: 16px;
@@ -123,4 +123,6 @@
   .stepper_display{
     padding: 0 10px;
   }
-  
+  .text-default{
+    color: #fff;
+  }

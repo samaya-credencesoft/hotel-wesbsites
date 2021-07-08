@@ -239,6 +239,31 @@ export class ChooseRoomComponent implements OnInit {
         (1000 * 60 * 60 * 24)
     );
   }
+  getDateFormatYearMonthDay(
+    day12: number,
+    month12: number,
+    year12: number
+  ): string {
+    const year = year12;
+    const date = day12;
+
+    const month = month12;
+
+    let month1;
+    let day1;
+    if (Number(month) < 10) {
+      month1 = `0${month}`;
+    } else {
+      month1 = `${month}`;
+    }
+    if (Number(date) < 10) {
+      day1 = `0${date}`;
+    } else {
+      day1 = `${date}`;
+    }
+
+    return `${year}-${month1}-${day1}`;
+  }
   onRoomBook(room, index) {
     // this.dateModel.room = room;
     this.selectedIndex = index;
@@ -468,29 +493,5 @@ export class ChooseRoomComponent implements OnInit {
     this.yearSelected2 = yearAndMonth[0];
     this.monthSelected2 = parseInt(yearAndMonth[1]) - 1;
   }
-  getDateFormatYearMonthDay(
-    day12: number,
-    month12: number,
-    year12: number
-  ): string {
-    const year = year12;
-    const date = day12;
-
-    const month = month12;
-
-    let month1;
-    let day1;
-    if (Number(month) < 10) {
-      month1 = `0${month}`;
-    } else {
-      month1 = `${month}`;
-    }
-    if (Number(date) < 10) {
-      day1 = `0${date}`;
-    } else {
-      day1 = `${date}`;
-    }
-
-    return `${year}-${month1}-${day1}`;
-  }
+  
 }
