@@ -23,157 +23,203 @@
           <div class="tab-contentt">
             <div class="row">
               <div class="col-lg-4">
+
                 <div class="sidebar">
                   <div class="avail-sec">
-                    <form>
+                    <!-- <form> -->
+                      <div class="row mb-2">
+                        <div class="col-lg-12 col-sm-12">
+
+                              <!-- <div class="form-group">
+                                 <label for="city" class="text-white">Destination/City name</label>
+                                 <input type="text" placeholder="Search City"
+                                    class="form-control form-control-alternative" value="{{bookingCity}}"
+                                    [(ngModel)]="bookingCity" readonly="readonly">
+                              </div> -->
+                              <div class="form-group hidden">
+                                 <div class="input-group">
+                                    <input name="datepicker" class="form-control" ngbDatepicker
+                                       #datepicker="ngbDatepicker" [autoClose]="true"
+                                       (dateSelect)="onDateSelection($event)" [displayMonths]="1"
+                                       [dayTemplate]="t" outsideDays="hidden" [startDate]="fromDate!"
+                                       [minDate]="bookingMinDate" [maxDate]="bookingMaxDate">
+                                    <ng-template #t let-date let-focused="focused">
+                                       <span class="custom-day" [class.focused]="focused"
+                                          [class.range]="isRange(date)"
+                                          [class.faded]="isHovered(date) || isInside(date)"
+                                          (mouseenter)="hoveredDate = date" (mouseleave)="hoveredDate = null">
+                                          {{ date.day }}
+                                       </span>
+                                    </ng-template>
+                                 </div>
+                              </div>
+                              <div class="form-group">
+                                 <label for="check-in-date" class="text-white">Check-in date</label>
+                                 <input #dpFromDate type="text" class="form-control text-default"
+                                    placeholder="yyyy-mm-dd" name="dpFromDate" (click)="datepicker.toggle()"
+                                    [value]="formatter.format(fromDate) | date:'EEE, MMM d, y'" autocomplete="off"
+                                    (input)="fromDate = validateInput(fromDate, dpFromDate.value)" required>
+                                 <!-- <div class="input-group-append">
+                                 <button class="btn btn-outline-secondary calendar"
+                                    type="button"></button>
+                              </div> -->
+                              </div>
+
+                              <div class="form-group">
+                                 <label for="check-out-date" class="text-white">Check-out date</label>
+                                 <input #dpToDate type="text" class="form-control text-default"
+                                    placeholder="yyyy-mm-dd" name="dpToDate" (click)="datepicker.toggle()"
+                                    [value]="formatter.format(toDate) | date:'EEE, MMM d, y'" autocomplete="off"
+                                    (input)="toDate = validateInput(toDate, dpToDate.value)" required>
+                                 <!-- <div class="input-group-append" (click)="datepicker.toggle()">
+                              <button class="btn btn-outline-secondary calendar"
+                                 type="button"></button>
+                              </div>-->
+                              </div>
+
+                              <div class="form-group">
+                                 <label for="no-of-guest" class="text-white">{{DiffDate}} night(s) stay</label>
+                                 <div data-visible="accommodation,flights" class="input-group guests">
+                                    <div data-component="index/guest-errors" data-id="main"
+                                       data-view-id="accommodation" role="alert">
+                                    </div>
+                                    <div class="input-box" (click)="toggleRoomsAndOccupancy()">
+
+                                       <label class="text-default ">
+                                          <span class="guests_count">
+                                             <span data-adults-count="">{{adults}} adults</span>
+                                             <span data-visible="accommodation">
+                                                &nbsp;·&nbsp;
+                                                <span data-children-count="">{{children}} children</span>
+                                             </span>
+                                             <span data-visible="accommodation">
+                                                &nbsp;·&nbsp;
+                                                <span data-room-count="">{{noOfrooms}} room</span>
+                                             </span>
+                                          </span>
+                                       </label>
+                                    </div>
+                                    <div class="list-holder roomsAndOccupancy" role="region"
+                                       aria-label="Rooms and occupancy" *ngIf="roomsAndOccupancy == true">
+                                       <div class="item business-text p-4">
+                                          <div class="row">
+                                             <div class="col-10">
+
+                                             </div>
+                                             <div class="col-2">
+                                                <button class="btn btn-default btn-sm"
+                                                   (click)="toggleRoomsAndOccupancy()">X</button>
+                                             </div>
+                                          </div>
+                                          <div class="clearfix" data-render="">
+                                             <div class="group_field group_field-adults">
+
+                                                <div class="row stepper" data-component="InputStepper">
+                                                   <div class="col-6 stepper_title-wrapper text-default">
+                                                      <label class="stepper_title"
+                                                         for="group_adults">Adults</label>
+                                                   </div>
+                                                   <div class="col-6">
+                                                      <input style="display: none" type="number"
+                                                         class="stepper_input" data-ref="input-stepper-field"
+                                                         id="group_adults" name="group_adults" min="1" max="30"
+                                                         value="2" data-group-adults-count=""
+                                                         [(ngModel)]="adults">
+                                                      <button class="btn btn-outline-primary btn-sm" type="button"
+                                                         (click)="adults = adults - 1; booking.noOfPersons = adults;"
+                                                         [disabled]="adults <=1">
+                                                         <span class="button_text">−</span>
+                                                      </button>
+                                                      <span class="stepper_display text-default"
+                                                         aria-hidden="true">{{adults}}</span>
+                                                      <button class="btn btn-outline-primary btn-sm" type="button"
+                                                         (click)="adults = adults + 1; booking.noOfPersons = adults; planDetails"
+                                                         [disabled]="(maxOccupancy + children) * noOfrooms <= adults">
+                                                         <span class="button_text">+</span>
+                                                      </button>
+                                                      <!-- <span class="stepper_display" aria-live="assertive" >{{adults}} Adults</span> -->
+                                                   </div>
+                                                </div>
+                                             </div>
+                                             <div class="group_field group-children ">
+                                                <div class="row stepper" data-component="InputStepper">
+                                                   <div class="col-6 stepper_title-wrapper">
+                                                      <label class="stepper_title text-default"
+                                                         for="group_children">Children</label>
+                                                   </div>
+                                                   <div class="col-6">
+                                                      <input style="display: none" type="number"
+                                                         class="stepper_input" data-ref="input-stepper-field"
+                                                         id="group_adults" name="group_adults" min="1" max="30"
+                                                         value="2" data-group-adults-count="">
+                                                      <button class="btn btn-outline-primary btn-sm" type="button"
+                                                         (click)="children = children - 1; booking.noOfChildren = children;"
+                                                         [disabled]="children <=0">
+                                                         <span class="button_text">−</span>
+                                                      </button>
+                                                      <span class="stepper_display text-default"
+                                                         aria-hidden="true">{{children}}</span>
+                                                      <button class="btn btn-outline-primary btn-sm" type="button"
+                                                         (click)="children = children + 1; booking.noOfChildren = children; "
+                                                         [disabled]="(maxOccupancy + children)* noOfrooms <= children">
+                                                         <span class="button_text">+</span>
+                                                      </button>
+                                                      <!-- <span class="stepper_display" aria-live="assertive" id="group_children_desc">{{children}} Children</span> -->
+                                                   </div>
+                                                </div>
+                                             </div>
+                                             <div class="group_field group_field-rooms">
+                                                <div class="row stepper" data-component="InputStepper">
+                                                   <div class="col-6 stepper_title-wrapper">
+                                                      <label class="stepper_title text-default"
+                                                         for="no_rooms">Rooms</label>
+                                                   </div>
+                                                   <div class="col-6">
+                                                      <input style="display: none" type="number"
+                                                         class="stepper_input" data-ref="input-stepper-field"
+                                                         id="group_adults" name="group_adults" min="1" max="30"
+                                                         value="2" data-group-adults-count="">
+                                                      <button class="btn btn-outline-primary btn-sm" type="button"
+                                                         (click)="noOfrooms = noOfrooms - 1; booking.noOfRooms = noOfrooms;"
+                                                         [disabled]="noOfrooms <=1">
+                                                         <span class="button_text">−</span>
+                                                      </button>
+                                                      <span class="stepper_display text-default"
+                                                         aria-hidden="true">{{noOfrooms}}</span>
+                                                      <button class="btn btn-outline-primary btn-sm" type="button"
+                                                         (click)="noOfrooms = noOfrooms + 1; booking.noOfRooms = noOfrooms;"
+                                                         [disabled]="maxSelectRoom <= noOfrooms">
+                                                         <span class="button_text">+</span>
+                                                      </button>
+                                                      <!-- <span class="stepper_display" id="no_rooms_desc">{{noOfrooms}} Rooms</span> -->
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <!-- <h6>{{checkAvailabilityStatusName}}</h6> -->
+                              <!-- <button class="btn btn-secondary w-100" type="button"
+                                 (click)="checkingAvailability()">Check Availability</button> -->
+                              <!-- <button title="" class="btn btn-secondary w-100 my-2 select-plan"
+                                 (click)="bookRoomNow()"
+                                 [disabled]=" checkAvailabilityStatus == false || planSelected == false">Book Now
+                                 <i class="la la-arrow-right"></i></button> -->
+
+                        </div>
+                     </div>
                       <div class="checking-form">
                         <ul class="checkform">
-                          <li>
-                            <div class="check-form">
-                              <h4>CHECK-IN</h4>
-                              <div class="det">
-                                <b class="val-date">{{ this.daySelected }}</b>
-                                <span>
-                                  <i class="month">{{monthArray[monthSelected] }}</i> <i class="year">
-                                    {{  this.yearSelected  }}</i>
-                                  <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
-                                </span>
-                              </div>
-                              <input type="text" name="dateIn" class="date-pick" [(ngModel)]="booking.fromDate">
-                              <div class="clearfix"></div>
-                            </div>
-                            <!--check-form end-->
-                          </li>
-                          <li>
-                            <div class="check-form">
-                              <h4>CHECK-OUt</h4>
-                              <div class="det">
-                                <b class="val-date">{{ this.daySelected2 }}</b>
-                                <span>
-                                  <i class="month">{{ monthArray[monthSelected2] }}</i> <i
-                                    class="year">{{  this.yearSelected2  }}</i>
-                                  <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
-                                </span>
-                              </div>
-                              <input type="text" name="dateOut" class="date-pick" [(ngModel)]="booking.toDate">
-                              <div class="clearfix"></div>
-                            </div>
-                            <!--check-form end-->
-                          </li>
-                          <!-- <li class="item-cont">
-                            <div class="check-form">
-                              <h4 class="text-center">Guest</h4>
-                              <div class="det">
-                                <div class="handle-counter" id="handleCounter">
-                                                  <ul>
-                                                      <li class="input-fieldd"><input type="text" value="1" data-num="1"></li>
-                                                      <li class="counter-control">
-                                                        <button class="counter-minus btn" disabled=""><i class="fa fa-angle-up"></i></button>
-                                                        <button class="counter-plus btn"><i class="fa fa-angle-down"></i></button>
-                                                      </li>
-                                                  </ul>
-                                                  <div class="clearfix"></div>
-                                              </div>
-                              </div>
-                              <div class="clearfix"></div>
-                            </div>
-                            <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
-                          </li> -->
-                          <li class="item-cont">
-                            <div class="check-form">
-                              <h4 class="text-center">Guest</h4>
-                              <div class="det">
-                                <div class="handle-counter" id="handleCounter">
-                                  <ul>
-                                    <li class="input-fieldd" style="color: #ffffff;
-                                    font-size: 35px;
-                                    font-weight: 600;">
-                                      <input style="display: none" type="number" class="stepper_input"
-                                        data-ref="input-stepper-field" id="group_adults" name="group_adults" min="1"
-                                        max="30" value="2" data-group-adults-count=""
-                                        [(ngModel)]="booking.noOfPersons">{{booking.noOfPersons}}
 
-                                    </li>
-                                    <li class="counter-control">
-                                      <!-- <button class="counter-plus btn">
-                                        <i class="fa fa-angle-up"></i>
-                                      </button>
-                                      <button class="counter-minus btn" disabled="">
-                                        <i class="fa fa-angle-down"></i>
-                                      </button> -->
-                                      <button class="btn btn-outline-default btn-sm" type="button"
-                                        (click)="booking.noOfPersons = booking.noOfPersons + 1;"
-                                        [disabled]="booking.noOfPersons >=30">
-                                        <!-- <span class="button_text">+</span> -->
-                                        <i class="fa fa-angle-up"></i>
-                                      </button>
-                                      <button class="btn btn-outline-default btn-sm" type="button"
-                                        (click)="booking.noOfPersons = booking.noOfPersons - 1;"
-                                        [disabled]="booking.noOfPersons <=1">
-                                        <!-- <span class="button_text">−</span> -->
-                                        <i class="fa fa-angle-down"></i>
-                                      </button>
-
-                                    </li>
-                                  </ul>
-                                  <div class="clearfix"></div>
-                                </div>
-                              </div>
-                              <div class="clearfix"></div>
-                            </div>
-                            <!--check-form end-->
-                          </li>
-                          <li class="item-cont">
-                            <div class="check-form">
-                              <h4 class="text-center">Room(s)</h4>
-                              <div class="det">
-                                <div class="handle-counter" id="handleCounter">
-                                  <ul>
-                                    <li class="input-fieldd" style="color: #ffffff;
-                                    font-size: 35px;
-                                    font-weight: 600;">
-                                      <input style="display: none" type="number" class="stepper_input"
-                                        data-ref="input-stepper-field" id="group_adults" name="group_adults" min="1"
-                                        max="30" value="2" data-group-adults-count=""
-                                        [(ngModel)]="booking.noOfRooms">{{booking.noOfRooms}}
-
-                                    </li>
-                                    <li class="counter-control">
-                                      <!-- <button class="counter-plus btn">
-                                        <i class="fa fa-angle-up"></i>
-                                      </button>
-                                      <button class="counter-minus btn" disabled="">
-                                        <i class="fa fa-angle-down"></i>
-                                      </button> -->
-                                      <button class="btn btn-outline-default btn-sm" type="button"
-                                        (click)="booking.noOfRooms = booking.noOfRooms + 1;"
-                                        [disabled]="booking.noOfRooms >=30">
-                                        <!-- <span class="button_text">+</span> -->
-                                        <i class="fa fa-angle-up"></i>
-                                      </button>
-                                      <button class="btn btn-outline-default btn-sm" type="button"
-                                        (click)="booking.noOfRooms = booking.noOfRooms - 1;"
-                                        [disabled]="booking.noOfRooms <=1">
-                                        <!-- <span class="button_text">−</span> -->
-                                        <i class="fa fa-angle-down"></i>
-                                      </button>
-
-                                    </li>
-                                  </ul>
-                                  <div class="clearfix"></div>
-                                </div>
-                              </div>
-                              <div class="clearfix"></div>
-                            </div>
-                            <!--check-form end-->
-                          </li>
                           <li class="check-avail">
                             <a (click)="getAvailableRoom()" title="" class="check-status">CHECK AVAILABILITY</a>
                           </li>
                         </ul>
                         <div class="clearfix"></div>
                       </div>
-                    </form>
+                    <!-- </form> -->
                   </div>
                   <!--avail-sec end-->
                   <!-- <div class="filter-field">
@@ -320,8 +366,8 @@
                         <div class="row">
                           <div class="col-lg-6 col-md-6 col-sm-6" *ngFor="let room of rooms;">
 
-                            <div class="room-details" >
-                              <img src="{{room.imageList[0].url}}" alt="">
+                            <div class="room-details">
+                              <img *ngIf="room.imageList == null"  src="{{room.imageList[0].url}}" alt="">
 
                               <div class="room-hd">
                                 <h4>FROM
@@ -348,7 +394,7 @@
                             <div class="room_details">
                               <div class="room-caroz">
                                 <div class="room_img">
-                                  <img src="{{room.imageList[0].url}}" alt="">
+                                  <img *ngIf="room.imageList == null" src="{{room.imageList[0].url}}" alt="">
 
                                   <span
                                     class="price-tag">{{ booking.roomPrice ||room.roomOnlyPrice  | currency: token.getProperty().localCurrency.toUpperCase()}}<b>/night</b></span>
@@ -409,16 +455,17 @@
                           <div class="room_details">
                             <div class="room-caroz">
                               <div class="room_img">
-                                <img src="{{room.imageList[0].url}}" alt="">
+                                <img *ngIf="room.imageList == null" src="{{room.imageList[0].url}}" alt="">
 
-                                <span
-                                  class="price-tag">{{ room.roomOnlyPrice | currency: token.getProperty().localCurrency.toUpperCase():'symbol':'1.2-2' }}<b>/night</b></span>
+                                <!-- <span
+                                  class="price-tag">{{ room.roomOnlyPrice | currency: token.getProperty().localCurrency.toUpperCase():'symbol':'1.2-2' }}<b>/night</b></span> -->
                               </div>
                               <!--room_img end-->
 
                             </div>
                             <!--room-caroz end-->
                             <div class="room_info">
+                              
                               <h3><a href="#" title="">{{room.name}}</a></h3>
                               <ul class="ppt-list">
                                 <li>
@@ -432,17 +479,16 @@
                                 </li>
                               </ul>
                               <!--ppt-list end-->
-                              <p>{{room.description}} </p>
+                              <!-- <p>{{room.description}} </p>
                               <div class="fct-dv" *ngIf="room.ratesAndAvailabilityDtos !== null">
                                 <h6 class="text-default"><b>Plan:</b></h6>
                                 <div *ngFor="let rates of room.ratesAndAvailabilityDtos; let r= index; ">
-                                  <div *ngIf="room.id == rates.roomId && r<1">
+                                  <div *ngIf="room.id == rates.roomId && r<1"> -->
                                     <!-- <h6>{{ rates.date | date:'MMM d, y' }}</h6> -->
-                                    <mat-radio-group aria-labelledby="example-radio-group-label"
-                                      class="example-radio-group" name="planDetails" [(ngModel)]="planDetails"
+                                    <!-- <mat-radio-group aria-labelledby="example-radio-group-label"  name="planDetails" [(ngModel)]="planDetails"
                                       (ngModelChange)="onPlanSelected(planDetails, room)">
                                       <ng-container *ngFor="let plan of rates.roomRatePlans; let p= index;">
-                                        <mat-radio-button class="example-radio-button" [value]="plan" (click)="booking.roomName = rates.roomName;
+                                        <mat-radio-button  [value]="plan" (click)="booking.roomName = rates.roomName;
                                         booking.roomId = room.id;
                                         booking.roomPrice = plan.amount;
                                         selectedRoomName = rates.roomName;
@@ -456,8 +502,8 @@
 
                                       </ng-container>
 
-                                    </mat-radio-group>
-                                    <div *ngIf="planDetails">
+                                    </mat-radio-group> -->
+                                    <!-- <div *ngIf="planDetails">
                                       <h6 *ngIf="planDetails.roomId == room.id" >Price:
                                         {{ planDetails.amount * DiffDate * noOfrooms | currency:
                                           token.getProperty().localCurrency.toUpperCase():'symbol':'1.2-2' }} <div style="color: #f5365c;"
@@ -468,7 +514,7 @@
                                       <p *ngIf="planDetails.roomId == room.id">Note:
                                         {{ planDetails.description }}
                                       </p>
-                                    </div>
+                                    </div> -->
                                     <!-- <div class="form-check" ngbRadioGroup name="radioBasic" [(ngModel)]="planDetails"
                                       (ngModelChange)="onPlanSelected(plan, room)"
                                       *ngFor="let plan of rates.roomRatePlans; let p= index;">
@@ -489,7 +535,7 @@
                                           Discount)</div>
                                       </h6>
                                     </div> -->
-                                    <div *ngIf="rates.roomRatePlans.length == 0">
+                                    <!-- <div *ngIf="rates.roomRatePlans.length == 0">
                                       <p>Plan Not Available. Without plan you can't book room.
                                       </p>
                                     </div>
@@ -497,8 +543,10 @@
                                 </div>
 
                                 <div class="clearfix"></div>
-                              </div>
-
+                              </div> -->
+                              
+                              
+                             
                               <div class="fct-dv" *ngIf="room.ratesAndAvailabilityDtos !== null">
                                 <ul class="fct-list">
                                   <li>
@@ -519,30 +567,94 @@
                                   </li>
                                 </ul>
                                 <!--fct-list end-->
-                                <button title="" (click)="onRoomBooking(room, i);
+                                <!-- <button title="" (click)="onRoomBooking(room, i);
                                                 booking.roomId = room.id;
                                                 selectedRoomMaximumOccupancy = room.maximumOccupancy;
                                                 selectedRoomAvailableNumber = room.noOfRooms;
                                                 checkAvailabilityStatus = true;
                                                 bookRoomNow() " class="lnk-default"
                                   [disabled]="planDetails == undefined || planDetails.roomId!== room.id">Book Now <i
-                                    class="la la-arrow-right"></i></button>
+                                    class="la la-arrow-right"></i></button> -->
 
                                 <div class="clearfix"></div>
                               </div>
                               <div *ngIf="room.ratesAndAvailabilityDtos == null">
-                                <h2>Not Available!</h2>
+                                <h2>Room Not Available!</h2>
                               </div>
+                              
                             </div>
+                            
                             <!--room_info end-->
                             <div class="clearfix"></div>
-
+                            <div class="col-12 pr-4 plan_layout">
+                              <div class="fct-dv mt-4">
+                                <h5 class="text-primary "><b>Select Plan:</b></h5>
+                                <div class="row"
+                                   *ngFor="let rates of room.ratesAndAvailabilityDtos; let r= index; ">
+                                   <div class="col-12" *ngIf="room.id == rates.roomId && r<1">
+                                    <div class="row"
+                                    *ngFor="let plan of rates.roomRatePlans; let p= index;">
+                                    <div class="col-6 pull-left">
+                                       <h5> {{ plan.name }}</h5>
+                                       <div>Extra person charge {{ plan.extraChargePerPerson | currency: currency:'symbol':'1.2-2'}}</div>
+                                       <div>Extra child charge {{ plan.extraChargePerChild | currency: currency:'symbol':'1.2-2'}}</div>
+    
+                                       <p> {{ plan.description }}</p>
+    
+                                    </div>
+                                    <div class="col-6 text-right"> 
+                                       <h5 class="mb-0">{{ (plan.amount * DiffDate * noOfrooms)   | currency: currency:'symbol':'1.2-2' }}</h5> 
+                                       <div style="color: #f5365c;" *ngIf="hasPercentage(room.roomOnlyPrice, plan.amount) == true">
+                                             ({{ ((room.roomOnlyPrice -
+                                             plan.amount)/room.roomOnlyPrice) * 100 | number:'1.2-2' }}%
+                                             Discount)</div>
+                                             <b class="small-text"> {{DiffDate}} nights,
+                                              {{booking.noOfPersons}}
+                                              adults</b><br>
+                                           <button ngbButton
+                                              class=" btn btn-sm btn-primary pull-right mb-4" (click)="
+                                        onPlanSelected(plan, room);
+                                        booking.roomName = rates.roomName;
+                                     selectedRoomName = rates.roomName; 
+                                     booking.roomType = rates.roomName;
+                                     maxSelectRoom = rates.noOfAvailable;
+                                     maxOccupancy = room.maximumOccupancy;
+                                        onRoomBook(room.id, i); 
+                                        booking.roomId = room.id; 
+                                        selectedRoomMaximumOccupancy = room.maximumOccupancy;
+                                        selectedRoomAvailableNumber = room.noOfRooms;
+                                        checkAvailabilityStatus = true;
+                                        bookRoomNow() ">Book Now</button>
+                                        
+                                        </div>
+    
+                                     </div>
+                                     <div *ngIf="rates.roomRatePlans.length == 0">
+                                        <p>Plan Not Available. Without plan you can't book room.
+                                        </p>
+                                     </div>
+                                  </div>
+                               </div>
+                               <div class="clearfix"></div>
+                                <div class="col-12 mb-4" *ngIf="room.description">
+                                <h6>Description</h6>
+                                <div class=" mt-2" [innerHtml]="room.description"></div>
+                            
+                             </div>
+                              </div>
+                              </div>
                           </div>
-                          <!--room-details end-->
-                        </div>
-                        <!--tb-row end-->
 
+                          
+                          
+                          
+                        
 
+                       
+                        
+                <!--room-details end-->
+                      </div>
+                  <!--tb-row end-->
                       </div>
                       <!--tb-detaiils end-->
                     </div>

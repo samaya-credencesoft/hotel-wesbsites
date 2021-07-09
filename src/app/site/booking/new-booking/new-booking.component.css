@@ -1,3 +1,18 @@
 .form-submit{
   margin-left: 12px;
 }
+#fromDate, #toDate {
+  width: 100%;
+  background: none;
+    color: white;
+}
+.avail-sec{
+  background: #fff!important;
+}
+.bg-secondary{
+  background-color: #eeeeee!important;
+  
+}
+.bg-secondary i{
+color: #eeeeee!important;
+}

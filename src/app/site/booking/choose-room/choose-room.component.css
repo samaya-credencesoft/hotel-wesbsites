@@ -21,7 +21,7 @@
     }
     .room_img{
       padding: 10px;
-      height: 300px;
+      height: 200px!important;
     }
     @media (min-width: 992px)And (max-width: 1199px){
       .main-content{

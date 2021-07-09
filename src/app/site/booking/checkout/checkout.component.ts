@@ -23,6 +23,7 @@ import { Message } from "../../home/model/message";
 import { Room } from "../../../room/room";
 import { ApiService, PROPERTY_ID, SMS_NUMBER } from "src/app/api.service";
 import { HttpErrorResponse } from "@angular/common/http";
+import { NgbDate } from "@ng-bootstrap/ng-bootstrap";
 export interface Year {
   value: string;
   viewValue: string;
@@ -47,6 +48,8 @@ export interface PaymentMode {
   styleUrls: ["./checkout.component.css"],
 })
 export class CheckoutComponent implements OnInit {
+  fromDate: NgbDate | null;
+  toDate: NgbDate | null;
   paymentLoader: boolean = false;
   verified = false;
   msgs: Message[] = [];
@@ -148,6 +151,10 @@ export class CheckoutComponent implements OnInit {
   alertType: string;
   contentDialog: any;
 
+  DiffDate;
+  enddate;
+  startDate;
+
   monthArray = [
     "Jan",
     "Feb",
@@ -167,6 +174,7 @@ export class CheckoutComponent implements OnInit {
   private ewayErrors: string = null;
   private ewayInitComplete: boolean = false;
   submitButtonDisabled : boolean = false;
+  currency: string;
   constructor(
     private apiService: ApiService,
     public token: TokenStorage,
@@ -181,6 +189,64 @@ export class CheckoutComponent implements OnInit {
     this.room = new Room();
     this.payment = new Payment();
     this.property = new Property();
+
+    if (this.token.getProperty() != undefined && this.token.getProperty() != null) {
+      this.property = this.token.getProperty();
+      this.currency = this.property.localCurrency.toLocaleUpperCase();
+    }
+
+    if (this.token.getBookingData() != undefined && this.token.getBookingData() != null) {
+      this.booking = this.token.getBookingData();
+
+      console.log('this.booking : ', JSON.stringify(this.booking));
+
+      if (
+        this.booking.fromDate != undefined &&
+        this.booking.toDate != undefined
+      ) {
+
+        this.isAvailableChecked = true;
+        // this.getCheckInDateFormat(this.booking.fromDate);
+        // this.getcheckOutDateFormat(this.booking.toDate);
+        this.fromDate = new NgbDate(
+          this.mileSecondToNGBDate(this.booking.fromDate).year,
+          this.mileSecondToNGBDate(this.booking.fromDate).month,
+          this.mileSecondToNGBDate(this.booking.fromDate).day
+        );
+        this.toDate = new NgbDate(
+          this.mileSecondToNGBDate(this.booking.toDate).year,
+          this.mileSecondToNGBDate(this.booking.toDate).month,
+          this.mileSecondToNGBDate(this.booking.toDate).day
+        );
+        // this.adults = this.booking.noOfPersons;
+        // this.children = this.booking.noOfChildren;
+        // this.noOfrooms = this.booking.noOfRooms;
+      } else {
+
+        this.booking.fromDate = this.getDateFormatYearMonthDay(
+          this.fromDate.day,
+          this.fromDate.month,
+          this.fromDate.year
+        );
+        this.booking.toDate = this.getDateFormatYearMonthDay(
+          this.toDate.day,
+          this.toDate.month,
+          this.toDate.year
+        );
+        this.isAvailableChecked = false;
+        this.checkincheckOutDate();
+      }
+      
+      this.getDiffDate(this.toDate, this.fromDate);
+
+      console.log("this.bookingData ", JSON.stringify(this.booking));
+    this.booking.discountAmount = 0;
+    this.booking.netAmount = (this.booking.roomPrice * this.booking.noOfRooms * this.DiffDate) + this.booking.extraPersonCharge + this.booking.extraChildCharge;
+    this.booking.gstAmount = (this.booking.netAmount * this.booking.taxPercentage) / 100;
+    this.booking.totalAmount = this.booking.netAmount + this.booking.gstAmount - this.booking.discountAmount;
+    
+    }
+   
   }
 
   ngOnInit() {
@@ -228,6 +294,33 @@ export class CheckoutComponent implements OnInit {
 
     this.router.navigate(["/booking/choose"], navigationExtras);
   }
+  mileSecondToNGBDate(date: string) {
+    const dsd = new Date(date);
+    const year = dsd.getFullYear();
+    const day = dsd.getDate();
+    const month = dsd.getMonth() + 1;
+    return { year: year, month: month, day: day };
+  }
+  getDiffDate(toDate, fromDate) {
+    this.enddate = new Date(toDate.year, toDate.month - 1, toDate.day);
+
+    this.startDate = new Date(fromDate.year, fromDate.month - 1, fromDate.day);
+    // console.log('this.fromDate: ', this.startDate);
+    // console.log('this.toDate: ', this.enddate);
+    this.DiffDate = Math.floor(
+      (Date.UTC(
+        this.enddate.getFullYear(),
+        this.enddate.getMonth(),
+        this.enddate.getDate()
+      ) -
+        Date.UTC(
+          this.startDate.getFullYear(),
+          this.startDate.getMonth(),
+          this.startDate.getDate()
+        )) /
+        (1000 * 60 * 60 * 24)
+    );
+  }
   checkedOutEvent() {
     this.isAvailableChecked = false;
   }
@@ -240,6 +333,19 @@ export class CheckoutComponent implements OnInit {
     afterDate.setDate(currentDate.getDate() + 1);
     afterDate.setFullYear(currentDate.getFullYear());
     afterDate.setMonth(currentDate.getMonth());
+
+    this.daySelected2 = this.getDay(afterDate);
+    this.yearSelected2 = String(afterDate.getFullYear());
+    this.monthSelected2 = afterDate.getMonth();
+  }
+  checkincheckOutDate() {
+    let currentDate: Date = new Date();
+    this.daySelected = this.getDay(currentDate);
+    this.yearSelected = String(currentDate.getFullYear());
+    this.monthSelected = currentDate.getMonth();
+
+    let afterDate: Date = new Date();
+    afterDate.setDate(currentDate.getDate() + 1);
 
     this.daySelected2 = this.getDay(afterDate);
     this.yearSelected2 = String(afterDate.getFullYear());
@@ -818,5 +924,30 @@ export class CheckoutComponent implements OnInit {
     this.daySelected2 = String(yearAndMonth[2].split(" ", 1));
     this.yearSelected2 = yearAndMonth[0];
     this.monthSelected2 = parseInt(yearAndMonth[1]) - 1;
+  }
+  getDateFormatYearMonthDay(
+    day12: number,
+    month12: number,
+    year12: number
+  ): string {
+    const year = year12;
+    const date = day12;
+
+    const month = month12;
+
+    let month1;
+    let day1;
+    if (Number(month) < 10) {
+      month1 = `0${month}`;
+    } else {
+      month1 = `${month}`;
+    }
+    if (Number(date) < 10) {
+      day1 = `0${date}`;
+    } else {
+      day1 = `${date}`;
+    }
+
+    return `${year}-${month1}-${day1}`;
   }
 }

@@ -1,3 +1,4 @@
+
 <section class="main-content bkng">
   <div class="container">
     <div class="page-content">
@@ -23,149 +24,85 @@
       <div class="row">
         <div class="col-lg-4">
           <div class="sidebar">
-            <div class="avail-sec">
-              <form>
-                <div class="checking-form">
-                  <ul class="checkform">
-                    <li>
-                      <div class="check-form">
-                        <h4>CHECK-IN</h4>
-                        <div class="det">
-                          <b class="val-date">{{ this.daySelected }}</b>
-                          <span>
-                            <i class="month">{{monthArray[monthSelected] }}</i> <i class="year">
-                              {{  this.yearSelected  }}</i>
-                            <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
-                          </span>
-                        </div>
-                        <input type="text"  name="dateIn" class="date-pick" [(ngModel)]="booking.fromDate">
-                        <div class="clearfix"></div>
-                      </div>
-                      <!--check-form end-->
-                    </li>
-                    <li>
-                      <div class="check-form">
-                        <h4>CHECK-OUt</h4>
-                        <div class="det">
-                          <b class="val-date">{{ this.daySelected2 }}</b>
-                          <span>
-                            <i class="month">{{ monthArray[monthSelected2] }}</i> <i
-                              class="year">{{  this.yearSelected2  }}</i>
-                            <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
-                          </span>
-                        </div>
-                        <input type="text"  name="dateOut" class="date-pick" [(ngModel)]="booking.toDate">
-                        <div class="clearfix"></div>
-                      </div>
-                      <!--check-form end-->
-                    </li>
-                    <!-- <li class="item-cont">
-                      <div class="check-form">
-                        <h4 class="text-center">Guest</h4>
-                        <div class="det">
-                          <div class="handle-counter" id="handleCounter">
-                                            <ul>
-                                                <li class="input-fieldd"><input type="text" value="1" data-num="1"></li>
-                                                <li class="counter-control">
-                                                  <button class="counter-minus btn" disabled=""><i class="fa fa-angle-up"></i></button>
-                                                  <button class="counter-plus btn"><i class="fa fa-angle-down"></i></button>
-                                                </li>
-                                            </ul>
-                                            <div class="clearfix"></div>
-                                        </div>
-                        </div>
-                        <div class="clearfix"></div>
-                      </div>
-                      <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
-                    </li> -->
-                    <li class="item-cont">
-                      <div class="check-form">
-                        <h4 class="text-center">Guest</h4>
-                        <div class="det">
-                          <div class="handle-counter" id="handleCounter">
-                            <ul>
-                              <li class="input-fieldd" style="color: #ffffff;
-                              font-size: 35px;
-                              font-weight: 600;">
-                                <input style="display: none" type="number" class="stepper_input" data-ref="input-stepper-field"
-                                  id="group_adults" name="group_adults" min="1" max="30" value="2" data-group-adults-count=""
-                                  [(ngModel)]="booking.noOfPersons">{{booking.noOfPersons}}
-
-                              </li>
-                              <li class="counter-control">
-                                <!-- <button class="counter-plus btn">
-                                  <i class="fa fa-angle-up"></i>
-                                </button>
-                                <button class="counter-minus btn" disabled="">
-                                  <i class="fa fa-angle-down"></i>
-                                </button> -->
-                                <button class="btn btn-outline-default btn-sm" type="button" (click)="booking.noOfPersons = booking.noOfPersons + 1;submitButtonDisable = true;" [disabled]="booking.noOfPersons >=30">
-                                  <!-- <span class="button_text">+</span> -->
-                                  <i class="fa fa-angle-up"></i>
-                                </button>
-                                <button class="btn btn-outline-default btn-sm" type="button" (click)="booking.noOfPersons = booking.noOfPersons - 1;submitButtonDisable = true;"
-                                  [disabled]="booking.noOfPersons <=1">
-                                  <!-- <span class="button_text">−</span> -->
-                                  <i class="fa fa-angle-down"></i>
-                                </button>
-
-                              </li>
-                            </ul>
-                            <div class="clearfix"></div>
-                          </div>
-                        </div>
-                        <div class="clearfix"></div>
-                      </div>
-                      <!--check-form end-->
-                    </li>
-                    <li class="item-cont">
-                      <div class="check-form">
-                        <h4 class="text-center">Room(s)</h4>
-                        <div class="det">
-                          <div class="handle-counter" id="handleCounter">
-                            <ul>
-                              <li class="input-fieldd" style="color: #ffffff;
-                              font-size: 35px;
-                              font-weight: 600;">
-                                <input style="display: none" type="number" class="stepper_input" data-ref="input-stepper-field"
-                                  id="group_adults" name="group_adults" min="1" max="30" value="2" data-group-adults-count=""
-                                  [(ngModel)]="booking.noOfRooms">{{booking.noOfRooms}}
-
-                              </li>
-                              <li class="counter-control">
-                                <!-- <button class="counter-plus btn">
-                                  <i class="fa fa-angle-up"></i>
-                                </button>
-                                <button class="counter-minus btn" disabled="">
-                                  <i class="fa fa-angle-down"></i>
-                                </button> -->
-                                <button class="btn btn-outline-default btn-sm" type="button" (click)="booking.noOfRooms = booking.noOfRooms + 1; submitButtonDisable = true;" [disabled]="booking.noOfRooms >=30">
-                                  <!-- <span class="button_text">+</span> -->
-                                  <i class="fa fa-angle-up"></i>
-                                </button>
-                                <button class="btn btn-outline-default btn-sm" type="button" (click)="booking.noOfRooms = booking.noOfRooms - 1; submitButtonDisable = true;"
-                                  [disabled]="booking.noOfRooms <=1">
-                                  <!-- <span class="button_text">−</span> -->
-                                  <i class="fa fa-angle-down"></i>
-                                </button>
-
-                              </li>
-                            </ul>
-                            <div class="clearfix"></div>
-                          </div>
-                        </div>
-                        <div class="clearfix"></div>
-                      </div>
-                      <!--check-form end-->
-                    </li>
-                    <li class="check-avail">
-                      <a (click)="getAvailableRoom()" title="" class="check-status">CHECK AVAILABILITY</a>
-                    </li>
-                  </ul>
-                  <div class="clearfix"></div>
+            <!-- <div class="avail-sec"> -->
+              <!-- <form> -->
+                              <!-- </form> -->
+              <div class="widget bg-secondary my-2">
+                <h4 class="bg-primary p-4"><i class="fa fa-calendar-check-o"></i> Your Booking
+                  Details</h4>
+                <div class="row px-4">
+                  <div class="col-6">
+                    <h6>Check-in</h6>
+                    <p>{{booking.fromDate | date:'EEE, MMM d, y'}}</p>
+                  </div>
+                  <div class="col-6">
+                    <h6>Check-out</h6>
+                    <p>{{booking.toDate | date:'EEE, MMM d, y'}}</p>
+    
+                  </div>
                 </div>
-              </form>
-            </div>
+                <div class="row px-4">
+                  <div class="col-12">
+                    <h6>Total length of stay:</h6>
+                    <p>{{DiffDate}} Night(s)</p>
+                    <h6>You selected:</h6>
+                    <p>{{booking.roomType}}</p>
+                  </div>
+                </div>
+                <div class="row px-4 pb-4">
+                  <div class="col-12">
+                    <h6>Guests:</h6>
+                    <div>{{booking.noOfPersons}} Adult(s) </div><span *ngIf="booking.noOfChildren > 0" >{{booking.noOfChildren}} Child </span>
+                    <!-- <h6>You selected:</h6>
+                    <p>{{booking.roomType}}</p> -->
+                  </div>
+                </div>
+              </div>
+
+              <div class="widget bg-secondary my-4">
+                <h5 class="card-title bg-primary p-4 pb-5 w-100">Price<span class="pull-right text-right">
+                    {{ booking.totalAmount | currency: currency :'symbol':'1.2-2' }}
+                    <br>
+                    <p class="text-white">Total Payable Amount</p>
+                  </span>
+                </h5>
+    
+                <div class="row px-4">
+                  <div class="col-12">
+                    <h6>Total length of stay:</h6>
+                    <p>{{ DiffDate }} Night(s)</p>
+                    <h6>You selected:</h6>
+                    <p>{{ booking.roomName }}</p>
+                    <h6>Room price:</h6>
+                    <p>{{booking.roomPrice | currency: currency:'symbol':'1.2-2' }} x {{DiffDate}}</p>
+                    <h6 *ngIf="discountPercentage"><b>Discount ({{booking.discountPercentage}}%):
+                    </b>{{booking.discountAmount | currency: currency:'symbol':'1.2-2'}}
+                  </h6>
+                    <!-- <h6>Tax Amount ({{this.taxPercentage}}%):</h6>
+                    <p *ngIf="businessUser.taxDetails">{{ businessUser.taxDetails[0].name }} & charges
+                      {{  (this.booking.netAmount * this.booking.taxPercentage) / 100 | currency: currency:'symbol':'1.2-2' }}
+                    </p> -->
+    
+                    <div *ngIf="booking.noOfExtraPerson > 0">
+                      <h6 class="">Extra Person charges</h6>
+                      <p class="">
+                         {{ booking.extraPersonCharge | currency: currency:'symbol':'1.2-2' }}
+                      </p>
+                     </div>
+          
+                     <div *ngIf="booking.noOfExtraChild > 0">
+          
+                      <h6 class="">Extra Child charges</h6>
+                      <p class="">
+                         {{ booking.extraChildCharge | currency: currency:'symbol':'1.2-2' }}
+                      </p>
+                     </div>
+                  </div>
+                </div>
+              </div>
+<!-- Booking Summary / End -->
+
+            <!-- </div> -->
             <div class="extra_info"></div>
           </div>
         </div>
@@ -721,12 +658,7 @@
               <!-- <div class="col-md-12" *ngIf="!verified && !customerExist || order.email != '' && order.mobile != '' " > -->
               <div
                 class="col-md-12"
-                *ngIf="
-                  lookup &&
-                  !customerExist &&
-                  !verified &&
-                  (booking.email != '' || booking.mobile != '')
-                "
+                *ngIf="lookup && !customerExist && !verified &&  (booking.email != '' || booking.mobile != '') "
               >
                 <div class="form-group">
                   <label>User Not Exist! Send Verification Code</label>
@@ -738,13 +670,15 @@
                   </button>
                 </div>
               </div>
+              <!-- *ngIf="
+              !lookup &&
+              !customerExist &&
+              (booking.email != '' || (isVerified && mobileHasError))
+            " -->
               <div
                 class="col-md-6"
-                *ngIf="
-                  !lookup &&
-                  !customerExist &&
-                  (booking.email != '' || (isVerified && mobileHasError))
-                "
+               
+                *ngIf="!lookup && !customerExist && (booking.email != '' || isVerified && mobileHasError)"
               >
                 <div class="form-group">
                   <!-- <label></label> -->
@@ -863,6 +797,14 @@
                     <b>No Of Room(s): </b><span>{{ booking.noOfRooms }}</span>
                   </li>
                   <li>
+                    <b>No Of Person(s): </b><span>{{ booking.noOfPersons }}</span>
+                  </li>
+                  
+                  <li><b>No Of Extra Person(s): </b><span>{{ booking.noOfExtraPerson }}</span></li>
+									<li><b>Extra Person charges: </b><span>  {{ booking.extraPersonCharge | currency: currency:'symbol':'1.2-2' }}</span></li>
+
+                 
+                  <li>
                     <b>Net Amount: </b>
                     <span> {{ booking.netAmount | currency: currency:"symbol":"1.2-2" }} </span>
                   </li>
@@ -880,18 +822,24 @@
               <div class="col-md-6">
                 <ul class="summery">
                   <li>
-                    <b>No Of Person(s): </b><span>{{ booking.noOfPersons }}</span>
+                    <b>No Of Child: </b><span>{{ booking.noOfChildren }}</span>
+                  </li>
+                  <li>
+                    <b>No Of Extra Child(s): </b><span>{{ booking.noOfExtraChild }}</span>
+                  </li>
+                  <li>
+                    <b>Extra Child charges: </b><span>{{ booking.extraChildCharge | currency: currency:'symbol':'1.2-2' }}</span>
                   </li>
                   <li>
                     <b>Room Price: </b><span>{{ booking.roomPrice | currency: currency:"symbol":"1.2-2" }}
                     </span>
                   </li>
-                  <li>
+                  <!-- <li>
                     <b>Tax Amount:</b><span> {{ booking.gstAmount | currency: currency:"symbol":"1.2-2" }}</span>
                   </li>
                   <li *ngIf="discountPercentage">
                     <b>Discount Amount: </b>{{ booking.discountAmount | currency: currency:"symbol":"1.2-2" }}
-                  </li>
+                  </li> -->
 
                   <!-- <li class="total-costs"><b>Total Cost: </b><span> 546.00</span></li> -->
                 </ul>
