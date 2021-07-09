@@ -7,6 +7,14 @@ import { ApiService, PROPERTY_ID } from 'src/app/api.service';
 import { Property } from 'src/app/property/property';
 import { TokenStorage } from 'src/app/token.storage';
 import { DateModel } from '../model/dateModel';
+import {
+  NgbCalendar,
+  NgbCarouselConfig,
+  NgbDate,
+  NgbDateAdapter,
+  NgbDateParserFormatter,
+  NgbDateStruct,
+} from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-slider',
   templateUrl: './slider.component.html',
@@ -36,9 +44,28 @@ export class SliderComponent implements OnInit {
   fromDateMinMilliSeconds: number;
   fromDateMaxMilliSeconds: number;
 
-  checkIn: FormControl = new FormControl();
-  checkOut: FormControl = new FormControl();
+  checkIn: NgbDate;
+  checkOut: NgbDate;
   guest: number = 1;
+  noOfRooms: number = 1;
+  noOfChildren: number = 1;
+  // checkIn: FormControl = new FormControl();
+  // checkOut: FormControl = new FormControl();
+
+  CheckIn: FormControl = new FormControl();
+  CheckOut: FormControl = new FormControl();
+  Guest: FormControl = new FormControl();
+  NoOfRooms: FormControl = new FormControl();
+  NoOfChildren: FormControl = new FormControl();
+
+  form = new FormGroup({
+    CheckIn: new FormControl(),
+    CheckOut: new FormControl(),
+    Guest: new FormControl(),
+    NoOfRooms: new FormControl(),
+    NoOfChildren: new FormControl()  
+  });
+ 
 
   monthArray = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   galleryImage = [
@@ -90,7 +117,8 @@ export class SliderComponent implements OnInit {
   constructor(
     private router: Router,
     private token :TokenStorage,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private calendar: NgbCalendar,
     ) { }
 
 
@@ -137,47 +165,96 @@ export class SliderComponent implements OnInit {
     return this.currentDay;
   }
 
+  // onBook() {
+  //   this.dateModel = new DateModel();
+
+  //   if (this.checkIn.value === null) {
+  //     this.dateModel.checkIn = this.year + '-' + (this.month + 1) + '-' + this.day;
+  //   } else {
+  //     this.dateModel.checkIn = this.getDateFormat(this.checkIn.value);
+  //   }
+
+  //   if (this.checkOut.value === null) {
+  //     this.dateModel.checkOut =  this.year2 + '-' + (this.month2 + 1) + '-' + this.day2;
+  //   } else {
+  //     this.dateModel.checkOut = this.getDateFormat(this.checkOut.value);
+  //   }
+  //   if (this.guest === null) {
+  //     this.dateModel.guest = 1;
+  //   } else {
+  //     this.dateModel.guest = this.guest;
+  //   }
+
+  //   this.dateModel.noOfRooms = 1;
+
+
+    // console.log(' this.dateModel '+JSON.stringify( this.dateModel));
+
+  //   const navigationExtras: NavigationExtras = {
+  //     queryParams: {
+  //         dateob: JSON.stringify(this.dateModel),
+  //     }
+  //   };
+
+  //   this.router.navigate(['/booking/choose'], navigationExtras );
+  // }
   onBook() {
     this.dateModel = new DateModel();
 
-    if (this.checkIn.value === null) {
-      this.dateModel.checkIn = this.year + '-' + (this.month + 1) + '-' + this.day;
+    if (this.checkIn === null) {
+      this.dateModel.checkIn =
+        this.year + '-' + (this.month + 1) + '-' + this.day;
     } else {
-      this.dateModel.checkIn = this.getDateFormat(this.checkIn.value);
+      // this.dateModel.checkIn = this.getDateFormat(this.checkIn);
+      this.dateModel.checkIn = this.getDateFormatYearMonthDay(
+        this.checkIn.day,
+        this.checkIn.month,
+        this.checkIn.year
+      );
     }
 
-    if (this.checkOut.value === null) {
-      this.dateModel.checkOut =  this.year2 + '-' + (this.month2 + 1) + '-' + this.day2;
+    if (this.checkOut === null) {
+      this.dateModel.checkOut =
+        this.year2 + '-' + (this.month2 + 1) + '-' + this.day2;
     } else {
-      this.dateModel.checkOut = this.getDateFormat(this.checkOut.value);
+      // this.dateModel.checkOut = this.getDateFormat(this.checkOut);
+      this.dateModel.checkOut = this.getDateFormatYearMonthDay(
+        this.checkOut.day,
+        this.checkOut.month, 
+        this.checkOut.year
+      );
     }
     if (this.guest === null) {
       this.dateModel.guest = 1;
     } else {
       this.dateModel.guest = this.guest;
     }
-
-    this.dateModel.noOfRooms = 1;
-
-
-    // console.log(' this.dateModel '+JSON.stringify( this.dateModel));
+    if (this.noOfChildren === null) {
+      this.dateModel.noOfChildren = 1;
+    } else {
+      this.dateModel.noOfChildren = this.noOfChildren;
+    }
+    if (this.noOfRooms === null) {
+      this.dateModel.noOfRooms = 1;
+    } else {
+      this.dateModel.noOfRooms = this.noOfRooms;
+    }
+    console.log(' this.dateModel ' + JSON.stringify(this.dateModel));
 
     const navigationExtras: NavigationExtras = {
       queryParams: {
-          dateob: JSON.stringify(this.dateModel),
-      }
+        dateob: JSON.stringify(this.dateModel),
+      },
     };
-
-    this.router.navigate(['/booking/choose'], navigationExtras );
+    this.router.navigate(['/booking/choose'], navigationExtras);
   }
-
   getDateFormat(dateString: string) {
     const yearAndMonth = dateString.split('-', 3);
     return yearAndMonth[0] + '-' + yearAndMonth[1] + '-' + yearAndMonth[2].split(' ', 1);
   }
 
   checkInEvent() {
-    const currentDate: Date = new Date(this.checkIn.value);
+    const currentDate: Date = new Date(this.CheckIn.value);
 
     const afterDate: Date = new Date();
     afterDate.setDate(currentDate.getDate() + 1);
@@ -203,5 +280,31 @@ export class SliderComponent implements OnInit {
         }
       }
   );
+  }
+
+  getDateFormatYearMonthDay(
+    day12: number,
+    month12: number,
+    year12: number
+  ): string {
+    const year = year12;
+    const date = day12;
+
+    const month = month12;
+
+    let month1;
+    let day1;
+    if (Number(month) < 10) {
+      month1 = `0${month}`;
+    } else {
+      month1 = `${month}`;
+    }
+    if (Number(date) < 10) {
+      day1 = `0${date}`;
+    } else {
+      day1 = `${date}`;
+    }
+
+    return `${year}-${month1}-${day1}`;
   }
 }

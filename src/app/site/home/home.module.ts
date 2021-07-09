@@ -12,6 +12,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AgmCoreModule } from '@agm/core';
 import { environment } from 'src/environments/environment';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { NgbDate, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 const routes: Routes = [
   { path: '', component: HomeComponent},
 
@@ -31,6 +32,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     CommonModule,
     SlickCarouselModule,
+    NgbModule,
     RouterModule.forRoot(routes),
     AgmCoreModule.forRoot({
       apiKey: environment.googleKey // 'AIzaSyAYT8pe61MUbk27eiYi9LnnPhwo031Ye7w'

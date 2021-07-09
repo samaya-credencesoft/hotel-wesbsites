@@ -44,7 +44,7 @@ getWeather(){
   {
     this.apiService.getRoomDetailsByPropertyId(PROPERTY_ID).subscribe(response => {
 
-    //  console.log('response room ' + JSON.stringify(response.body));
+      // console.log('response room ' + JSON.stringify(response.body));
       this.rooms = response.body;
     },
       error => {
@@ -56,7 +56,7 @@ getWeather(){
   }
   getProperty() {
     this.apiService.getPropertyDetailsByPropertyId(PROPERTY_ID).subscribe(response => {
-
+  console.log('response property ' + JSON.stringify(response.body));
       this.property = response.body;
       this.token.saveProperty(this.property);
       this.token.savePropertyName(this.property.name);
