@@ -34,14 +34,14 @@ export class RoomComponent implements OnInit {
         {
           breakpoint: 1025,
           settings: {
-            centerPadding: '0',
+            centerPadding: '10px',
             slidesToShow: 2
           }
         },
         {
           breakpoint: 767,
           settings: {
-            centerPadding: '0',
+            centerPadding: '10px',
             slidesToShow: 1
           }
         }

@@ -3,77 +3,18 @@ import { Component, Injectable, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, FormGroupDirective, Validators } from '@angular/forms';
 import { NavigationExtras } from '@angular/router';
 import { Router } from '@angular/router';
+import { NgbDate, NgbCalendar, NgbDateAdapter, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService, PROPERTY_ID } from 'src/app/api.service';
 import { Property } from 'src/app/property/property';
 import { TokenStorage } from 'src/app/token.storage';
 import { DateModel } from '../model/dateModel';
-import {
-  NgbCalendar,
-  NgbCarouselConfig,
-  NgbDate,
-  NgbDateAdapter,
-  NgbDateParserFormatter,
-  NgbDateStruct,
-} from '@ng-bootstrap/ng-bootstrap';
 
 
-/**
- * This Service handles how the date is represented in scripts i.e. ngModel.
- */
- @Injectable()
- export class CustomAdapter extends NgbDateAdapter<string> {
 
-   readonly DELIMITER = '-';
-// string To NgbDate
-   fromModel(value: string | null): NgbDateStruct | null {
-     if (value) {
-       let date = value.split(this.DELIMITER);
-       return {
-         day : parseInt(date[2], 10),
-         month : parseInt(date[1], 10),
-         year : parseInt(date[0], 10)
-       };
-     }
-     return null;
-   }
-//NgbDate To string
-   toModel(date: NgbDateStruct | null): string | null {
-     return date ? date.year + this.DELIMITER + date.month + this.DELIMITER +  date.day: null;
-   }
- }
-
- /**
-  * This Service handles how the date is rendered and parsed from keyboard i.e. in the bound input field.
-  */
- @Injectable()
- export class CustomDateParserFormatter extends NgbDateParserFormatter {
-
-   readonly DELIMITER = '/';
-
-   parse(value: string): NgbDateStruct | null {
-     if (value) {
-       let date = value.split(this.DELIMITER);
-       return {
-         day : parseInt(date[0], 10),
-         month : parseInt(date[1], 10),
-         year : parseInt(date[2], 10)
-       };
-     }
-     return null;
-   }
-
-   format(date: NgbDateStruct | null): string {
-     return date ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year : '';
-   }
- }
 @Component({
   selector: 'app-slider',
   templateUrl: './slider.component.html',
-  styleUrls: ['./slider.component.css'],
-  providers: [
-    {provide: NgbDateAdapter, useClass: CustomAdapter},
-    {provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter}
-  ]
+  styleUrls: ['./slider.component.css']
 })
 export class SliderComponent implements OnInit {
   property: Property;
@@ -86,21 +27,23 @@ export class SliderComponent implements OnInit {
   year2: number;
   month2: number;
 
-  fromDate: string;
+
   dateModel: DateModel;
 
-  minToDate: Date;
-  maxToDate: Date;
+  mincheckOut: Date;
+  maxcheckOut: Date;
 
-  minFromDate: Date;
-  maxFromDate: Date;
-  toDateMinMilliSeconds: number;
-  toDateMaxMilliSeconds: number;
-  fromDateMinMilliSeconds: number;
-  fromDateMaxMilliSeconds: number;
+  mincheckIn: Date;
+  maxcheckIn: Date;
+  checkOutMinMilliSeconds: number;
+  checkOutMaxMilliSeconds: number;
+  checkInMinMilliSeconds: number;
+  checkInMaxMilliSeconds: number;
 
   checkIn: NgbDate;
   checkOut: NgbDate;
+  hoveredDate: NgbDate | null = null;
+  todayDate: NgbDate | null;
   guest: number = 1;
   noOfRooms: number = 1;
   noOfChildren: number = 1;
@@ -169,113 +112,86 @@ export class SliderComponent implements OnInit {
         }
      ]
   };
+
   constructor(
     private router: Router,
     private token :TokenStorage,
     private apiService: ApiService,
-    private ngbCalendar: NgbCalendar,
-    private dateAdapter: NgbDateAdapter<string>
+    private calendar: NgbCalendar,
+    public formatter: NgbDateParserFormatter
     ) { }
 
 
   ngOnInit() {
-    this.checkincheckoutDate();
     this.getProperty();
-    this.getToday();
+    this.checkIn = this.calendar.getToday();
+    this.checkOut = this.calendar.getNext(this.calendar.getToday(), "d", 1);
+    this.setCheckInDate(this.checkIn);
+    this.setCheckOutDate(this.checkOut);
    // this.checkinDateInterval();
   }
-  getToday() {
-    return this.dateAdapter.toModel(this.ngbCalendar.getToday());
-  }
+
   setCheckInDate(checkIn){
-    const date= this.dateAdapter.fromModel(checkIn);
-    this.day = date.day;
-    this.month = date.month;
-    this.year = date.year;
-    // const currentDate: Date = new Date(this.dateAdapter.toModel(checkIn));
-    // const currentDate2: Date = new Date('2022-05-20');
-    // console.log(date);
-    // this.day = this.getDay(currentDate);
-    // this.year = String(currentDate.getFullYear());
-    // this.month = currentDate.getMonth();
+    this.day = checkIn.day;
+    this.month = checkIn.month-1;
+    this.year = checkIn.year;
+    this.dateModel.checkIn = checkIn;
   }
   setCheckOutDate(checkOut){
-
-    const date= this.dateAdapter.fromModel(checkOut);
-    this.day2 = date.day;
-    this.month2 = date.month;
-    this.year2 = date.year;
-  }
-  checkincheckoutDate() {
-    const currentDate: Date = new Date();
-    this.day = Number(this.getDay(currentDate));
-    this.year = currentDate.getFullYear();
-    this.month = currentDate.getMonth();
-
-
-    const afterDate: Date = new Date();
-    afterDate.setDate(currentDate.getDate() + 1);
-
-    this.day2 = Number(this.getDay(afterDate));
-    this.year2 = afterDate.getFullYear();
-    this.month2 = afterDate.getMonth();
+    this.day2 = checkOut.day;
+    this.month2 = checkOut.month-1;
+    this.year2 = checkOut.year;
+    this.dateModel.checkOut = checkOut;
   }
 
-  // checkinDateInterval()
-  // {
-  //   let currentDate: Date = new Date();
-
-  //   const fromDateMilliSeconds = currentDate.getTime();
-  //   this.fromDateMinMilliSeconds = fromDateMilliSeconds;
-  //   this.fromDateMaxMilliSeconds = fromDateMilliSeconds + (86400000 * 30*6);
-  //   this.minFromDate = new Date(this.fromDateMinMilliSeconds);
-  //   this.maxFromDate = new Date(this.fromDateMaxMilliSeconds);
-  // }
-
-
-  getDay(date: Date) {
-    if (date.getDate().toString().length == 1) {
-        this.currentDay = '0' + date.getDate();
+  onDateSelection(date: NgbDate) {
+    if (!this.checkIn && !this.checkOut) {
+      this.checkIn = date;
+    } else if (
+      this.checkIn &&
+      !this.checkOut &&
+      date &&
+      date.after(this.checkIn)
+    ) {
+      this.checkOut = date;
     } else {
-        this.currentDay = '' + date.getDate();
+      this.checkOut = null;
+      this.checkIn = date;
     }
-
-    return this.currentDay;
+    this.setCheckInDate(this.checkIn);
+    this.setCheckOutDate(this.checkOut);
   }
 
-  // onBook() {
-  //   this.dateModel = new DateModel();
+  isHovered(date: NgbDate) {
+    return (
+      this.checkIn &&
+      !this.checkOut &&
+      this.hoveredDate &&
+      date.after(this.checkIn) &&
+      date.before(this.hoveredDate)
+    );
+  }
 
-  //   if (this.checkIn.value === null) {
-  //     this.dateModel.checkIn = this.year + '-' + (this.month + 1) + '-' + this.day;
-  //   } else {
-  //     this.dateModel.checkIn = this.getDateFormat(this.checkIn.value);
-  //   }
+  isInside(date: NgbDate) {
+    return this.checkOut && date.after(this.checkIn) && date.before(this.checkOut);
+  }
 
-  //   if (this.checkOut.value === null) {
-  //     this.dateModel.checkOut =  this.year2 + '-' + (this.month2 + 1) + '-' + this.day2;
-  //   } else {
-  //     this.dateModel.checkOut = this.getDateFormat(this.checkOut.value);
-  //   }
-  //   if (this.guest === null) {
-  //     this.dateModel.guest = 1;
-  //   } else {
-  //     this.dateModel.guest = this.guest;
-  //   }
+  isRange(date: NgbDate) {
+    return (
+      date.equals(this.checkIn) ||
+      (this.checkOut && date.equals(this.checkOut)) ||
+      this.isInside(date) ||
+      this.isHovered(date)
+    );
+  }
 
-  //   this.dateModel.noOfRooms = 1;
+  validateInput(currentValue: NgbDate | null, input: string): NgbDate | null {
+    const parsed = this.formatter.parse(input);
+    return parsed && this.calendar.isValid(NgbDate.from(parsed))
+      ? NgbDate.from(parsed)
+      : currentValue;
+  }
 
-
-    // console.log(' this.dateModel '+JSON.stringify( this.dateModel));
-
-  //   const navigationExtras: NavigationExtras = {
-  //     queryParams: {
-  //         dateob: JSON.stringify(this.dateModel),
-  //     }
-  //   };
-
-  //   this.router.navigate(['/booking/choose'], navigationExtras );
-  // }
   onBook() {
     this.dateModel = new DateModel();
 
@@ -331,18 +247,7 @@ export class SliderComponent implements OnInit {
     return yearAndMonth[0] + '-' + yearAndMonth[1] + '-' + yearAndMonth[2].split(' ', 1);
   }
 
-  checkInEvent() {
-    const currentDate: Date = new Date(this.CheckIn.value);
 
-    const afterDate: Date = new Date();
-    afterDate.setDate(currentDate.getDate() + 1);
-    afterDate.setFullYear(currentDate.getFullYear());
-    afterDate.setMonth(currentDate.getMonth());
-
-    this.day2 = Number(this.getDay(afterDate));
-    this.year2 = afterDate.getFullYear();
-    this.month2 = afterDate.getMonth();
-  }
   guestEvent(){
     this.dateModel.guest = this.guest;
   }

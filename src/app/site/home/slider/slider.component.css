@@ -55,3 +55,39 @@ ngb-carousel {
     width: 1030px!important;
   }
 }
+
+.form-group .hidden {
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  width: 0 !important;
+}
+
+.custom-day {
+  text-align: center;
+  padding: 0.185rem 0.25rem;
+  display: inline-block;
+  height: 2rem;
+  width: 2rem;
+  color: #000;
+}
+
+.custom-day.focused {
+  background-color: #e6e6e6;
+}
+
+.custom-day.range,
+.custom-day:hover {
+  background-color: rgb(50, 50, 93);
+  color: white;
+}
+
+.custom-day.faded {
+  background-color: rgba(50, 50, 93, 0.5);
+}
+
+.ngb-dp-header,
+.ngb-dp-month-name,
+.ngb-dp-weekdays {
+  background-color: #2b333f !important;
+}
