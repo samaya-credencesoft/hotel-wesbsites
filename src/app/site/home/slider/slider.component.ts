@@ -41,6 +41,7 @@ export class SliderComponent implements OnInit {
   checkOut: FormControl = new FormControl();
   guest: number = 1;
   child: number = 1;
+  noOfRooms:number = 1;
 
 
   monthArray = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -164,7 +165,11 @@ export class SliderComponent implements OnInit {
     } else {
       this.dateModel.child = this.child;
     }
-    this.dateModel.noOfRooms = 1;
+    if (this.noOfRooms === null) {
+      this.dateModel.noOfRooms = 1;
+    } else {
+      this.dateModel.noOfRooms = this.noOfRooms;
+    }
 
 
     // console.log(' this.dateModel '+JSON.stringify( this.dateModel));

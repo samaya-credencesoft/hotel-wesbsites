@@ -88,4 +88,16 @@ ngb-carousel {
   .checkform{
     width: 1100px!important;
   }
+  li.item-cont{
+    width: 150px!important;
+  }
+  .checking-form.sldr .checkform > li {
+    position: relative;
+    border: 0;
+    padding: 0 20px 0 30px!important;
+  }
+  .checking-form .text-center{
+    text-align: left!important;
+    padding-left: 15px;
+  }
 }
