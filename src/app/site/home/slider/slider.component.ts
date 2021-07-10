@@ -1,20 +1,29 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Injectable, OnInit } from '@angular/core';
-import { FormControl, FormGroup, NgForm, FormGroupDirective, Validators } from '@angular/forms';
-import { NavigationExtras } from '@angular/router';
-import { Router } from '@angular/router';
-import { NgbDate, NgbCalendar, NgbDateAdapter, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
-import { ApiService, PROPERTY_ID } from 'src/app/api.service';
-import { Property } from 'src/app/property/property';
-import { TokenStorage } from 'src/app/token.storage';
-import { DateModel } from '../model/dateModel';
-
-
+import { HttpErrorResponse } from "@angular/common/http";
+import { Component, Injectable, OnInit } from "@angular/core";
+import {
+  FormControl,
+  FormGroup,
+  NgForm,
+  FormGroupDirective,
+  Validators,
+} from "@angular/forms";
+import { NavigationExtras } from "@angular/router";
+import { Router } from "@angular/router";
+import {
+  NgbDate,
+  NgbCalendar,
+  NgbDateAdapter,
+  NgbDateParserFormatter,
+} from "@ng-bootstrap/ng-bootstrap";
+import { ApiService, PROPERTY_ID } from "src/app/api.service";
+import { Property } from "src/app/property/property";
+import { TokenStorage } from "src/app/token.storage";
+import { DateModel } from "../model/dateModel";
 
 @Component({
-  selector: 'app-slider',
-  templateUrl: './slider.component.html',
-  styleUrls: ['./slider.component.css']
+  selector: "app-slider",
+  templateUrl: "./slider.component.html",
+  styleUrls: ["./slider.component.css"],
 })
 export class SliderComponent implements OnInit {
   property: Property;
@@ -26,7 +35,6 @@ export class SliderComponent implements OnInit {
   day2: number;
   year2: number;
   month2: number;
-
 
   dateModel: DateModel;
 
@@ -61,85 +69,101 @@ export class SliderComponent implements OnInit {
     CheckOut: new FormControl(),
     Guest: new FormControl(),
     NoOfRooms: new FormControl(),
-    NoOfChildren: new FormControl()
+    NoOfChildren: new FormControl(),
   });
 
-
-  monthArray = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  monthArray = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
   galleryImage = [
     {
-      title: '1',
-      image: 'assets/images/slides/hero-1.jpg',
+      title: "1",
+      image: "assets/images/slides/hero-1.jpg",
     },
     {
-      title: '2',
-      image: 'assets/images/slides/hero-2.jpg',
+      title: "2",
+      image: "assets/images/slides/hero-2.jpg",
     },
     {
-      title: '3',
-      image: 'assets/images/slides/hero-3.jpg',
+      title: "3",
+      image: "assets/images/slides/hero-3.jpg",
     },
-
   ];
-  slideConfig =
-  {
-     centerMode: true,
-     centerPadding: '0',
-     slidesToShow: 1,
-     autoplay: true,
-     autoplaySpeed: 2000,
-     arrows: false,
-     responsive: [
-        {
-          breakpoint: 1367,
-          settings: {
-            centerPadding: '0'
-          }
+  slideConfig = {
+    centerMode: true,
+    centerPadding: "0",
+    slidesToShow: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 1367,
+        settings: {
+          centerPadding: "0",
         },
-        {
-          breakpoint: 1025,
-          settings: {
-            centerPadding: '0',
-            slidesToShow: 1
-          }
+      },
+      {
+        breakpoint: 1025,
+        settings: {
+          centerPadding: "0",
+          slidesToShow: 1,
         },
-        {
-          breakpoint: 767,
-          settings: {
-            centerPadding: '0',
-            slidesToShow: 1
-          }
-        }
-     ]
+      },
+      {
+        breakpoint: 767,
+        settings: {
+          centerPadding: "0",
+          slidesToShow: 1,
+        },
+      },
+    ],
   };
 
   constructor(
     private router: Router,
-    private token :TokenStorage,
+    private token: TokenStorage,
     private apiService: ApiService,
     private calendar: NgbCalendar,
     public formatter: NgbDateParserFormatter
-    ) { }
+  ) {
+    this.checkIn = this.calendar.getToday();
 
+    this.checkOut = this.calendar.getNext(this.calendar.getToday(), "d", 1);
+  }
 
   ngOnInit() {
     this.getProperty();
-    this.checkIn = this.calendar.getToday();
-    this.checkOut = this.calendar.getNext(this.calendar.getToday(), "d", 1);
+
     this.setCheckInDate(this.checkIn);
     this.setCheckOutDate(this.checkOut);
-   // this.checkinDateInterval();
+    // this.checkinDateInterval();
   }
 
-  setCheckInDate(checkIn){
+  setCheckInDate(checkIn) {
     this.day = checkIn.day;
-    this.month = checkIn.month-1;
+    this.month = checkIn.month - 1;
     this.year = checkIn.year;
     this.dateModel.checkIn = checkIn;
+    this.day2 = checkIn.day + 1;
+    this.month2 = checkIn.month - 1;
+    this.year2 = checkIn.year;
+    // this.dateModel.checkOut = checkOut;
   }
-  setCheckOutDate(checkOut){
+  setCheckOutDate(checkOut) {
     this.day2 = checkOut.day;
-    this.month2 = checkOut.month-1;
+    this.month2 = checkOut.month - 1;
     this.year2 = checkOut.year;
     this.dateModel.checkOut = checkOut;
   }
@@ -147,6 +171,7 @@ export class SliderComponent implements OnInit {
   onDateSelection(date: NgbDate) {
     if (!this.checkIn && !this.checkOut) {
       this.checkIn = date;
+      this.setCheckInDate(this.checkIn);
     } else if (
       this.checkIn &&
       !this.checkOut &&
@@ -154,12 +179,13 @@ export class SliderComponent implements OnInit {
       date.after(this.checkIn)
     ) {
       this.checkOut = date;
+
+      this.setCheckOutDate(this.checkOut);
     } else {
       this.checkOut = null;
       this.checkIn = date;
+      this.setCheckInDate(this.checkIn);
     }
-    this.setCheckInDate(this.checkIn);
-    this.setCheckOutDate(this.checkOut);
   }
 
   isHovered(date: NgbDate) {
@@ -173,7 +199,9 @@ export class SliderComponent implements OnInit {
   }
 
   isInside(date: NgbDate) {
-    return this.checkOut && date.after(this.checkIn) && date.before(this.checkOut);
+    return (
+      this.checkOut && date.after(this.checkIn) && date.before(this.checkOut)
+    );
   }
 
   isRange(date: NgbDate) {
@@ -197,7 +225,7 @@ export class SliderComponent implements OnInit {
 
     if (this.checkIn === null) {
       this.dateModel.checkIn =
-        this.year + '-' + (this.month + 1) + '-' + this.day;
+        this.year + "-" + (this.month + 1) + "-" + this.day;
     } else {
       // this.dateModel.checkIn = this.getDateFormat(this.checkIn);
       this.dateModel.checkIn = this.getDateFormatYearMonthDay(
@@ -209,7 +237,7 @@ export class SliderComponent implements OnInit {
 
     if (this.checkOut === null) {
       this.dateModel.checkOut =
-        this.year2 + '-' + (this.month2 + 1) + '-' + this.day2;
+        this.year2 + "-" + (this.month2 + 1) + "-" + this.day2;
     } else {
       // this.dateModel.checkOut = this.getDateFormat(this.checkOut);
       this.dateModel.checkOut = this.getDateFormatYearMonthDay(
@@ -233,36 +261,40 @@ export class SliderComponent implements OnInit {
     } else {
       this.dateModel.noOfRooms = this.noOfRooms;
     }
-    console.log(' this.dateModel ' + JSON.stringify(this.dateModel));
+    console.log(" this.dateModel " + JSON.stringify(this.dateModel));
 
     const navigationExtras: NavigationExtras = {
       queryParams: {
         dateob: JSON.stringify(this.dateModel),
       },
     };
-    this.router.navigate(['/booking/choose'], navigationExtras);
+    this.router.navigate(["/booking/choose"], navigationExtras);
   }
   getDateFormat(dateString: string) {
-    const yearAndMonth = dateString.split('-', 3);
-    return yearAndMonth[0] + '-' + yearAndMonth[1] + '-' + yearAndMonth[2].split(' ', 1);
+    const yearAndMonth = dateString.split("-", 3);
+    return (
+      yearAndMonth[0] +
+      "-" +
+      yearAndMonth[1] +
+      "-" +
+      yearAndMonth[2].split(" ", 1)
+    );
   }
 
-
-  guestEvent(){
+  guestEvent() {
     this.dateModel.guest = this.guest;
   }
   getProperty() {
-    this.apiService.getPropertyDetailsByPropertyId(PROPERTY_ID).subscribe(response => {
-
-      this.property = response.body;
-      this.token.savePropertyName(this.property.name);
-    },
-      error => {
+    this.apiService.getPropertyDetailsByPropertyId(PROPERTY_ID).subscribe(
+      (response) => {
+        this.property = response.body;
+        this.token.savePropertyName(this.property.name);
+      },
+      (error) => {
         if (error instanceof HttpErrorResponse) {
-
         }
       }
-  );
+    );
   }
 
   getDateFormatYearMonthDay(

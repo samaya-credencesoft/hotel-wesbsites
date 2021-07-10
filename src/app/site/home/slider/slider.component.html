@@ -35,7 +35,7 @@
               [(ngModel)]="checkIn" (click)="d1.toggle()"  ngbDatepicker #d1="ngbDatepicker"
               [placement]="placement" autocomplete="off" style="display: none;" (ngModelChange)="setCheckInDate(checkIn)"> -->
 
-              <input #dpcheckIn type="text" class="date-input form-control" placeholder="Check-in" name="dpcheckIn"
+              <input style="display: none;" #dpcheckIn type="text" class="date-input form-control hidden" placeholder="Check-in" name="dpcheckIn"
               [value]="formatter.format(checkIn) | date:'EEE, MMM d'"
               (input)="checkIn = validateInput(checkIn, dpcheckIn.value)" required
               (click)="datepicker.toggle()" autocomplete="off">
@@ -74,7 +74,7 @@
             [(ngModel)]="checkOut" [minDate]="checkIn" (click)="d2.toggle()" ngbDatepicker
             #d2="ngbDatepicker" [placement]="placement" autocomplete="off" style="display: none;" (ngModelChange)="setCheckOutDate(checkOut)"> -->
 
-            <input #dpcheckOut type="text" class="date-input form-control hidden" placeholder="Check-out" name="dpcheckOut"
+            <input style="display: none;" #dpcheckOut type="text" class="date-input form-control hidden" placeholder="Check-out" name="dpcheckOut"
             [value]="formatter.format(checkOut) | date:'EEE, MMM d'" (input)="checkOut = validateInput(checkOut, dpcheckOut.value)"
             required (click)="datepicker.toggle()" autocomplete="off">
 
