@@ -52,6 +52,7 @@ export class SliderComponent implements OnInit {
   checkOut: NgbDate;
   hoveredDate: NgbDate | null = null;
   todayDate: NgbDate | null;
+  nextDate: NgbDate | null;
   guest: number = 1;
   noOfRooms: number = 1;
   noOfChildren: number = 1;
@@ -139,23 +140,23 @@ export class SliderComponent implements OnInit {
     public formatter: NgbDateParserFormatter
   ) {
     this.checkIn = this.calendar.getToday();
-
-    this.checkOut = this.calendar.getNext(this.calendar.getToday(), "d", 1);
+    
+     this.checkOut = this.calendar.getNext(this.calendar.getToday(), 'd', 1);
   }
 
   ngOnInit() {
     this.getProperty();
-
+    
     this.setCheckInDate(this.checkIn);
     this.setCheckOutDate(this.checkOut);
     // this.checkinDateInterval();
   }
 
   setCheckInDate(checkIn) {
-    this.day = checkIn.day;
+   this.day = checkIn.day;
     this.month = checkIn.month - 1;
     this.year = checkIn.year;
-    this.dateModel.checkIn = checkIn;
+    // this.dateModel.checkIn = checkIn;
     this.day2 = checkIn.day + 1;
     this.month2 = checkIn.month - 1;
     this.year2 = checkIn.year;
@@ -165,7 +166,7 @@ export class SliderComponent implements OnInit {
     this.day2 = checkOut.day;
     this.month2 = checkOut.month - 1;
     this.year2 = checkOut.year;
-    this.dateModel.checkOut = checkOut;
+    // this.dateModel.checkOut = checkOut;
   }
 
   onDateSelection(date: NgbDate) {
@@ -174,18 +175,41 @@ export class SliderComponent implements OnInit {
       this.setCheckInDate(this.checkIn);
     } else if (
       this.checkIn &&
-      !this.checkOut &&
+      !this.checkOut 
+      &&
       date &&
       date.after(this.checkIn)
     ) {
       this.checkOut = date;
-
+      // let dateObj = new Date(this.checkOut.year, this.checkOut.month, this.checkOut.day);
+      // this.form.controls.CheckIn.setValue(dateObj);
       this.setCheckOutDate(this.checkOut);
     } else {
       this.checkOut = null;
       this.checkIn = date;
+      // let dateObj = new Date(this.checkIn.year, this.checkIn.month, this.checkIn.day);
+      // this.form.controls.CheckOut.setValue(dateObj);
       this.setCheckInDate(this.checkIn);
     }
+
+    // if (!this.checkIn && !this.checkOut) {
+    //   this.checkOut = date;
+    //   this.setCheckOutDate(this.checkOut);
+    // } else if (
+    //   !this.checkIn &&
+    //   this.checkOut 
+    //   &&
+    //   date &&
+    //   date.after(this.checkOut)
+    // ) {
+    //   this.checkIn = date;
+
+    //   this.setCheckInDate(this.checkIn);
+    // } else {
+    //   this.checkOut = date;
+    //   this.checkIn = null;
+    //   this.setCheckOutDate(this.checkOut);
+    // }
   }
 
   isHovered(date: NgbDate) {

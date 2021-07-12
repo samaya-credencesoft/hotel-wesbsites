@@ -15,8 +15,8 @@
   <div class="checking-form sldr">
     <div class="container">
       <ul class="checkform">
-        <div class="row">
-          <div class="col-md-2">
+        
+          
         <li>
           <div class="check-form">
             <h4>CHECK-IN</h4>
@@ -56,8 +56,7 @@
           </div>
           </div>
         </li>
-      </div>
-        <div class="col-md-2">
+      
         <li>
           <div class="check-form">
             <h4>CHECK-OUT</h4>
@@ -74,16 +73,27 @@
             [(ngModel)]="checkOut" [minDate]="checkIn" (click)="d2.toggle()" ngbDatepicker
             #d2="ngbDatepicker" [placement]="placement" autocomplete="off" style="display: none;" (ngModelChange)="setCheckOutDate(checkOut)"> -->
 
-            <input style="display: none;" #dpcheckOut type="text" class="date-input form-control hidden" placeholder="Check-out" name="dpcheckOut"
+            <!-- <input style="display: none;" #dpcheckOut type="text" class="date-input form-control hidden" placeholder="Check-out" name="dpcheckOut"
             [value]="formatter.format(checkOut) | date:'EEE, MMM d'" (input)="checkOut = validateInput(checkOut, dpcheckOut.value)"
             required (click)="datepicker.toggle()" autocomplete="off">
+            <input name="datepicker" class="form-control hidden" ngbDatepicker #datepicker="ngbDatepicker"
+            [autoClose]="true" (dateSelect)="onDateSelection($event)" [displayMonths]="1"
+            [dayTemplate]="t" outsideDays="hidden" [startDate]="checkIn!" tabindex="-1"
+            [minDate]="nextDate">
+         <ng-template #t let-date let-focused="focused" >
+            <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
+               [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
+               (mouseleave)="hoveredDate = null">
+               {{ date.day }}
+            </span>
+         </ng-template> -->
+            
 
             <div class="clearfix"></div>
           </div>
           <!--check-form end-->
         </li>
-      </div>
-        <div class="col-md-1">
+      
         <li class="item-cont">
           <div class="check-form">
             <h4 class="text-left">Guest</h4>
@@ -124,8 +134,7 @@
           </div>
           <!--check-form end-->
         </li>
-      </div>
-        <div class="col-md-1">
+      
         <li class="item-cont">
           <div class="check-form">
             <h4 class="text-left">Child</h4>
@@ -166,8 +175,7 @@
           </div>
           <!--check-form end-->
         </li>
-        </div>
-        <div class="col-md-2">
+        
         <li class="item-cont">
           <div class="check-form">
             <h4 class="text-left">Rooms</h4>
@@ -208,8 +216,8 @@
           </div>
           <!--check-form end-->
         </li>
-        </div>
-        <div class="col-md-4">
+       
+        
         <li class="bkk">
           <div class="bk_now" (click)="onBook()">
             <!-- routerLink="/booking" (click)="onBook()" -->
@@ -217,8 +225,8 @@
             <a title="" class="bk-now">Book Now</a>
           </div>
         </li>
-      </div>
-      </div>
+      
+      
       </ul>
       <div class="clearfix"></div>
     </div>
