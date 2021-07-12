@@ -104,7 +104,7 @@ export class ChooseRoomComponent implements OnInit {
         this.booking.toDate = this.dateModel.checkOut;
         this.booking.noOfRooms = this.dateModel.noOfRooms;
         this.booking.noOfPersons = this.dateModel.guest;
-        this.booking.noOfChildren = this.dateModel.child;
+        this.booking.noOfChildren = this.dateModel.noOfChildren;
         this.fromDate = new NgbDate(
           this.mileSecondToNGBDate(this.booking.fromDate).year,
           this.mileSecondToNGBDate(this.booking.fromDate).month,

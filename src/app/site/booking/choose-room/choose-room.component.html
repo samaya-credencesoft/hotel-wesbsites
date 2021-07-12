@@ -367,7 +367,7 @@
                           <div class="col-lg-6 col-md-6 col-sm-6" *ngFor="let room of rooms;">
 
                             <div class="room-details" >
-                              <img src="{{room.imageList[0].url}}" alt="">
+                              <img *ngIf="room.imageList == null" src="{{room.imageList[0].url}}" alt="">
 
                               <div class="room-hd">
                                 <h4>FROM
@@ -394,7 +394,7 @@
                             <div class="room_details">
                               <div class="room-caroz">
                                 <div class="room_img">
-                                  <img src="{{room.imageList[0].url}}" alt="">
+                                  <img *ngIf="room.imageList == null" src="{{room.imageList[0].url}}" alt="">
 
                                   <span
                                     class="price-tag">{{ booking.roomPrice ||room.roomOnlyPrice  | currency: token.getProperty().localCurrency.toUpperCase()}}<b>/night</b></span>
@@ -455,7 +455,7 @@
                           <div class="room_details">
                             <div class="room-caroz">
                               <div class="room_img">
-                                <img src="{{room.imageList[0].url}}" alt="">
+                                <img *ngIf="room.imageList == null" src="{{room.imageList[0].url}}" alt="">
 
                                 <!-- <span
                                   class="price-tag">{{ room.roomOnlyPrice | currency: token.getProperty().localCurrency.toUpperCase():'symbol':'1.2-2' }}<b>/night</b></span> -->

@@ -19,46 +19,58 @@
           <div class="check-form">
             <h4>CHECK-IN</h4>
 
-            <div class="det">
-              <b class="val-date">{{ this.day }}</b>
+            <div class="det" (click)="datepicker.toggle()">
+              <b class="val-date">{{  day }}</b>
               <span>
                 <i class="month">{{ monthArray[month] }}</i>
-                <i class="year">{{ this.year }}</i>
-                <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
+                <i class="year">{{  year }}</i>
+                <a  (click)="datepicker.toggle()" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
               </span>
             </div>
-            <input type="text" [formControl]="checkIn" name="dateIn" [min]="minFromDate" [max]="maxFromDate"
-              class="date-pick" (ngModelChange)="checkInEvent()" />
-              <!-- <div class="cmn_field">
-                <label for="check1">
-                  <i class="fa fa-calendar"></i>
-                </label>
-                <input class="field-control" name="checkIn" placeholder="Check In" [formControl]="CheckIn"
-                  [(ngModel)]="checkIn" (click)="d1.toggle()" ngbDatepicker #d1="ngbDatepicker"
-                  [placement]="placement" autocomplete="off">
+            <!-- <input type="text" [formControl]="checkIn" name="dateIn" [min]="mincheckIn" [max]="maxcheckIn"
+              class="date-pick" (ngModelChange)="checkInEvent()" /> -->
+              <!-- <input class="field-control hidden" name="checkIn" placeholder="Check In" [formControl]="CheckIn"
+              [(ngModel)]="checkIn" (click)="d1.toggle()"  ngbDatepicker #d1="ngbDatepicker"
+              [placement]="placement" autocomplete="off" style="display: none;" (ngModelChange)="setCheckInDate(checkIn)"> -->
 
-              </div> -->
+              <input style="display: none;" #dpcheckIn type="text" class="date-input form-control hidden" placeholder="Check-in" name="dpcheckIn"
+              [value]="formatter.format(checkIn) | date:'EEE, MMM d'"
+              (input)="checkIn = validateInput(checkIn, dpcheckIn.value)" required
+              (click)="datepicker.toggle()" autocomplete="off">
+              <div class="form-group hidden">
+                <input name="datepicker" class="form-control hidden" ngbDatepicker #datepicker="ngbDatepicker"
+                   [autoClose]="true" (dateSelect)="onDateSelection($event)" [displayMonths]="1"
+                   [dayTemplate]="t" outsideDays="hidden" [startDate]="checkIn!" tabindex="-1"
+                   [minDate]="todayDate">
+           <ng-template #t let-date let-focused="focused" >
+              <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
+                 [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
+                 (mouseleave)="hoveredDate = null">
+                 {{ date.day }}
+              </span>
+           </ng-template>
 
-            <div class="clearfix"></div>
+            <div class="clearfix"> </div>
           </div>
-          <!--check-form end-->
+          </div>
         </li>
         <li>
-          <div class="check-form">
-            <h4>CHECK-OUT</h4>
-            <div class="det">
-              <b class="val-date">{{ this.day2 }}</b>
-              <span>
-                <i class="month">{{ monthArray[month2] }}</i>
-                <i class="year">{{ this.year2 }}</i>
-                <a href="#" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
-              </span>
+        
+          <li>
+            <div class="check-form">
+              <h4>CHECK-OUT</h4>
+              <div class="det" (click)="datepicker.toggle()">
+                <b class="val-date">{{ day2 }}</b>
+                <span>
+                  <i class="month">{{ monthArray[month2] }}</i>
+                  <i class="year">{{ year2 }}</i>
+                  <a  (click)="datepicker.toggle()" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
+                </span>
+              </div>
+              <div class="clearfix"></div>
             </div>
-            <input type="text" name="dateOut" [formControl]="checkOut" class="date-pick" />
-            <div class="clearfix"></div>
-          </div>
-          <!--check-form end-->
-        </li>
+            <!--check-form end-->
+          </li>
         <li class="item-cont">
           <div class="check-form">
             <h4 class="text-center">Guest</h4>
@@ -109,8 +121,8 @@
                   font-size: 35px;
                   font-weight: 600;">
                     <input style="display: none" type="number" class="stepper_input" data-ref="input-stepper-field"
-                      id="group_adults" name="group_adults" min="1" max="30" value="2" data-group-adults-count=""
-                      [(ngModel)]="child">{{child}}
+                      id="group_childs" name="group_childs" min="1" max="30" value="2" data-group-adults-count=""
+                      [(ngModel)]="noOfChildren">{{noOfChildren}}
 
                   </li>
                   <li class="counter-control">
@@ -120,12 +132,12 @@
                     <button class="counter-minus btn" disabled="">
                       <i class="fa fa-angle-down"></i>
                     </button> -->
-                    <button class="btn btn-outline-default btn-sm" type="button" (click)="child = child + 1;" [disabled]="child >=30">
+                    <button class="btn btn-outline-default btn-sm" type="button" (click)="noOfChildren = noOfChildren + 1;" [disabled]="noOfChildren >=30">
                       <!-- <span class="button_text">+</span> -->
                       <i class="fa fa-angle-up"></i>
                     </button>
-                    <button class="btn btn-outline-default btn-sm" type="button" (click)="child = child - 1;"
-                      [disabled]="child <=1">
+                    <button class="btn btn-outline-default btn-sm" type="button" (click)="noOfChildren = noOfChildren - 1;"
+                      [disabled]="noOfChildren <=1">
                       <!-- <span class="button_text">−</span> -->
                       <i class="fa fa-angle-down"></i>
                     </button>
