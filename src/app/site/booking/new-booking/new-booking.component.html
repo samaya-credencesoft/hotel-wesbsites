@@ -30,7 +30,7 @@
               <div class="widget bg-secondary my-2">
                 <h4 class="bg-primary p-4"><i class="fa fa-calendar-check-o"></i> Your Booking
                   Details</h4>
-                <div class="row px-4">
+                <div class="row px-4 py-2">
                   <div class="col-6">
                     <h6>Check-in</h6>
                     <p>{{booking.fromDate | date:'EEE, MMM d, y'}}</p>
@@ -44,9 +44,9 @@
                 <div class="row px-4">
                   <div class="col-12">
                     <h6>Total length of stay:</h6>
-                    <p>{{DiffDate}} Night(s)</p>
+                    <p class="pb-2">{{DiffDate}} Night(s)</p>
                     <h6>You selected:</h6>
-                    <p>{{booking.roomType}}</p>
+                    <p class="pb-2">{{booking.roomType}}</p>
                   </div>
                 </div>
                 <div class="row px-4 pb-4">
