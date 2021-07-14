@@ -54,7 +54,7 @@
           </div>
           </div>
         </li>
-        <li>
+      
         
           <li>
             <div class="check-form">
@@ -67,7 +67,13 @@
                   <a  (click)="datepicker.toggle()" title="" class="arw-down"><i class="fa fa-angle-down"></i></a>
                 </span>
               </div>
+              <div class="form-group hidden">
+                <input name="datepicker" class="form-control hidden" ngbDatepicker #datepicker="ngbDatepicker"
+                   [autoClose]="true" (dateSelect)="onDateSelection($event)" [displayMonths]="1"
+                   [dayTemplate]="t" outsideDays="hidden" [startDate]="checkOut!" tabindex="-1"
+                   [minDate]="todayDate">
               <div class="clearfix"></div>
+              </div>
             </div>
             <!--check-form end-->
           </li>

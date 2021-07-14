@@ -47,6 +47,15 @@ ngb-carousel {
   height: 650px;
 }
 
+.main-slider.hp_5 .checking-form.sldr .arw-down {
+  font-size: 14px;
+  margin-top: 0px!important;
+}
+@media only screen and (min-width: 1366px) {
+  .checkform{
+    width: 1030px!important;
+  }
+}
 
 .form-group .hidden {
   padding: 0 !important;
@@ -54,34 +63,35 @@ ngb-carousel {
   border: none !important;
   width: 0 !important;
 }
-.form-group.hidden > div > input{
-	padding: 0;
-    margin: 0;
-    border: 0;
-}
-  .custom-day {
-	text-align: center;
-	padding: 0.185rem 0.25rem;
-	display: inline-block;
-	height: 2rem;
-    width: 2rem;
-    color: #000;
-  }
-  .custom-day.focused {
-	background-color: #e6e6e6;
-  }
-  .custom-day.range, .custom-day:hover {
-	background-color: rgb(50, 50, 93);
-	color: white;
-  }
-  .custom-day.faded {
-	background-color: rgba(50, 50, 93, 0.5);
-  }
-  .ngb-dp-header, .ngb-dp-month-name, .ngb-dp-weekdays {
-    background-color: #2b333f !important;
+
+.custom-day {
+  text-align: center;
+  padding: 0.185rem 0.25rem;
+  display: inline-block;
+  height: 2rem;
+  width: 2rem;
+  color: #000;
 }
 
+.custom-day.focused {
+  background-color: #e6e6e6;
+}
 
+.custom-day.range,
+.custom-day:hover {
+  background-color: rgb(50, 50, 93);
+  color: white;
+}
+
+.custom-day.faded {
+  background-color: rgba(50, 50, 93, 0.5);
+}
+
+.ngb-dp-header,
+.ngb-dp-month-name,
+.ngb-dp-weekdays {
+  background-color: #2b333f !important;
+}
 @media only screen and (min-width: 1024px){
 
   .checkform{
