@@ -5743,7 +5743,7 @@ height: auto;
 
 .booking-tabs-list {
 	text-align: center;
-	margin-bottom: 60px;
+	margin-bottom: 0px;
 }
 .booking-tabs-list .nav-tabs {
 	border-bottom: 0;
