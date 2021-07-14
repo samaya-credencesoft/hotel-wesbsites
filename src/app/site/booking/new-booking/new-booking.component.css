@@ -7,3 +7,15 @@
 .bg-secondary i{
   color: #eeeeee!important;
   }
+
+  .bg-primary{
+    color: #fff;
+  }
+  .btn-primary {
+    color: #fff;
+    background-color: #470d25;
+    border-color: #470d25;
+  }
+  .summery li{
+    padding-bottom: 5px;
+  }

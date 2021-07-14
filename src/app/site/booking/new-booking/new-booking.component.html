@@ -70,12 +70,12 @@
                 <div class="row px-4">
                   <div class="col-12">
                     <h6>Total length of stay:</h6>
-                    <p>{{ DiffDate }} Night(s)</p>
+                    <p class="pb-2">{{ DiffDate }} Night(s)</p>
                     <h6>You selected:</h6>
-                    <p>{{ booking.roomName }}</p>
+                    <p class="pb-2">{{ booking.roomName }}</p>
                     <h6>Room price:</h6>
-                    <p>{{booking.roomPrice | currency: currency:'symbol':'1.2-2' }} x {{DiffDate}}</p>
-                    <h6 *ngIf="discountPercentage"><b>Discount ({{booking.discountPercentage}}%):
+                    <p class="pb-2">{{booking.roomPrice | currency: currency:'symbol':'1.2-2' }} x {{DiffDate}}</p>
+                    <h6 *ngIf="discountPercentage"><b class="pb-2">Discount ({{booking.discountPercentage}}%):
                     </b>{{booking.discountAmount | currency: currency:'symbol':'1.2-2'}}
                   </h6>
                     <!-- <h6>Tax Amount ({{this.taxPercentage}}%):</h6>
@@ -85,7 +85,7 @@
     
                     <div *ngIf="booking.noOfExtraPerson > 0">
                       <h6 class="">Extra Person charges</h6>
-                      <p class="">
+                      <p class="pb-2">
                          {{ booking.extraPersonCharge | currency: currency:'symbol':'1.2-2' }}
                       </p>
                      </div>
@@ -93,7 +93,7 @@
                      <div *ngIf="booking.noOfExtraChild > 0">
           
                       <h6 class="">Extra Child charges</h6>
-                      <p class="">
+                      <p class="pb-2">
                          {{ booking.extraChildCharge | currency: currency:'symbol':'1.2-2' }}
                       </p>
                      </div>
@@ -844,7 +844,7 @@
                   <!-- <li class="total-costs"><b>Total Cost: </b><span> 546.00</span></li> -->
                 </ul>
               </div>
-              <div class="col-md-12">
+              <div class="col-md-12 pt-2">
                         <button class="btn btn-primary" type="button"
                           [disabled]="!orderForm.form.valid  || paymentLoader || submitButtonDisable"
                           (click)="onCheckOut()">Checkout</button>
