@@ -138,7 +138,7 @@
                                                 [disabled]="(maxOccupancy + child) * noOfrooms <= adults">
                                                 <span class="button_text">+</span>
                                              </button>
-                                             
+
                                           </div>
                                        </div>
                                     </div>
@@ -165,7 +165,7 @@
                                                 [disabled]="(maxOccupancy + child)* noOfrooms <= child">
                                                 <span class="button_text">+</span>
                                              </button>
-                                            
+
                                           </div>
                                        </div>
                                     </div>
@@ -192,7 +192,7 @@
                                                [disabled]="maxSelectRoom <= noOfrooms">
                                                <span class="button_text">+</span>
                                             </button>
-                                           
+
                                          </div>
                                       </div>
                                    </div>
@@ -203,9 +203,9 @@
                     </div>
                      <!--check-form end-->
                   </li>
-                    <li class="check-avail">
+                    <!-- <li class="check-avail">
                       <a (click)="getAvailableRoom()" title="" class="check-status">CHECK AVAILABILITY</a>
-                    </li>
+                    </li> -->
                   </ul>
                   <div class="clearfix"></div>
                 </div>
@@ -264,7 +264,7 @@
                       href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false"><i
                         class="fa fa-money mr-2" (click)="cashOnDelivery()"></i>Pay While Check-in</a>
                   </li>
-                  <!-- <li class="nav-item">
+                  <li class="nav-item">
                     <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-1-tab" data-toggle="tab"
                       href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true"
                       (click)="cardPayment()"><i class="fa fa-credit-card mr-2"></i>Credit/Debit
@@ -287,7 +287,7 @@
                     <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-4-tab" data-toggle="tab"
                       href="#tabs-icons-text-4" role="tab" aria-controls="tabs-icons-text-4" aria-selected="false"
                       (click)="MobileWallet()"><i class="fa fa- mr-2"></i>Mobile Wallet</a>
-                  </li> -->
+                  </li>
                 </ul>
               </div>
               <div class="card shadow" >
@@ -296,10 +296,7 @@
                     <div class="tab-pane fade" id="tabs-icons-text-1" role="tabpanel"
                       aria-labelledby="tabs-icons-text-1-tab">
                       <form #payForm="ngForm">
-                        <div class="row" *ngIf="
-                            !cashPayment &&
-                            property.paymentGateway == 'eway'
-                          ">
+                        <div class="row" *ngIf="!cashPayment && property.paymentGateway == 'eway'">
                           <div id="eway-secure-panel" style="width: 100%; margin-bottom: 1rem" class="col-md-12"></div>
 
                           <div class="col-md-12">
@@ -311,7 +308,7 @@
                             </button>
                           </div>
                         </div>
-                        <div class="row" *ngIf="
+                        <!-- <div class="row" *ngIf="
                             !cashPayment &&
                             property.paymentGateway != 'eway'
                           ">
@@ -444,7 +441,25 @@
                               Confirm
                             </button>
                           </div>
-                        </div>
+                        </div> -->
+                        <div class="row" *ngIf="!cashPayment && property.paymentGateway == 'stripe'">
+                          <div class="col-md-12">
+                            <form id="payment-form">
+                            <div id="card-element" class="stripe"><!--Stripe.js injects the Card Element--></div>
+                            <button id="submit" class="stripe"  >
+                              <div class="spinner hidden" id="spinner"></div>
+                              <span id="button-text">Pay now</span>
+                            </button>
+                            <p id="card-error" class="stripe" role="alert"></p>
+                            <p class="result-message hidden"> Payment succeeded! </p>
+                            </form>
+                          </div>
+                          </div>
+                          <div class="row" *ngIf="!cashPayment && property.paymentGateway != 'eway' || property.paymentGateway != 'stripe'">
+                          <div class="col-12">
+                            <p class="result-message">Card payment not available!</p>
+                          </div>
+                          </div>
                       </form>
                     </div>
                     <div class="tab-pane fade show active" id="tabs-icons-text-2" role="tabpanel"

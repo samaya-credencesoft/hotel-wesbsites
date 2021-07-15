@@ -39,6 +39,7 @@ export class Payment {
   accountNumber:string;
   bankReferenceNumber: number;
   bookingCommissionAmount: number;
+  clientSecret: string;
   constructor() {
   }
 }

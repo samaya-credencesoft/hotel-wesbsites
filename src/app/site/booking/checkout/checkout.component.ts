@@ -1,5 +1,5 @@
 import { TokenStorage } from "./../../../token.storage";
-import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
+import { ChangeDetectorRef, Component, NgZone, OnInit } from "@angular/core";
 import { Room } from "src/app/room/room";
 import { PROPERTY_ID, ApiService, SMS_NUMBER } from "src/app/api.service";
 import { HttpErrorResponse } from "@angular/common/http";
@@ -24,8 +24,12 @@ import { BankAccount } from "../../home/model/BankAccount";
 import { MobileWallet } from "../../home/model/mobileWallet";
 import { MessageDto } from "../../home/model/MessageDto";
 import { Property } from "../../home/model/property";
-import { formatDate } from "@angular/common";
+import { DatePipe, formatDate } from "@angular/common";
 import { NgbDate } from "@ng-bootstrap/ng-bootstrap";
+
+declare var Stripe: any;
+
+declare var window: any;
 export interface Year {
   value: string;
   viewValue: string;
@@ -48,6 +52,7 @@ export interface PaymentMode {
   selector: "app-checkout",
   templateUrl: "./checkout.component.html",
   styleUrls: ["./checkout.component.css"],
+  providers: [DatePipe],
 })
 export class CheckoutComponent implements OnInit {
   paymentLoader: boolean = false;
@@ -185,11 +190,14 @@ export class CheckoutComponent implements OnInit {
   private ewayInitComplete: boolean = false;
   submitButtonDisabled : boolean = false;
   currency: string;
+  cardPaymentAvailable: boolean;
   constructor(
     private apiService: ApiService,
     public token: TokenStorage,
+    private ngZone: NgZone,
     private router: Router,
     private snackBar: MatSnackBar,
+    public datepipe: DatePipe,
     private changeDetectorRefs: ChangeDetectorRef,
     private formBuilder: FormBuilder,
     private acRoute: ActivatedRoute
@@ -273,6 +281,12 @@ export class CheckoutComponent implements OnInit {
       this.mobileWallet = this.property.mobileWallet;
     }
     // });
+
+    window["angularComponentReference"] = {
+      component: this,
+      zone: this.ngZone,
+      loadAngularFunction: () => this.stripePaymentSuccess(),
+    };
   }
   getDateFormatYearMonthDay(
     day12: number,
@@ -717,7 +731,33 @@ export class CheckoutComponent implements OnInit {
   }
   cardPayment() {
     this.cashPayment = false;
+    if (this.property.paymentGateway == "stripe") {
+      this.loadStripe();
+      this.payment.paymentMode = "Card";
+      this.payment.status = "Paid";
+      this.payment.firstName = this.booking.firstName;
+      this.payment.lastName = this.booking.lastName;
+      this.payment.netReceivableAmount = this.booking.netAmount;
+      this.payment.transactionAmount = this.booking.totalAmount;
+      this.payment.amount = this.booking.totalAmount;
+      this.payment.propertyId = this.booking.propertyId;
+      this.payment.transactionChargeAmount = this.booking.totalAmount;
+      this.payment.email = this.booking.email;
+      this.payment.businessEmail = this.property.email;
+      this.payment.currency = this.property.localCurrency;
+      this.payment.deliveryChargeAmount = 0;
+      this.payment.date = formatDate(new Date(), "yyyy-MM-dd", "en");
+      this.payment.taxAmount = this.booking.gstAmount;
+      this.booking.taxAmount = this.booking.gstAmount;
+      this.payment.date = this.datepipe.transform(
+        new Date().getTime(),
+        "yyyy-MM-dd"
+      );
+
+      this.paymentIntent(this.payment);
+      this.cardPaymentAvailable = true;
   }
+}
   bankPayment() {
     this.cashPayment = false;
   }
@@ -940,5 +980,108 @@ export class CheckoutComponent implements OnInit {
     this.daySelected2 = String(yearAndMonth[2].split(" ", 1));
     this.yearSelected2 = yearAndMonth[0];
     this.monthSelected2 = parseInt(yearAndMonth[1]) - 1;
+  }
+
+  paymentIntent(payment: Payment) {
+    this.paymentLoader = true;
+    payment.date = this.datepipe.transform(new Date().getTime(), "yyyy-MM-dd");
+    this.apiService.paymentIntent(payment).subscribe((response) => {
+      this.paymentLoader = false;
+      if (response.status === 200) {
+        this.payment = response.body;
+        console.log("payment Intent Response: " + response);
+      }
+    });
+  }
+  loadStripe() {
+    // Your Stripe public key
+    const stripe = Stripe(this.property.paymentGatewayPublicKey);
+
+    // Create `card` element that will watch for updates
+    // and display error messages
+    const elements = stripe.elements();
+    const card = elements.create("card");
+    card.mount("#card-element");
+    card.addEventListener("change", (event) => {
+      const displayError = document.getElementById("card-error");
+      if (event.error) {
+        displayError.textContent = event.error.message;
+      } else {
+        displayError.textContent = '';
+      }
+    });
+
+    // Listen for form submission, process the form with Stripe,
+    // and get the
+    const paymentForm = document.getElementById("payment-form");
+    paymentForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      payWithCard(stripe, card, this.payment.clientSecret);
+    });
+
+    const payWithCard = function (stripe, card, clientSecret) {
+      loading(true);
+      stripe
+        .confirmCardPayment(clientSecret, {
+          payment_method: {
+            card: card,
+          },
+        })
+        .then(function (result) {
+          if (result.error) {
+            // Show error to your customer
+            showError(result.error.message);
+          } else {
+            // The payment succeeded!
+            loading(false);
+            console.log(JSON.stringify(result));
+            orderComplete();
+          }
+        });
+    };
+
+    const loading = function (isLoading) {
+      if (isLoading) {
+        // Disable the button and show a spinner
+        document.querySelector("button").disabled = true;
+        document.querySelector("#spinner").classList.remove("hidden");
+        document.querySelector("#button-text").classList.add("hidden");
+      } else {
+        document.querySelector("button").disabled = false;
+        document.querySelector("#spinner").classList.add("hidden");
+        document.querySelector("#button-text").classList.remove("hidden");
+      }
+    };
+    const showError = function (errorMsgText) {
+      loading(false);
+      var errorMsg = document.querySelector("#card-error");
+      errorMsg.textContent = errorMsgText;
+      setTimeout(function () {
+        errorMsg.textContent = "";
+      }, 4000);
+    };
+    let orderComplete = function () {
+      window.angularComponentReference.zone.run(() => {
+        window.angularComponentReference.loadAngularFunction();
+      });
+    };
+  }
+  stripePaymentSuccess() {
+    this.apiService.savePayment(this.payment).subscribe((response) => {
+      this.paymentLoader = false;
+      if (response.status === 200) {
+        this.payment = response.body;
+        console.log("payment Intent Response: " + response);
+
+        this.booking.paymentId = response.body.id;
+        this.booking.modeOfPayment = this.payment.paymentMode;
+
+        console.log("Card info done" + JSON.stringify(this.payment));
+        this.changeDetectorRefs.detectChanges();
+
+        this.createBooking();
+      }
+    });
   }
 }

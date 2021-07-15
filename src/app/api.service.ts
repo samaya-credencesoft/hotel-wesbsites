@@ -80,6 +80,9 @@ export class ApiService {
   sendTextMessage(message: Msg) {
     return this.http.post<Msg>(API_URL + '/message/send', message, { observe: 'response' });
   }
+  paymentIntent(paymentDetails: Payment) {
+    return this.http.post<Payment>(API_URL + '/paymentIntent', paymentDetails, { observe: 'response' });
+}
   savePayment(paymentDetails: Payment) {
     return this.http.post<Payment>(API_URL + '/savePayment', paymentDetails, { observe: 'response' });
   }
