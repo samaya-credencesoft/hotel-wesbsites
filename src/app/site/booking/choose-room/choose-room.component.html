@@ -88,7 +88,7 @@
                                   <span data-adults-count="">{{adults}} adults</span>
                                   <span data-visible="accommodation">
                                     &nbsp;·&nbsp;
-                                    <span data-children-count="">{{children}} chils</span>
+                                    <span data-children-count="">{{children}} child</span>
                                   </span>
                                   <span data-visible="accommodation">
                                     &nbsp;·&nbsp;
@@ -178,7 +178,7 @@
                                           aria-hidden="true">{{noOfrooms}}</span>
                                         <button class="btn btn-outline-primary btn-sm" type="button"
                                           (click)="noOfrooms = noOfrooms + 1; booking.noOfRooms = noOfrooms;"
-                                          [disabled]="maxSelectRoom <= noOfrooms">
+                                          [disabled]="noOfrooms >= maxSelectRoom">
                                           <span class="button_text">+</span>
                                         </button>
                                         <!-- <span class="stepper_display" id="no_rooms_desc">{{noOfrooms}} Rooms</span> -->

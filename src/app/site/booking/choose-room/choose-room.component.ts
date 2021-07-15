@@ -105,6 +105,9 @@ export class ChooseRoomComponent implements OnInit {
         this.booking.noOfRooms = this.dateModel.noOfRooms;
         this.booking.noOfPersons = this.dateModel.guest;
         this.booking.noOfChildren = this.dateModel.noOfChildren;
+        this.adults = this.booking.noOfPersons;
+        this.children = this.booking.noOfChildren;
+        this.noOfrooms = this.booking.noOfRooms;
         this.fromDate = new NgbDate(
           this.mileSecondToNGBDate(this.booking.fromDate).year,
           this.mileSecondToNGBDate(this.booking.fromDate).month,
@@ -153,10 +156,13 @@ export class ChooseRoomComponent implements OnInit {
         this.getAvailableRoom();
       }
     });
+    this.maxSelectRoom = this.token.getProperty().numberOfRooms;
+    this.maxOccupancy = this.token.getProperty().maximumOccupancy;
   }
 
   ngOnInit() {
     //this.checkincheckoutDate();
+
   }
   toggleRoomsAndOccupancy() {
     if (this.roomsAndOccupancy == false) {
@@ -369,7 +375,7 @@ export class ChooseRoomComponent implements OnInit {
     this.changeDetectorRefs.detectChanges();
     // this.checkingAvailability();
   }
-  
+
   getDateFormat(dateString: string) {
     const yearAndMonth = dateString.split('-', 3);
     return (
@@ -492,5 +498,5 @@ export class ChooseRoomComponent implements OnInit {
     this.yearSelected2 = yearAndMonth[0];
     this.monthSelected2 = parseInt(yearAndMonth[1]) - 1;
   }
-  
+
 }

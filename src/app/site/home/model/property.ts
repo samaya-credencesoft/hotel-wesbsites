@@ -97,5 +97,6 @@ export class Property {
       taxableAmount: number
     }
   ];
+  numberOfRooms: number;
     constructor() { }
 }
