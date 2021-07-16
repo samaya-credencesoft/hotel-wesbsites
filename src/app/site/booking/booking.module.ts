@@ -16,6 +16,7 @@ import { BookingDetailsComponent } from './booking-details/booking-details.compo
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 const routes: Routes = [
   { path: '', component: ChooseRoomComponent },
   { path: 'booking/choose', component: ChooseRoomComponent },
@@ -37,6 +38,7 @@ const routes: Routes = [
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
+    SlickCarouselModule,
     RouterModule.forChild(routes),
   ],
   declarations: [

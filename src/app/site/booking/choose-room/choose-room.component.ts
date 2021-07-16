@@ -2,7 +2,7 @@ import { formatDate } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
-import { NgbCalendar, NgbDate, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDismissReasons,NgbCalendar, NgbDate, NgbDateParserFormatter, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService, PROPERTY_ID } from 'src/app/api.service';
 import { BankAccount } from 'src/app/model/BankAccount';
 import { Booking } from 'src/app/model/booking';
@@ -59,6 +59,10 @@ export class ChooseRoomComponent implements OnInit {
   maxSelectRoom = 1;
   maxOccupancy = 2;
   businessUser: BusinessUser;
+  closeResult = "";
+  modalImage = "";
+  modalTitle = "";
+  modalData: Room;
   // planDetails:FormControl = new FormControl('', Validators.nullValidator);
 
   monthArray = [
@@ -89,7 +93,8 @@ export class ChooseRoomComponent implements OnInit {
     private changeDetectorRefs: ChangeDetectorRef,
     public formatter: NgbDateParserFormatter,
     private calendar: NgbCalendar,
-    private acRoute: ActivatedRoute
+    private acRoute: ActivatedRoute,
+    private modalService: NgbModal,
   ) {
     this.dateModel = new DateModel();
     this.booking = new Booking();
@@ -493,5 +498,42 @@ export class ChooseRoomComponent implements OnInit {
     this.yearSelected2 = yearAndMonth[0];
     this.monthSelected2 = parseInt(yearAndMonth[1]) - 1;
   }
-  
+  open(content, src, title) {
+    this.modalData = src;
+    console.log("The rooms " +this.modalData);
+    this.modalTitle = title;
+    this.modalService
+      .open(content, { size: "xl", scrollable: true })
+      .result.then(
+        (result) => {
+          this.closeResult = `Closed with: ${result}`;
+        },
+        (reason) => {
+          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        }
+      );
+  }
+  // openImage(content, src, title) {
+  //   this.modalImage = src;
+  //   this.modalTitle = title;
+  //   this.modalService
+  //     .open(content, { size: "lg", scrollable: true })
+  //     .result.then(
+  //       (result) => {
+  //         this.closeResult = `Closed with: ${result}`;
+  //       },
+  //       (reason) => {
+  //         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+  //       }
+  //     );
+  // }
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return "by pressing ESC";
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return "by clicking on a backdrop";
+    } else {
+      return `with: ${reason}`;
+    }
+  }
 }
