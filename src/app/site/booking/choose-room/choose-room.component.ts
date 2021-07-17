@@ -63,6 +63,37 @@ export class ChooseRoomComponent implements OnInit {
   modalImage = "";
   modalTitle = "";
   modalData: Room;
+
+  modalSlideConfig = {
+    centerMode: true,
+    centerPadding: "0%",
+    slidesToShow: 1,
+    dots: true,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    arrows: true,
+    responsive: [
+      {
+        breakpoint: 1367,
+        settings: {
+          centerPadding: "0%",
+        },
+      },
+      {
+        breakpoint: 1025,
+        settings: {
+          centerPadding: "0",
+        },
+      },
+      {
+        breakpoint: 767,
+        settings: {
+          centerPadding: "0",
+          slidesToShow: 1,
+        },
+      },
+    ],
+  };
   // planDetails:FormControl = new FormControl('', Validators.nullValidator);
 
   monthArray = [
@@ -513,20 +544,7 @@ export class ChooseRoomComponent implements OnInit {
         }
       );
   }
-  // openImage(content, src, title) {
-  //   this.modalImage = src;
-  //   this.modalTitle = title;
-  //   this.modalService
-  //     .open(content, { size: "lg", scrollable: true })
-  //     .result.then(
-  //       (result) => {
-  //         this.closeResult = `Closed with: ${result}`;
-  //       },
-  //       (reason) => {
-  //         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-  //       }
-  //     );
-  // }
+  
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return "by pressing ESC";
