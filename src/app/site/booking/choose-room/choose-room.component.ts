@@ -44,7 +44,7 @@ export class ChooseRoomComponent implements OnInit {
 
   property: Property;
 
-  taxPercentage: number = 0;
+  taxPercentage: number;
 
   adults: number = 1;
   children: number = 0;
@@ -300,17 +300,7 @@ export class ChooseRoomComponent implements OnInit {
 
     return `${year}-${month1}-${day1}`;
   }
-  onRoomBook(room, index) {
-    // this.dateModel.room = room;
-    this.selectedIndex = index;
 
-    // let navigationExtras: NavigationExtras = {
-    //   queryParams: {
-    //     dateob: JSON.stringify(this.dateModel),
-    //   },
-    // };
-    // this.router.navigate(['/booking/booking'], navigationExtras);
-  }
   hasPercentage(roomOnlyPrice, planAmount) {
     if (((roomOnlyPrice - planAmount) / roomOnlyPrice) * 100 > 0) {
       return true;
@@ -366,9 +356,9 @@ export class ChooseRoomComponent implements OnInit {
     }
 
     this.booking.netAmount = (plan.amount * this.DiffDate * this.noOfrooms) + this.booking.extraPersonCharge + this.booking.extraChildCharge;
-    // if (this.businessUser.taxDetails.length > 0) {
-    //   this.taxPercentage = this.businessUser.taxDetails[0].percentage;
-    // }
+    if (this.businessUser.taxDetails?.length > 0) {
+      this.taxPercentage = this.businessUser.taxDetails[0].percentage;
+    }
     if (plan != undefined && plan.amount != undefined) {
       this.bookingRoomPrice = (plan.amount * this.DiffDate * this.booking.noOfRooms) + this.booking.extraPersonCharge + this.booking.extraChildCharge;
       this.PlanRoomPrice = plan.amount * this.DiffDate * this.booking.noOfRooms;
@@ -376,18 +366,18 @@ export class ChooseRoomComponent implements OnInit {
       this.bookingRoomPrice = 0;
       this.PlanRoomPrice = 0;
     }
-    // if (this.businessUser.taxDetails[0].taxSlabsList.length > 0) {
-    //   this.businessUser.taxDetails[0].taxSlabsList.forEach((element) => {
-    //     if (
-    //       element.maxAmount > this.booking.netAmount &&
-    //       element.minAmount < this.booking.netAmount
-    //     ) {
-    //       this.taxPercentage = element.percentage;
-    //     } else if (element.maxAmount < this.booking.netAmount) {
-    //       this.taxPercentage = element.percentage;
-    //     }
-    //   });
-    // }
+    if (this.businessUser.taxDetails && this.businessUser.taxDetails[0].taxSlabsList?.length > 0) {
+      this.businessUser.taxDetails[0].taxSlabsList.forEach((element) => {
+        if (
+          element.maxAmount > this.booking.netAmount &&
+          element.minAmount < this.booking.netAmount
+        ) {
+          this.taxPercentage = element.percentage;
+        } else if (element.maxAmount < this.booking.netAmount) {
+          this.taxPercentage = element.percentage;
+        }
+      });
+    }
     this.booking.taxPercentage = this.taxPercentage;
     this.planDetails = plan;
     this.booking.planCode = plan.code;
@@ -401,12 +391,22 @@ export class ChooseRoomComponent implements OnInit {
     // this.toDate = undefined;
     // this.booking.fromDate = undefined;
     // this.booking.toDate = undefined;
-    console.log(JSON.stringify(this.booking));
-    console.log(JSON.stringify(this.checkAvailabilityStatusHide));
+    // Logger.log(JSON.stringify(this.booking));
+    // Logger.log(JSON.stringify(this.checkAvailabilityStatusHide));
     this.changeDetectorRefs.detectChanges();
     // this.checkingAvailability();
   }
-  
+  onRoomBook(room, index) {
+    // this.dateModel.room = room;
+    this.selectedIndex = index;
+
+    // let navigationExtras: NavigationExtras = {
+    //   queryParams: {
+    //     dateob: JSON.stringify(this.dateModel),
+    //   },
+    // };
+    // this.router.navigate(['/booking/booking'], navigationExtras);
+  }
   getDateFormat(dateString: string) {
     const yearAndMonth = dateString.split('-', 3);
     return (
@@ -449,14 +449,14 @@ export class ChooseRoomComponent implements OnInit {
     this.booking.netAmount =
       this.booking.roomPrice * this.booking.noOfRooms * this.DiffDate;
     this.booking.discountAmount = 0;
-    // this.booking.totalAmount = this.booking.netAmount + ((this.booking.netAmount * this.taxPercentage) / 100) - this.booking.discountAmount;
+    this.booking.totalAmount = this.booking.netAmount + ((this.booking.netAmount * this.taxPercentage) / 100) - this.booking.discountAmount;
     this.booking.gstAmount =
       (this.booking.netAmount * this.booking.taxPercentage) / 100;
     this.booking.totalAmount =
       this.booking.netAmount +
       this.booking.gstAmount -
       this.booking.discountAmount;
-    console.log('book now ', JSON.stringify(this.booking.netAmount));
+    // console.log('book now ', JSON.stringify(this.booking.netAmount));
     this.token.saveBookingData(this.booking);
     this.router.navigate(['/booking/booking']);
   }

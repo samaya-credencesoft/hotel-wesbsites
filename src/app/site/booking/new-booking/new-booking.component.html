@@ -107,10 +107,10 @@
                     <h6 *ngIf="discountPercentage"><b>Discount ({{booking.discountPercentage}}%):
                     </b>{{booking.discountAmount | currency: currency:'symbol':'1.2-2'}}
                   </h6>
-                    <!-- <h6>Tax Amount ({{this.taxPercentage}}%):</h6>
+                    <h6>Tax Amount ({{this.taxPercentage}}%):</h6>
                     <p *ngIf="businessUser.taxDetails">{{ businessUser.taxDetails[0].name }} & charges
                       {{  (this.booking.netAmount * this.booking.taxPercentage) / 100 | currency: currency:'symbol':'1.2-2' }}
-                    </p> -->
+                    </p>
     
                     <div *ngIf="booking.noOfExtraPerson > 0">
                       <h6 class="">Extra Person charges</h6>
@@ -863,12 +863,12 @@
                     <b>Room Price: </b><span>{{ booking.roomPrice | currency: currency:"symbol":"1.2-2" }}
                     </span>
                   </li>
-                  <!-- <li>
+                  <li>
                     <b>Tax Amount:</b><span> {{ booking.gstAmount | currency: currency:"symbol":"1.2-2" }}</span>
                   </li>
                   <li *ngIf="discountPercentage">
                     <b>Discount Amount: </b>{{ booking.discountAmount | currency: currency:"symbol":"1.2-2" }}
-                  </li> -->
+                  </li>
 
                   <!-- <li class="total-costs"><b>Total Cost: </b><span> 546.00</span></li> -->
                 </ul>
