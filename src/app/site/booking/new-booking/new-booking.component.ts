@@ -428,6 +428,7 @@ export class NewBookingComponent implements OnInit {
       }
     }
   }
+  
   clickPhone() {
     this.booking.email = "";
   }

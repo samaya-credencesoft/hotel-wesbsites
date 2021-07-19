@@ -2,7 +2,7 @@ import { formatDate } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
-import { NgbCalendar, NgbDate, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDismissReasons, NgbCalendar, NgbDate, NgbDateParserFormatter, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService, PROPERTY_ID } from 'src/app/api.service';
 import { Room } from 'src/app/room/room';
 import { TokenStorage } from 'src/app/token.storage';
@@ -12,6 +12,7 @@ import { DateModel } from '../../home/model/dateModel';
 import { MobileWallet } from '../../home/model/mobileWallet';
 import { Property } from '../../home/model/property';
 import { RoomRatePlans } from '../../home/model/roomRatePlans';
+import { BusinessUser } from '../../home/model/user';
 
 
 @Component({
@@ -40,7 +41,7 @@ export class ChooseRoomComponent implements OnInit {
   checkAvailabilityStatusName: string;
   checkAvailabilityStatusHide: boolean;
   planDetails: RoomRatePlans;
-
+  businessUser: BusinessUser;
   property: Property;
 
   taxPercentage: number = 0;
@@ -59,6 +60,41 @@ export class ChooseRoomComponent implements OnInit {
   maxOccupancy = 2;
   // businessUser: BusinessUser;
   // planDetails:FormControl = new FormControl('', Validators.nullValidator);
+  closeResult = "";
+  modalImage = "";
+  modalTitle = "";
+  modalData: Room;
+
+  modalSlideConfig = {
+    centerMode: true,
+    centerPadding: "0%",
+    slidesToShow: 1,
+    dots: true,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    arrows: true,
+    responsive: [
+      {
+        breakpoint: 1367,
+        settings: {
+          centerPadding: "0%",
+        },
+      },
+      {
+        breakpoint: 1025,
+        settings: {
+          centerPadding: "0",
+        },
+      },
+      {
+        breakpoint: 767,
+        settings: {
+          centerPadding: "0",
+          slidesToShow: 1,
+        },
+      },
+    ],
+  };
 
   monthArray = [
     'Jan',
@@ -88,11 +124,12 @@ export class ChooseRoomComponent implements OnInit {
     private changeDetectorRefs: ChangeDetectorRef,
     public formatter: NgbDateParserFormatter,
     private calendar: NgbCalendar,
-    private acRoute: ActivatedRoute
+    private acRoute: ActivatedRoute,
+    private modalService: NgbModal,
   ) {
     this.dateModel = new DateModel();
     this.booking = new Booking();
-    // this.businessUser = new BusinessUser();
+     this.businessUser = new BusinessUser();
     // this.getRoom();
 
     this.acRoute.queryParams.subscribe((params) => {
@@ -322,6 +359,10 @@ export class ChooseRoomComponent implements OnInit {
       this.booking.noOfExtraPerson = 0;
       this.booking.extraPersonCharge = 0;
     }
+    this.booking.netAmount = (plan.amount * this.DiffDate * this.noOfrooms) + this.booking.extraPersonCharge + this.booking.extraChildCharge;
+    if (this.businessUser.taxDetails?.length > 0) {
+      this.taxPercentage = this.businessUser.taxDetails[0].percentage;
+    }
     if ( plan.noOfChildren * this.booking.noOfRooms < this.booking.noOfChildren ) {
       if (plan.extraChargePerChild !== 0) {
         this.booking.noOfExtraChild = this.booking.noOfChildren - (plan.noOfChildren * this.booking.noOfRooms);
@@ -345,18 +386,18 @@ export class ChooseRoomComponent implements OnInit {
       this.bookingRoomPrice = 0;
       this.PlanRoomPrice = 0;
     }
-    // if (this.businessUser.taxDetails[0].taxSlabsList.length > 0) {
-    //   this.businessUser.taxDetails[0].taxSlabsList.forEach((element) => {
-    //     if (
-    //       element.maxAmount > this.booking.netAmount &&
-    //       element.minAmount < this.booking.netAmount
-    //     ) {
-    //       this.taxPercentage = element.percentage;
-    //     } else if (element.maxAmount < this.booking.netAmount) {
-    //       this.taxPercentage = element.percentage;
-    //     }
-    //   });
-    // }
+    if (this.businessUser.taxDetails && this.businessUser.taxDetails[0].taxSlabsList.length > 0) {
+      this.businessUser.taxDetails[0].taxSlabsList.forEach((element) => {
+        if (
+          element.maxAmount > this.booking.netAmount &&
+          element.minAmount < this.booking.netAmount
+        ) {
+          this.taxPercentage = element.percentage;
+        } else if (element.maxAmount < this.booking.netAmount) {
+          this.taxPercentage = element.percentage;
+        }
+      });
+    }
     this.booking.taxPercentage = this.taxPercentage;
     this.planDetails = plan;
     this.booking.planCode = plan.code;
@@ -498,5 +539,29 @@ export class ChooseRoomComponent implements OnInit {
     this.yearSelected2 = yearAndMonth[0];
     this.monthSelected2 = parseInt(yearAndMonth[1]) - 1;
   }
-
+  open(content, src, title) {
+    this.modalData = src;
+    console.log("The rooms " +this.modalData);
+    this.modalTitle = title;
+    this.modalService
+      .open(content, { size: "xl", scrollable: true })
+      .result.then(
+        (result) => {
+          this.closeResult = `Closed with: ${result}`;
+        },
+        (reason) => {
+          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        }
+      );
+  }
+  
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return "by pressing ESC";
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return "by clicking on a backdrop";
+    } else {
+      return `with: ${reason}`;
+    }
+  }
 }

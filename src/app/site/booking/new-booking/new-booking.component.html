@@ -52,9 +52,11 @@
                 <div class="row px-4 pb-4">
                   <div class="col-12">
                     <h6>Guests:</h6>
-                    <div>{{booking.noOfPersons}} Adult(s) </div><span *ngIf="booking.noOfChildren > 0" >{{booking.noOfChildren}} Child(s) </span>
+                    <div>{{booking.noOfPersons}} Adult(s) </div>
+                    <span>{{booking.noOfChildren}} Child(s) </span>
                     <!-- <h6>You selected:</h6>
                     <p>{{booking.roomType}}</p> -->
+                    <!-- <span *ngIf="booking.noOfChildren > 0">{{booking.noOfChildren}} Child(s) </span> -->
                   </div>
                 </div>
               </div>
@@ -78,10 +80,10 @@
                     <h6 *ngIf="discountPercentage"><b class="pb-2">Discount ({{booking.discountPercentage}}%):
                     </b>{{booking.discountAmount | currency: currency:'symbol':'1.2-2'}}
                   </h6>
-                    <!-- <h6>Tax Amount ({{this.taxPercentage}}%):</h6>
-                    <p *ngIf="businessUser.taxDetails">{{ businessUser.taxDetails[0].name }} & charges
-                      {{  (this.booking.netAmount * this.booking.taxPercentage) / 100 | currency: currency:'symbol':'1.2-2' }}
-                    </p> -->
+                  <h6>Tax Amount ({{this.taxPercentage}}%):</h6>
+                  <p *ngIf="businessUser?.taxDetails">{{ businessUser.taxDetails[0].name }} & charges
+                    {{  (this.booking.netAmount * this.booking.taxPercentage) / 100 | currency: currency:'symbol':'1.2-2' }}
+                  </p>
     
                     <div *ngIf="booking.noOfExtraPerson > 0">
                       <h6 class="">Extra Person charges</h6>
@@ -834,12 +836,12 @@
                     <b>Room Price: </b><span>{{ booking.roomPrice | currency: currency:"symbol":"1.2-2" }}
                     </span>
                   </li>
-                  <!-- <li>
+                  <li>
                     <b>Tax Amount:</b><span> {{ booking.gstAmount | currency: currency:"symbol":"1.2-2" }}</span>
                   </li>
                   <li *ngIf="discountPercentage">
                     <b>Discount Amount: </b>{{ booking.discountAmount | currency: currency:"symbol":"1.2-2" }}
-                  </li> -->
+                  </li>
 
                   <!-- <li class="total-costs"><b>Total Cost: </b><span> 546.00</span></li> -->
                 </ul>

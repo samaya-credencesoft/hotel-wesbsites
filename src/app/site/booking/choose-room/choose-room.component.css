@@ -37,8 +37,9 @@
     padding: 20px;
   }
   .room_img{
-    padding: 10px;
+    /* padding: 10px; */
     height: 300px;
+    width: 100%!important;
   }
   @media (min-width: 992px)And (max-width: 1199px){
     .main-content{
@@ -167,4 +168,38 @@
 .btn-primary{
   background-color: #470d25!important;
   border: #470d25!important;
+}
+.slick-slide .item{
+  height: 400px;
+  display: block;
+}
+.modal-dialog {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: auto;
+  min-height: calc(100vh - 60px);
+  }
+.modal{ 
+  z-index: 99999999;
+
+}
+.modal-dialog {
+max-width: 80vw;
+}
+.room_details{
+  min-height: 220px;
+  
+}
+@media (max-width: 767px) {
+  .modal-dialog {
+    min-height: calc(100vh - 20px);
+  }
+  }
+  .modal-body {
+  padding: 20px;
+}
+a.item.mfp-gallery.cover{
+  background-size: cover;
+  background-position: center center;
 }

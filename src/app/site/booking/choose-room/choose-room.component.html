@@ -441,7 +441,7 @@
                           <div class="room_details">
                             <div class="room-caroz">
                               <div class="room_img">
-                                <img *ngIf="room.imageList?.length" src="{{room.imageList[0].url}}" alt="">
+                                <img *ngIf="room.imageList?.length" src="{{room.imageList[0].url}}" alt="" (click)="open(content, room, room.name )">
                                 <img *ngIf="!room.imageList?.length" src="assets/images/logo.jpg" alt=" ">
                                 <!-- <span
                                   class="price-tag">{{ room.roomOnlyPrice | currency: token.getProperty().localCurrency.toUpperCase():'symbol':'1.2-2' }}<b>/night</b></span> -->
@@ -451,7 +451,7 @@
                             </div>
                             <!--room-caroz end-->
                             <div class="room_info">
-
+                              
                               <h3><a href="#" title="">{{room.name}}</a></h3>
                               <ul class="ppt-list">
                                 <li>
@@ -706,3 +706,42 @@
   </div>
 </section>
 <!--main-content end-->
+
+<ng-template #content let-modal #room>
+  <div class="modal-header">
+     <h4 class="modal-title" id="modal-basic-title">
+        {{modalTitle}}
+     </h4>
+     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true"> × </span>
+     </button>
+  </div>
+  <div class="modal-body">
+     <div class="room_details row " *ngIf="modalData.ratesAndAvailabilityDtos?.length">
+        <div class="room-caroz col-lg-12">
+           <div class="room_img" *ngIf="room">
+            
+              <ngx-slick-carousel class="carousel listing-slider mfp-gallery-container margin-bottom-0 ml-4 mr-4"
+                 #slickModal="slick-carousel" [config]="modalSlideConfig">
+                 <div ngxSlickItem *ngFor="let gallery of modalData.imageList" class="slide">
+                    <a *ngIf="gallery.url != null" [ngStyle]="{'background-image': 'url(' + gallery.url + ')'}"
+                       class="item mfp-gallery cover" title="{{gallery.name}}"></a>
+                    <a *ngIf="gallery.url == null"
+                       [ngStyle]="{'background-image': 'url(assets/images/app-logo.png)'}"
+                       class="item mfp-gallery cover" title="{{gallery.name}}"></a>
+                 </div>
+              </ngx-slick-carousel>
+           </div>
+
+        </div>
+        </div>
+        
+     </div>
+
+ 
+  <div class="modal-footer">
+     <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">
+        Close
+     </button>
+  </div>
+</ng-template>
