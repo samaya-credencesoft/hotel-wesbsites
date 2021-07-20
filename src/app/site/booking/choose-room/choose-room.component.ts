@@ -10,7 +10,6 @@ import { DateModel } from 'src/app/model/dateModel';
 import { MobileWallet } from 'src/app/model/mobileWallet';
 import { Property } from 'src/app/model/property';
 import { RoomRatePlans } from 'src/app/model/roomRatePlans';
-import { BusinessUser } from 'src/app/model/user';
 import { Room } from 'src/app/shared/models/room';
 import { TokenStorage } from 'src/app/token.storage';
 
@@ -58,7 +57,6 @@ export class ChooseRoomComponent implements OnInit {
   extraPersonRate = 0;
   maxSelectRoom = 1;
   maxOccupancy = 2;
-  businessUser: BusinessUser;
   closeResult = "";
   modalImage = "";
   modalTitle = "";
@@ -129,7 +127,7 @@ export class ChooseRoomComponent implements OnInit {
   ) {
     this.dateModel = new DateModel();
     this.booking = new Booking();
-    this.businessUser = new BusinessUser();
+    
     // this.getRoom();
 
     this.acRoute.queryParams.subscribe((params) => {
@@ -356,8 +354,8 @@ export class ChooseRoomComponent implements OnInit {
     }
 
     this.booking.netAmount = (plan.amount * this.DiffDate * this.noOfrooms) + this.booking.extraPersonCharge + this.booking.extraChildCharge;
-    if (this.businessUser.taxDetails?.length > 0) {
-      this.taxPercentage = this.businessUser.taxDetails[0].percentage;
+    if (this.property.taxDetails?.length > 0) {
+      this.taxPercentage = this.property.taxDetails[0].percentage;
     }
     if (plan != undefined && plan.amount != undefined) {
       this.bookingRoomPrice = (plan.amount * this.DiffDate * this.booking.noOfRooms) + this.booking.extraPersonCharge + this.booking.extraChildCharge;
@@ -366,8 +364,8 @@ export class ChooseRoomComponent implements OnInit {
       this.bookingRoomPrice = 0;
       this.PlanRoomPrice = 0;
     }
-    if (this.businessUser.taxDetails && this.businessUser.taxDetails[0].taxSlabsList?.length > 0) {
-      this.businessUser.taxDetails[0].taxSlabsList.forEach((element) => {
+    if (this.property.taxDetails && this.property.taxDetails[0].taxSlabsList?.length > 0) {
+      this.property.taxDetails[0].taxSlabsList.forEach((element) => {
         if (
           element.maxAmount > this.booking.netAmount &&
           element.minAmount < this.booking.netAmount

@@ -20,7 +20,7 @@ import { TokenStorage } from 'src/app/token.storage';
 import { Booking } from 'src/app/model/booking';
 import { DateModel } from 'src/app/model/dateModel';
 import { Room } from 'src/app/shared/models/room';
-import { BusinessUser } from 'src/app/model/user';
+
 
 
 @Component({
@@ -99,7 +99,7 @@ export class NewBookingComponent implements OnInit {
   DiffDate;
   enddate;
   startDate;
-  businessUser: BusinessUser;
+  
  
 
   discountPercentage: number;
@@ -147,7 +147,7 @@ export class NewBookingComponent implements OnInit {
     private acRoute: ActivatedRoute
   ) {
     // this.dateModel = new DateModel();
-    this.businessUser = new BusinessUser();
+    
     this.booking = new Booking();
     this.room = new Room();
     if (this.token.getProperty() != undefined && this.token.getProperty() != null) {

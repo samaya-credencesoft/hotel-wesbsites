@@ -81,7 +81,7 @@
                 <div class="row px-4 pb-4">
                   <div class="col-12">
                     <h6>Guests:</h6>
-                    <div>{{booking.noOfPersons}} Adult(s) </div><span *ngIf="booking.noOfChildren > 0" >{{booking.noOfChildren}} Child </span>
+                    <div>{{booking.noOfPersons}} Adult(s) </div><span *ngIf="booking.noOfChildren > 0" >{{booking.noOfChildren}} Child(s) </span>
                     <!-- <h6>You selected:</h6>
                     <p>{{booking.roomType}}</p> -->
                   </div>
@@ -107,8 +107,8 @@
                     <h6 *ngIf="discountPercentage"><b>Discount ({{booking.discountPercentage}}%):
                     </b>{{booking.discountAmount | currency: currency:'symbol':'1.2-2'}}
                   </h6>
-                    <h6>Tax Amount ({{this.taxPercentage}}%):</h6>
-                    <p *ngIf="businessUser.taxDetails">{{ businessUser.taxDetails[0].name }} & charges
+                    <h6>Tax Amount ({{this.booking.taxPercentage}}%):</h6>
+                    <p *ngIf="property?.taxDetails">{{ property.taxDetails[0].name }} & charges
                       {{  (this.booking.netAmount * this.booking.taxPercentage) / 100 | currency: currency:'symbol':'1.2-2' }}
                     </p>
     

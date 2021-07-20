@@ -50,8 +50,9 @@ height: 1300px;
   padding: 20px;
 }
 .room_img{
-  padding: 10px;
-  height: 300px;
+  /* padding: 10px; */
+  height: auto;
+  width: 100%!important;
 }
 @media (min-width: 992px)And (max-width: 1199px){
   .main-content{
