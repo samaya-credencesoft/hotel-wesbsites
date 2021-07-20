@@ -362,6 +362,7 @@ export class ChooseRoomComponent implements OnInit {
     if (this.property.taxDetails?.length > 0) {
       this.taxPercentage = this.property.taxDetails[0].percentage;
     }
+    
     if ( plan.noOfChildren * this.booking.noOfRooms < this.booking.noOfChildren ) {
       if (plan.extraChargePerChild !== 0) {
         this.booking.noOfExtraChild = this.booking.noOfChildren - (plan.noOfChildren * this.booking.noOfRooms);
@@ -540,7 +541,7 @@ export class ChooseRoomComponent implements OnInit {
   }
   open(content, src, title) {
     this.modalData = src;
-    console.log("The rooms " +this.modalData);
+    console.log("The rooms " +this.modalData.imageList);
     this.modalTitle = title;
     this.modalService
       .open(content, { size: "xl", scrollable: true })

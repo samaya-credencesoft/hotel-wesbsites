@@ -38,7 +38,7 @@
   }
   .room_img{
     /* padding: 10px; */
-    height: 300px;
+    height: auto;
     width: 100%!important;
   }
   @media (min-width: 992px)And (max-width: 1199px){
