@@ -12,7 +12,7 @@ import { DateModel } from '../../home/model/dateModel';
 import { MobileWallet } from '../../home/model/mobileWallet';
 import { Property } from '../../home/model/property';
 import { RoomRatePlans } from '../../home/model/roomRatePlans';
-import { BusinessUser } from '../../home/model/user';
+
 
 
 @Component({
@@ -41,7 +41,7 @@ export class ChooseRoomComponent implements OnInit {
   checkAvailabilityStatusName: string;
   checkAvailabilityStatusHide: boolean;
   planDetails: RoomRatePlans;
-  businessUser: BusinessUser;
+  
   property: Property;
 
   taxPercentage: number = 0;
@@ -58,7 +58,6 @@ export class ChooseRoomComponent implements OnInit {
   extraPersonRate = 0;
   maxSelectRoom = 1;
   maxOccupancy = 2;
-  // businessUser: BusinessUser;
   // planDetails:FormControl = new FormControl('', Validators.nullValidator);
   closeResult = "";
   modalImage = "";
@@ -129,7 +128,7 @@ export class ChooseRoomComponent implements OnInit {
   ) {
     this.dateModel = new DateModel();
     this.booking = new Booking();
-     this.businessUser = new BusinessUser();
+    //  this.property = new property();
     // this.getRoom();
 
     this.acRoute.queryParams.subscribe((params) => {
@@ -360,8 +359,8 @@ export class ChooseRoomComponent implements OnInit {
       this.booking.extraPersonCharge = 0;
     }
     this.booking.netAmount = (plan.amount * this.DiffDate * this.noOfrooms) + this.booking.extraPersonCharge + this.booking.extraChildCharge;
-    if (this.businessUser.taxDetails?.length > 0) {
-      this.taxPercentage = this.businessUser.taxDetails[0].percentage;
+    if (this.property.taxDetails?.length > 0) {
+      this.taxPercentage = this.property.taxDetails[0].percentage;
     }
     if ( plan.noOfChildren * this.booking.noOfRooms < this.booking.noOfChildren ) {
       if (plan.extraChargePerChild !== 0) {
@@ -376,9 +375,9 @@ export class ChooseRoomComponent implements OnInit {
     }
 
     this.booking.netAmount = (plan.amount * this.DiffDate * this.noOfrooms) + this.booking.extraPersonCharge + this.booking.extraChildCharge;
-    // if (this.businessUser.taxDetails.length > 0) {
-    //   this.taxPercentage = this.businessUser.taxDetails[0].percentage;
-    // }
+    if (this.property.taxDetails.length > 0) {
+      this.taxPercentage = this.property.taxDetails[0].percentage;
+    }
     if (plan != undefined && plan.amount != undefined) {
       this.bookingRoomPrice = (plan.amount * this.DiffDate * this.booking.noOfRooms) + this.booking.extraPersonCharge + this.booking.extraChildCharge;
       this.PlanRoomPrice = plan.amount * this.DiffDate * this.booking.noOfRooms;
@@ -386,8 +385,8 @@ export class ChooseRoomComponent implements OnInit {
       this.bookingRoomPrice = 0;
       this.PlanRoomPrice = 0;
     }
-    if (this.businessUser.taxDetails && this.businessUser.taxDetails[0].taxSlabsList.length > 0) {
-      this.businessUser.taxDetails[0].taxSlabsList.forEach((element) => {
+    if (this.property.taxDetails && this.property.taxDetails[0].taxSlabsList.length > 0) {
+      this.property.taxDetails[0].taxSlabsList.forEach((element) => {
         if (
           element.maxAmount > this.booking.netAmount &&
           element.minAmount < this.booking.netAmount

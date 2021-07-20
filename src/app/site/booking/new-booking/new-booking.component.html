@@ -80,8 +80,8 @@
                     <h6 *ngIf="discountPercentage"><b class="pb-2">Discount ({{booking.discountPercentage}}%):
                     </b>{{booking.discountAmount | currency: currency:'symbol':'1.2-2'}}
                   </h6>
-                  <h6>Tax Amount ({{this.taxPercentage}}%):</h6>
-                  <p *ngIf="businessUser?.taxDetails">{{ businessUser.taxDetails[0].name }} & charges
+                  <h6>Tax Amount ({{this.booking.taxPercentage}}%):</h6>
+                  <p *ngIf="property?.taxDetails">{{ property.taxDetails[0].name }} & charges
                     {{  (this.booking.netAmount * this.booking.taxPercentage) / 100 | currency: currency:'symbol':'1.2-2' }}
                   </p>
     
